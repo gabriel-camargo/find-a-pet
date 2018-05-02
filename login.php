@@ -11,7 +11,7 @@
   <body class="text-center">
 
 
-    <form class="form-signin" method="post">
+    <form action="login.php" class="form-signin" method="post">
 
 
     <!--  <img class="mb-4" src="img/logo.png" alt="Logo Find a Pet" width="72" height="72"> -->
@@ -36,7 +36,43 @@
       </p>
     </form>
 
+    <?php
 
+      require_once("config" . DIRECTORY_SEPARATOR . "config.php");
+
+      //resgata as variáveis do formulario
+      $email = isset($_POST['email']) ? $_POST['email'] : '';
+      $senha = isset($_POST['senha']) ? $_POST['senha'] : '';
+
+      //verifica se o campo de email ou de senha estão vazios
+      if (empty($email) || empty($senha))
+      {
+          //echo "Informe email e senha";
+          exit;
+      }
+
+      $sql = new Sql();
+
+      //armazena todos os usuarios que possuem o email e senha informados e armazena na variavel
+      $usuarios = $sql->select("SELECT usu_id, usu_nome FROM cad_usuarios WHERE usu_email = :EMAIL AND usu_senha = :SENHA",array(
+        ":EMAIL" => $email,
+        ":SENHA" => $senha
+      ));
+
+        //se nao for encontrado nenhum usuario
+      if (count($usuarios) <= 0) {
+        //echo "Email ou senha inválidos!";
+      }else{
+        $user = $usuarios[0];
+
+        session_start();
+        $_SESSION['logged_in'] = true;
+        $_SESSION['usu_id'] = $user['usu_id'];
+        $_SESSION['usu_nome'] = $user['usu_nome'];
+
+        header('Location: index.php');
+      }
+     ?>
 
     <?php
       require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'codigos-js.php');
