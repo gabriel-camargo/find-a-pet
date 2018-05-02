@@ -21,11 +21,11 @@
          $gabriel = new Usuario();
          $gabriel->loadById(1);
 
-         $ana = new Usuario();
-         $ana->loadById(2);
+         $luiza = new Usuario();
+         $luiza->loadById(2);
 
          echo $gabriel . "<br><br>";
-         echo $ana . "<br>";
+         echo $luiza . "<br><br>";
 
         ?>
 
