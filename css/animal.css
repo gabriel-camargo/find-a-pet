@@ -1,0 +1,12 @@
+div.publicacao-foto{
+  background-color: #aaa;
+  width: 200px;
+  height: 200px;
+  border-radius: 15px;
+}
+
+div.expansao-publicacao{
+  margin-top: 50px;
+  border: 1px solid #dddddd;
+  border-radius: 20px;
+}
