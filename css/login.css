@@ -20,6 +20,7 @@ body {
   /*background: url("../img/background-login-2.jpg");*/
   font-weight: bolder;
   text-align: center;
+  margin-top: 0px;
 }
 
 .form-signin {
