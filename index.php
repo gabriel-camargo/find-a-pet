@@ -21,11 +21,7 @@
          $gabriel = new Usuario();
          $gabriel->loadById(1);
 
-         $luiza = new Usuario();
-         $luiza->loadById(2);
-
          echo $gabriel . "<br><br>";
-         echo $luiza . "<br><br>";
 
         ?>
 
