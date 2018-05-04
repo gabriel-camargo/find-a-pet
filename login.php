@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
     <?php
-      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'header.php');
+      require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
      <link rel="stylesheet" href="css/login.css">
 
@@ -75,7 +75,7 @@
      ?>
 
     <?php
-      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'codigos-js.php');
+      require_once('pages' . DIRECTORY_SEPARATOR . 'codigos-js.php');
      ?>
 
   </body>

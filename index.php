@@ -3,13 +3,13 @@
   <head>
 
     <?php
-      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'header.php');
+      require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
 
   </head>
   <body>
     <?php
-      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'navbar.php');
+      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar.php');
      ?>
 
      <br><br><br><br><br>
@@ -28,7 +28,7 @@
      </div>
 
      <?php
-       require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'codigos-js.php');
+       require_once('pages' . DIRECTORY_SEPARATOR . 'codigos-js.php');
       ?>
   </body>
 </html>

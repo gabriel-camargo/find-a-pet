@@ -3,14 +3,14 @@
   <head>
 
     <?php
-      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'header.php');
+      require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
       // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-materialize' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
      <link rel="stylesheet" href="css/cadastro-animal.css">
   </head>
   <body>
     <?php
-      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'navbar.php');
+      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar.php');
       // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-materialize' . DIRECTORY_SEPARATOR . 'navbar.php');
      ?>
 
@@ -66,7 +66,7 @@
       </form>
 
       <?php
-        require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'codigos-js.php');
+        require_once('pages' . DIRECTORY_SEPARATOR . 'codigos-js.php');
         // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-materialize' . DIRECTORY_SEPARATOR . 'codigos-js.php');
        ?>
 

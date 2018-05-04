@@ -3,14 +3,14 @@
   <head lang="pt-br">
 
     <?php
-      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'header.php');
+      require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
       // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-materialize' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
      <link rel="stylesheet" href="css/cadastro.css">
   </head>
   <body>
     <?php
-      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'navbar.php');
+      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar.php');
       // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-materialize' . DIRECTORY_SEPARATOR . 'navbar.php');
      ?>
 
@@ -253,17 +253,16 @@
       <br>
     </div>
     <?php
-      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'codigos-js.php');
+      require_once('pages' . DIRECTORY_SEPARATOR . 'codigos-js.php');
       // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-materialize' . DIRECTORY_SEPARATOR . 'codigos-js.php');
      ?>
-     <!-- <script type="text/javascript" src="jquery-1.7.1.min.js"></script> -->
-     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
     	<script type="text/javascript">
 
     		$(document).ready(function () {
 
-    			$.getJSON('js/estados_cidades.json', function (data) {
+    			$.getJSON('js/vendor/estados_cidades.json', function (data) {
     				var items = [];
     				var options = '<option value="">escolha um estado</option>';
     				$.each(data, function (key, val) {

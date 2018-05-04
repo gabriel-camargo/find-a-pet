@@ -2,14 +2,14 @@
 <html lang="pt-br" dir="ltr">
   <head>
     <?php
-      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'header.php');
+      require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
       // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-materialize' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
      <link rel="stylesheet" href="css/animal.css">
   </head>
   <body>
       <?php
-        require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'navbar.php');
+        require_once('pages' . DIRECTORY_SEPARATOR . 'navbar.php');
         // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-materialize' . DIRECTORY_SEPARATOR . 'navbar.php');
        ?>
 
@@ -36,7 +36,7 @@
     </div>
 
     <?php
-      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'codigos-js.php');
+      require_once('pages' . DIRECTORY_SEPARATOR . 'codigos-js.php');
       // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-materialize' . DIRECTORY_SEPARATOR . 'codigos-js.php');
      ?>
 
