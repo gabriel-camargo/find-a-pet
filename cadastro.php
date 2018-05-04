@@ -13,7 +13,7 @@
       require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'navbar.php');
       // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-materialize' . DIRECTORY_SEPARATOR . 'navbar.php');
      ?>
-     
+
 
     <div class="container formulario">
       <br>
@@ -192,7 +192,7 @@
                 <label for="inputEstado" class="col-sm-2 col-form-label">Estado: </label>
                 <div class="col-sm-10">
                 <!--  <input type="tel" id="inputEstado" class="form-control" placeholder="Ex: São Paulo">-->
-                  <select name="estados-brasil" class="form-control">
+                  <!-- <select name="estados-brasil" class="form-control">
                     <option value="" selected disabled hidden>Selecione um estado:</option>
                   	<option value="AC">Acre</option>
                   	<option value="AL">Alagoas</option>
@@ -221,6 +221,9 @@
                   	<option value="SP">São Paulo</option>
                   	<option value="SE">Sergipe</option>
                   	<option value="TO">Tocantins</option>
+                  </select> -->
+                  <select id="inputEstado" class="form-control">
+                  			<option value=""></option>
                   </select>
                 </div>
               </div>
@@ -231,7 +234,9 @@
               <div class="form-group row">
                 <label for="inputCidade" class="col-sm-3 col-form-label">Cidade: </label>
                 <div class="col-sm-9">
-                  <input type="tel" id="inputCidade" class="form-control" placeholder="Ex: Pindamonhangaba">
+                  <!-- <input type="tel" id="inputCidade" class="form-control" placeholder="Ex: Pindamonhangaba"> -->
+                  <select id="inputCidade" class="form-control">
+                  </select>
                 </div>
               </div>
             </div>
@@ -251,6 +256,46 @@
       require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-bootstrap' . DIRECTORY_SEPARATOR . 'codigos-js.php');
       // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-materialize' . DIRECTORY_SEPARATOR . 'codigos-js.php');
      ?>
+     <!-- <script type="text/javascript" src="jquery-1.7.1.min.js"></script> -->
+     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    	<script type="text/javascript">
+
+    		$(document).ready(function () {
+
+    			$.getJSON('js/estados_cidades.json', function (data) {
+    				var items = [];
+    				var options = '<option value="">escolha um estado</option>';
+    				$.each(data, function (key, val) {
+    					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
+    				});
+    				$("#inputEstado").html(options);
+
+    				$("#inputEstado").change(function () {
+
+    					var options_cidades = '';
+    					var str = "";
+
+    					$("#inputEstado option:selected").each(function () {
+    						str += $(this).text();
+    					});
+
+    					$.each(data, function (key, val) {
+    						if(val.nome == str) {
+    							$.each(val.cidades, function (key_city, val_city) {
+    								options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
+    							});
+    						}
+    					});
+    					$("#inputCidade").html(options_cidades);
+
+    				}).change();
+
+    			});
+
+    		});
+
+    	</script>
 
   </body>
 </html>
