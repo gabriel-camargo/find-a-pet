@@ -165,6 +165,27 @@ class Usuario{
     $this->usu_uf = $value;
   }
 
+  public function setData($row){
+    $this->setIdUsuario($row['usu_id']);
+    $this->setFotoUsuario($row['usu_foto']);
+    $this->setCpfUsuario($row['usu_cpf']);
+    $this->setCnpjUsuario($row['usu_cnpj']);
+    $this->setNomeUsuario($row['usu_nome']);
+    $this->setApelidoUsuario($row['usu_apelido']);
+    $this->setSexoUsuario($row['usu_sexo']);
+    $this->setEmailUsuario($row['usu_email']);
+    $this->setSenhaUsuario($row['usu_senha']);
+    $this->setTelefoneUsuario($row['usu_telefone']);
+    $this->setCelularUsuario($row['usu_celular']);
+    $this->setCepUsuario($row['usu_cep']);
+    $this->setLogradouroUsuario($row['usu_logradouro']);
+    $this->setNumeroEnderecoUsuario($row['usu_numero_end']);
+    $this->setComplementoUsuario($row['usu_complemento']);
+    $this->setBairroUsuario($row['usu_bairro']);
+    $this->setCidadeUsuario($row['usu_cidade']);
+    $this->setUfUsuario($row['usu_uf']);
+  }
+
   //Função para retornar os dados de um usuário pelo seu ID
   public function loadById($id){
     $sql = new Sql();
@@ -175,27 +196,98 @@ class Usuario{
     if (count($results) >= 1) {
       $row = $results[0];
 
-      $this->setIdUsuario($row['usu_id']);
-      $this->setFotoUsuario($row['usu_foto']);
-      $this->setCpfUsuario($row['usu_cpf']);
-      $this->setCnpjUsuario($row['usu_cnpj']);
-      $this->setNomeUsuario($row['usu_nome']);
-      $this->setApelidoUsuario($row['usu_apelido']);
-      $this->setSexoUsuario($row['usu_sexo']);
-      $this->setEmailUsuario($row['usu_email']);
-      $this->setSenhaUsuario($row['usu_senha']);
-      $this->setTelefoneUsuario($row['usu_telefone']);
-      $this->setCelularUsuario($row['usu_celular']);
-      $this->setCepUsuario($row['usu_cep']);
-      $this->setLogradouroUsuario($row['usu_logradouro']);
-      $this->setNumeroEnderecoUsuario($row['usu_numero_end']);
-      $this->setComplementoUsuario($row['usu_complemento']);
-      $this->setBairroUsuario($row['usu_bairro']);
-      $this->setCidadeUsuario($row['usu_cidade']);
-      $this->setUfUsuario($row['usu_uf']);
+      $this->setData($row);
 
 
     }
+  }
+  public function insert(){
+    $sql = new Sql();
+
+    $results = $sql->select("INSERT INTO cad_usuarios(
+      usu_foto,
+      usu_cpf,
+      usu_cnpj,
+      usu_nome,
+      usu_apelido,
+      usu_sexo,
+      usu_email,
+      usu_senha,
+      usu_telefone,
+      usu_celular,
+      usu_cep,
+      usu_logradouro,
+      usu_numero_end,
+      usu_complemento,
+      usu_bairro,
+      usu_cidade,
+      usu_uf)
+      VALUES(
+        :FOTO,
+        :CPF,
+        :CNPJ,
+        :NOME,
+        :APELIDO,
+        :SEXO,
+        :EMAIL,
+        :SENHA,
+        :TELEFONE,
+        :CELULAR,
+        :CEP,
+        :LOGRADOURO,
+        :NUMERO_END,
+        :COMPLEMENTO,
+        :BAIRRO,
+        :CIDADE,
+        :UF)",
+      array(
+      ":FOTO" => $this->getFotoUsuario(),
+      ":CPF" => $this->getCpfUsuario(),
+      ":CNPJ" => $this->getCnpjUsuario(),
+      ":NOME" => $this->getNomeUsuario(),
+      ":APELIDO" => $this->getApelidoUsuario(),
+      ":SEXO" => $this->getSexoUsuario(),
+      ":EMAIL" => $this->getEmailUsuario(),
+      ":SENHA" => $this->getSenhaUsuario(),
+      ":TELEFONE" => $this->getTelefoneUsuario(),
+      ":CELULAR" => $this->getCelularUsuario(),
+      ":CEP" => $this->getCepUsuario(),
+      ":LOGRADOURO" => $this->getLogradouroUsuario(),
+      ":NUMERO_END" => $this->getNumeroEnderecoUsuario(),
+      ":COMPLEMENTO" => $this->getComplementoUsuario(),
+      ":BAIRRO" => $this->getBairroUsuario(),
+      ":CIDADE" => $this->getCidadeUsuario(),
+      ":UF" => $this->getUfUsuario()
+    ));
+
+    if (count($results) >= 1) {
+      $row = $results[0];
+      $this->setData($row);
+    }
+  }
+
+  public function __construct($foto = "", $cpf = "", $cnpj = "", $nome = "", $apelido = "", $sexo = "",
+   $email = "", $senha = "", $telefone = "", $celular = "", $cep = "", $logradouro = "", $num_endereco = "",
+   $complemento = "", $bairro = "", $cidade = "", $uf = ""){
+
+    $this->setFotoUsuario($foto);
+    $this->setCpfUsuario($cpf);
+    $this->setCnpjUsuario($cnpj);
+    $this->setNomeUsuario($nome);
+    $this->setApelidoUsuario($apelido);
+    $this->setSexoUsuario($sexo);
+    $this->setEmailUsuario($email);
+    $this->setSenhaUsuario($senha);
+    $this->setTelefoneUsuario($telefone);
+    $this->setCelularUsuario($celular);
+    $this->setCepUsuario($cep);
+    $this->setLogradouroUsuario($logradouro);
+    $this->setNumeroEnderecoUsuario($num_endereco);
+    $this->setComplementoUsuario($complemento);
+    $this->setBairroUsuario($bairro);
+    $this->setCidadeUsuario($cidade);
+    $this->setUfUsuario($uf);
+
   }
 
   //a função toString é chamada ao tentar imprimir um objeto
