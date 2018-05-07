@@ -12,7 +12,14 @@ class Usuario{
   private $usu_senha;
   private $usu_telefone;
   private $usu_celular;
-  private $end_id;
+  // private $end_id;
+  private $usu_cep;
+  private $usu_logradouro;
+  private $usu_numero_end;
+  private $usu_complemento;
+  private $usu_bairro;
+  private $usu_cidade;
+  private $usu_uf;
 
   //get e set ID
   public function getIdUsuario(){
@@ -102,12 +109,60 @@ class Usuario{
     $this->usu_celular = $value;
   }
 
-  //get e set ENDERECO
-  public function getEnderecoUsuario(){
-    return $this->end_id;
+  //get e set CEP
+  public function getCepUsuario(){
+    return $this->usu_cep;
   }
-  public function setEnderecoUsuario($value){
-    $this->end_id = $value;
+  public function setCepUsuario($value){
+    $this->usu_cep = $value;
+  }
+
+  //get e set LOGRADOURO
+  public function getLogradouroUsuario(){
+    return $this->usu_logradouro;
+  }
+  public function setLogradouroUsuario($value){
+    $this->usu_logradouro = $value;
+  }
+
+  //get e set NUMERO DO ENDEREÇO
+  public function getNumeroEnderecoUsuario(){
+    return $this->usu_numero_end;
+  }
+  public function setNumeroEnderecoUsuario($value){
+    $this->usu_numero_end = $value;
+  }
+
+  //get e set COMPLEMENTO
+  public function getComplementoUsuario(){
+    return $this->usu_complemento;
+  }
+  public function setComplementoUsuario($value){
+    $this->usu_complemento = $value;
+  }
+
+  //get e set BAIRRO
+  public function getBairroUsuario(){
+    return $this->usu_bairro;
+  }
+  public function setBairroUsuario($value){
+    $this->usu_bairro = $value;
+  }
+
+  //get e set CIDADE
+  public function getCidadeUsuario(){
+    return $this->usu_cidade;
+  }
+  public function setCidadeUsuario($value){
+    $this->usu_cidade = $value;
+  }
+
+  //get e set UF
+  public function getUfUsuario(){
+    return $this->usu_uf;
+  }
+  public function setUfUsuario($value){
+    $this->usu_uf = $value;
   }
 
   //Função para retornar os dados de um usuário pelo seu ID
@@ -131,7 +186,14 @@ class Usuario{
       $this->setSenhaUsuario($row['usu_senha']);
       $this->setTelefoneUsuario($row['usu_telefone']);
       $this->setCelularUsuario($row['usu_celular']);
-      $this->setEnderecoUsuario($row['end_id']);
+      $this->setCepUsuario($row['usu_cep']);
+      $this->setLogradouroUsuario($row['usu_logradouro']);
+      $this->setNumeroEnderecoUsuario($row['usu_numero_end']);
+      $this->setComplementoUsuario($row['usu_complemento']);
+      $this->setBairroUsuario($row['usu_bairro']);
+      $this->setCidadeUsuario($row['usu_cidade']);
+      $this->setUfUsuario($row['usu_uf']);
+
 
     }
   }
@@ -150,7 +212,13 @@ class Usuario{
       "usu_senha" => $this->getSenhaUsuario(),
       "usu_telefone" => $this->getTelefoneUsuario(),
       "usu_celular" => $this->getCelularUsuario(),
-      "end_id" => $this->getEnderecoUsuario(),
+      "usu_cep" => $this->getCepUsuario(),
+      "usu_logradouro" => $this->getLogradouroUsuario(),
+      "usu_numero_end" => $this->getNumeroEnderecoUsuario(),
+      "usu_complemento" => $this->getComplementoUsuario(),
+      "usu_bairro" => $this->getBairroUsuario(),
+      "usu_cidade" => $this->getCidadeUsuario(),
+      "usu_uf" => $this->getUfUsuario()
     ));
   }
 }

@@ -9,7 +9,7 @@
   </head>
   <body>
     <?php
-      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar.php');
+      // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar.php');
      ?>
 
      <br><br><br><br><br>
@@ -19,9 +19,10 @@
          require_once("config". DIRECTORY_SEPARATOR . "config.php");
 
          $gabriel = new Usuario();
-         $gabriel->loadById(1);
+         $gabriel->loadById(3);
 
-         echo $gabriel . "<br><br>";
+         echo $gabriel;
+         // echo $gabriel->getLogradouroUsuario();
 
         ?>
 
