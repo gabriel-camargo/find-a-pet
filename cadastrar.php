@@ -5,6 +5,7 @@
   $nome = isset($_POST['nome']) ? $_POST['nome'] : null;
   $apelido = isset($_POST['apelido']) ? $_POST['apelido'] : null;
   $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : null;
+  $cnpj = isset($_POST['cnpj']) ? $_POST['cnpj'] : null;
   $sexo = isset($_POST['sexoRadio']) ? $_POST['sexoRadio'] : null;
   $email = isset($_POST['email']) ? $_POST['email'] : null;
   $senha = isset($_POST['senha']) ? $_POST['senha'] : null;
@@ -28,6 +29,7 @@
       $usuario->setNomeUsuario($nome);
       $usuario->setApelidoUsuario($apelido);
       $usuario->setCpfUsuario($cpf);
+      $usuario->setCnpjUsuario($cnpj);
       $usuario->setSexoUsuario($sexo);
       $usuario->setEmailUsuario($email);
       $usuario->setSenhaUsuario($senha);

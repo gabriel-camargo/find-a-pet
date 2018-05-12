@@ -52,16 +52,76 @@
               </div>
           </div>
 
-          <!-- INPUT DO CPF -->
+          <!-- INPUT PARA VERIFICAR SE É PESSOA FÍSICA OU ORGANIZAÇÃO -->
           <div class="form-group row">
-              <label for="inputCpf" class="col-sm-2 col-form-label">CPF: </label>
-              <div class="col-sm-10">
-                <input name="cpf" type="text" id="inputCpf" class="form-control" placeholder="Ex: 448.349.138-27" aria-describedby="cpfHelpBlock" required >
-                <small id="cpfHelpBlock" class="form-text text-muted">
-                  Digite apenas números
-                </small>
-              </div>
+            <span class="col-sm-4"> Você é uma:  </span>
+
+            <!-- RADIO CPF -->
+            <div class="custom-control custom-radio col-sm-4">
+              <input type="radio" id="pessoaRadio1" value="1" name="pessoaRadio" class="custom-control-input" checked>
+              <label class="custom-control-label" for="pessoaRadio1">Pessoa Física</label>
+            </div>
+
+            <!-- RADIO CNPJ -->
+            <div class="custom-control custom-radio col-sm-4">
+              <input type="radio" id="pessoaRadio2" value="2" name="pessoaRadio" class="custom-control-input">
+              <label class="custom-control-label" for="pessoaRadio2">Organização</label>
+            </div>
+
           </div>
+
+          <!-- CPF HABILITADO -->
+          <div id="mostra-cpf" >
+
+            <!-- INPUT DO CPF -->
+            <div class="form-group row">
+                <label for="inputCpf" class="col-sm-2 col-form-label">CPF: </label>
+                <div class="col-sm-10">
+                  <input name="cpf" type="text" id="inputCpf" class="form-control" placeholder="Ex: 448.349.138-27" aria-describedby="cpfHelpBlock">
+                  <small id="cpfHelpBlock" class="form-text text-muted">
+                    Digite apenas números
+                  </small>
+                </div>
+            </div>
+
+            <!-- INPUT DO CNPJ DESABILITADO -->
+            <div class="form-group row">
+                <label for="inputCnpjDisable" class="col-sm-2 col-form-label">CNPJ: </label>
+                <div class="col-sm-10">
+                  <input type="text" id="inputCnpjDisable" class="form-control" placeholder="Ex: 60.3323.123123" aria-describedby="cnpjDisableHelpBlock" disabled >
+                  <small id="cnpjDisableHelpBlock" class="form-text text-muted">
+                    Digite apenas números
+                  </small>
+                </div>
+            </div>
+          </div>
+
+          <!-- CNPJ HABILITADO -->
+          <div id="mostra-cnpj" hidden>
+
+            <!-- INPUT DO CPF -->
+            <div class="form-group row">
+                <label for="inputCpfDisable" class="col-sm-2 col-form-label">CPF: </label>
+                <div class="col-sm-10">
+                  <input type="text" id="inputCpfDisable" class="form-control" placeholder="Ex: 448.349.138-27" aria-describedby="cpfHelpBlockDisable" disabled>
+                  <small id="cpfHelpBlockDisable" class="form-text text-muted">
+                    Digite apenas números
+                  </small>
+                </div>
+            </div>
+
+            <!-- INPUT DO CNPJ DESABILITADO -->
+            <div class="form-group row">
+                <label for="inputCnpj" class="col-sm-2 col-form-label">CNPJ: </label>
+                <div class="col-sm-10">
+                  <input name="cnpj" type="text" id="inputCnpj" class="form-control" placeholder="Ex: 60.3323.123123" aria-describedby="cnpjDisableHelpBlock">
+                  <small id="cnpjHelpBlock" class="form-text text-muted">
+                    Digite apenas números
+                  </small>
+                </div>
+            </div>
+          </div>
+
 
           <!-- INPUT DO SEXO -->
           <div class="form-group row">
@@ -81,6 +141,7 @@
 
           </div>
         </div>
+
         <!-- FIM DA DIV DE DADOS PESSOAIS -->
 
         <!-- INICIO DA DIV DE DADOS DE CONTADO -->
@@ -259,6 +320,24 @@
       require_once('pages' . DIRECTORY_SEPARATOR . 'codigos-js.php');
       // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-materialize' . DIRECTORY_SEPARATOR . 'codigos-js.php');
      ?>
+     <script type="text/javascript">
+      $('input:radio[name="pessoaRadio"]').change(function () {
+        if ($(this).val() == 1) {
+          $('#mostra-cpf').attr("hidden", false);
+          $(this).attr("checked", true);
+
+          $('#mostra-cnpj').attr("hidden", true);
+          $(this).attr("checked", true);
+
+        } else if ($(this).val() == 2) {
+          $('#mostra-cnpj').attr("hidden", false);
+          $(this).attr("checked", true);
+
+          $('#mostra-cpf').attr("hidden", true);
+          $(this).attr("checked", true);
+        }
+      });
+      </script>
 
 
     	<script type="text/javascript">
@@ -269,7 +348,7 @@
     				var items = [];
     				var options = '<option value="">Escolha um estado</option>';
     				$.each(data, function (key, val) {
-    					options += '<option value="' + val.nome + '">' + val.nome + '</option>';
+    					options += '<option value="' + val.sigla + '">' + val.nome + '</option>';
     				});
     				$("#inputEstado").html(options);
 
