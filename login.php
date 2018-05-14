@@ -9,6 +9,9 @@
   </head>
 
   <body class="text-center">
+    <?php
+      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-deslogado.php');
+     ?>
 
 
     <form action="login.php" class="form-signin" method="post">

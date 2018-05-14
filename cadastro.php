@@ -9,7 +9,7 @@
   </head>
   <body>
     <?php
-      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar.php');
+      require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-deslogado.php');
      ?>
 
 

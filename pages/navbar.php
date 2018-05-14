@@ -25,13 +25,12 @@
 
       <!-- Campo de pesquisa -->
       <form class="form-inline my-2 my-lg-0">
-        <div class="input-group mb-3 " id="div-pesquisa">
-          <input type="search" class="form-control" placeholder="Pesquisar animal..." id="nav-input">
+        <!-- <div class="input-group mb-3"> -->
+          <input type="search" class="form-control form-inline my-2 my-lg-0" placeholder="Pesquisar animal..." id="nav-input">
           <div class="input-group-append">
             <button class="btn btn-dark" type="button">@</button>
-
           </div>
-        </div>
+        <!-- </div> -->
       </form>
 
 
