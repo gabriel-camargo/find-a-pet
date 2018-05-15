@@ -37,13 +37,13 @@
       <!-- Menu dropdown -->
       <span class="nav-item dropdown my-2 my-lg-0" id="drop">
         <a class="nav-link dropdown-toggle" href="#" id="navbar-drop" data-toggle="dropdown">
-          Minha Conta
+          <?php echo $_SESSION['login']['usu_nome']; ?>
         </a>
         <div class="dropdown-menu" id="menu">
           <a class="dropdown-item" href="#">Fulano da Silva</a>
           <a class="dropdown-item text-muted" href="#" id="nome-usuario">fulanodasilva@email.com</a>
           <button type="button" class="btn btn-info ">Atualizar Dados</button> <br>
-          <button type="button" class="btn btn-danger ">Encerrar Seção</button>
+          <a href="logout.php"> Logout </a>
         </div>
       </span>
       <!-- Fim do menu dropdown -->

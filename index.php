@@ -1,3 +1,9 @@
+<?php
+  // session_start();
+  require_once("config". DIRECTORY_SEPARATOR . "config.php");
+  require_once("check.php");
+ ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,15 +22,8 @@
      <div class="container">
        <?php
 
-         require_once("config". DIRECTORY_SEPARATOR . "config.php");
-         //teste note da ana
-         //$user = new Usuario("", "12345678901", "", "Ana Luiza", "alurs", "F", "ana@email.com", "@n@lu1z@", "36363636", "988225005", "1212122", "R. dos alfeneiros", "04", "Casa", "HP", "Londres", "EN");
-         // $user = new Usuario();
-         // $user->loadById(5);
-         //$user->insert();
 
-         // echo $user;
-         // echo $gabriel->getLogradouroUsuario();
+         echo $_SESSION['login']['usu_nome'];
 
         ?>
 

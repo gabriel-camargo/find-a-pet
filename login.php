@@ -4,7 +4,7 @@
     <?php
       require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
-     <link rel="stylesheet" href="css/login.css">
+     <link rel="stylesheet" href="css/log.css">
 
   </head>
 
@@ -30,7 +30,7 @@
 
       <div class="checkbox mb-3">
         <label>
-          <input type="checkbox" value="remember-me"> Lembrar senha
+          <input type="checkbox" value="remember-me"> Lembrar senhar
         </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit" id="btn_entrar">Entrar</button>
@@ -68,10 +68,10 @@
       }else{
         $user = $usuarios[0];
 
-        session_start();
-        $_SESSION['logged_in'] = true;
-        $_SESSION['usu_id'] = $user['usu_id'];
-        $_SESSION['usu_nome'] = $user['usu_nome'];
+        // session_start();
+        $_SESSION['login']['logged_in'] = true;
+        $_SESSION['login']['usu_id'] = $user['usu_id'];
+        $_SESSION['login']['usu_nome'] = $user['usu_nome'];
 
         header('Location: index.php');
       }
