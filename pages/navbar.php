@@ -39,11 +39,12 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbar-drop" data-toggle="dropdown">
           <?php echo $_SESSION['login']['usu_nome']; ?>
         </a>
-        <div class="dropdown-menu" id="menu">
-          <a class="dropdown-item" href="#">Fulano da Silva</a>
-          <a class="dropdown-item text-muted" href="#" id="nome-usuario">fulanodasilva@email.com</a>
-          <button type="button" class="btn btn-info ">Atualizar Dados</button> <br>
-          <a href="logout.php"> Logout </a>
+        <div class="dropdown-menu dropdown-menu-right" id="menu">
+          <span class="dropdown-item" href="#">Fulano da Silva</span>
+          <span class="dropdown-item text-muted" href="#" id="nome-usuario">fulanodasilva@email.com</span>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="atualizar-cadastro.php"> Configurações </a>
+          <a class="dropdown-item" href="logout.php"> Logout </a>
         </div>
       </span>
       <!-- Fim do menu dropdown -->

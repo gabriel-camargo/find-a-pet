@@ -12,26 +12,26 @@ a:hover{
 
 
 
-span#drop{
+/* span#drop{
     margin-right: 30px;
-}
+} */
 
-div.dropdown-menu{
+/* div.dropdown-menu{
     align-self: flex-start;
     width: 300px;
-}
+} */
 
 div#menu{
     text-align: center;
-    margin-left: -130px;
+    /* margin-left: -130px; */
     padding: 5px;
 }
 
-div#menu button{
+/* div#menu button{
     margin-top: 10px;
     width: 140px;
     margin-bottom: 5px;
-}
+} */
 
 #nav-input{
   width: 400px;
