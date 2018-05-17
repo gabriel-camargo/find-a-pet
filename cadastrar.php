@@ -1,7 +1,7 @@
 <?php
   require_once("config" . DIRECTORY_SEPARATOR . "config.php");
 
-
+  // RECUPERA OS VALORES DO FORMULARIO
   $nome = isset($_POST['nome']) ? $_POST['nome'] : null;
   $apelido = isset($_POST['apelido']) ? $_POST['apelido'] : null;
   $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : null;
@@ -20,6 +20,7 @@
   $estado = isset($_POST['estado']) ? $_POST['estado'] : null;
   $cidade = isset($_POST['cidade']) ? $_POST['cidade'] : null;
 
+  // SE OS CAMPOS ESTIVEREM COM ALGUM VALOR
   if ($nome != null) {
     if ($senha === $senhaConfirm) {
       $sql = new Sql();

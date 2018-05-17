@@ -1,15 +1,9 @@
 <?php
 
-// inicia a sessão
-// session_start();
-
-// muda o valor de logged_in para false
+// deleta as variaveis de sessão, dessa maneira deslogando o usuário
 unset($_SESSION['login']);
 
-// finaliza a sessão
-// session_destroy();
-
-// retorna para a index.php
+// retorna para a login.php
 header('Location: login.php');
 
  ?>

@@ -318,8 +318,8 @@
 
     <?php
       require_once('pages' . DIRECTORY_SEPARATOR . 'codigos-js.php');
-      // require_once('pages' . DIRECTORY_SEPARATOR . 'navbar-materialize' . DIRECTORY_SEPARATOR . 'codigos-js.php');
      ?>
+     
      <script type="text/javascript">
       $('input:radio[name="pessoaRadio"]').change(function () {
         if ($(this).val() == 1) {
