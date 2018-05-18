@@ -39,7 +39,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbar-drop" data-toggle="dropdown">
           <?php echo $_SESSION['login']['usu_nome']; ?>
         </a>
-        <div class="dropdown-menu dropdown-menu-right" id="menu">
+        <div class="dropdown-menu" id="menu">
           <span class="dropdown-item" href="#">Fulano da Silva</span>
           <span class="dropdown-item text-muted" href="#" id="nome-usuario">fulanodasilva@email.com</span>
           <div class="dropdown-divider"></div>
