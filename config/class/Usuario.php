@@ -266,6 +266,94 @@ class Usuario{
     }
   }
 
+  public function update($foto, $cpf, $cnpj, $nome, $apelido, $sexo, $email, $senha, $telefone, $celular,
+    $cep, $logradouro, $num_endereco, $complemento, $bairro, $cidade, $uf){
+
+    $this->setFotoUsuario($foto);
+    $this->setCpfUsuario($cpf);
+    $this->setCnpjUsuario($cnpj);
+    $this->setNomeUsuario($nome);
+    $this->setApelidoUsuario($apelido);
+    $this->setSexoUsuario($sexo);
+    $this->setEmailUsuario($email);
+    $this->setSenhaUsuario($senha);
+    $this->setTelefoneUsuario($telefone);
+    $this->setCelularUsuario($celular);
+    $this->setCepUsuario($cep);
+    $this->setLogradouroUsuario($logradouro);
+    $this->setNumeroEnderecoUsuario($num_endereco);
+    $this->setComplementoUsuario($complemento);
+    $this->setBairroUsuario($bairro);
+    $this->setCidadeUsuario($cidade);
+    $this->setUfUsuario($uf);
+
+    $sql = new Sql();
+
+    $sql->query("UPDATE cad_usuarios SET
+      usu_foto = :FOTO,
+      usu_cpf = :CPF,
+      usu_cnpj = :CNPJ,
+      usu_nome = :NOME,
+      usu_apelido = :APELIDO,
+      usu_sexo = :SEXO,
+      usu_email = :EMAIL,
+      usu_senha = :SENHA,
+      usu_telefone = :TELEFONE,
+      usu_celular = :CELULAR,
+      usu_logradouro = :LOGRADOURO,
+      usu_numero_end = :NUMERO_END,
+      usu_complemento = :COMPLEMENTO,
+      usu_bairro = :BAIRRO,
+      usu_cidade = :CIDADE,
+      usu_uf = :UF
+      WHERE usu_id = :ID", array(
+        ":FOTO" => $this->getFotoUsuario(),
+        ":CPF" => $this->getCpfUsuario(),
+        ":CNPJ" => $this->getCnpjUsuario(),
+        ":NOME" => $this->getNomeUsuario(),
+        ":APELIDO" => $this->getApelidoUsuario(),
+        ":SEXO" => $this->getSexoUsuario(),
+        ":EMAIL" => $this->getEmailUsuario(),
+        ":SENHA" => $this->getSenhaUsuario(),
+        ":TELEFONE" => $this->getTelefoneUsuario(),
+        ":CELULAR" => $this->getCelularUsuario(),
+        ":CEP" => $this->getCepUsuario(),
+        ":LOGRADOURO" => $this->getLogradouroUsuario(),
+        ":NUMERO_END" => $this->getNumeroEnderecoUsuario(),
+        ":COMPLEMENTO" => $this->getComplementoUsuario(),
+        ":BAIRRO" => $this->getBairroUsuario(),
+        ":CIDADE" => $this->getCidadeUsuario(),
+        ":UF" => $this->getUfUsuario()
+    ));
+  }
+
+  public function delete(){
+    $sql = new Sql();
+
+    $sql->query("DELETE FROM cad_usuarios WHERE usu_id = :ID", array(
+      ":ID" => $this->getIdUsuario()
+    ));
+
+    $this->setIdUsuario(0);
+    $this->setFotoUsuario('');
+    $this->setCpfUsuario('');
+    $this->setCnpjUsuario('');
+    $this->setNomeUsuario('');
+    $this->setApelidoUsuario('');
+    $this->setSexoUsuario('');
+    $this->setEmailUsuario('');
+    $this->setSenhaUsuario('');
+    $this->setTelefoneUsuario('');
+    $this->setCelularUsuario('');
+    $this->setCepUsuario('');
+    $this->setLogradouroUsuario('');
+    $this->setNumeroEnderecoUsuario('');
+    $this->setComplementoUsuario('');
+    $this->setBairroUsuario('');
+    $this->setCidadeUsuario('');
+    $this->setUfUsuario('');
+  }
+
   public function __construct($foto = "", $cpf = "", $cnpj = "", $nome = "", $apelido = "", $sexo = "",
    $email = "", $senha = "", $telefone = "", $celular = "", $cep = "", $logradouro = "", $num_endereco = "",
    $complemento = "", $bairro = "", $cidade = "", $uf = ""){
