@@ -37,7 +37,7 @@
       <!-- Menu dropdown -->
       <span class="nav-item dropdown my-2 my-lg-0" id="drop">
         <a class="nav-link dropdown-toggle" href="#" id="navbar-drop" data-toggle="dropdown">
-          <?php echo $_SESSION['login']['usu_nome']; ?>
+          <?php echo $user->getNomeUsuario(); ?>
         </a>
         <div class="dropdown-menu" id="menu">
           <span class="dropdown-item" href="#">Fulano da Silva</span>
