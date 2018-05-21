@@ -300,13 +300,16 @@ class Usuario{
       usu_senha = :SENHA,
       usu_telefone = :TELEFONE,
       usu_celular = :CELULAR,
+      usu_cep = :CEP,
       usu_logradouro = :LOGRADOURO,
       usu_numero_end = :NUMERO_END,
       usu_complemento = :COMPLEMENTO,
       usu_bairro = :BAIRRO,
       usu_cidade = :CIDADE,
       usu_uf = :UF
-      WHERE usu_id = :ID", array(
+      WHERE usu_id = :ID",
+      array(
+        ":ID" => $this->getIdUsuario(),
         ":FOTO" => $this->getFotoUsuario(),
         ":CPF" => $this->getCpfUsuario(),
         ":CNPJ" => $this->getCnpjUsuario(),

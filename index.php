@@ -44,6 +44,10 @@
           . "CIDADE: " . $user->getCidadeUsuario() . "<br>"
           . "ESTADO: " . $user->getUfUsuario() . "<br>";
 
+          // $user->update(null, "098765", null, "Camargo", "cam", "M", "camargo@email.com", "123456",
+          //   "36363636", "98989898", "00000000", "Rua nova do update", "55", "apto. 09", "Jardim Chafariz", "Pindamonhangaba", "SP");
+          // $user->delete();
+
         ?>
 
      </div>
