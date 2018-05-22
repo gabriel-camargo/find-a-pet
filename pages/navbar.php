@@ -37,13 +37,13 @@
       <!-- Menu dropdown -->
       <span class="nav-item dropdown my-2 my-lg-0" id="drop">
         <a class="nav-link dropdown-toggle" href="#" id="navbar-drop" data-toggle="dropdown">
-          <?php echo $user->getNomeUsuario(); ?>
+          <?php echo $user->getApelidoUsuario(); ?>
         </a>
         <div class="dropdown-menu" id="menu">
-          <span class="dropdown-item" href="#">Fulano da Silva</span>
-          <span class="dropdown-item text-muted" href="#" id="nome-usuario">fulanodasilva@email.com</span>
+          <span class="dropdown-item"><?php echo $user->getNomeUsuario(); ?></span>
+          <span class="dropdown-item text-muted" id="nome-usuario"><?php echo $user->getEmailUsuario(); ?></span>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="atualizar-cadastro.php"> Configurações </a>
+          <a class="dropdown-item" href="alterar-usuario.php"> Configurações </a>
           <a class="dropdown-item" href="logout.php"> Logout </a>
         </div>
       </span>
