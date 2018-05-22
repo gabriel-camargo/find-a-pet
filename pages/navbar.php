@@ -6,7 +6,7 @@
   <div class="container">
 
     <!-- Brand: Título principal -->
-    <a class="navbar-brand" href="#"> <strong> Find a Pet </strong></a>
+    <a class="navbar-brand" href="index.php"> <strong> Find a Pet </strong></a>
 
     <!-- Colapse principal -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerPrincipal" aria-controls="navbarTogglerPrincipal" aria-expanded="false" aria-label="Toggle navigation">
