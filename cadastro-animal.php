@@ -1,3 +1,12 @@
+<?php
+  // session_start();
+  require_once("config". DIRECTORY_SEPARATOR . "config.php");
+  require_once("check.php");
+
+  $user = new Usuario();
+  $user->loadById($_SESSION['login']['usu_id']);
+ ?>
+ 
 <!DOCTYPE html>
 <html lang="pt-br" dir="ltr">
   <head>
