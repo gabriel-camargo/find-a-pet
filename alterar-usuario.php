@@ -60,16 +60,16 @@
 
            <!-- INPUT PARA VERIFICAR SE É PESSOA FÍSICA OU ORGANIZAÇÃO -->
            <div class="form-group row">
-             <span class="col-sm-4"> Você é uma:  </span>
+             <span class="col-sm-2"> Você é uma:  </span>
 
              <!-- RADIO CPF -->
-             <div class="custom-control custom-radio col-sm-4">
+             <div class="custom-control custom-radio col-sm-5">
                <input type="radio" id="pessoaRadio1" value="1" name="pessoaRadio" class="custom-control-input" checked>
                <label class="custom-control-label" for="pessoaRadio1">Pessoa Física</label>
              </div>
 
              <!-- RADIO CNPJ -->
-             <div class="custom-control custom-radio col-sm-4">
+             <div class="custom-control custom-radio col-sm-5">
                <input type="radio" id="pessoaRadio2" value="2" name="pessoaRadio" class="custom-control-input">
                <label class="custom-control-label" for="pessoaRadio2">Organização</label>
              </div>
@@ -131,16 +131,16 @@
 
            <!-- INPUT DO SEXO -->
            <div class="form-group row">
-             <span class="col-sm-4"> Sexo:  </span>
+             <span class="col-sm-2"> Sexo:  </span>
 
              <!-- RADIO MASCULINO -->
-             <div class="custom-control custom-radio col-sm-4">
+             <div class="custom-control custom-radio col-sm-5">
                <input type="radio" id="sexoRadio1" value="M" name="sexoRadio" class="custom-control-input">
                <label class="custom-control-label" for="sexoRadio1">Masculino</label>
              </div>
 
              <!-- RADIO FEMININO -->
-             <div class="custom-control custom-radio col-sm-4">
+             <div class="custom-control custom-radio col-sm-5">
                <input type="radio" id="sexoRadio2" value="F" name="sexoRadio" class="custom-control-input">
                <label class="custom-control-label" for="sexoRadio2">Feminino</label>
              </div>

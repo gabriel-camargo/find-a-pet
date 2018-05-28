@@ -1,11 +1,9 @@
-/* body {
-
-} */
 body{
   font-family: 'Raleway', sans-serif;
   height: 100%;
-  margin-top: 60px;
+  margin-top: 75px;
 }
+
 select.form-control{
   padding-top:5px;
   padding-bottom:5px;
