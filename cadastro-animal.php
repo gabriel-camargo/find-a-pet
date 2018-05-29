@@ -29,15 +29,12 @@
           <!-- INPUT DA IMAGEM -->
           <div class="form-group row" id="div-foto">
             <div class="col-lg-3">
-              <div class="imagem-animal">
-                <h6 id="txt_foto">Adicionar foto</h6>
-              </div>
-
+              <img id="imagem-perfil" src="img/logo.png" alt="your image" width="200" height="200"/>
             </div>
             <div class="col-lg-9">
               <div class="custom-file">
-                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                <label class="custom-file-label" for="validatedCustomFile">Escolha uma imagem...</label>
+                <input type="file" class="custom-file-input" id="inputFoto" required>
+                <label class="custom-file-label" for="inputFoto">Escolha uma imagem...</label>
                 <div class="invalid-feedback">Example invalid custom file feedback</div>
               </div>
           </div>
@@ -149,6 +146,7 @@
       <?php
         require_once('pages' . DIRECTORY_SEPARATOR . 'codigos-js.php');
        ?>
+       <script src="js/carregar-imagem.js" type="text/javascript"></script>
 
   </body>
 </html>

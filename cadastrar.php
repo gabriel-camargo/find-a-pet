@@ -2,6 +2,7 @@
   require_once("config" . DIRECTORY_SEPARATOR . "config.php");
 
   // RECUPERA OS VALORES DO FORMULARIO
+  $foto = isset($_POST['foto']) ? $_POST['foto'] : null;
   $nome = isset($_POST['nome']) ? $_POST['nome'] : null;
   $apelido = isset($_POST['apelido']) ? $_POST['apelido'] : null;
   $cpf = isset($_POST['cpf']) ? $_POST['cpf'] : null;
@@ -27,6 +28,7 @@
 
       $usuario = new Usuario();
 
+      $usuario->setFotoUsuario($foto);
       $usuario->setNomeUsuario($nome);
       $usuario->setApelidoUsuario($apelido);
       $usuario->setCpfUsuario($cpf);

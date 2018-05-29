@@ -27,6 +27,7 @@
 
 
          echo "ID: " . $user->getIdUsuario() . "<br>"
+          . "FOTO: " . $user->getFotoUsuario() . "<br>"
           . "CPF: " . $user->getCpfUsuario() . "<br>"
           . "CNPJ: " . $user->getCnpjUsuario() . "<br>"
           . "NOME: " . $user->getNomeUsuario() . "<br>"
@@ -44,11 +45,13 @@
           . "CIDADE: " . $user->getCidadeUsuario() . "<br>"
           . "ESTADO: " . $user->getUfUsuario() . "<br>";
 
+
           // $user->update(null, "098765", null, "Camargo", "cam", "M", "camargo@email.com", "123456",
           //   "36363636", "98989898", "00000000", "Rua nova do update", "55", "apto. 09", "Jardim Chafariz", "Pindamonhangaba", "SP");
           // $user->delete();
 
         ?>
+        <img src="<?php echo $user->getFotoUsuario(); ?>" alt="">
 
      </div>
 
