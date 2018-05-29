@@ -21,7 +21,7 @@
       require_once('pages' . DIRECTORY_SEPARATOR . 'navbar.php');
      ?>
 
-      <form class="sign-animal">
+      <form action="cadastrar-animal.php" class="sign-animal" method="post">
         <div class="container">
 
           <h1 class="h4 mb-3 font-weight-bold titulo"> Cadastre seu animal </h1><br>
@@ -33,7 +33,7 @@
             </div>
             <div class="col-lg-9">
               <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputFoto" required>
+                <input name="foto" type="file" class="custom-file-input" id="inputFoto">
                 <label class="custom-file-label" for="inputFoto">Escolha uma imagem...</label>
                 <div class="invalid-feedback">Example invalid custom file feedback</div>
               </div>
@@ -50,7 +50,7 @@
                 <label for="inputEspecie" class="col-sm-2 col-form-label">Espécie: </label>
                 <div class="col-sm-10">
                   <select name="especie" id="inputEspecie" class="form-control">
-                  			<option value=""> Escolha uma espécie </option>
+                  			<option value=""></option>
                   </select>
                 </div>
               </div>
@@ -62,7 +62,7 @@
                 <label for="inputRaca" class="col-sm-2 col-form-label">Raça: </label>
                 <div class="col-sm-10">
                   <select name="raca" id="inputRaca" class="form-control">
-                    <option value=""> Escolha uma raça </option>
+                    <option value=""></option>
                   </select>
                 </div>
               </div>
@@ -77,7 +77,7 @@
         <div class="form-group row">
           <label for="inputNome" class="col-sm-2 col-form-label">Nome: </label>
           <div class="col-sm-10">
-              <input type="text" id="inputNome" class="form-control" placeholder="Ex: Totó" required autofocus>
+              <input name="nome" type="text" id="inputNome" class="form-control" placeholder="Ex: Totó">
           </div>
         </div>
 
@@ -88,6 +88,9 @@
             <div class="col-sm-10">
               <select name="faixa" id="inputFaixa" class="form-control">
                 <option value=""> Escolha uma faixa etária </option>
+                <option value="Filhote"> Filhote (0 - 3 anos) </option>
+                <option value="Comum"> Comum (4 - 9 anos) </option>
+                <option value="Velho"> Velho ( > 10 anos) </option>
               </select>
             </div>
           </div>
@@ -147,6 +150,43 @@
         require_once('pages' . DIRECTORY_SEPARATOR . 'codigos-js.php');
        ?>
        <script src="js/carregar-imagem.js" type="text/javascript"></script>
+       <script type="text/javascript">
+
+     		$(document).ready(function () {
+
+     			$.getJSON('js/racas_especies.json', function (data) {
+     				var items = [];
+     				var options = '<option value="">Escolha uma Espécie</option>';
+     				$.each(data, function (key, val) {
+     					options += '<option value="' + val.especie + '">' + val.especie + '</option>';
+     				});
+     				$("#inputEspecie").html(options);
+
+     				$("#inputEspecie").change(function () {
+
+     					var options_racas = '';
+     					var str = "";
+
+     					$("#inputEspecie option:selected").each(function () {
+     						str += $(this).text();
+     					});
+
+     					$.each(data, function (key, val) {
+     						if(val.especie == str) {
+     							$.each(val.racas, function (key_raca, val_raca) {
+     								options_racas += '<option value="' + val_raca + '">' + val_raca + '</option>';
+     							});
+     						}
+     					});
+     					$("#inputRaca").html(options_racas);
+
+     				}).change();
+
+     			});
+
+     		});
+
+     	</script>
 
   </body>
 </html>

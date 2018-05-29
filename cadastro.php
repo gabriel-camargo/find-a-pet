@@ -29,7 +29,7 @@
             </div>
             <div class="col-lg-9">
               <div class="custom-file">
-                <input name ="foto" type="file" class="custom-file-input" id="inputFoto" required>
+                <input name ="foto" type="file" class="custom-file-input" id="inputFoto">
                 <label class="custom-file-label" for="inputFoto">Escolha uma imagem...</label>
                 <div class="invalid-feedback">Example invalid custom file feedback</div>
               </div>
@@ -225,7 +225,7 @@
               <div class="form-group row">
                 <label for="inputCep" class="col-sm-4 col-form-label">Cep: </label>
                 <div class="col-sm-8">
-                  <input name="cep" type="text" id="inputCep" class="form-control" placeholder="Ex: 12402-040" aria-describedby="cepHelpBlock" required >
+                  <input name="cep" type="text" id="inputCep" class="form-control" placeholder="Ex: 12402-040" aria-describedby="cepHelpBlock">
                 </div>
               </div>
             </div>
@@ -235,7 +235,7 @@
               <div class="form-group row">
                 <label for="inputLogradouro" class="col-sm-2 col-form-label">Logradouro: </label>
                 <div class="col-sm-10">
-                  <input name="logradouro" type="text" id="inputLogradouro" class="form-control" placeholder="Ex: R. frederico de Souza Lima" required>
+                  <input name="logradouro" type="text" id="inputLogradouro" class="form-control" placeholder="Ex: R. frederico de Souza Lima">
                 </div>
               </div>
             </div>
@@ -245,7 +245,7 @@
               <div class="form-group row">
                 <label for="inputNumero" class="col-sm-5 col-form-label">Numero: </label>
                 <div class="col-sm-7">
-                  <input name="numero" type="text" id="inputNumero" class="form-control" placeholder="Ex: 45" required>
+                  <input name="numero" type="text" id="inputNumero" class="form-control" placeholder="Ex: 45">
                 </div>
               </div>
             </div>
@@ -261,7 +261,7 @@
               <div class="form-group row">
                 <label for="inputBairro" class="col-sm-2 col-form-label">Bairro: </label>
                 <div class="col-sm-10">
-                  <input name="bairro" type="text" id="inputBairro" class="form-control" placeholder="Ex: Crispim" required>
+                  <input name="bairro" type="text" id="inputBairro" class="form-control" placeholder="Ex: Crispim">
                 </div>
               </div>
             </div>
@@ -271,7 +271,7 @@
               <div class="form-group row">
                 <label for="inputComplemento" class="col-sm-3 col-form-label">Complemento: </label>
                 <div class="col-sm-9">
-                  <input name="complemento" type="text" id="inputNumero" class="form-control" placeholder="Ex: ap. 107" required>
+                  <input name="complemento" type="text" id="inputNumero" class="form-control" placeholder="Ex: ap. 107">
                 </div>
               </div>
             </div>
@@ -300,6 +300,7 @@
                 <label for="inputCidade" class="col-sm-3 col-form-label">Cidade: </label>
                 <div class="col-sm-9">
                   <select name="cidade" id="inputCidade" class="form-control">
+
                   </select>
                 </div>
               </div>

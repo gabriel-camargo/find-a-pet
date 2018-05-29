@@ -9,16 +9,19 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
   <head>
     <?php
       require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
      <link rel="stylesheet" href="css/cadastro.css">
   </head>
+
   <body>
     <?php
       require_once('pages' . DIRECTORY_SEPARATOR . 'navbar.php');
      ?>
+     
      <div class="container formulario">
        <br>
        <form action="update.php" class="form-signup" method="post">

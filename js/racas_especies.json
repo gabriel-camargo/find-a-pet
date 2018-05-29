@@ -1,0 +1,16 @@
+[{
+    "especie": "Cachorro",
+    "racas": [
+      "Puldo",
+      "Dalmata",
+      "Vira-lata"
+    ]
+  },
+  {
+    "especie": "Gato",
+    "racas": [
+      "Gatineo",
+      "Rei do Mundo",
+      "Vira-lata de gato"
+    ]
+}]

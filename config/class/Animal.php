@@ -9,7 +9,8 @@ class Animal{
   private $ani_foto;
   private $ani_status;
   private $usu_id;
-  private $rac_id;
+  private $ani_raca;
+  private $ani_especie;
   private $ani_dt_hr;
 
   //get e set ID
@@ -69,11 +70,18 @@ class Animal{
     $this->usu_id = $value;
   }
   //get e set RAÇA ID
-  public function getIdRaca(){
-    return $this->rac_id;
+  public function getRacaAnimal(){
+    return $this->ani_raca;
   }
-  public function setIdRaca($value){
-    $this->rac_id = $value;
+  public function setRacaAnimal($value){
+    $this->ani_raca = $value;
+  }
+  //get e set RAÇA ID
+  public function getEspecieAnimal(){
+    return $this->ani_especie;
+  }
+  public function setEspecieAnimal($value){
+    $this->ani_especie = $value;
   }
   //get e set DATA HORA
   public function getDataHoraAnimal(){
@@ -94,7 +102,8 @@ class Animal{
     $this->setFotoAnimal($row['ani_foto']);
     $this->setStatusAnimal($row['ani_status']);
     $this->setIdUsuario($row['usu_id']);
-    $this->setIdRaca($row['rac_id']);
+    $this->setRacaAnimal($row['ani_raca']);
+    $this->setEspecieAnimal($row['ani_especie']);
     $this->setDataHoraAnimal(new DateTime($row['ani_dt_hr']));
   }
 
@@ -126,7 +135,8 @@ class Animal{
       ani_foto,
       ani_status,
       usu_id,
-      rac_id)
+      ani_raca,
+      ani_especie)
       VALUES(
         :NOME,
         :FAIXA_ETARIA,
@@ -135,7 +145,8 @@ class Animal{
         :FOTO,
         :STATUS,
         :USUARIO,
-        :RACA)",
+        :RACA,
+        :ESPECIE)",
       array(
       ":NOME" => $this->getNomeAnimal(),
       ":FAIXA_ETARIA" => $this->getFaixaAnimal(),
@@ -144,7 +155,8 @@ class Animal{
       ":FOTO" => $this->getFotoAnimal(),
       ":STATUS" => $this->getStatusAnimal(),
       ":USUARIO" => $this->getIdUsuario(),
-      ":RACA" => $this->getIdRaca()
+      ":RACA" => $this->getRacaAnimal(),
+      ":ESPECIE" => $this->getEspecieAnimal()
     ));
 
     if (count($results) >= 1) {
@@ -157,7 +169,7 @@ class Animal{
 
 
     public function __construct($nome = "", $faixa = "", $sexo = "", $informacoes = "", $foto = "", $status = "",
-     $usuario = "", $raca = ""){
+     $usuario = "", $raca = "", $especie = ""){
 
       $this->setNomeAnimal($nome);
       $this->setFaixaAnimal($faixa);
@@ -166,7 +178,8 @@ class Animal{
       $this->setFotoAnimal($foto);
       $this->setStatusAnimal($status);
       $this->setIdUsuario($usuario);
-      $this->setIdRaca($raca);
+      $this->setRacaAnimal($raca);
+      $this->setEspecieAnimal($especie);
     }
 
     //a função toString é chamada ao tentar imprimir um objeto
@@ -180,7 +193,8 @@ class Animal{
         "ani_foto" => $this->getFotoAnimal(),
         "ani_status" => $this->getStatusAnimal(),
         "usu_id" => $this->getIdUsuario(),
-        "rac_id" => $this->getIdRaca(),
+        "ani_raca" => $this->getRacaAnimal(),
+        "ani_especie" => $this->getEspecieAnimal(),
         "ani_dt_hr" => $this->getDataHoraAnimal()
       ));
     }
