@@ -1,12 +1,19 @@
-div.publicacao-foto{
+div.animal{
+  /* border: 2px solid blue; */
+  border-radius: 15px;
+  padding: 20px;
+  background-color: #eaeaea;
+}
+
+div.foto{
   background-color: #aaa;
-  width: 200px;
-  height: 200px;
+  border: 2px solid red;
+  width: 150px;
+  height: 150px;
   border-radius: 15px;
 }
 
-div.expansao-publicacao{
-  margin-top: 50px;
-  border: 1px solid #dddddd;
-  border-radius: 20px;
+div.info{
+  /* border: 2px solid white; */
+  padding-left: 20px;
 }

@@ -19,7 +19,7 @@
       <!-- Links -->
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item" id="meus_animais">
-          <a class="nav-link" href="cadastro-animal.php"> Animais </a>
+          <a class="nav-link" href="animal.php"> Animais </a>
         </li>
       </ul>
 
