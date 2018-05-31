@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: bd_findapet
+-- Host: 127.0.0.1    Database: bd_findapet
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.1.31-MariaDB
 
@@ -31,14 +31,13 @@ CREATE TABLE `cad_animais` (
   `ani_foto` mediumblob NOT NULL,
   `ani_status` varchar(15) NOT NULL,
   `usu_id` int(11) NOT NULL,
-  `rac_id` int(11) NOT NULL,
   `ani_dt_hr` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ani_raca` varchar(45) NOT NULL,
+  `ani_especie` varchar(45) NOT NULL,
   PRIMARY KEY (`ani_id`),
   UNIQUE KEY `ani_id_UNIQUE` (`ani_id`),
   KEY `fk_cad_animais_cad_usuarios1_idx` (`usu_id`),
-  KEY `fk_cad_animais_raca1_idx` (`rac_id`),
-  CONSTRAINT `fk_cad_animais_cad_usuarios1` FOREIGN KEY (`usu_id`) REFERENCES `cad_usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_cad_animais_raca1` FOREIGN KEY (`rac_id`) REFERENCES `raca` (`rac_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_cad_animais_cad_usuarios1` FOREIGN KEY (`usu_id`) REFERENCES `cad_usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -60,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-07  9:25:22
+-- Dump completed on 2018-05-31 16:06:50

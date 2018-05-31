@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: bd_findapet
+-- Host: 127.0.0.1    Database: bd_findapet
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.1.31-MariaDB
 
@@ -43,7 +43,7 @@ CREATE TABLE `cad_usuarios` (
   `usu_uf` varchar(2) NOT NULL,
   PRIMARY KEY (`usu_id`),
   UNIQUE KEY `usu_id_UNIQUE` (`usu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,7 +52,7 @@ CREATE TABLE `cad_usuarios` (
 
 LOCK TABLES `cad_usuarios` WRITE;
 /*!40000 ALTER TABLE `cad_usuarios` DISABLE KEYS */;
-INSERT INTO `cad_usuarios` VALUES (1,NULL,'46614336886',NULL,'Ana Luiza R','ana','F','ana@email.com','123','123454678','123456789',NULL,'',0,NULL,'','','');
+INSERT INTO `cad_usuarios` VALUES (4,'','88888888888','','Nome Update','Apelido Update',NULL,'update@email.com','update','12121212','98706-7224','12000000','rua dos sei la update',0,'casa update','crispim update','Porto Grande','AP'),(6,'','','0676672','organizaÃ§Ã£o bonitima','botnirima','M','org@email.com','456','12121212','98706-7224','12402040','rua dos sei la',45,'casa','crispim','AbatiÃ¡','PR'),(7,'','44832783807','','Gabriel Rodrigo de Camargo','Gordealma','M','gabriel@email.com','123','1236452585','12987067224','12402040','Rua Soldado JosÃ© Fernandes',45,'Casa','Crispim','Pindamonhangaba','SP'),(8,'foto-de-perfil-menor.jpeg','44844844848','','Rodrigo de Camargo','Rodrigo','M','rodrigo@email.com','123','12121212','98989898','12402050','Rua Soldado JosÃ© Fernandes',45,'Casa','Crispim','TaboÃ£o da Serra','SP');
 /*!40000 ALTER TABLE `cad_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -65,4 +65,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-07  9:25:22
+-- Dump completed on 2018-05-31 16:06:50
