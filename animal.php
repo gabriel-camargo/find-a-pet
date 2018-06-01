@@ -23,39 +23,25 @@
      <div class="container">
        <a href="cadastro-animal.php" style="color: green"> Cadastre um novo animal aqui! </a>
 
-       <div class="animal row">
-         <div class="col-xs-3 foto">
-           Foto
-         </div>
-         <div class="col-xs-9 info">
-           <form class="" action="info-animais.php" method="post">
-             <input type="hidden" name="id" value="1">
-             <button type="submit" name="button"> Sei la kk</button>
-           </form>
-           <span>Nome</span><br>
-           <span>Faixa etária</span><br>
-           <span>Sexo</span><br>
-           <span>Raça</span><br>
-           <span>Status</span><br>
-         </div>
-       </div>
-       <div class="animal row">
-         <div class="col-xs-3 foto">
-           Foto
-         </div>
-         <div class="col-xs-9 info">
-           <form class="" action="info-animais.php" method="post">
-             <input type="hidden" name="id" value="2">
-             <button type="submit" name="button"> Sei la kk</button>
-           </form>
-           <span>Nome</span><br>
-           <span>Faixa etária</span><br>
-           <span>Sexo</span><br>
-           <span>Raça</span><br>
-           <span>Status</span><br>
-         </div>
-       </div>
-     </div>
+       <?php
+       $animais = Animal::searchByUser($user->getIdUsuario());
+
+       foreach ($animais as $row) {
+         echo "<div class=\"animal row\">" .
+                "<div class=\"col-xs-3 foto\">" .
+                  "Foto" .
+                "</div>" .
+                "<div class=\"col-xs-9 info\">" .
+                  "<form class=\"\" action=\"info-animais.php\" method=\"post\">" .
+                    "<input type=\"hidden\" name=\"id\" value=" . $row['ani_id'] . ">" .
+                    "<button type=\"submit\" name=\"button\">" . $row['ani_nome'] . "</button>" .
+                  "</form>" .
+                  "<span>" . $row['ani_faixa_etaria'] . "</span> <br>" .
+                  "<span>" . $row['ani_raca'] . "</span> <br>" .
+                  "<span>" . $row['ani_sexo'] . "</span> <br>" .
+                  "<span>" . $row['ani_status'] . "</span> <br>" . "</div></div>" ;
+       }
+       ?>
 
      <?php
        require_once('pages' . DIRECTORY_SEPARATOR . 'codigos-js.php');

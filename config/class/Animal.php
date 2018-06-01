@@ -122,6 +122,15 @@ class Animal{
     }
   }
 
+  //Carrega os animais pelo ID do usuario
+  public static function searchByUser($usuario){
+    $sql = new Sql();
+
+    return $sql->select("SELECT * FROM cad_animais WHERE usu_id = :SEARCH ORDER BY ani_id ", array(
+      ":SEARCH" => $usuario
+    ));
+  }
+
 
 
   public function insert(){
