@@ -131,6 +131,15 @@ class Animal{
     ));
   }
 
+  //Carrega os animais que NÃO SÃO do usuario
+  public static function pesquisarAnimais($usuario){
+    $sql = new Sql();
+
+    return $sql->select("SELECT * FROM cad_animais WHERE usu_id <> :SEARCH ORDER BY ani_id ", array(
+      ":SEARCH" => $usuario
+    ));
+  }
+
 
 
   public function insert(){

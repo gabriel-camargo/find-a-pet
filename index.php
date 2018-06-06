@@ -15,6 +15,7 @@
       require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
      <link rel="stylesheet" href="css/index.css">
+     <link rel="stylesheet" href="css/animal.css">
 
   </head>
   <body>
@@ -22,13 +23,10 @@
       require_once('pages' . DIRECTORY_SEPARATOR . 'navbar.php');
      ?>
 
-     <!-- Bootstrap row -->
+     <div class="row" id="body-row">
 
-	<div class="row" id="body-row">
-
-    <!-- Sidebar -->
-
-    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
+       <!-- INICIO DA BARRA LATERAL -->
+      <div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
 
 	        <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
 
@@ -42,47 +40,32 @@
 	                <small>MAIN MENU</small>
 
 	            </li>
-
 	            <!-- /END Separator -->
 
 	           <!-- Menu with submenu -->
-
 	           <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                    	<div class="d-flex w-100 justify-content-start align-items-center">
 
-                   		<span class="fa fa-dashboard fa-fw mr-3"></span>
+                     	<span class="fa fa-dashboard fa-fw mr-3"></span>
+  	                	<span class="menu-collapsed">Dashboard</span>
+  	                	<span class="submenu-icon ml-auto"></span>
 
-	                	<span class="menu-collapsed">Dashboard</span>
-
-	                	<span class="submenu-icon ml-auto"></span>
-
-           	</div>
-
+           	      </div>
 	           </a>
 
-
 	           <!-- Submenu content -->
-
-           <div id="submenu1" class="collapse sidebar-submenu">
-
+             <div id="submenu1" class="collapse sidebar-submenu">
 	                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-
                     <span class="menu-collapsed">Charts</span>
-
-                </a>
+                 </a>
 
                 <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-
                     <span class="menu-collapsed">Reports</span>
-
                 </a>
 
 	                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-
 	                    <span class="menu-collapsed">Tables</span>
-
 	                </a>
-
 	            </div>
 
 
@@ -210,129 +193,71 @@
 	        <!-- List Group END-->
 
 	    </div>
-
-	    <!-- sidebar-container END -->
-
+	    <!-- FIM DA BARRA LATERAL -->
 
 
-    <!-- MAIN -->
 
+    <!-- INICIO DA DIV DE PUBLICAÇÕES -->
     <div class="col py-3">
+      <?php
+      $animais = Animal::pesquisarAnimais($user->getIdUsuario());
+
+      foreach ($animais as $row) {
+        echo "<div class=\"animal row\">" .
+               "<div class=\"col-xs-3 foto\">" .
+                 "Foto" .
+               "</div>" .
+               "<div class=\"col-xs-9 info\">" .
+                 "<form class=\"\" action=\"info-animais.php\" method=\"post\">" .
+                   "<input type=\"hidden\" name=\"id\" value=" . $row['ani_id'] . ">" .
+                   "<button type=\"submit\" name=\"button\">" . $row['ani_nome'] . "</button>" .
+                 "</form>" .
+                 "<span>" . $row['ani_faixa_etaria'] . "</span> <br>" .
+                 "<span>" . $row['ani_raca'] . "</span> <br>" .
+                 "<span>" . $row['ani_sexo'] . "</span> <br>" .
+                 "<span>" . $row['ani_status'] . "</span> <br>" . "</div></div>" ;
+      }
+      ?>
 
 
-	        <h1>Collapsing Menu
-
-	            <small class="text-muted">Version 2.1</small>
-
-	        </h1>
-
-
-
-	        <div class="card">
-
-            <h4 class="card-header">Requirements</h4>
-
-            <div class="card-body">
-
-    	<ul>
-
-        	<li>JQuery</li>
-
-             	<li>Bootstrap 4 beta-3</li>
-
-            </ul>
-
-       	    </div>
-
-	        </div>
-
-
-        <hr>
-
-
-	        <p>Sriracha biodiesel taxidermy organic post-ironic, Intelligentsia salvia mustache 90's code editing brunch. Butcher polaroid VHS art party, hashtag Brooklyn deep v PBR narwhal sustainable mixtape swag wolf squid tote bag. Tote bag cronut semiotics,
-            raw denim deep v taxidermy messenger bag. Tofu YOLO Etsy, direct trade ethical Odd Future jean shorts paleo. Forage Shoreditch tousled aesthetic irony, street art organic Bushwick artisan cliche semiotics ugh synth chillwave meditation. Shabby
-            chic lomo plaid vinyl chambray Vice. Vice sustainable cardigan, Williamsburg master cleanse hella DIY 90's blog.</p>
-
-        <hr>
-
-        <p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan farm-to-table Williamsburg slow-carb readymade
-            disrupt deep v. Meggings seitan Wes Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache
-            food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
-
-        <hr>
-
-        <p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan farm-to-table Williamsburg slow-carb readymade
-            disrupt deep v. Meggings seitan Wes Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache
-            food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
-
-        <hr>
-
-        <p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan farm-to-table Williamsburg slow-carb readymade
-            disrupt deep v. Meggings seitan Wes Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache
-            food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
-
-        <hr>
-
-        <p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan farm-to-table Williamsburg slow-carb readymade
-            disrupt deep v. Meggings seitan Wes Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache
-            food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
-
-        <hr>
-
-        <p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan farm-to-table Williamsburg slow-carb readymade
-            disrupt deep v. Meggings seitan Wes Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache
-            food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
-
-        <hr>
-
-        <p>Ethical Kickstarter PBR asymmetrical lo-fi. Dreamcatcher street art Carles, stumptown gluten-free Kickstarter artisan Wes Anderson wolf pug. Godard sustainable you probably haven't heard of them, vegan farm-to-table Williamsburg slow-carb readymade
-            disrupt deep v. Meggings seitan Wes Anderson semiotics, cliche American Apparel whatever. Helvetica cray plaid, vegan brunch Banksy leggings +1 direct trade. Wayfarers codeply PBR selfies. Banh mi McSweeney's Shoreditch selfies, forage fingerstache
-            food truck occupy YOLO Pitchfork fixie iPhone fanny pack art party Portland.</p>
-
-
-
-    	   </div>
-
-    <!-- Main Col END -->
-
+    </div>
+    <!-- FIM DA DIV DE PUBLICAÇÕES-->
 
 </div>
-
 <!-- body-row END -->
 
      <?php
        require_once('pages' . DIRECTORY_SEPARATOR . 'codigos-js.php');
       ?>
       <script type="text/javascript">
-      // Hide submenus
-$('#body-row .collapse').collapse('hide');
+          // Hide submenus
+          $('#body-row .collapse').collapse('hide');
 
-// Collapse/Expand icon
-$('#collapse-icon').addClass('fa-angle-double-left');
+          // Collapse/Expand icon
+          $('#collapse-icon').addClass('fa-angle-double-left');
 
-// Collapse click
-$('[data-toggle=sidebar-colapse]').click(function() {
-  SidebarCollapse();
-});
+          // Collapse click
+          $('[data-toggle=sidebar-colapse]').click(function() {
+            SidebarCollapse();
+          });
 
-function SidebarCollapse () {
-  $('.menu-collapsed').toggleClass('d-none');
-  $('.sidebar-submenu').toggleClass('d-none');
-  $('.submenu-icon').toggleClass('d-none');
-  $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+          function SidebarCollapse () {
+            $('.menu-collapsed').toggleClass('d-none');
+            $('.sidebar-submenu').toggleClass('d-none');
+            $('.submenu-icon').toggleClass('d-none');
+            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
 
-  // Treating d-flex/d-none on separators with title
-  var SeparatorTitle = $('.sidebar-separator-title');
-  if ( SeparatorTitle.hasClass('d-flex') ) {
-      SeparatorTitle.removeClass('d-flex');
-  } else {
-      SeparatorTitle.addClass('d-flex');
-  }
+            // Treating d-flex/d-none on separators with title
+            var SeparatorTitle = $('.sidebar-separator-title');
+            if ( SeparatorTitle.hasClass('d-flex') ) {
+                SeparatorTitle.removeClass('d-flex');
+            } else {
+                SeparatorTitle.addClass('d-flex');
+            }
 
-  // Collapse/Expand icon
-  $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
-}
+            // Collapse/Expand icon
+            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+          }
       </script>
   </body>
 </html>
