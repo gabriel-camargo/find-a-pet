@@ -19,7 +19,7 @@ class Adocao{
   public function getDataHoraAdocao(){
     return $this->ado_dt_hr;
   }
-  public function setIdAdocao($value){
+  public function setDataHoraAdocao($value){
     $this->ado_dt_hr = $value;
   }
 
@@ -36,7 +36,7 @@ class Adocao{
     return $this->usu_adotador_id;
   }
   public function setIdAdotador($value){
-    $this->usu_id_adotador = $value;
+    $this->usu_adotador_id = $value;
   }
 
   //get e set ID ANIMAL
@@ -55,6 +55,20 @@ class Adocao{
     $this->setIdAnimal($row['ani_id']);
   }
 
+  public function loadByAnimal($animal){
+    $sql = new Sql();
+    $results = $sql->select("SELECT * FROM adocoes WHERE ani_id = :ANIMAL", array(
+      ":ANIMAL"=>$animal
+    ));
+
+    if (count($results) >= 1) {
+      $row = $results[0];
+
+      $this->setData($row);
+
+
+    }
+  }
   public function insert(){
     $sql = new Sql();
 
@@ -76,6 +90,17 @@ class Adocao{
       $row = $results[0];
       $this->setData($row);
     }
+  }
+
+  //a função toString é chamada ao tentar imprimir um objeto
+  public function __toString(){
+    return json_encode(array(
+      "ado_id" => $this->getIdAdocao(),
+      "ado_dt_hr" => $this->getDataHoraAdocao(),
+      "usu_id_doador" => $this->getIdDoador(),
+      "usu_id_adotador" => $this->getIdAdotador(),
+      "ani_id" => $this->getIdAnimal()
+    ));
   }
 }
 

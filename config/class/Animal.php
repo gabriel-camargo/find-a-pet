@@ -135,7 +135,7 @@ class Animal{
   public static function pesquisarAnimais($usuario){
     $sql = new Sql();
 
-    return $sql->select("SELECT * FROM cad_animais WHERE usu_id <> :SEARCH ORDER BY ani_id ", array(
+    return $sql->select("SELECT * FROM cad_animais WHERE (usu_id <> :SEARCH) AND ((ani_status = 'adocao') OR (ani_status = 'perdido')) ORDER BY ani_id ", array(
       ":SEARCH" => $usuario
     ));
   }
@@ -181,6 +181,20 @@ class Animal{
       $row = $results[0];
       $this->setData($row);
     }
+  }
+  public function updateStatus($status){
+
+    $this->setStatusAnimal($status);
+
+    $sql = new Sql();
+
+    $sql->query("UPDATE cad_animais SET
+      ani_status = :STATUS
+      WHERE ani_id = :ID",
+      array(
+        ":STATUS" => $this->getStatusAnimal(),
+        ":ID" => $this->getIdAnimal()
+    ));
   }
 
 
