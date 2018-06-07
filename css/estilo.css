@@ -78,8 +78,16 @@ body{
   font-weight: bold;
 }
 
+.login-btn-entrar:hover{
+  background-color: #54B158;
+}
+
 .login-link{
   color: #43A047;
+}
+.login-link:hover{
+  color: #54B158;
+  text-decoration: none;
 }
 
 /* ---------- CADASTRO ---------- */
