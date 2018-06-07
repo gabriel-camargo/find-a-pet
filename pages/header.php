@@ -3,7 +3,6 @@
 
 <link rel="stylesheet" href="css/vendor/bootstrap/bootstrap.css">
 <link rel="stylesheet" href="css/estilo.css">
-<link rel="stylesheet" href="css/navbar.css">
 
 <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">

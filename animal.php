@@ -13,7 +13,6 @@
     <?php
       require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
-     <link rel="stylesheet" href="css/animal.css">
   </head>
   <body>
     <?php
@@ -27,11 +26,11 @@
        $animais = Animal::searchByUser($user->getIdUsuario());
 
        foreach ($animais as $row) {
-         echo "<div class=\"animal row\">" .
-                "<div class=\"col-xs-3 foto\">" .
+         echo "<div class=\"animal-publicacao row\">" .
+                "<div class=\"col-xs-3 animal-foto\">" .
                   "Foto" .
                 "</div>" .
-                "<div class=\"col-xs-9 info\">" .
+                "<div class=\"col-xs-9 animal-info\">" .
                   "<form class=\"\" action=\"info-animais.php\" method=\"post\">" .
                     "<input type=\"hidden\" name=\"id\" value=" . $row['ani_id'] . ">" .
                     "<button type=\"submit\" name=\"button\">" . $row['ani_nome'] . "</button>" .

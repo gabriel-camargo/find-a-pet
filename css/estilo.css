@@ -1,7 +1,179 @@
+html,
+body {
+  height: 100%;
+}
+
 body{
   font-family: 'Raleway', sans-serif;
   height: 100%;
   margin-top: 56px;
+}
+/* ----------NAVBAR--------- */
+.navbar-link{
+  color: #ffffff;
+}
+
+.navbar-link:hover{
+  color: #eeeeee;
+}
+
+.navbar-dropdown{
+  text-align: center;
+  margin-left: -70px;
+  padding: 5px;
+  align-items: center;
+}
+
+#navbar-input{
+  width: 400px;
+}
+
+/* ----------LOGIN---------- */
+.login-body{
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eaeaea;
+  /* background: url("../img/bg.jpg"); */
+  font-weight: bolder;
+  text-align: center;
+  margin-top: 0px;
+}
+
+.login-form-signin {
+  width: 100%;
+  max-width: 400px;
+  padding: 50px;
+  margin: 0 auto;
+  background-color: rgba(250, 250, 250, 0.9);
+  border-radius: 10px;
+}
+
+.login.form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.login.form-control:focus {
+  z-index: 2;
+}
+
+.login-btn-entrar{
+  background-color: #43A047;
+  border: 0;
+  margin-bottom: -35px;
+  font-weight: bold;
+}
+
+.login-link{
+  color: #43A047;
+}
+
+/* ---------- CADASTRO ---------- */
+.cadastro-body{
+  background-color: #eeeeee;
+}
+
+.cadastro-titulo{
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.cadastro-formulario{
+  background: #fefefe;
+}
+
+.cadastro-div-foto{
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.cadastro.form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.cadastro-btn{
+  background-color:#43A047;
+  border: 0;
+  font-weight: bold;
+}
+
+.cadastro-sub-form{
+  padding: 20px;
+}
+.cadastro-sub-form h2{
+  padding: 10px;
+  border-bottom: 1px solid #dddddd;
+}
+
+/* ------------ CADASTRO DO ANIMAL ----------- */
+.cadastro-animal-div-foto{
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-align: center;
+  -ms-flex-pack: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.cadastro-animal-btn{
+  background-color: #43A047;
+  border: 0;
+  font-weight: bold;
+}
+
+.cadastro-animal-titulo{
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+/* ---------- ANIMAL ---------- */
+.animal-publicacao{
+  /* border: 2px solid blue; */
+  border-radius: 15px;
+  padding: 20px;
+  background-color: #eaeaea;
+}
+
+.animal-foto{
+  background-color: #aaa;
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+}
+
+.animal-info{
+  /* border: 2px solid white; */
+  padding-left: 20px;
 }
 
 select.form-control{

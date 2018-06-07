@@ -14,42 +14,42 @@
     <?php
       require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
-     <link rel="stylesheet" href="css/cadastro.css">
   </head>
 
   <body>
     <?php
       require_once('pages' . DIRECTORY_SEPARATOR . 'navbar.php');
      ?>
-     
-     <div class="container formulario">
+
+     <div class="container cadastro-formulario">
        <br>
        <form action="update.php" class="form-signup" method="post">
-         <h1 class="h3 mb-3 font-weight-bold"> Cadastre-se </h1><br>
+         <h1 class="h3 mb-3 font-weight-bold cadastro-titulo"> Alterar cadastro</h1><br>
 
          <!-- INÍCIO DA DIV DE DADOS PESSOAIS -->
-         <div class="sub-form">
+         <div class="cadastro-sub-form">
            <h2 class="h5 mb-3 font-weight-bold"> Dados pessoais </h2>
 
-           <!-- INPUT DA FOTO -->
-           <div class="form-group row" id="div-foto">
+           <!-- INPUT DA IMAGEM -->
+           <div class="form-group row cadastro-div-foto">
              <div class="col-lg-3">
-               <div class="imagem-usuario">
-                 <h6 id="txt_foto">Foto</h6>
-               </div>
+               <img id="imagem-perfil" src="img/logo.png" alt="your image" width="200" height="200"/>
              </div>
              <div class="col-lg-9">
-               <div class="form-group row">
-                   <input type="file">
+               <div class="custom-file">
+                 <input name ="foto" type="file" class="custom-file-input" id="inputFoto">
+                 <label class="custom-file-label" for="inputFoto">Escolha uma imagem...</label>
+                 <div class="invalid-feedback">Example invalid custom file feedback</div>
                </div>
-             </div>
            </div>
+         </div>
+         <!-- FIM DO INPUT DA IMAGEM -->
 
            <!-- INPUT DO NOME -->
            <div class="form-group row">
                <label for="inputNome" class="col-sm-2 col-form-label">Nome completo: </label>
                <div class="col-sm-10">
-                 <input value="<?php echo $user->getNomeUsuario(); ?>" name="nome" type="text" id="inputNome" class="form-control" placeholder="Ex: Fulano da Silva" required autofocus>
+                 <input value="<?php echo $user->getNomeUsuario(); ?>" name="nome" type="text" id="inputNome" class="cadastro form-control" placeholder="Ex: Fulano da Silva" required autofocus>
                </div>
            </div>
 
@@ -57,7 +57,7 @@
            <div class="form-group row">
                <label for="inputNomeUsuario" class="col-sm-2 col-form-label">Nome de usuário: </label>
                <div class="col-sm-10">
-                 <input value="<?php echo $user->getApelidoUsuario(); ?>" name="apelido" type="text" id="inputNomeUsuario" class="form-control" placeholder="Ex: fulanodasilva98" required>
+                 <input value="<?php echo $user->getApelidoUsuario(); ?>" name="apelido" type="text" id="inputNomeUsuario" class="cadastro form-control" placeholder="Ex: fulanodasilva98" required>
                </div>
            </div>
 
@@ -86,7 +86,7 @@
              <div class="form-group row">
                  <label for="inputCpf" class="col-sm-2 col-form-label">CPF: </label>
                  <div class="col-sm-10">
-                   <input value="<?php echo $user->getCpfUsuario(); ?>" name="cpf" type="text" id="inputCpf" class="form-control" placeholder="Ex: 448.349.138-27" aria-describedby="cpfHelpBlock">
+                   <input value="<?php echo $user->getCpfUsuario(); ?>" name="cpf" type="text" id="inputCpf" class="cadastro form-control" placeholder="Ex: 448.349.138-27" aria-describedby="cpfHelpBlock">
                    <small id="cpfHelpBlock" class="form-text text-muted">
                      Digite apenas números
                    </small>
@@ -97,7 +97,7 @@
              <div class="form-group row">
                  <label for="inputCnpjDisable" class="col-sm-2 col-form-label">CNPJ: </label>
                  <div class="col-sm-10">
-                   <input type="text" id="inputCnpjDisable" class="form-control" placeholder="<?php echo $user->getCnpjUsuario(); ?>" aria-describedby="cnpjDisableHelpBlock" disabled >
+                   <input type="text" id="inputCnpjDisable" class="cadastro form-control" placeholder="<?php echo $user->getCnpjUsuario(); ?>" aria-describedby="cnpjDisableHelpBlock" disabled >
                    <small id="cnpjDisableHelpBlock" class="form-text text-muted">
                      Digite apenas números
                    </small>
@@ -112,7 +112,7 @@
              <div class="form-group row">
                  <label for="inputCpfDisable" class="col-sm-2 col-form-label">CPF: </label>
                  <div class="col-sm-10">
-                   <input type="text" id="inputCpfDisable" class="form-control" placeholder="<?php echo $user->getCpfUsuario(); ?>" aria-describedby="cpfHelpBlockDisable" disabled>
+                   <input type="text" id="inputCpfDisable" class="cadastro form-control" placeholder="<?php echo $user->getCpfUsuario(); ?>" aria-describedby="cpfHelpBlockDisable" disabled>
                    <small id="cpfHelpBlockDisable" class="form-text text-muted">
                      Digite apenas números
                    </small>
@@ -123,7 +123,7 @@
              <div class="form-group row">
                  <label for="inputCnpj" class="col-sm-2 col-form-label">CNPJ: </label>
                  <div class="col-sm-10">
-                   <input value="<?php echo $user->getCnpjUsuario(); ?>" name="cnpj" type="text" id="inputCnpj" class="form-control" placeholder="Ex: 60.3323.123123" aria-describedby="cnpjDisableHelpBlock">
+                   <input value="<?php echo $user->getCnpjUsuario(); ?>" name="cnpj" type="text" id="inputCnpj" class="cadastro form-control" placeholder="Ex: 60.3323.123123" aria-describedby="cnpjDisableHelpBlock">
                    <small id="cnpjHelpBlock" class="form-text text-muted">
                      Digite apenas números
                    </small>
@@ -161,7 +161,7 @@
            <div class="form-group row">
                <label for="inputEmail" class="col-sm-2 col-form-label">Email: </label>
                <div class="col-sm-10">
-                 <input value="<?php echo $user->getEmailUsuario(); ?>" name="email" type="email" id="inputEmail" class="form-control" placeholder="Ex: fulanodasilva@email.com" required>
+                 <input value="<?php echo $user->getEmailUsuario(); ?>" name="email" type="email" id="inputEmail" class="cadastro form-control" placeholder="Ex: fulanodasilva@email.com" required>
                </div>
            </div>
 
@@ -173,7 +173,7 @@
                <div class="form-group row">
                  <label for="inputSenha" class="col-sm-4 col-form-label">Senha: </label>
                  <div class="col-sm-8">
-                   <input value="<?php echo $user->getSenhaUsuario(); ?>" name="senha" type="password" id="inputSenha" class="form-control" placeholder="**********" aria-describedby="passwordHelpBlock" required >
+                   <input value="<?php echo $user->getSenhaUsuario(); ?>" name="senha" type="password" id="inputSenha" class="cadastro form-control" placeholder="**********" aria-describedby="passwordHelpBlock" required >
                    <small id="passwordHelpBlock" class="form-text text-muted">
                      Sua senha deve conter entre 8 e 20 caracteres, e ao menos 1 letra maiúscula.
                    </small>
@@ -186,7 +186,7 @@
                <div class="form-group row">
                  <label for="inputSenhaConfirmar" class="col-sm-4 col-form-label">Confirme sua senha: </label>
                  <div class="col-sm-8">
-                   <input value="<?php echo $user->getSenhaUsuario(); ?>" name="senhaConfirm" type="password" id="inputSenhaConfirmar" class="form-control" placeholder="**********" required>
+                   <input value="<?php echo $user->getSenhaUsuario(); ?>" name="senhaConfirm" type="password" id="inputSenhaConfirmar" class="cadastro form-control" placeholder="**********" required>
                  </div>
                </div>
              </div>
@@ -200,7 +200,7 @@
                <div class="form-group row">
                  <label for="inputTelefone" class="col-sm-4 col-form-label">Telefone: </label>
                  <div class="col-sm-8">
-                   <input value="<?php echo $user->getTelefoneUsuario(); ?>" name="telefone" type="tel" id="inputTelefone" class="form-control" placeholder="(xx) xxxx- xxxx">
+                   <input value="<?php echo $user->getTelefoneUsuario(); ?>" name="telefone" type="tel" id="inputTelefone" class="cadastro form-control" placeholder="(xx) xxxx- xxxx">
                  </div>
                </div>
              </div>
@@ -210,7 +210,7 @@
                <div class="form-group row">
                  <label for="inputCelular" class="col-sm-4 col-form-label">Celular: </label>
                  <div class="col-sm-8">
-                   <input value="<?php echo $user->getCelularUsuario(); ?>" name="celular" type="tel" id="inputCelular" class="form-control" placeholder="(xx) xxxxx- xxxx">
+                   <input value="<?php echo $user->getCelularUsuario(); ?>" name="celular" type="tel" id="inputCelular" class="cadastro form-control" placeholder="(xx) xxxxx- xxxx">
                  </div>
                </div>
              </div>
@@ -233,7 +233,7 @@
                <div class="form-group row">
                  <label for="inputCep" class="col-sm-4 col-form-label">Cep: </label>
                  <div class="col-sm-8">
-                   <input value="<?php echo $user->getCepUsuario(); ?>" name="cep" type="text" id="inputCep" class="form-control" placeholder="Ex: 12402-040" aria-describedby="cepHelpBlock" required >
+                   <input value="<?php echo $user->getCepUsuario(); ?>" name="cep" type="text" id="inputCep" class="cadastro form-control" placeholder="Ex: 12402-040" aria-describedby="cepHelpBlock" required >
                  </div>
                </div>
              </div>
@@ -243,7 +243,7 @@
                <div class="form-group row">
                  <label for="inputLogradouro" class="col-sm-2 col-form-label">Logradouro: </label>
                  <div class="col-sm-10">
-                   <input value="<?php echo $user->getLogradouroUsuario(); ?>" name="logradouro" type="text" id="inputLogradouro" class="form-control" placeholder="Ex: R. frederico de Souza Lima" required>
+                   <input value="<?php echo $user->getLogradouroUsuario(); ?>" name="logradouro" type="text" id="inputLogradouro" class="cadastro form-control" placeholder="Ex: R. frederico de Souza Lima" required>
                  </div>
                </div>
              </div>
@@ -253,7 +253,7 @@
                <div class="form-group row">
                  <label for="inputNumero" class="col-sm-5 col-form-label">Numero: </label>
                  <div class="col-sm-7">
-                   <input value="<?php echo $user->getNumeroEnderecoUsuario(); ?>" name="numero" type="text" id="inputNumero" class="form-control" placeholder="Ex: 45" required>
+                   <input value="<?php echo $user->getNumeroEnderecoUsuario(); ?>" name="numero" type="text" id="inputNumero" class="cadastro form-control" placeholder="Ex: 45" required>
                  </div>
                </div>
              </div>
@@ -269,7 +269,7 @@
                <div class="form-group row">
                  <label for="inputBairro" class="col-sm-2 col-form-label">Bairro: </label>
                  <div class="col-sm-10">
-                   <input value="<?php echo $user->getBairroUsuario(); ?>" name="bairro" type="text" id="inputBairro" class="form-control" placeholder="Ex: Crispim" required>
+                   <input value="<?php echo $user->getBairroUsuario(); ?>" name="bairro" type="text" id="inputBairro" class="cadastro form-control" placeholder="Ex: Crispim" required>
                  </div>
                </div>
              </div>
@@ -279,7 +279,7 @@
                <div class="form-group row">
                  <label for="inputComplemento" class="col-sm-3 col-form-label">Complemento: </label>
                  <div class="col-sm-9">
-                   <input value="<?php echo $user->getComplementoUsuario(); ?>" name="complemento" type="text" id="inputNumero" class="form-control" placeholder="Ex: ap. 107" required>
+                   <input value="<?php echo $user->getComplementoUsuario(); ?>" name="complemento" type="text" id="inputNumero" class="cadastro form-control" placeholder="Ex: ap. 107" required>
                  </div>
                </div>
              </div>
@@ -295,7 +295,7 @@
                <div class="form-group row">
                  <label for="inputEstado" class="col-sm-2 col-form-label">Estado: </label>
                  <div class="col-sm-10">
-                   <select name="estado" id="inputEstado" class="form-control">
+                   <select name="estado" id="inputEstado" class="cadastro form-control">
                          <option value=""></option>
                    </select>
                  </div>
@@ -307,7 +307,7 @@
                <div class="form-group row">
                  <label for="inputCidade" class="col-sm-3 col-form-label">Cidade: </label>
                  <div class="col-sm-9">
-                   <select name="cidade" id="inputCidade" class="form-control">
+                   <select name="cidade" id="inputCidade" class="cadastro form-control">
                    </select>
                  </div>
                </div>
@@ -319,7 +319,7 @@
          </div>
          <!-- FIM DA DIV DE LOCALIZAÇÃO -->
 
-         <button class="btn btn-lg btn-primary btn-block" type="submit" id="btn_cadastrar"> Atualizar conta </button>
+         <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" > Atualizar conta </button>
 
 
        </form>

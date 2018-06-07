@@ -6,7 +6,7 @@
   <div class="container">
 
     <!-- Brand: Título principal -->
-    <a class="navbar-brand" href="index.php"> <strong> Find a Pet </strong></a>
+    <a class="navbar-brand navbar-link" href="index.php"> <strong> Find a Pet </strong></a>
 
     <!-- Colapse principal -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerPrincipal" aria-controls="navbarTogglerPrincipal" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,14 +19,14 @@
       <!-- Links -->
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item" id="meus_animais">
-          <a class="nav-link" href="animal.php"> Animais </a>
+          <a class="nav-link navbar-link" href="animal.php"> Animais </a>
         </li>
       </ul>
 
       <!-- Campo de pesquisa -->
       <form class="form-inline my-2 my-lg-0">
         <!-- <div class="input-group mb-3"> -->
-          <input type="search" class="form-control form-inline my-2 my-lg-0" placeholder="Pesquisar animal..." id="nav-input">
+          <input type="search" class="form-control form-inline my-2 my-lg-0 navbar-input" id="navbar-input" placeholder="Pesquisar animal...">
           <div class="input-group-append">
             <button class="btn btn-dark" type="button">@</button>
           </div>
@@ -36,10 +36,10 @@
 
       <!-- Menu dropdown -->
       <span class="nav-item dropdown my-2 my-lg-0" id="drop">
-        <a class="nav-link dropdown-toggle" href="#" id="navbar-drop" data-toggle="dropdown">
+        <a class="nav-link dropdown-toggle navbar-link" href="#" id="navbar-drop" data-toggle="dropdown">
           <?php echo $user->getApelidoUsuario(); ?>
         </a>
-        <div class="dropdown-menu" id="menu">
+        <div class="dropdown-menu navbar-dropdown" id="menu">
           <span class="dropdown-item"><?php echo $user->getNomeUsuario(); ?></span>
           <span class="dropdown-item text-muted" id="nome-usuario"><?php echo $user->getEmailUsuario(); ?></span>
           <div class="dropdown-divider"></div>

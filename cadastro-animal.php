@@ -14,7 +14,6 @@
     <?php
       require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
-     <link rel="stylesheet" href="css/cadastro-animal.css">
   </head>
   <body>
     <?php
@@ -24,10 +23,10 @@
       <form action="cadastrar-animal.php" class="sign-animal" method="post">
         <div class="container">
 
-          <h1 class="h4 mb-3 font-weight-bold titulo"> Cadastre seu animal </h1><br>
+          <h1 class="h3 mb-3 font-weight-bold cadastro-animal-titulo"> Cadastre seu animal </h1><br>
 
           <!-- INPUT DA IMAGEM -->
-          <div class="form-group row" id="div-foto">
+          <div class="form-group row cadastro-animal-div-foto">
             <div class="col-lg-3">
               <img id="imagem-perfil" src="img/logo.png" alt="your image" width="200" height="200"/>
             </div>
@@ -139,7 +138,7 @@
 
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" id="btn_cadastrar">Cadastrar</button>
+        <button class="btn btn-lg btn-primary btn-block cadastro-animal-btn" type="submit" id="btn_cadastrar">Cadastrar</button>
 
 
       </div>
