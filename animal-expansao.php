@@ -32,7 +32,7 @@
                   <option value="">Selecione o usuário que adotou/encontrou o animal</option>
 
             <?php
-              $usuarios = Usuario::getList();
+              $usuarios = Usuario::getList($user->getIdUsuario());
               foreach ($usuarios as $row) {
                 echo "<option value=\"" .$row["usu_id"]. "\">" . $row["usu_nome"] . "</option>";
               }

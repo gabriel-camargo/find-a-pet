@@ -203,10 +203,12 @@ class Usuario{
   }
 
   //Carrega os animais pelo ID do usuario
-  public static function getList(){
+  public static function getList($usuario){
     $sql = new Sql();
 
-    return $sql->select("SELECT * FROM cad_usuarios ORDER BY usu_id;");
+    return $sql->select("SELECT * FROM cad_usuarios WHERE usu_id <> :ID ORDER BY usu_id;", array(
+      ":ID" => $usuario
+    ));
   }
 
   public function insert(){
