@@ -24,16 +24,23 @@
 
       <?php echo $animal . "<br>";
 
-      if ($animal->getStatusAnimal() === 'perdido') {
-        echo "Animal esta perdido";
-        if ($user->getIdUsuario() != $animal->getIdAnimal()) {
-          echo "<a href=\"adotar.php\" style=\"color:green;\"> Encontrei! </a>";
-        }
-      }
-      else if ($animal->getStatusAnimal() === 'adocao') {
-        echo "Animal esta em adoção";
-        if ($user->getIdUsuario() != $animal->getIdAnimal()) {
-          echo "<a href=\"adotar.php\" style=\"color:green;\"> Adotar! </a>";
+      if ($animal->getStatusAnimal() === 'perdido' or $animal->getStatusAnimal() === 'adocao') {
+        if ($user->getIdUsuario() == $animal->getIdUsuario()) {
+          ?>
+          <form class="" action="adotar.php" method="post">
+            <select name="adotador" id="inputAdotador" class="animal-expansao form-control">
+                  <option value="">Selecione o usuário que adotou/encontrou o animal</option>
+
+            <?php
+              $usuarios = Usuario::getList();
+              foreach ($usuarios as $row) {
+                echo "<option value=\"" .$row["usu_id"]. "\">" . $row["usu_nome"] . "</option>";
+              }
+             ?>
+             </select>
+             <button type="submit" name="button"> Enviar </button>
+          </form>
+          <?php
         }
       }
       else if ($animal->getStatusAnimal() === 'encontrado') {

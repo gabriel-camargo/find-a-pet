@@ -201,6 +201,14 @@ class Usuario{
 
     }
   }
+
+  //Carrega os animais pelo ID do usuario
+  public static function getList(){
+    $sql = new Sql();
+
+    return $sql->select("SELECT * FROM cad_usuarios ORDER BY usu_id;");
+  }
+
   public function insert(){
     $sql = new Sql();
 

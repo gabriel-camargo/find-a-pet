@@ -2,6 +2,8 @@
   require_once("config". DIRECTORY_SEPARATOR . "config.php");
   require_once("check.php");
 
+  $adotador = isset($_POST['adotador']) ? $_POST['adotador'] : null;
+
   $user = new Usuario();
   $user->loadById($_SESSION['login']['usu_id']);
 
@@ -23,8 +25,8 @@
 
   $adocao = new Adocao();
 
-  $adocao->setIdDoador($animal->getIdUsuario());
-  $adocao->setIdAdotador($user->getIdUsuario());
+  $adocao->setIdDoador($user->getIdUsuario());
+  $adocao->setIdAdotador($adotador);
   $adocao->setIdAnimal($animal->getIdAnimal());
 
   $adocao->insert();
