@@ -37,8 +37,8 @@
 	            </li>
 	            <!-- /END Separator -->
 
-	           <!-- Menu with submenu -->
 
+	           <!-- MENU ESPECIE -->
 	           <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                    	<div class="d-flex w-100 justify-content-start align-items-center">
 
@@ -49,8 +49,10 @@
            	      </div>
 	           </a>
 
-	           <!-- Submenu content -->
+	           <!-- SUBMENU DE ESPECIES-->
              <div id="submenu1" class="collapse sidebar-submenu">
+
+               <!-- ITEM DE ESPECIES: CACHORRO -->
                <a href="#submenuCachorro" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                        <div class="d-flex w-100 justify-content-start align-items-center">
 
@@ -60,37 +62,53 @@
 
                      </div>
               </a>
+
+              <!-- SUBMENU DE CACHORRO -->
               <div id="submenuCachorro" class="collapse sidebar-submenu">
 
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                <!-- CHECKBOX QUE MARCA/DESMARCA AS DEMAIS OPÇÕES -->
+               <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                   <div class="custom-control custom-checkbox">
                     <input class="custom-control-input" type="checkbox" name="raca-cachorro" id="check-todos-cachorro">
                     <label class="custom-control-label" for="check-todos-cachorro"><span class="menu-collapsed">Todos</span></label>
                   </div>
                 </a>
 
-                  <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <div class="custom-control custom-checkbox">
-                      <input class="custom-control-input check-cachorro" type="checkbox" name="raca-cachorro" value="vira-lata" id="vira-lata">
-                      <label class="custom-control-label" for="vira-lata"><span class="menu-collapsed">Viralata</span></label>
-                    </div>
-                  </a>
+                <!-- PEGA AS RAÇAS DE CACHORRO DO .JSON DAS RACAS E ESPECIES -->
+                <?php
+                // LE O ARQUIVO .JSON
+                $arquivo = "js/racas_especies.json";
+                $info = file_get_contents($arquivo);
+                $lendo = json_decode($info);
 
-                  <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <div class="custom-control custom-checkbox">
-                      <input class="custom-control-input check-cachorro" type="checkbox" name="raca-cachorro" value="dalmata" id="dalmata">
-                      <label class="custom-control-label" for="dalmata"><span class="menu-collapsed">Dalmata</span></label>
-                    </div>
-                  </a>
+                // FOR PARA PERCORRER TODAS AS ESPECIES
+                foreach($lendo as $especies){
 
-                  <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <div class="custom-control custom-checkbox">
-                      <input class="custom-control-input check-cachorro" type="checkbox" name="raca-cachorro" value="puldo" id="puldo">
-                      <label class="custom-control-label" for="puldo"><span class="menu-collapsed">Puldo</span></label>
-                    </div>
-                  </a>
+                  $especie = $especies->especie;
+
+                  // SE A ESPECIE FOR CACHORRO:
+                  if ($especie === 'Cachorro') {
+                    $racas = $especies->racas;
+
+                      // LE TODAS AS RAÇAS DE CACHORRO
+                      foreach ($racas as $raca) {
+                        ?>
+                        <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                          <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input check-cachorro" type="checkbox" name="raca-cachorro" value="<?php echo $raca; ?>" id="<?php echo $raca; ?>">
+                            <label class="custom-control-label" for="<?php echo $raca; ?>"><span class="menu-collapsed"><?php echo $raca; ?></span></label>
+                          </div>
+                        </a>
+                        <?php
+
+                      }
+                    }
+                 }
+                 ?>
               </div>
+              <!-- FIM DA DIV DE SUBMENU DE CACHORRO -->
 
+              <!-- ITEM DE ESPECIES: GATO -->
               <a href="#submenuGato" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
                       <div class="d-flex w-100 justify-content-start align-items-center">
 
@@ -100,8 +118,11 @@
 
                     </div>
              </a>
+
+             <!-- SUBMENU DE GATO -->
              <div id="submenuGato" class="collapse sidebar-submenu">
 
+               <!-- CHECKBOX QUE MARCA/DESMARCA OS DEMAIS CHECKBOX -->
                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                  <div class="custom-control custom-checkbox">
                    <input class="custom-control-input" type="checkbox" name="raca-gato" id="check-todos-gato">
@@ -109,32 +130,37 @@
                  </div>
                </a>
 
-               <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                 <div class="custom-control custom-checkbox">
-                   <input class="custom-control-input check-gato" type="checkbox" name="raca-gato" value="vira-lata-gato" id="vira-lata-gato">
-                   <label class="custom-control-label" for="vira-lata-gato"><span class="menu-collapsed">Vira-lata de gato</span></label>
-                 </div>
-               </a>
+               <?php
 
-               <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                 <div class="custom-control custom-checkbox">
-                   <input class="custom-control-input check-gato" type="checkbox" name="raca-gato" value="gatineo" id="gatineo">
-                   <label class="custom-control-label" for="gatineo"><span class="menu-collapsed">gatineo</span></label>
-                 </div>
-               </a>
+               // LE TODAS AS ESPECIES
+               foreach($lendo as $especies){
 
-               <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                 <div class="custom-control custom-checkbox">
-                   <input class="custom-control-input check-gato" type="checkbox" name="raca-gato" value="rei-do-mundo" id="rei-do-mundo">
-                   <label class="custom-control-label" for="rei-do-mundo"><span class="menu-collapsed">Rei do mundo</span></label>
-                 </div>
-               </a>
+                 $especie = $especies->especie;
+
+                 // SE A ESPECIE FOR GATO:
+                 if ($especie === 'Gato') {
+                   $racas = $especies->racas;
+
+                     // LE TODAS AS RACAS DE GATO
+                     foreach ($racas as $raca) {
+                       ?>
+                       <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                         <div class="custom-control custom-checkbox">
+                           <input class="custom-control-input check-gato" type="checkbox" name="raca-gato" value="<?php echo $raca; ?>" id="<?php echo $raca; ?>">
+                           <label class="custom-control-label" for="<?php echo $raca; ?>"><span class="menu-collapsed"><?php echo $raca; ?></span></label>
+                         </div>
+                       </a>
+                       <?php
+                     }
+                   }
+                }
+                ?>
              </div>
+             <!-- FIM DO SUBMENU DE GATO -->
+	         </div>
+           <!-- FIM DO SUBMENU DE ESPECIES -->
 
-
-	            </div>
-
-
+           <!-- MENU DE SEXO DOS ANIMAIS -->
             <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
 	            	<div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-user fa-fw mr-3"></span>
@@ -143,24 +169,28 @@
                 </div>
 	          </a>
 
-            <!-- Submenu content -->
+            <!-- SUBMENU DOS SEXO DOS ANIMAIS -->
 	          <div id="submenu2" class="collapse sidebar-submenu">
 
+              <!-- CHECKBOX MACHO -->
               <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                 <div class="custom-control custom-checkbox">
-                  <input class="custom-control-input" type="checkbox" name="sexo" value="m" id="macho">
+                  <input class="custom-control-input check-sexo" type="checkbox" name="sexo" value="M" id="macho">
                   <label class="custom-control-label" for="macho"><span class="menu-collapsed">Macho</span></label>
                 </div>
               </a>
 
+              <!-- CHECKBOX FEMEA -->
               <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                 <div class="custom-control custom-checkbox">
-                  <input class="custom-control-input" type="checkbox" name="sexo" value="f" id="femea">
+                  <input class="custom-control-input check-sexo" type="checkbox" name="sexo" value="F" id="femea">
                   <label class="custom-control-label" for="femea"><span class="menu-collapsed">Femea</span></label>
                 </div>
               </a>
             </div>
+            <!-- FIM DO SUBMENU DE SEXO DOS ANIMAIS -->
 
+            <!-- MENU DE STATUS DO ANIMAL -->
             <a href="#submenu3" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
 	            	<div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-user fa-fw mr-3"></span>
@@ -169,24 +199,28 @@
                 </div>
 	          </a>
 
-            <!-- Submenu content -->
+            <!-- SUBMENU DE STATUS DO ANIMAL -->
 	          <div id="submenu3" class="collapse sidebar-submenu">
 
+              <!-- CHECKBOX DE ADOÇÃO -->
               <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                 <div class="custom-control custom-checkbox">
-                  <input class="custom-control-input" type="checkbox" name="status" value="adocao" id="adocao">
+                  <input class="custom-control-input check-status" type="checkbox" name="status" value="adocao" id="adocao">
                   <label class="custom-control-label" for="adocao"><span class="menu-collapsed">Em adoção</span></label>
                 </div>
               </a>
 
+              <!-- CHECKBOX DE PERDIDO -->
               <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                 <div class="custom-control custom-checkbox">
-                  <input class="custom-control-input" type="checkbox" name="status" value="perdido" id="perdido">
+                  <input class="custom-control-input check-status" type="checkbox" name="status" value="perdido" id="perdido">
                   <label class="custom-control-label" for="perdido"><span class="menu-collapsed">Perdido</span></label>
                 </div>
               </a>
             </div>
+            <!-- FIM DO SUBMENU DE STATUS DO ANIMAL -->
 
+            <!-- MENU DE FAIXA ETARIA -->
             <a href="#submenu4" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
 	            	<div class="d-flex w-100 justify-content-start align-items-center">
                     <span class="fa fa-user fa-fw mr-3"></span>
@@ -195,30 +229,34 @@
                 </div>
 	          </a>
 
-            <!-- Submenu content -->
+            <!-- SUBMENU DE FAIXA-ETARIA -->
 	          <div id="submenu4" class="collapse sidebar-submenu">
 
+              <!-- CHECKBOX FILHOTE -->
               <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                 <div class="custom-control custom-checkbox">
-                  <input class="custom-control-input" type="checkbox" name="faixa" value="filhote" id="filhote">
+                  <input class="custom-control-input check-faixa" type="checkbox" name="faixa" value="Filhote" id="filhote">
                   <label class="custom-control-label" for="filhote"><span class="menu-collapsed">Filhote</span></label>
                 </div>
               </a>
 
+              <!-- CHECKBOX COMUM -->
               <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                 <div class="custom-control custom-checkbox">
-                  <input class="custom-control-input" type="checkbox" name="faixa" value="normal" id="normal">
-                  <label class="custom-control-label" for="normal"><span class="menu-collapsed">Normal</span></label>
+                  <input class="custom-control-input check-faixa" type="checkbox" name="faixa" value="Comum" id="comum">
+                  <label class="custom-control-label" for="comum"><span class="menu-collapsed">Comum</span></label>
                 </div>
               </a>
 
+              <!-- CHECKBOX VELHO -->
               <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                 <div class="custom-control custom-checkbox">
-                  <input class="custom-control-input" type="checkbox" name="faixa" value="velho" id="velho">
+                  <input class="custom-control-input check-faixa" type="checkbox" name="faixa" value="Velho" id="velho">
                   <label class="custom-control-label" for="velho"><span class="menu-collapsed">Velho</span></label>
                 </div>
               </a>
             </div>
+            <!-- FIM DO SUBMENU DE FAIXA-ETARIA -->
 
             <!-- Logo -->
 	            <li class="list-group-item logo-separator d-flex justify-content-center">
@@ -231,26 +269,45 @@
 
     <!-- INICIO DA DIV DE PUBLICAÇÕES -->
     <div class="col py-3">
-      <?php
-      $animais = Animal::pesquisarAnimais($user->getIdUsuario());
+        <?php
+          // RETORNA UMA LISTA DE TODOS OS ANIMAIS QUE ESTÃO EM ADOÇÃO/PERDIDOS QUE NÃO SÃO DO USUÁRIO
+          $animais = Animal::pesquisarAnimais($user->getIdUsuario());
 
-      foreach ($animais as $row) {
-        echo "<div class=\"animal-publicacao row\">" .
-               "<div class=\"col-xs-3 animal-foto\">" .
-                 "Foto" .
-               "</div>" .
-               "<div class=\"col-xs-9 animal-info\">" .
-                 "<form class=\"\" action=\"info-animais.php\" method=\"post\">" .
-                   "<input type=\"hidden\" name=\"id\" value=" . $row['ani_id'] . ">" .
-                   "<button type=\"submit\" name=\"button\">" . $row['ani_nome'] . "</button>" .
-                 "</form>" .
-                 "<span>" . $row['ani_faixa_etaria'] . "</span> <br>" .
-                 "<span>" . $row['ani_raca'] . "</span> <br>" .
-                 "<span>" . $row['ani_sexo'] . "</span> <br>" .
-                 "<span>" . $row['ani_status'] . "</span> <br>" . "</div></div>" ;
-      }
-      ?>
+          // LE CADA ANIMAL ENCONTRADO
+          foreach ($animais as $row) {
+            ?>
+            <table class="publicacao">
 
+              <tr>
+                <td rowspan="6">
+                  foto
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <form class="" action="info-animais.php" method="post">
+                  <input type="hidden" name="id" value="">
+                  <button type="submit" name="button"><?php echo $row['ani_nome']; ?></button>
+                </form>
+              </td>
+              </tr>
+              <tr>
+                <td class="publicacao-sexo"><?php echo $row['ani_sexo']; ?></td>
+              </tr>
+              <tr>
+                <td class="publicacao-status"><?php echo $row['ani_status']; ?></td>
+              </tr>
+              <tr>
+                <td class="publicacao-raca"><?php echo $row['ani_raca']; ?></td>
+              </tr>
+              <tr>
+                <td class="publicacao-faixa"><?php echo $row['ani_faixa_etaria']; ?></td>
+              </tr>
+              </table>
+              <br>
+            <?php
+          }
+         ?>
 
     </div>
     <!-- FIM DA DIV DE PUBLICAÇÕES-->
@@ -262,6 +319,11 @@
        require_once('pages' . DIRECTORY_SEPARATOR . 'codigos-js.php');
       ?>
       <script type="text/javascript">
+
+          /////////////////////////////////////////////////////
+          //////////////// EFEITOS DA SIDEBAR ////////////////
+          /////////////////////////////////////////////////////
+
           // Hide submenus
           $('#body-row .collapse').collapse('hide');
 
@@ -291,6 +353,10 @@
             $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
           }
 
+          ///////////////////////////////////////////////////////////////////////////
+          //////////////// CHECKBOX MARCAR TODOS OS OUTROS CHECKBOX ////////////////
+          ///////////////////////////////////////////////////////////////////////////
+
           var checkTodosCachorro = $("#check-todos-cachorro");
           checkTodosCachorro.click(function () {
             if ( $(this).is(':checked') ){
@@ -307,6 +373,73 @@
             }else{
               $('.check-gato').prop("checked", false);
             }
+          });
+
+          //////////////////////////////////////////////////////
+          //////////////// FILTRO DE PESQUISAS /////////////////
+          //////////////////////////////////////////////////////
+          $("input:checkbox").click(function () {
+
+            var raca = ['Vira-lata', 'Dalmata', 'Puldo', 'Vira-lata de gato', 'Gatineo', 'Rei do Mundo'];
+            var sexo = ['M', 'F'];
+            var status = ['perdido', 'adocao'];
+            var faixa = ['Filhote', 'Comum', 'Velho'];
+
+            //SE NENHUM CHECKBOX FOR MARCADO, A LISTA PERMANECE COM TODOS OS ELEMENTOS
+            //SE ALGUM CHECKBOX FOR MARCADO, A LISTA FICA APENAS COM OS VALORES DOS CHECKBOX MARCADOS
+            if ($('.check-cachorro:checked').length > 0){
+              raca=[];
+              $('.check-cachorro:checked').each(function() {
+                raca[raca.length] = $(this).val();
+              });
+            }
+
+            if ($('.check-gato:checked').length > 0){
+              raca =[];
+              $('.check-gato:checked').each(function() {
+                raca[raca.length] = $(this).val();
+              });
+            }
+
+            if ($('.check-sexo:checked').length > 0){
+              sexo =[];
+              $('.check-sexo:checked').each(function() {
+                sexo[sexo.length] = $(this).val();
+              });
+            }
+
+            if ($('.check-faixa:checked').length > 0){
+              faixa =[];
+              $('.check-faixa:checked').each(function() {
+                faixa[faixa.length] = $(this).val();
+              });
+            }
+
+            if ($('.check-status:checked').length > 0){
+              status =[];
+              $('.check-status:checked').each(function() {
+                status[status.length] = $(this).val();
+              });
+            }
+
+            //ESCONDE TODAS AS TABELAS(PUBLICAÇÕES)
+            $('table').hide();
+
+            //MOSTRA AS TABELAS QUE CONTEREM AS INFORMAÇÕES DAS LISTAS ACIMA
+            //OU SEJA, APENAS OS QUE TIVEREM SEUS CHECKBOX MARCADOS
+            //OU, CASO NENHUM SEJA MARCADO, MOSTRAR TODOS OS VALORES
+            $('table').each(function(i){
+                var tr_raca   = $(this).find('tr td.publicacao-raca').text();
+                var tr_faixa    = $(this).find('tr td.publicacao-faixa').text();
+                var tr_sexo = $(this).find('tr td.publicacao-sexo').text();
+                var tr_status    = $(this).find('tr td.publicacao-status').text();
+                if ((raca.indexOf(tr_raca) >= 0) &&
+                    (faixa.indexOf(tr_faixa) >= 0) &&
+                    (sexo.indexOf(tr_sexo) >= 0)&&
+                    (status.indexOf(tr_status) >= 0) ){
+                      $(this).show();
+                    }
+            });
           });
       </script>
   </body>
