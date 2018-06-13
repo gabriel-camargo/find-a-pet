@@ -276,7 +276,7 @@
           // LE CADA ANIMAL ENCONTRADO
           foreach ($animais as $row) {
             ?>
-            <table class="publicacao">
+            <table class="index-publicacao">
 
               <tr>
                 <td rowspan="6">

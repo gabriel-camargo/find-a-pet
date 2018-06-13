@@ -89,7 +89,11 @@ body{
   color: #54B158;
   text-decoration: none;
 }
+/* ----------- INDEX ------------- */
 
+table.index-publicacao, table.index-publicacao td{
+  border: 1px solid black;
+}
 /* ---------- CADASTRO ---------- */
 .cadastro-body{
   background-color: #eeeeee;
