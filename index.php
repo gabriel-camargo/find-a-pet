@@ -286,7 +286,7 @@
                 </td>
               </tr>
               <tr>
-                <td>
+                <td class="publicacao-td publicacao-form">
                   <form class="" action="info-animais.php" method="post">
                   <input type="hidden" name="id" value="">
                   <button class="publicacao-botao" type="submit" name="button"><?php echo $row['ani_nome']; ?></button>

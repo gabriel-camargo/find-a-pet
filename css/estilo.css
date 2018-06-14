@@ -126,6 +126,10 @@ body{
    font-weight: 500;
  }
 
+ .publicacao-form{
+   border-top: 1px solid #dddddd;
+ }
+
  .publicacao-botao:hover{
    text-decoration: underline;
  }
