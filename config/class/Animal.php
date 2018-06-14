@@ -132,12 +132,22 @@ class Animal{
   }
 
   //Carrega os animais que NÃO SÃO do usuario
-  public static function pesquisarAnimais($usuario){
+  public static function pesquisarAnimais($usuario, $ani_nome = ""){
     $sql = new Sql();
 
-    return $sql->select("SELECT * FROM cad_animais WHERE (usu_id <> :SEARCH) AND ((ani_status = 'adocao') OR (ani_status = 'perdido')) ORDER BY ani_id ", array(
-      ":SEARCH" => $usuario
-    ));
+    if (empty($ani_nome)) {
+      return $sql->select("SELECT * FROM cad_animais WHERE (usu_id <> :SEARCH) AND ((ani_status = 'adocao') OR (ani_status = 'perdido')) ORDER BY ani_id ", array(
+        ":SEARCH" => $usuario
+      ));
+    } else {
+      $ani_nome_final = "%" . $ani_nome . "%";
+      return $sql->select("SELECT * FROM cad_animais WHERE (usu_id <> :SEARCH) AND (ani_nome LIKE :NOME) AND ((ani_status = 'adocao') OR (ani_status = 'perdido')) ORDER BY ani_id ", array(
+        ":SEARCH" => $usuario,
+        ":NOME" => $ani_nome_final
+      ));
+    }
+
+
   }
 
 

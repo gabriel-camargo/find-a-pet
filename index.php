@@ -270,9 +270,17 @@
     <!-- INICIO DA DIV DE PUBLICAÇÕES -->
     <div class="col py-3">
         <?php
-          // RETORNA UMA LISTA DE TODOS OS ANIMAIS QUE ESTÃO EM ADOÇÃO/PERDIDOS QUE NÃO SÃO DO USUÁRIO
-          $animais = Animal::pesquisarAnimais($user->getIdUsuario());
 
+          // RECUPERA OS VALORES DO FORMULARIO
+          $nav_nome = isset($_POST['nav_nome']) ? $_POST['nav_nome'] : '';
+
+          // RETORNA UMA LISTA DE TODOS OS ANIMAIS QUE ESTÃO EM ADOÇÃO/PERDIDOS QUE NÃO SÃO DO USUÁRIO
+          $animais = Animal::pesquisarAnimais($user->getIdUsuario(), $nav_nome);
+
+          //SE NENHUM ANIMAL FOR ENCONTRADO
+          if (count($animais) == 0) {
+            echo "<h1> Nenhum animal encontrado </h1>";
+          }
           // LE CADA ANIMAL ENCONTRADO
           foreach ($animais as $row) {
             ?>
@@ -288,7 +296,7 @@
               <tr>
                 <td class="publicacao-td publicacao-form">
                   <form class="" action="info-animais.php" method="post">
-                  <input type="hidden" name="id" value="">
+                  <input type="hidden" name="id" value="<?php echo $row['ani_id']; ?>">
                   <button class="publicacao-botao" type="submit" name="button"><?php echo $row['ani_nome']; ?></button>
                 </form>
               </td>

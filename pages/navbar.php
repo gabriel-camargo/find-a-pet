@@ -24,11 +24,11 @@
       </ul>
 
       <!-- Campo de pesquisa -->
-      <form class="form-inline my-2 my-lg-0">
+      <form action="index.php" class="form-inline my-2 my-lg-0" method="post">
         <!-- <div class="input-group mb-3"> -->
-          <input type="search" class="form-control form-inline my-2 my-lg-0 navbar-input" id="navbar-input" placeholder="Pesquisar animal...">
+          <input name="nav_nome" type="search" class="form-control form-inline my-2 my-lg-0 navbar-input" id="navbar-input" placeholder="Pesquisar animal...">
           <div class="input-group-append">
-            <button class="btn btn-dark" type="button">@</button>
+            <button class="btn btn-dark" type="submit">@</button>
           </div>
         <!-- </div> -->
       </form>
