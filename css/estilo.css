@@ -91,9 +91,44 @@ body{
 }
 /* ----------- INDEX ------------- */
 
-table.index-publicacao, table.index-publicacao td{
-  border: 1px solid black;
+.publicacao-table td{
+  /* border: 1px solid black; */
 }
+
+.publicacao-td-foto{
+  width: 25%;
+  height: 210px;
+}
+
+.publicacao-foto{
+  width: 200px;
+  height: 200px;
+  margin: 10px 20px 10px 20px;
+  border-radius: 15px;
+  background-color: #dedede;
+}
+
+.publicacao-table{
+  border-top: 1px solid #dddddd;
+  /* border-bottom: 1px solid #dddddd; */
+  width: 100%;
+}
+
+ .publicacao-botao{
+   background-color: rgba(0,0,0,0);
+   border: none;
+   color: #43A047;
+   font-size: 20px;
+   font-weight: 600;
+ }
+ .publicacao-td{
+   padding-left: 10px;
+   font-weight: 500;
+ }
+
+ .publicacao-botao:hover{
+   text-decoration: underline;
+ }
 /* ---------- CADASTRO ---------- */
 .cadastro-body{
   background-color: #eeeeee;

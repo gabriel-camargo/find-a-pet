@@ -276,32 +276,34 @@
           // LE CADA ANIMAL ENCONTRADO
           foreach ($animais as $row) {
             ?>
-            <table class="index-publicacao">
+            <table class="publicacao-table">
 
               <tr>
-                <td rowspan="6">
-                  foto
+                <td class="publicacao-td-foto" rowspan="6">
+                  <div class="publicacao-foto">
+
+                  </div>
                 </td>
               </tr>
               <tr>
                 <td>
                   <form class="" action="info-animais.php" method="post">
                   <input type="hidden" name="id" value="">
-                  <button type="submit" name="button"><?php echo $row['ani_nome']; ?></button>
+                  <button class="publicacao-botao" type="submit" name="button"><?php echo $row['ani_nome']; ?></button>
                 </form>
               </td>
               </tr>
               <tr>
-                <td class="publicacao-sexo"><?php echo $row['ani_sexo']; ?></td>
+                <td class="publicacao-sexo publicacao-td"><?php echo $row['ani_sexo']; ?></td>
               </tr>
               <tr>
-                <td class="publicacao-status"><?php echo $row['ani_status']; ?></td>
+                <td class="publicacao-status publicacao-td"><?php echo $row['ani_status']; ?></td>
               </tr>
               <tr>
-                <td class="publicacao-raca"><?php echo $row['ani_raca']; ?></td>
+                <td class="publicacao-raca publicacao-td"><?php echo $row['ani_raca']; ?></td>
               </tr>
               <tr>
-                <td class="publicacao-faixa"><?php echo $row['ani_faixa_etaria']; ?></td>
+                <td class="publicacao-faixa publicacao-td"><?php echo $row['ani_faixa_etaria']; ?></td>
               </tr>
               </table>
               <br>
