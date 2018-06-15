@@ -8,7 +8,11 @@ body{
   height: 100%;
   margin-top: 56px;
 }
+
+/*---------------------------*/
 /* ----------NAVBAR--------- */
+/*---------------------------*/
+
 .navbar-link{
   color: #ffffff;
 }
@@ -27,8 +31,10 @@ body{
 #navbar-input{
   width: 400px;
 }
-
+/*---------------------------*/
 /* ----------LOGIN---------- */
+/*---------------------------*/
+
 .login-body{
   display: -ms-flexbox;
   display: -webkit-box;
@@ -90,8 +96,9 @@ body{
   text-decoration: none;
 }
 
-
-/* ----------- INDEX ------------- */
+/*---------------------------*/
+/* -------- INDEX ---------- */
+/*---------------------------*/
 
 .publicacao-table td{
   /* border: 1px solid black; */
@@ -99,12 +106,12 @@ body{
 
 .publicacao-td-foto{
   width: 25%;
-  height: 210px;
+  height: 150px;
 }
 
 .publicacao-foto{
-  width: 200px;
-  height: 200px;
+  width: 140px;
+  height: 140px;
   margin: 10px 20px 10px 20px;
   border-radius: 15px;
   background-color: #dedede;
@@ -135,7 +142,10 @@ body{
  .publicacao-botao:hover{
    text-decoration: underline;
  }
-/* ---------- CADASTRO ---------- */
+ /*---------------------------*/
+/* -------- CADASTRO ------- */
+/*---------------------------*/
+
 .cadastro-body{
   background-color: #eeeeee;
 }
@@ -183,8 +193,62 @@ body{
   padding: 10px;
   border-bottom: 1px solid #dddddd;
 }
+/*------------------------------*/
+/* ---- EXPANSÃO DO ANIMAL ----*/
+/*-----------------------------*/
 
+.expansao-table, .expansao-table-td{
+  border-top: 1px solid #cccccc;
+}
+
+.expansao-table{
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 76px;
+  font-size: 15pt;
+  /* margin-right: 50px; */
+}
+
+.td-foto{
+  width: 50%;
+  height: 500px;
+}
+
+.expansao-foto{
+  width: 400px;
+  height: 400px;
+  margin: 0px 20px 10px 20px;
+  border-radius: 15px;
+  background-color: #dedede;
+}
+.expansao-table-td{
+  padding-left: 15px;
+}
+
+.expansao-td-nome{
+  color: #43A047;
+  font-weight: 600;
+}
+
+.expansao-info-dono{
+  border-top: 1px solid #cccccc;
+  margin-bottom: 20px;
+}
+
+.expansao-info-titulo{
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.expansao-btn{
+    background-color:#43A047;
+    border: 0;
+    font-weight: bold;
+}
+/*----------------------------------------------*/
 /* ------------ CADASTRO DO ANIMAL ----------- */
+/*---------------------------------------------*/
+
 .cadastro-animal-div-foto{
   display: -ms-flexbox;
   display: -webkit-box;
@@ -208,8 +272,9 @@ body{
   margin-top: 15px;
   margin-bottom: 10px;
 }
-
-/* ---------- ANIMAL ---------- */
+/*-------------------------------*/
+/* ---------- ANIMAL ----------- */
+/*-------------------------------*/
 .animal-publicacao{
   /* border: 2px solid blue; */
   border-radius: 15px;

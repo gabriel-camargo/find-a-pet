@@ -26,19 +26,39 @@
        $animais = Animal::searchByUser($user->getIdUsuario());
 
        foreach ($animais as $row) {
-         echo "<div class=\"animal-publicacao row\">" .
-                "<div class=\"col-xs-3 animal-foto\">" .
-                  "Foto" .
-                "</div>" .
-                "<div class=\"col-xs-9 animal-info\">" .
-                  "<form class=\"\" action=\"info-animais.php\" method=\"post\">" .
-                    "<input type=\"hidden\" name=\"id\" value=" . $row['ani_id'] . ">" .
-                    "<button type=\"submit\" name=\"button\">" . $row['ani_nome'] . "</button>" .
-                  "</form>" .
-                  "<span>" . $row['ani_faixa_etaria'] . "</span> <br>" .
-                  "<span>" . $row['ani_raca'] . "</span> <br>" .
-                  "<span>" . $row['ani_sexo'] . "</span> <br>" .
-                  "<span>" . $row['ani_status'] . "</span> <br>" . "</div></div>" ;
+         ?>
+         <table class="publicacao-table">
+
+           <tr>
+             <td class="publicacao-td-foto" rowspan="6">
+               <div class="publicacao-foto">
+
+               </div>
+             </td>
+           </tr>
+           <tr>
+             <td class="publicacao-td publicacao-form">
+               <form class="" action="info-animais.php" method="post">
+               <input type="hidden" name="id" value="<?php echo $row['ani_id']; ?>">
+               <button class="publicacao-botao" type="submit" name="button"><?php echo $row['ani_nome']; ?></button>
+             </form>
+           </td>
+           </tr>
+           <tr>
+             <td class="publicacao-sexo publicacao-td"><?php echo $row['ani_sexo']; ?></td>
+           </tr>
+           <tr>
+             <td class="publicacao-status publicacao-td"><?php echo $row['ani_status']; ?></td>
+           </tr>
+           <tr>
+             <td class="publicacao-raca publicacao-td"><?php echo $row['ani_raca']; ?></td>
+           </tr>
+           <tr>
+             <td class="publicacao-faixa publicacao-td"><?php echo $row['ani_faixa_etaria']; ?></td>
+           </tr>
+           </table>
+           <br>
+         <?php
        }
        ?>
 
