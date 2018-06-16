@@ -276,6 +276,38 @@ class Usuario{
     }
   }
 
+  public function autentica(){
+    $sql = new Sql();
+    $usuarios = $sql->select("SELECT * FROM cad_usuarios WHERE usu_email = :EMAIL AND usu_senha = :SENHA",array(
+      ":EMAIL" => $this->getEmailUsuario(),
+      ":SENHA" => $this->getSenhaUsuario()
+    ));
+
+      //se nao for encontrado nenhum usuario
+    if (count($usuarios) <= 0) {
+      //echo "Email ou senha inválidos!";
+    }else{
+      $user = $usuarios[0];
+
+      // session_start();
+      $_SESSION['login']['logged_in'] = true;
+      $_SESSION['login']['usu_id'] = isset($user['usu_id']) ? $user['usu_id'] : '';
+  }
+}
+
+  public function updateFoto($foto){
+    $this->setFotoUsuario($foto);
+
+    $sql = new Sql();
+
+    $sql->query("UPDATE cad_usuarios SET
+      usu_foto = :FOTO
+      WHERE usu_id = :ID",
+      array(
+        ":ID" => $this->getIdUsuario(),
+        ":FOTO" => $this->getFotoUsuario()));
+  }
+
   public function update($foto, $cpf, $cnpj, $nome, $apelido, $sexo, $email, $senha, $telefone, $celular,
     $cep, $logradouro, $num_endereco, $complemento, $bairro, $cidade, $uf){
 

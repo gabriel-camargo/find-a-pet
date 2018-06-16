@@ -4,7 +4,6 @@
     <?php
       require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
-     <link rel="stylesheet" href="css/log.css">
 
   </head>
 

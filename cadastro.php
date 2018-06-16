@@ -5,7 +5,7 @@
     <?php
       require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
-     
+
   </head>
   <body class="cadastro-body">
     <?php
@@ -22,20 +22,7 @@
         <div class="cadastro-sub-form">
           <h2 class="h5 mb-3 font-weight-bold"> Dados pessoais </h2>
 
-          <!-- INPUT DA IMAGEM -->
-          <div class="form-group row cadastro-div-foto">
-            <div class="col-lg-3">
-              <img id="imagem-perfil" src="img/logo.png" alt="your image" width="200" height="200"/>
-            </div>
-            <div class="col-lg-9">
-              <div class="custom-file">
-                <input name ="foto" type="file" class="custom-file-input" id="inputFoto">
-                <label class="custom-file-label" for="inputFoto">Escolha uma imagem...</label>
-                <div class="invalid-feedback">Example invalid custom file feedback</div>
-              </div>
-          </div>
-        </div>
-        <!-- FIM DO INPUT DA IMAGEM -->
+
 
           <!-- INPUT DO NOME -->
           <div class="form-group row">
@@ -321,7 +308,7 @@
     <?php
       require_once('pages' . DIRECTORY_SEPARATOR . 'codigos-js.php');
      ?>
-     <script src="js/carregar-imagem.js" type="text/javascript"></script>
+
 
      <script type="text/javascript">
       $('input:radio[name="pessoaRadio"]').change(function () {

@@ -40,6 +40,7 @@
           <?php echo $user->getApelidoUsuario(); ?>
         </a>
         <div class="dropdown-menu navbar-dropdown" id="menu">
+          <img src="<?php echo "img" . DIRECTORY_SEPARATOR . "perfil" . DIRECTORY_SEPARATOR . $user->getIdUsuario() . DIRECTORY_SEPARATOR . $user->getFotoUsuario(); ?>" alt="" height="42" width="42">
           <span class="dropdown-item"><?php echo $user->getNomeUsuario(); ?></span>
           <span class="dropdown-item text-muted" id="nome-usuario"><?php echo $user->getEmailUsuario(); ?></span>
           <div class="dropdown-divider"></div>
