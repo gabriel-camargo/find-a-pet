@@ -131,6 +131,19 @@ class Animal{
     ));
   }
 
+  public function updateFoto($foto){
+    $this->setFotoAnimal($foto);
+
+    $sql = new Sql();
+
+    $sql->query("UPDATE cad_animais SET
+      ani_foto = :FOTO
+      WHERE ani_id = :ID",
+      array(
+        ":ID" => $this->getIdAnimal(),
+        ":FOTO" => $this->getFotoAnimal()));
+  }
+
   //Carrega os animais que NÃO SÃO do usuario
   public static function pesquisarAnimais($usuario, $ani_nome = ""){
     $sql = new Sql();

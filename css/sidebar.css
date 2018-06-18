@@ -1,5 +1,5 @@
 .sticky-offset {
-    top: 56px;
+    top: 66px;
 }
 
 #body-row {
@@ -11,7 +11,7 @@
     min-height: 100vh;
     background-color: #fcfcfc;
     padding: 0;
-    border-right: 1px solid #ededed;
+
 }
 
 /* Sidebar sizes when expanded and expanded */
@@ -77,6 +77,7 @@
   border-right: none;
   border-bottom: 1px solid #ededed;
   border-top: 1px solid #ededed;
+  border-right: 1px solid #ededed;
 }
 
 /* ------------ SIDEBAR -----------*/

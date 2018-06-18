@@ -19,7 +19,7 @@
      <?php
        require_once('pages' . DIRECTORY_SEPARATOR . 'header.php');
       ?>
-      
+
    </head>
    <body>
      <?php
@@ -30,9 +30,22 @@
 
           <tr>
             <td class="expansao-table-td td-foto" rowspan="6">
-              <div class="expansao-foto">
+              <?php if ($animal->getFotoAnimal() === "" || null === $animal->getFotoAnimal()) {
+                ?><div class="expansao-foto">
 
-              </div>
+                </div><?php
+              }else{
+                ?>
+                <img class="expansao-foto" src="<?php echo "img" . DIRECTORY_SEPARATOR . "animal" . DIRECTORY_SEPARATOR . $animal->getIdAnimal() . DIRECTORY_SEPARATOR . $animal->getFotoAnimal(); ?>" alt="" height="350" width="350">
+                <?php
+              } ?>
+
+              <br>
+              <?php
+              if ($user->getIdUsuario() == $animal->getIdUsuario()){
+                ?><a href="cadastrar-imagem-animal.php">Alterar foto</a><?php
+              }
+               ?>
             </td>
           </tr>
           <tr>

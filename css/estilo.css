@@ -31,6 +31,11 @@ body{
 #navbar-input{
   width: 400px;
 }
+
+.navbar{
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 16px 0 rgba(0, 0, 0, 0.19);
+}
+
 /*---------------------------*/
 /* ----------LOGIN---------- */
 /*---------------------------*/
@@ -211,12 +216,12 @@ body{
 
 .td-foto{
   width: 50%;
-  height: 500px;
+  height: 400px;
 }
 
 .expansao-foto{
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
   margin: 0px 20px 10px 20px;
   border-radius: 15px;
   background-color: #dedede;

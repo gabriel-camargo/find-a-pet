@@ -32,8 +32,8 @@
         <ul class="list-group sticky-top sticky-offset" >
 
              <!-- Separator with title -->
-             <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed" style="background-color: #dedede;">
-                 <small style="color: #43A047;">FILTRO DE PESQUISAS</small>
+             <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed" style="border-top: none">
+                 <small class="sidebar-text">FILTRO DE PESQUISAS</small>
              </li>
              <!-- /END Separator -->
 
@@ -283,14 +283,22 @@
           }
           // LE CADA ANIMAL ENCONTRADO
           foreach ($animais as $row) {
+            $animal = new Animal();
+            $animal->loadById($row['ani_id']);
             ?>
             <table class="publicacao-table">
 
               <tr>
                 <td class="publicacao-td-foto" rowspan="6">
-                  <div class="publicacao-foto">
+                  <?php if ($animal->getFotoAnimal() === "" || null === $animal->getFotoAnimal()) {
+                    ?><div class="publicacao-foto">
 
-                  </div>
+                    </div><?php
+                  }else{
+                    ?>
+                    <img class="publicacao-foto" src="<?php echo "img" . DIRECTORY_SEPARATOR . "animal" . DIRECTORY_SEPARATOR . $animal->getIdAnimal() . DIRECTORY_SEPARATOR . $animal->getFotoAnimal(); ?>" alt="" height="140" width="140">
+                    <?php
+                  } ?>
                 </td>
               </tr>
               <tr>

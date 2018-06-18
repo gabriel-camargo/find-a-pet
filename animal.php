@@ -26,14 +26,22 @@
        $animais = Animal::searchByUser($user->getIdUsuario());
 
        foreach ($animais as $row) {
+         $animal = new Animal();
+         $animal->loadById($row['ani_id']);
          ?>
          <table class="publicacao-table">
 
            <tr>
              <td class="publicacao-td-foto" rowspan="6">
-               <div class="publicacao-foto">
+               <?php if ($animal->getFotoAnimal() === "" || null === $animal->getFotoAnimal()) {
+                 ?><div class="publicacao-foto">
 
-               </div>
+                 </div><?php
+               }else{
+                 ?>
+                 <img class="publicacao-foto" src="<?php echo "img" . DIRECTORY_SEPARATOR . "animal" . DIRECTORY_SEPARATOR . $animal->getIdAnimal() . DIRECTORY_SEPARATOR . $animal->getFotoAnimal(); ?>" alt="" height="140" width="140">
+                 <?php
+               } ?>
              </td>
            </tr>
            <tr>
