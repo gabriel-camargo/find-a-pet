@@ -44,7 +44,7 @@
           <span class="dropdown-item"><?php echo $user->getNomeUsuario(); ?></span>
           <span class="dropdown-item text-muted" id="nome-usuario"><?php echo $user->getEmailUsuario(); ?></span>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="alterar-usuario.php"> Configurações </a>
+          <a class="dropdown-item" href="config-nome.php"> Configurações </a>
           <a class="dropdown-item" href="logout.php"> Logout </a>
         </div>
       </span>
