@@ -30,13 +30,11 @@
          <h3>Configurações de Endereço</h3>
 
          <span>Endereço atual:</span><br>
-         <span>CEP: <?php echo $user->getCepUsuario(); ?></span><br>
-         <span>Logradouro:  <?php echo $user->getLogradouroUsuario(); ?></span><br>
+         <span>CEP: <?php echo $user->getCepUsuario(); ?></span>
+         <span>Logradouro:  <?php echo $user->getLogradouroUsuario(); ?></span>
          <span>Número da Casa:  <?php echo $user->getNumeroEnderecoUsuario(); ?></span><br>
-         <span>Bairro:  <?php echo $user->getBairroUsuario(); ?></span><br>
+         <span>Bairro:  <?php echo $user->getBairroUsuario(); ?></span>
          <span>Complemento:  <?php echo $user->getComplementoUsuario(); ?></span><br>
-         <span>Estado:  <?php echo $user->getUfUsuario(); ?></span><br>
-         <span>Cidade:  <?php echo $user->getCidadeUsuario(); ?></span><br><br>
 
          <form class="" action="update-endereco.php" method="post">
            <div class="form-group row">
@@ -102,6 +100,15 @@
            </div>
            <!-- FIM DA LINHA DO BAIRRO E COMPLEMENTO -->
 
+
+           <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" > Atualizar Endereço </button>
+         </form>
+
+<br><br><br>
+
+<span>Estado:  <?php echo $user->getUfUsuario(); ?></span>
+<span>Cidade:  <?php echo $user->getCidadeUsuario(); ?></span><br>
+         <form class="" action="update-uf.php" method="post">
            <!-- LINHA DE ESTADO E CIDADE -->
            <div class="form-group row">
 
@@ -131,7 +138,7 @@
 
            </div>
            <!-- FIM DA LINHA DE ESTADO E CIDADE -->
-           <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" > Atualizar Endereço </button>
+           <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" > Atualizar UF e Cidade </button>
          </form>
 
      </div>
