@@ -39,11 +39,9 @@
                 <img class="expansao-foto" src="<?php echo "img" . DIRECTORY_SEPARATOR . "animal" . DIRECTORY_SEPARATOR . $animal->getIdAnimal() . DIRECTORY_SEPARATOR . $animal->getFotoAnimal(); ?>" alt="" height="350" width="350">
                 <?php
               } ?>
-
-              <br>
               <?php
               if ($user->getIdUsuario() == $animal->getIdUsuario()){
-                ?><a href="cadastrar-imagem-animal.php">Alterar foto</a><?php
+                ?><a href="cadastrar-imagem-animal.php" class="expansao-link-acao">Alterar foto</a><?php
               }
                ?>
             </td>
@@ -64,6 +62,7 @@
             <td class="expansao-table-td"><?php echo $animal->getfaixaAnimal(); ?></td>
           </tr>
           </table>
+          <br>
 
 
         <?php

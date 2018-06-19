@@ -20,7 +20,9 @@
      ?>
 
      <div class="container">
-       <a href="cadastro-animal.php" style="color: green"> Cadastre um novo animal aqui! </a>
+       <br>
+       <a href="cadastro-animal.php" class="animal-link-acao"> Cadastrar um novo animal! </a>
+       <br><br>
 
        <?php
        $animais = Animal::searchByUser($user->getIdUsuario());

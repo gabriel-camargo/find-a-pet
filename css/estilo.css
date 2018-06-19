@@ -216,7 +216,7 @@ body{
 
 .td-foto{
   width: 50%;
-  height: 400px;
+  height: 420px;
 }
 
 .expansao-foto{
@@ -228,6 +228,20 @@ body{
 }
 .expansao-table-td{
   padding-left: 15px;
+}
+
+.expansao-link-acao{
+  background-color: #43A047;
+  color: white;
+  border-radius: 5px;
+  padding: 6px 110px 6px 110px;
+  margin-top: 50px;
+  margin-left: 35px;
+}
+.expansao-link-acao:hover{
+  background-color: #54B158;
+  color: white;
+  text-decoration: none;
 }
 
 .expansao-td-nome{
@@ -285,6 +299,18 @@ body{
   border-radius: 15px;
   padding: 20px;
   background-color: #eaeaea;
+}
+
+.animal-link-acao{
+  background-color: #43A047;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 10px 10px 10px;
+}
+.animal-link-acao:hover{
+  background-color: #54B158;
+  color: white;
+  text-decoration: none;
 }
 
 .animal-foto{
