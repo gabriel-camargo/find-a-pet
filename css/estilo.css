@@ -13,6 +13,9 @@ body{
 /* ----------NAVBAR--------- */
 /*---------------------------*/
 
+.navbar-img-usuario{
+  border-radius: 50%;
+}
 .navbar-link{
   color: #ffffff;
 }

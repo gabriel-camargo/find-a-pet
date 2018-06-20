@@ -28,7 +28,7 @@
         <!-- <div class="input-group mb-3"> -->
           <input name="nav_nome" type="search" class="form-control form-inline my-2 my-lg-0 navbar-input" id="navbar-input" placeholder="Pesquisar animal...">
           <div class="input-group-append">
-            <button class="btn btn-dark" type="submit">@</button>
+            <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
           </div>
         <!-- </div> -->
       </form>
@@ -37,15 +37,19 @@
       <!-- Menu dropdown -->
       <span class="nav-item dropdown my-2 my-lg-0" id="drop">
         <a class="nav-link dropdown-toggle navbar-link" href="#" id="navbar-drop" data-toggle="dropdown">
-          <?php echo $user->getApelidoUsuario(); ?>
+          <?php if ($user->getFotoUsuario() === "" || null === $user->getFotoUsuario()) {
+            ?><i class="fa fa-user"></i><?php
+          }else{
+            ?><img class="navbar-img-usuario"src="<?php echo ".." . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR . "perfil" . DIRECTORY_SEPARATOR . $user->getIdUsuario() . DIRECTORY_SEPARATOR . $user->getFotoUsuario(); ?>" alt="" height="35" width="35"><?php
+          } ?>
         </a>
         <div class="dropdown-menu navbar-dropdown" id="menu">
-          <img src="<?php echo ".." . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR . "perfil" . DIRECTORY_SEPARATOR . $user->getIdUsuario() . DIRECTORY_SEPARATOR . $user->getFotoUsuario(); ?>" alt="" height="42" width="42">
+
           <span class="dropdown-item"><?php echo $user->getNomeUsuario(); ?></span>
           <span class="dropdown-item text-muted" id="nome-usuario"><?php echo $user->getEmailUsuario(); ?></span>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="config-nome.php"> Configurações </a>
-          <a class="dropdown-item" href="../func/logout.php"> Logout </a>
+          <a class="dropdown-item" href="../func/logout.php"> <i class="fa fa-sign-out-alt"></i> Logout </a>
         </div>
       </span>
       <!-- Fim do menu dropdown -->
