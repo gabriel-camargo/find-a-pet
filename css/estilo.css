@@ -6,7 +6,7 @@ body {
 body{
   font-family: 'Raleway', sans-serif;
   height: 100%;
-  margin-top: 56px;
+  margin-top: 76px;
 }
 
 /*---------------------------*/
@@ -338,6 +338,15 @@ body{
 .animal-info{
   /* border: 2px solid white; */
   padding-left: 20px;
+}
+
+/*-------------------------------*/
+/* ---------- CONFIG ----------- */
+/*-------------------------------*/
+.config-img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 select.form-control{

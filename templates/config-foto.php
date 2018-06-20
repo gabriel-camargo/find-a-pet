@@ -13,14 +13,7 @@
      <?php
       require_once('..' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'header.php');
       ?>
-      <style media="screen">
-      .config-img{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-      }
 
-      </style>
    </head>
    <body>
      <?php
@@ -37,7 +30,12 @@
        <div class="container">
          <h3>Configurações de Foto</h3>
 
-         <img class="publicacao-foto config-img" id="imagem-perfil" src="img/logo.png" alt="your image" width="200" height="200"/>
+         <?php if ($user->getFotoUsuario() === "" || null === $user->getFotoUsuario()) {
+           ?> <img id="imagem-perfil" src="#" alt="Escolha uma imagem" height="200" width="200"> <?php
+         }else{
+           ?><img id="imagem-perfil" class="config-img"src="<?php echo ".." . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR . "perfil" . DIRECTORY_SEPARATOR . $user->getIdUsuario() . DIRECTORY_SEPARATOR . $user->getFotoUsuario(); ?>" alt="" height="200" width="200"><?php
+         } ?>
+
 
          <br>
          <form class="" action="../func/update-imagem.php" method="post" enctype="multipart/form-data">

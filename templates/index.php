@@ -44,7 +44,7 @@
 
                      <span class="fa fa-dashboard fa-fw mr-3"></span>
                      <span class="menu-collapsed sidebar-text">Espécies</span>
-                     <span class="submenu-icon ml-auto"></span>
+                     <!-- <span class="submenu-icon ml-auto"></span> -->
 
                    </div>
             </a>
@@ -56,7 +56,7 @@
                <a href="#submenuCachorro" data-toggle="collapse" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
                        <div class="d-flex w-100 justify-content-start align-items-center">
 
-                       <!-- <span class="fa fa-dashboard fa-fw mr-3"></span> -->
+                       <span class="fa fa-dashboard fa-fw mr-3"></span>
                        <span class="menu-collapsed sidebar-text">Cachorro</span>
                        <!-- <span class="submenu-icon ml-auto"></span> -->
 
@@ -112,7 +112,7 @@
               <a href="#submenuGato" data-toggle="collapse" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
                       <div class="d-flex w-100 justify-content-start align-items-center">
 
-                        <!-- <span class="fa fa-dashboard fa-fw mr-3"></span> -->
+                        <span class="fa fa-dashboard fa-fw mr-3"></span>
                       <span class="menu-collapsed sidebar-text">Gato</span>
                       <!-- <span class="submenu-icon ml-auto"></span> -->
 
@@ -163,9 +163,9 @@
            <!-- MENU DE SEXO DOS ANIMAIS -->
             <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-user fa-fw mr-3"></span>
+                  <span class="fa fa-dashboard fa-fw mr-3"></span>
                    <span class="menu-collapsed sidebar-text">Sexo</span>
-                    <span class="submenu-icon ml-auto"></span>
+                    <!-- <span class="submenu-icon ml-auto"></span> -->
                 </div>
            </a>
 
@@ -193,9 +193,9 @@
             <!-- MENU DE STATUS DO ANIMAL -->
             <a href="#submenu3" data-toggle="collapse" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-user fa-fw mr-3"></span>
+                    <span class="fa fa-dashboard fa-fw mr-3"></span>
                    <span class="menu-collapsed sidebar-text">Status</span>
-                    <span class="submenu-icon ml-auto"></span>
+                    <!-- <span class="submenu-icon ml-auto"></span> -->
                 </div>
            </a>
 
@@ -223,9 +223,9 @@
             <!-- MENU DE FAIXA ETARIA -->
             <a href="#submenu4" data-toggle="collapse" aria-expanded="false" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-user fa-fw mr-3"></span>
+                    <span class="fa fa-dashboard fa-fw mr-3"></span>
                    <span class="menu-collapsed sidebar-text">Faixa etária</span>
-                    <span class="submenu-icon ml-auto"></span>
+                    <!-- <span class="submenu-icon ml-auto"></span> -->
                 </div>
            </a>
 

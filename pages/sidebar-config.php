@@ -15,7 +15,7 @@
      <a href="config-nome.php" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-start align-items-center">
 
-                <span class="fa fa-dashboard fa-fw mr-3"></span>
+              <span class="fa fa-dashboard fa-fw mr-3"></span>
               <span class="menu-collapsed sidebar-text">Nome</span>
               <span class="submenu-icon ml-auto"></span>
 
@@ -25,7 +25,7 @@
     <!-- MENU DE SEXO DOS ANIMAIS -->
      <a href="config-foto.php" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-start align-items-center">
-             <span class="fa fa-user fa-fw mr-3"></span>
+             <span class="fa fa-dashboard fa-fw mr-3"></span>
             <span class="menu-collapsed sidebar-text">Foto</span>
              <span class="submenu-icon ml-auto"></span>
          </div>
@@ -34,7 +34,7 @@
      <!-- MENU DE STATUS DO ANIMAL -->
      <a href="config-email.php" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-start align-items-center">
-             <span class="fa fa-user fa-fw mr-3"></span>
+             <span class="fa fa-dashboard fa-fw mr-3"></span>
             <span class="menu-collapsed sidebar-text">Email</span>
              <span class="submenu-icon ml-auto"></span>
          </div>
@@ -43,7 +43,7 @@
      <!-- MENU DE FAIXA ETARIA -->
      <a href="config-senha.php" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
         <div class="d-flex w-100 justify-content-start align-items-center">
-             <span class="fa fa-user fa-fw mr-3"></span>
+             <span class="fa fa-dashboard fa-fw mr-3"></span>
             <span class="menu-collapsed sidebar-text">Senha</span>
              <span class="submenu-icon ml-auto"></span>
          </div>
@@ -52,7 +52,7 @@
     <!-- MENU DE TELEFONE -->
     <a href="config-telefone.php" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
        <div class="d-flex w-100 justify-content-start align-items-center">
-            <span class="fa fa-user fa-fw mr-3"></span>
+            <span class="fa fa-dashboard fa-fw mr-3"></span>
            <span class="menu-collapsed sidebar-text">Telefone e Celular</span>
             <span class="submenu-icon ml-auto"></span>
         </div>
@@ -61,7 +61,7 @@
    <!-- MENU DE TELEFONE -->
    <a href="config-endereco.php" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
       <div class="d-flex w-100 justify-content-start align-items-center">
-           <span class="fa fa-user fa-fw mr-3"></span>
+          <span class="fa fa-dashboard fa-fw mr-3"></span>
           <span class="menu-collapsed sidebar-text">Endereço</span>
            <span class="submenu-icon ml-auto"></span>
        </div>
