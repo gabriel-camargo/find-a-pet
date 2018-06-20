@@ -434,24 +434,32 @@ class Usuario{
       ":ID" => $this->getIdUsuario()
     ));
 
-    $this->setIdUsuario(0);
-    $this->setFotoUsuario('');
-    $this->setCpfUsuario('');
-    $this->setCnpjUsuario('');
-    $this->setNomeUsuario('');
-    $this->setApelidoUsuario('');
-    $this->setSexoUsuario('');
-    $this->setEmailUsuario('');
-    $this->setSenhaUsuario('');
-    $this->setTelefoneUsuario('');
-    $this->setCelularUsuario('');
-    $this->setCepUsuario('');
-    $this->setLogradouroUsuario('');
-    $this->setNumeroEnderecoUsuario('');
-    $this->setComplementoUsuario('');
-    $this->setBairroUsuario('');
-    $this->setCidadeUsuario('');
-    $this->setUfUsuario('');
+    // $this->setIdUsuario(0);
+    // $this->setFotoUsuario('');
+    // $this->setCpfUsuario('');
+    // $this->setCnpjUsuario('');
+    // $this->setNomeUsuario('');
+    // $this->setApelidoUsuario('');
+    // $this->setSexoUsuario('');
+    // $this->setEmailUsuario('');
+    // $this->setSenhaUsuario('');
+    // $this->setTelefoneUsuario('');
+    // $this->setCelularUsuario('');
+    // $this->setCepUsuario('');
+    // $this->setLogradouroUsuario('');
+    // $this->setNumeroEnderecoUsuario('');
+    // $this->setComplementoUsuario('');
+    // $this->setBairroUsuario('');
+    // $this->setCidadeUsuario('');
+    // $this->setUfUsuario('');
+  }
+
+  public function deleteAnimais(){
+    $sql = new Sql();
+
+    $sql->query("DELETE FROM cad_animais WHERE usu_id = :ID", array(
+      ":ID" => $this->getIdUsuario()
+    ));
   }
 
   public function __construct($foto = "", $cpf = "", $cnpj = "", $nome = "", $apelido = "", $sexo = "",

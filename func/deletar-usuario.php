@@ -4,7 +4,11 @@
 
   $user = new Usuario();
   $user->loadById($_SESSION['login']['usu_id']);
+
+  echo $user->getIdUsuario();
+  $user->deleteAnimais();
   $user->delete();
 
-  header('Location: logout.php');
+
+  // header('Location: logout.php');
  ?>

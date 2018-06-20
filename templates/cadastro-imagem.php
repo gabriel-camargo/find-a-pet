@@ -25,7 +25,16 @@
 
               <br><br>
 
-              <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" >Cadastrar</button>
+              <div class="row">
+                <div class="col-lg-6">
+                  <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" >Cadastrar</button>
+                </div>
+                <div class="col-lg-6">
+                  <a class="btn-block cadastro-link-ignorar" href="login.php">Ignorar por enquanto</a>
+                </div>
+              </div>
+
+
           <!-- FIM DO INPUT DA IMAGEM -->
         </form>
       </div>

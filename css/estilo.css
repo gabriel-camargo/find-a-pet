@@ -154,6 +154,21 @@ body{
 /* -------- CADASTRO ------- */
 /*---------------------------*/
 
+.cadastro-link-ignorar{
+  background-color: #c62828 ;
+  color: white;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px 10px 10px 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.cadastro-link-ignorar:hover{
+  background-color: #d73939 ;
+  color: white;
+  text-decoration: none;
+}
 .cadastro-body{
   background-color: #eeeeee;
 }
