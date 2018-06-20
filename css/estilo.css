@@ -191,6 +191,12 @@ body{
   font-weight: bold;
 }
 
+.cadastro-btn:hover{
+  background-color:#54B158;
+  border: 0;
+  font-weight: bold;
+}
+
 .cadastro-sub-form{
   padding: 20px;
 }
@@ -261,6 +267,12 @@ body{
 
 .expansao-btn{
     background-color:#43A047;
+    border: 0;
+    font-weight: bold;
+}
+
+.expansao-btn:hover{
+    background-color:#54B158;
     border: 0;
     font-weight: bold;
 }
