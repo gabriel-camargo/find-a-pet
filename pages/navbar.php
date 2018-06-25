@@ -49,7 +49,7 @@
           <span class="dropdown-item text-muted" id="nome-usuario"><?php echo $user->getEmailUsuario(); ?></span>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="config-nome.php"> Configurações </a>
-          <a class="dropdown-item" href="../func/logout.php"> <i class="fa fa-sign-out-alt"></i> Logout </a>
+          <a class="dropdown-item" href="../func/logout.php">  Logout <i class="fa fa-sign-out-alt"></i> </a>
         </div>
       </span>
       <!-- Fim do menu dropdown -->
