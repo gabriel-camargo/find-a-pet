@@ -1,7 +1,7 @@
 [{
     "especie": "Cachorro",
     "racas": [
-      "Puldo",
+      "Pastor-alemão",
       "Dalmata",
       "Vira-lata"
     ]
@@ -9,8 +9,8 @@
   {
     "especie": "Gato",
     "racas": [
-      "Gatineo",
-      "Rei do Mundo",
-      "Vira-lata de gato"
+      "Persa",
+      "Siamês",
+      "Sphynx"
     ]
 }]
