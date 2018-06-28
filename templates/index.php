@@ -398,7 +398,7 @@
           //////////////////////////////////////////////////////
           $("input:checkbox").click(function () {
 
-            var raca = ['Vira-lata', 'Dalmata', 'Puldo', 'Vira-lata de gato', 'Gatineo', 'Rei do Mundo'];
+            var raca = ['Pastor-alemão', 'Dalmata', 'Vira-lata', 'Persa', 'Siamês', 'Sphynx'];
             var sexo = ['M', 'F'];
             var status = ['perdido', 'adocao'];
             var faixa = ['Filhote', 'Comum', 'Velho'];
