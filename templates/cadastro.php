@@ -299,7 +299,7 @@
         </div>
         <!-- FIM DA DIV DE LOCALIZAÇÃO -->
 
-        <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" >Cadastrar</button>
+        <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" >Cadastrar <i class="fa fa-user-plus"></i></button>
 
       </form>
       <br>

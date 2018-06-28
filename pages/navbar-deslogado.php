@@ -11,8 +11,8 @@
     <!-- Conteudo dentro do colapse principal -->
     <div class="collapse navbar-collapse" id="navbarTogglerPrincipal">
       <ul class="navbar-nav ml-auto">
-        <li><a class="nav-link navbar-link" href="cadastro.php"> <i class="fa fa-address-book"></i> Cadastrar-se </a></li>
-        <li><a class="nav-link navbar-link" href="login.php"> <i class="fa fa-sign-in-alt"></i> Logar </a></li>
+        <li><a class="nav-link navbar-link" href="cadastro.php"> Cadastrar-se <i class="fa fa-user-plus"></i></a></li>
+        <li><a class="nav-link navbar-link" href="login.php">  Logar <i class="fa fa-sign-in-alt"></i></a></li>
       </ul>
 
 
