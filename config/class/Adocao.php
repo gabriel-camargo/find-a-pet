@@ -55,7 +55,8 @@ class Adocao{
     $this->setIdAnimal($row['ani_id']);
   }
 
-  public function loadByAnimal($animal){
+  //Carrega as adoções de acordo com o animal
+  public static function loadByAnimal($animal){
     $sql = new Sql();
     $results = $sql->select("SELECT * FROM adocoes WHERE ani_id = :ANIMAL", array(
       ":ANIMAL"=>$animal
@@ -63,12 +64,11 @@ class Adocao{
 
     if (count($results) >= 1) {
       $row = $results[0];
-
       $this->setData($row);
-
-
     }
   }
+
+  //Insere uma adoção no banco de dados
   public function insert(){
     $sql = new Sql();
 

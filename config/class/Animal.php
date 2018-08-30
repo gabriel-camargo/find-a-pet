@@ -91,8 +91,6 @@ class Animal{
     $this->ani_dt_hr = $value;
   }
 
-
-
   public function setData($row){
     $this->setIdAnimal($row['ani_id']);
     $this->setNomeAnimal($row['ani_nome']);
@@ -107,22 +105,7 @@ class Animal{
     $this->setDataHoraAnimal(new DateTime($row['ani_dt_hr']));
   }
 
-
-  //Função para retornar os dados de um usuário pelo seu ID
-  public function loadById($id){
-    $sql = new Sql();
-    $results = $sql->select("SELECT * FROM cad_animais WHERE ani_id = :ID", array(
-      ":ID"=>$id
-    ));
-
-    if (count($results) >= 1) {
-      $row = $results[0];
-
-      $this->setData($row);
-    }
-  }
-
-  //Carrega os animais pelo ID do usuario
+  //Carrega os animais de um usuário informado
   public static function searchByUser($usuario){
     $sql = new Sql();
 
@@ -131,17 +114,13 @@ class Animal{
     ));
   }
 
-  public function updateFoto($foto){
-    $this->setFotoAnimal($foto);
-
+  //Deleta todos os animais de um usuário
+  public static function deleteAnimaisByUsuario($usuario){
     $sql = new Sql();
 
-    $sql->query("UPDATE cad_animais SET
-      ani_foto = :FOTO
-      WHERE ani_id = :ID",
-      array(
-        ":ID" => $this->getIdAnimal(),
-        ":FOTO" => $this->getFotoAnimal()));
+    $sql->query("DELETE FROM cad_animais WHERE usu_id = :ID", array(
+      ":ID" => $this->$usuario
+    ));
   }
 
   //Carrega os animais que NÃO SÃO do usuario
@@ -159,14 +138,37 @@ class Animal{
         ":NOME" => $ani_nome_final
       ));
     }
-
-
   }
 
-  
+  //Função para retornar os dados de um usuário pelo seu ID
+  public function loadById($id){
+    $sql = new Sql();
+    $results = $sql->select("SELECT * FROM cad_animais WHERE ani_id = :ID", array(
+      ":ID"=>$id
+    ));
 
+    if (count($results) >= 1) {
+      $row = $results[0];
 
+      $this->setData($row);
+    }
+  }
 
+  //Alterar a foto do animal
+  public function updateFoto($foto){
+    $this->setFotoAnimal($foto);
+
+    $sql = new Sql();
+
+    $sql->query("UPDATE cad_animais SET
+      ani_foto = :FOTO
+      WHERE ani_id = :ID",
+      array(
+        ":ID" => $this->getIdAnimal(),
+        ":FOTO" => $this->getFotoAnimal()));
+  }
+
+  //Insere o animal no banco de dados
   public function insert(){
     $sql = new Sql();
 
@@ -207,6 +209,8 @@ class Animal{
       $this->setData($row);
     }
   }
+
+  //Altera o status do animal
   public function updateStatus($status){
 
     $this->setStatusAnimal($status);
@@ -222,10 +226,7 @@ class Animal{
     ));
   }
 
-
-
-
-    public function __construct($nome = "", $faixa = "", $sexo = "", $informacoes = "", $foto = "", $status = "",
+  public function __construct($nome = "", $faixa = "", $sexo = "", $informacoes = "", $foto = "", $status = "",
      $usuario = "", $raca = "", $especie = ""){
 
       $this->setNomeAnimal($nome);
@@ -237,10 +238,10 @@ class Animal{
       $this->setIdUsuario($usuario);
       $this->setRacaAnimal($raca);
       $this->setEspecieAnimal($especie);
-    }
+  }
 
-    //a função toString é chamada ao tentar imprimir um objeto
-    public function __toString(){
+  //a função toString é chamada ao tentar imprimir um objeto
+  public function __toString(){
       return json_encode(array(
         "ani_id" => $this->getIdAnimal(),
         "ani_nome" => $this->getNomeAnimal(),
@@ -256,7 +257,4 @@ class Animal{
       ));
     }
  }
-
-
-
   ?>

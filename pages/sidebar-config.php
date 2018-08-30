@@ -49,26 +49,6 @@
          </div>
     </a>
 
-    <!-- MENU DE TELEFONE -->
-    <a href="config-telefone.php" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
-       <div class="d-flex w-100 justify-content-start align-items-center">
-            <span class="fa fa-dashboard fa-fw mr-3"></span>
-           <span class="menu-collapsed sidebar-text">Telefone e Celular</span>
-            <span class="submenu-icon ml-auto"></span>
-        </div>
-   </a>
-
-   <!-- MENU DE TELEFONE -->
-   <a href="config-endereco.php" class="bg-light list-group-item list-group-item-action flex-column align-items-start">
-      <div class="d-flex w-100 justify-content-start align-items-center">
-          <span class="fa fa-dashboard fa-fw mr-3"></span>
-          <span class="menu-collapsed sidebar-text">Endereço</span>
-           <span class="submenu-icon ml-auto"></span>
-       </div>
-  </a>
-
-
-
  </ul>
 <!-- List Group END-->
 </div>

@@ -9,8 +9,8 @@ function readURL(input) {
 
     reader.readAsDataURL(input.files[0]);
   }
-  }
+}
 
-  $("#inputFoto").change(function() {
+$("#inputFoto").change(function() {
   readURL(this);
-  });
+});
