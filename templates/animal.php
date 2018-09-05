@@ -41,30 +41,29 @@
                  </div><?php
                }else{
                  ?>
-                 <img class="publicacao-foto" src="<?php echo ".." . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR . "animal" . DIRECTORY_SEPARATOR . $animal->getIdAnimal() . DIRECTORY_SEPARATOR . $animal->getFotoAnimal(); ?>" alt="" height="140" width="140">
+                 <img class="publicacao-foto" src="<?php echo ".." . DIRECTORY_SEPARATOR . "img"
+                  . DIRECTORY_SEPARATOR . "animal" . DIRECTORY_SEPARATOR . $animal->getIdAnimal()
+                   . DIRECTORY_SEPARATOR . $animal->getFotoAnimal(); ?>" alt="" height="140" width="140">
                  <?php
                } ?>
              </td>
            </tr>
            <tr>
              <td class="publicacao-td publicacao-form">
-               <form class="" action="../func/info-animais.php" method="post">
-               <input type="hidden" name="id" value="<?php echo $row['ani_id']; ?>">
-               <button class="publicacao-botao" type="submit" name="button"><?php echo $row['ani_nome']; ?></button>
-             </form>
+               <?= $row['ani_nome']; ?>
            </td>
            </tr>
            <tr>
-             <td class="publicacao-sexo publicacao-td"><?php echo $row['ani_sexo']; ?></td>
+             <td class="publicacao-sexo publicacao-td"><?= $row['ani_sexo']; ?></td>
            </tr>
            <tr>
-             <td class="publicacao-status publicacao-td"><?php echo $row['ani_status']; ?></td>
+             <td class="publicacao-status publicacao-td"><?= $row['ani_status']; ?></td>
            </tr>
            <tr>
-             <td class="publicacao-raca publicacao-td"><?php echo $row['ani_raca']; ?></td>
+             <td class="publicacao-raca publicacao-td"><?= $row['ani_raca']; ?></td>
            </tr>
            <tr>
-             <td class="publicacao-faixa publicacao-td"><?php echo $row['ani_faixa_etaria']; ?></td>
+             <td class="publicacao-faixa publicacao-td"><?= $row['ani_faixa_etaria']; ?></td>
            </tr>
            </table>
            <br>

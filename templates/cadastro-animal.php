@@ -105,13 +105,15 @@
 
             <!-- RADIO EM ADOÇÃO-->
             <div class="custom-control custom-radio col-sm-5">
-              <input type="radio" id="statusRadio1" value="adocao" name="statusRadio" class="custom-control-input">
+              <input type="radio" id="statusRadio1" value="adocao" name="statusRadio"
+              class="custom-control-input">
               <label class="custom-control-label" for="statusRadio1">Em adoção</label>
             </div>
 
             <!-- RADIO PERIDDO-->
             <div class="custom-control custom-radio col-sm-5">
-              <input type="radio" id="statusRadio2" value="perdido" name="statusRadio" class="custom-control-input">
+              <input type="radio" id="statusRadio2" value="perdido" name="statusRadio"
+               class="custom-control-input">
               <label class="custom-control-label" for="statusRadio2">Perdido</label>
             </div>
 
@@ -120,13 +122,15 @@
         <div class="form-group row">
             <label for="inputInformacoes" class="col-sm-2 col-form-label">Informações adicionais: </label>
             <div class="col-sm-10">
-              <textarea name="informacoes" class="form-control" id="inputInformacoes" rows="3" placeholder="Ex: Vacinado e castrado."></textarea>
+              <textarea name="informacoes" class="form-control" id="inputInformacoes"
+              rows="3" placeholder="Ex: Vacinado e castrado."></textarea>
             </div>
 
         </div>
 
-        <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" id="btn_cadastrar">Cadastrar</button>
-
+        <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" id="btn_cadastrar">
+          Cadastrar
+        </button>
 
       </div>
       <br>

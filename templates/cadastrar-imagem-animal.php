@@ -28,7 +28,8 @@
               <img id="imagem-perfil" src="../img/logo.png" alt="your image" width="200" height="200"/>
 
               <br><br>
-              <form class="" action="../func/update-imagem-animal.php" method="post" enctype="multipart/form-data">
+              <form class="" action="../func/update-imagem-animal.php"
+              method="post" enctype="multipart/form-data">
               <div class="custom-file">
                 <input name ="fileUpload" type="file" class="custom-file-input" id="inputFoto">
                 <label class="custom-file-label" for="inputFoto">Escolha uma imagem...</label>

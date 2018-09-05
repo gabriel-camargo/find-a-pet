@@ -34,24 +34,29 @@
            <div class="form-group row">
                <label for="inputSenhaAtual" class="col-sm-2 col-form-label">Senha Atual: </label>
                <div class="col-sm-10">
-                 <input value="" name="senhaAtual" type="password" id="inputSenhaAtual" class="cadastro form-control" placeholder="**********" required autofocus>
+                 <input value="" name="senhaAtual" type="password" id="inputSenhaAtual"
+                 class="cadastro form-control" placeholder="**********" required autofocus>
                </div>
            </div>
 
            <div class="form-group row">
                <label for="inputSenhaNova" class="col-sm-2 col-form-label">Nova Senha: </label>
                <div class="col-sm-10">
-                 <input value="" name="senhaNova" type="password" id="inputSenhaNova" class="cadastro form-control" placeholder="**********" required>
+                 <input value="" name="senhaNova" type="password" id="inputSenhaNova"
+                  class="cadastro form-control" placeholder="**********" required>
                </div>
            </div>
 
            <div class="form-group row">
                <label for="inputSenhaNovaConfirm" class="col-sm-2 col-form-label">Confirmar Senha: </label>
                <div class="col-sm-10">
-                 <input value="" name="senhaNovaConfirm" type="password" id="inputSenhaNovaConfirm" class="cadastro form-control" placeholder="**********" required>
+                 <input value="" name="senhaNovaConfirm" type="password"
+                 id="inputSenhaNovaConfirm" class="cadastro form-control" placeholder="**********" required>
                </div>
            </div>
-           <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" > Alterar Senha </button>
+           <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" >
+             Alterar Senha
+           </button>
          </form>
 
        </div>

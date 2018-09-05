@@ -33,7 +33,10 @@
          <?php if ($user->getFotoUsuario() === "" || null === $user->getFotoUsuario()) {
            ?> <img id="imagem-perfil" src="#" alt="Escolha uma imagem" height="200" width="200"> <?php
          }else{
-           ?><img id="imagem-perfil" class="config-img"src="<?php echo ".." . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR . "perfil" . DIRECTORY_SEPARATOR . $user->getIdUsuario() . DIRECTORY_SEPARATOR . $user->getFotoUsuario(); ?>" alt="" height="200" width="200"><?php
+           ?><img id="imagem-perfil" class="config-img"src="<?php echo ".." .
+            DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR . "perfil" . DIRECTORY_SEPARATOR
+            . $user->getIdUsuario() . DIRECTORY_SEPARATOR . $user->getFotoUsuario(); ?>"
+             alt="" height="200" width="200"><?php
          } ?>
 
 
@@ -47,7 +50,9 @@
 
          <br><br>
 
-         <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" >Alterar imagem de perfil</button>
+         <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" >
+           Alterar imagem de perfil
+         </button>
      <!-- FIM DO INPUT DA IMAGEM -->
         </form>
 

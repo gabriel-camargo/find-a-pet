@@ -30,15 +30,18 @@
          <h3>Configurações de Email</h3>
 
          <form class="" action="../func/update-email.php" method="post">
-           <span>Email atual: <?php echo $user->getEmailUsuario(); ?></span>
+           <span>Email atual: <?= $user->getEmailUsuario(); ?></span>
 
            <div class="form-group row">
                <label for="inputEmail" class="col-sm-2 col-form-label">Email: </label>
                <div class="col-sm-10">
-                 <input value="" name="email" type="text" id="inputEmail" class="cadastro form-control" placeholder="Ex: fulano@email.com" required autofocus>
+                 <input value="" name="email" type="text" id="inputEmail"
+                  class="cadastro form-control" placeholder="Ex: fulano@email.com" required autofocus>
                </div>
            </div>
-           <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" > Alterar Email </button>
+           <button class="btn btn-lg btn-primary btn-block cadastro-btn" type="submit" >
+              Alterar Email
+            </button>
          </form>
 
        </div>
