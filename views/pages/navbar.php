@@ -1,9 +1,9 @@
 <!-- Inicio da navbar superior -->
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #43A047;">
+<nav class="navbar navbar-expand-lg navbar-dark p-1" style="background-color: #43A047;">
 <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"> -->
 
   <!-- Div com container para deixar os itens mais centralizados -->
-  <div class="container">
+  <div class="container-fluid">
 
     <!-- Brand: Título principal -->
     <a class="navbar-brand navbar-link" href="index.php"> <strong> Find a Pet </strong></a>
@@ -24,13 +24,11 @@
       </ul>
 
       <!-- Campo de pesquisa -->
-      <form action="index.php" class="form-inline my-2 my-lg-0" method="post">
-        <!-- <div class="input-group mb-3"> -->
-          <input name="nav_nome" type="search" class="form-control form-inline my-2 my-lg-0 navbar-input" id="navbar-input" placeholder="Pesquisar animal...">
+      <form action="index.php" class="form-inline mr-4" method="post">
+          <input name="nav_nome" type="search" class="form-control form-inline navbar-input" id="navbar-input" placeholder="Pesquisar animal...">
           <div class="input-group-append">
             <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
           </div>
-        <!-- </div> -->
       </form>
 
 
@@ -56,7 +54,7 @@
 
     </div>
     <!-- Fim do colapse principal -->
-    
+
   </div>
 </nav>
 <!-- Termino da navbar superior -->

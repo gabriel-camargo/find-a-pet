@@ -1,0 +1,16 @@
+{
+    "name": "gabriel-camargo/find-a-pet",
+    "description": "Um site que para se realizar adoção e doação de animais",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Gabriel",
+            "email": "gabriel.rodrigocam@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "slim/slim": "2.0",
+        "rain/raintpl": ">=3.0.0"
+    }
+}

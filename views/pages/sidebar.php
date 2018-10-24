@@ -1,5 +1,5 @@
 <!-- INICIO DA BARRA LATERAL -->
-<div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
+<div id="sidebar" class="sidebar-expanded d-none d-md-block col-2">
 
   <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
   <!-- Bootstrap List Group -->
@@ -43,7 +43,7 @@
        <div id="submenuCachorro" class="collapse sidebar-submenu">
 
          <!-- CHECKBOX QUE MARCA/DESMARCA AS DEMAIS OPÇÕES -->
-        <a href="#" class="list-group-item list-group-item-action bg-light text-white">
+        <a href="#" class="list-group-item list-group-item-action bg-light">
            <div class="custom-control custom-checkbox">
              <input class="custom-control-input" type="checkbox"
              name="raca-cachorro" id="check-todos-cachorro">
@@ -72,7 +72,7 @@
                // LE TODAS AS RAÇAS DE CACHORRO
                foreach ($racas as $raca) {
                  ?>
-                 <a href="#" class="list-group-item list-group-item-action bg-light text-white">
+                 <a href="#" class="list-group-item list-group-item-action bg-light">
                    <div class="custom-control custom-checkbox">
                      <input class="custom-control-input check-cachorro" type="checkbox"
                       name="raca-cachorro" value="<?=$raca ?>" id="<?= $raca ?>">
@@ -106,7 +106,7 @@
       <div id="submenuGato" class="collapse sidebar-submenu">
 
         <!-- CHECKBOX QUE MARCA/DESMARCA OS DEMAIS CHECKBOX -->
-        <a href="#" class="list-group-item list-group-item-action bg-light text-white">
+        <a href="#" class="list-group-item list-group-item-action bg-light  ">
           <div class="custom-control custom-checkbox">
             <input class="custom-control-input" type="checkbox"
             name="raca-gato" id="check-todos-gato">
@@ -130,7 +130,7 @@
               // LE TODAS AS RACAS DE GATO
               foreach ($racas as $raca) {
                 ?>
-                <a href="#" class="list-group-item list-group-item-action bg-light text-white">
+                <a href="#" class="list-group-item list-group-item-action bg-light  ">
                   <div class="custom-control custom-checkbox">
                     <input class="custom-control-input check-gato" type="checkbox"
                      name="raca-gato" value="<?= $raca; ?>" id="<?= $raca; ?>">
@@ -163,7 +163,7 @@
     <div id="submenu2" class="collapse sidebar-submenu">
 
        <!-- CHECKBOX MACHO -->
-       <a href="#" class="list-group-item list-group-item-action bg-light text-white">
+       <a href="#" class="list-group-item list-group-item-action bg-light  ">
          <div class="custom-control custom-checkbox">
            <input class="custom-control-input check-sexo" type="checkbox"
            name="sexo" value="M" id="macho">
@@ -174,7 +174,7 @@
        </a>
 
        <!-- CHECKBOX FEMEA -->
-       <a href="#" class="list-group-item list-group-item-action bg-light text-white">
+       <a href="#" class="list-group-item list-group-item-action bg-light  ">
          <div class="custom-control custom-checkbox">
            <input class="custom-control-input check-sexo" type="checkbox"
             name="sexo" value="F" id="femea">
@@ -200,7 +200,7 @@
     <div id="submenu3" class="collapse sidebar-submenu">
 
        <!-- CHECKBOX DE ADOÇÃO -->
-       <a href="#" class="list-group-item list-group-item-action bg-light text-white">
+       <a href="#" class="list-group-item list-group-item-action bg-light  ">
          <div class="custom-control custom-checkbox">
            <input class="custom-control-input check-status" type="checkbox"
            name="status" value="adocao" id="adocao">
@@ -211,7 +211,7 @@
        </a>
 
        <!-- CHECKBOX DE PERDIDO -->
-       <a href="#" class="list-group-item list-group-item-action bg-light text-white">
+       <a href="#" class="list-group-item list-group-item-action bg-light  ">
          <div class="custom-control custom-checkbox">
            <input class="custom-control-input check-status" type="checkbox"
            name="status" value="perdido" id="perdido">
@@ -237,7 +237,7 @@
     <div id="submenu4" class="collapse sidebar-submenu">
 
        <!-- CHECKBOX FILHOTE -->
-       <a href="#" class="list-group-item list-group-item-action bg-light text-white">
+       <a href="#" class="list-group-item list-group-item-action bg-light  ">
          <div class="custom-control custom-checkbox">
            <input class="custom-control-input check-faixa" type="checkbox"
            name="faixa" value="Filhote" id="filhote">
@@ -248,7 +248,7 @@
        </a>
 
        <!-- CHECKBOX COMUM -->
-       <a href="#" class="list-group-item list-group-item-action bg-light text-white">
+       <a href="#" class="list-group-item list-group-item-action bg-light  ">
          <div class="custom-control custom-checkbox">
            <input class="custom-control-input check-faixa" type="checkbox"
            name="faixa" value="Comum" id="comum">
@@ -259,7 +259,7 @@
        </a>
 
        <!-- CHECKBOX VELHO -->
-       <a href="#" class="list-group-item list-group-item-action bg-light text-white">
+       <a href="#" class="list-group-item list-group-item-action bg-light  ">
          <div class="custom-control custom-checkbox">
            <input class="custom-control-input check-faixa" type="checkbox"
            name="faixa" value="Velho" id="velho">

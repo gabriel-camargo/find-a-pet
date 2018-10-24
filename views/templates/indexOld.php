@@ -14,7 +14,6 @@
     <?php
       require_once(".." . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'header.php');
      ?>
-     <link rel="stylesheet" href="../css/sidebar.css">
 
   </head>
   <body>
@@ -27,7 +26,7 @@
      <?php require_once(".." . DIRECTORY_SEPARATOR . "pages" . DIRECTORY_SEPARATOR . "sidebar.php") ?>
 
     <!-- INICIO DA DIV DE PUBLICAÇÕES -->
-    <div class="col py-3">
+    <div class="col">
         <?php
 
           // RECUPERA OS VALORES DO FORMULARIO

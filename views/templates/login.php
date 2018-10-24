@@ -7,9 +7,7 @@
   </head>
 
   <body class="login-body text-center">
-    <?php
-      require_once('..' . DIRECTORY_SEPARATOR . 'pages' . DIRECTORY_SEPARATOR . 'navbar-deslogado.php');
-     ?>
+
 
     <form action="../func/autenticar.php" class="login-form-signin" method="post">
 

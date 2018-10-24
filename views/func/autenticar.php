@@ -17,6 +17,7 @@
     $_SESSION['login']['logged_in'] = true;
     $_SESSION['login']['usu_id'] = isset($user['usu_id']) ? $user['usu_id'] : '';
 
-    header('Location: ../templates/index.php');
+    header('Location: ../templates/index.php');exit;
   }
+  header('Location: ../templates/login.php');exit;
  ?>
