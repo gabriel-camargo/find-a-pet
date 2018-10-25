@@ -1,5 +1,9 @@
 <?php
 
+namespace FindAPet\Model;
+
+use \FindAPet\DB\Sql;
+
 class Usuario{
   private $usu_id;
   private $usu_foto;
@@ -107,20 +111,25 @@ class Usuario{
   //Autentica o usuário utilizando email e senha
   public static function autenticar($email, $senha){
     $sql = new Sql();
-    $usuarios = $sql->select("SELECT * FROM cad_usuarios WHERE usu_email = :EMAIL AND usu_senha = :SENHA",array(
+
+    $results = $sql->select("SELECT * FROM cad_usuarios WHERE usu_email = :EMAIL AND usu_senha = :SENHA",array(
       ":EMAIL" => $email,
       ":SENHA" => $senha
     ));
 
-    //se nao for encontrado nenhum usuario
-    if (count($usuarios) >= 1) {
-      $user = $usuarios[0];
+    if (count($results) === 0) throw new \Exception("Usuário inexistente ou senha inválida");
 
-      $_SESSION['login']['logged_in'] = true;
-      $_SESSION['login']['usu_id'] = isset($user['usu_id']) ? $user['usu_id'] : '';
+    $usuario = new Usuario();
+    $usuario->setData($results[0]);
+
+    $_SESSION["login"]["logged_in"] = true;
+    $_SESSION['login']['usu_id'] = $usuario->getIdUsuario();
+  }
+
+  public static function verifyLogin(){
+    if (!isset($_SESSION['login']['logged_in']) || $_SESSION['login']['logged_in'] !== true) {
+      header("Location: login"); exit;
     }
-
-    return $usuarios;
   }
 
   //Altera a foto do usuário

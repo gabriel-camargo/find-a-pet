@@ -1,12 +1,14 @@
 <?php
 
-  class Sql extends PDO{
+  namespace FindAPet\DB;
+
+  class Sql extends \PDO{
 
     private $conn;
 
     //Metodo contrutor da classe ja inicia automaticamente a conexão com o banco de dados
     public function __construct(){
-      $this->conn = new PDO("mysql:host=localhost;dbname=bd_findapet", "root", "");
+      $this->conn = new \PDO("mysql:host=localhost;dbname=bd_findapet", "root", "");
     }
 
     //Função que chama o método 'setParam' para todos as linhas da tabela
@@ -35,7 +37,7 @@
     public function select($rawQuery, $params = array()):array{
       $stmt = $this->query($rawQuery, $params);
 
-      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
   }
 
