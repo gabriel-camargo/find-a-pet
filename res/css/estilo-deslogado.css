@@ -78,6 +78,10 @@ body{
   text-decoration: none;
 }
 
+/*---------------------------*/
+/* -------- NAVBAR --------- */
+/*---------------------------*/
+
 .navbar-titulo:hover, .nav-link:hover{
   color: #43A047 !important;
 }

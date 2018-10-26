@@ -87,6 +87,14 @@ class Usuario{
     $usuario->autenticar($email, $senha);
   }
 
+  public static function verifyLogin(){
+    if (!isset($_SESSION['login']['logged_in']) || $_SESSION['login']['logged_in'] !== true) {
+      // header("Location: login"); exit;
+      return false;
+    }
+    return true;
+  }
+
   public function setData($row){
     $this->setIdUsuario($row['usu_id']);
     $this->setFotoUsuario($row['usu_foto']);
@@ -146,11 +154,7 @@ class Usuario{
 
 
 
-  public static function verifyLogin(){
-    if (!isset($_SESSION['login']['logged_in']) || $_SESSION['login']['logged_in'] !== true) {
-      header("Location: login"); exit;
-    }
-  }
+
 
   //Altera a foto do usuário
   public function updateFoto($foto){

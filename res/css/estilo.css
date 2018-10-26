@@ -1,5 +1,6 @@
 html, body{
   font-family: 'Raleway', sans-serif;
+  font-weight: lighter;
   height: 100vh;
 }
 
@@ -7,7 +8,7 @@ html, body{
 /* ----------NAVBAR--------- */
 /*---------------------------*/
 
-.navbar-img-usuario{
+/* .navbar-img-usuario{
   border-radius: 50%;
 }
 .navbar-link{
@@ -32,6 +33,10 @@ html, body{
 .navbar{
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 16px 0 rgba(0, 0, 0, 0.19);
   padding: 1px;
+} */
+
+.navbar-titulo:hover, .nav-link:hover{
+  color: #43A047 !important;
 }
 
 

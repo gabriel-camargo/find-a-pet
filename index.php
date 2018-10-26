@@ -16,6 +16,13 @@ $app->config('debug', true);
 
 // ROTA DA PAGINA DE LOGIN
 $app->get('/login/', function() {
+
+	$logado = Usuario::verifyLogin();
+	if ($logado) {
+		header('Location: /find-a-pet/');
+		exit;
+	}
+
 	$page = new Page();
 	$page->setTpl("pages/header-deslogado");
   $page->setTpl("login");
@@ -35,6 +42,13 @@ $app->post('/login/', function() {
 
 // ROTA DA PAGINA DE CADASTRO
 $app->get('/cadastro/', function() {
+
+	$logado = Usuario::verifyLogin();
+	if ($logado) {
+		header('Location: /find-a-pet/');
+		exit;
+	}
+
 	$page = new Page();
 
 	$page->setTpl("pages/header-deslogado");
@@ -68,12 +82,16 @@ $app->get("/logout/", function(){
 $app->get('/', function(){
 	$page = new Page();
 
-	Usuario::verifyLogin();
+	$logado = Usuario::verifyLogin();
+	if (!$logado) {
+		header('Location: /find-a-pet/login');
+		exit;
+	}
 
 	$usuario = new Usuario();
 	$usuario->loadById($_SESSION['login']['usu_id']);
 
-	$page->setTpl("pages/header-deslogado");
+	$page->setTpl("pages/header");
 
   $page->setTpl("publicacoes",array(
 		"nome" => $usuario->getNomeUsuario()

@@ -1,6 +1,6 @@
 <!-- Inicio da navbar superior -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light p-1 fixed-top">
-<!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"> -->
+  <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"> -->
 
   <!-- Div com container para deixar os itens mais centralizados -->
   <div class="container-fluid">
@@ -18,14 +18,17 @@
     <!-- Conteudo dentro do colapse principal -->
     <div class="collapse navbar-collapse" id="navbarTogglerPrincipal">
 
-      <!-- Lista alinhada para direita -->
+      <!-- Lista alinhada para a esquerda -->
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item" id="meus_animais">
+          <a class="nav-link navbar-link" href="/find-a-pet/animais"> Meus Animais </a>
+        </li>
+      </ul>
+
+      <!-- Lista alinhada para a direita -->
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li class="nav-item">
-          <a class="nav-link navbar-link" href="/find-a-pet/login/"> Logar </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link navbar-link" href="/find-a-pet/cadastro/"> Cadastrar </a>
+          <a class="nav-link navbar-link" href="/find-a-pet/logout/"> Logout </a>
         </li>
       </ul>
 
