@@ -51,6 +51,42 @@ class Usuario{
     $this->usu_senha = $value;
   }
 
+  //Autentica o usuário utilizando email e senha
+  public static function autenticar($email, $senha){
+    $sql = new Sql();
+
+    $results = $sql->select("SELECT * FROM cad_usuarios WHERE usu_email = :EMAIL AND usu_senha = :SENHA",array(
+      ":EMAIL" => $email,
+      ":SENHA" => $senha
+    ));
+
+    if (count($results) === 0) throw new \Exception("Usuário inexistente ou senha inválida");
+
+    $usuario = new Usuario();
+    $usuario->setData($results[0]);
+
+    $_SESSION["login"]["logged_in"] = true;
+    $_SESSION['login']['usu_id'] = $usuario->getIdUsuario();
+  }
+
+  //Insere um novo usuário no banco de dados e autentica o usuário
+  public static function inserir($nome, $email, $senha){
+
+    // SE OS CAMPOS ESTIVEREM COM ALGUM VALOR
+    if ($nome == null || $nome == ""
+      || $email == null || $email == ""
+      || $senha == null || $senha == "") throw new \Exception("Valores inválidos");
+
+    $usuario = new Usuario();
+
+    $usuario->setNomeUsuario($nome);
+    $usuario->setEmailUsuario($email);
+    $usuario->setSenhaUsuario($senha);
+
+    $usuario->insert();
+    $usuario->autenticar($email, $senha);
+  }
+
   public function setData($row){
     $this->setIdUsuario($row['usu_id']);
     $this->setFotoUsuario($row['usu_foto']);
@@ -108,23 +144,7 @@ class Usuario{
     }
   }
 
-  //Autentica o usuário utilizando email e senha
-  public static function autenticar($email, $senha){
-    $sql = new Sql();
 
-    $results = $sql->select("SELECT * FROM cad_usuarios WHERE usu_email = :EMAIL AND usu_senha = :SENHA",array(
-      ":EMAIL" => $email,
-      ":SENHA" => $senha
-    ));
-
-    if (count($results) === 0) throw new \Exception("Usuário inexistente ou senha inválida");
-
-    $usuario = new Usuario();
-    $usuario->setData($results[0]);
-
-    $_SESSION["login"]["logged_in"] = true;
-    $_SESSION['login']['usu_id'] = $usuario->getIdUsuario();
-  }
 
   public static function verifyLogin(){
     if (!isset($_SESSION['login']['logged_in']) || $_SESSION['login']['logged_in'] !== true) {

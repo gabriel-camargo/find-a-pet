@@ -42,13 +42,43 @@ $app->get('/cadastro/', function() {
   $page->setTpl("pages/footer");
 });
 
+// ROTA DA PAGINA DE CADASTRO
+$app->post('/cadastro/', function() {
+
+	// RECUPERA OS VALORES DO FORMULARIO
+  $nome = trim(isset($_POST['nome']) ? $_POST['nome'] : null);
+  $email = trim(isset($_POST['email']) ? $_POST['email'] : null);
+  $senha = trim(isset($_POST['senha']) ? $_POST['senha'] : null);
+
+	Usuario::inserir($nome, $email, $senha);
+
+	header("Location: /find-a-pet/");
+	exit;
+});
+
+//ROTA PARA FAZER O LOGOUT DO USUÁRIO
+$app->get("/logout/", function(){
+	// deleta as variaveis de sessão, dessa maneira deslogando o usuário
+	unset($_SESSION['login']);
+
+	header('Location: /find-a-pet/login');
+	exit;
+});
+
 $app->get('/', function(){
 	$page = new Page();
 
 	Usuario::verifyLogin();
 
+	$usuario = new Usuario();
+	$usuario->loadById($_SESSION['login']['usu_id']);
+
 	$page->setTpl("pages/header-deslogado");
-  $page->setTpl("publicacoes");
+
+  $page->setTpl("publicacoes",array(
+		"nome" => $usuario->getNomeUsuario()
+	));
+
   $page->setTpl("pages/footer");
 });
 
