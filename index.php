@@ -91,11 +91,11 @@ $app->get('/', function(){
 	$usuario = new Usuario();
 	$usuario->loadById($_SESSION['login']['usu_id']);
 
-	$page->setTpl("pages/header");
-
-  $page->setTpl("publicacoes",array(
+	$page->setTpl("pages/header",array(
 		"nome" => $usuario->getNomeUsuario()
 	));
+
+  $page->setTpl("publicacoes");
 
   $page->setTpl("pages/footer");
 });

@@ -87,78 +87,7 @@ html, body{
  .publicacao-botao:hover{
    text-decoration: underline;
  }
- /*---------------------------*/
-/* -------- CADASTRO ------- */
-/*---------------------------*/
-
-.cadastro-link-ignorar{
-  background-color: #c62828 ;
-  color: white;
-  width: 100%;
-  border-radius: 5px;
-  padding: 10px 10px 10px 10px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.cadastro-link-ignorar:hover{
-  background-color: #d73939 ;
-  color: white;
-  text-decoration: none;
-}
-.cadastro-body{
-  background-color: #eeeeee;
-}
-
-.cadastro-titulo{
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.cadastro-formulario{
-  background: #fefefe;
-}
-
-.cadastro-div-foto{
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: flex;
-  -ms-flex-align: center;
-  -ms-flex-pack: center;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  justify-content: center;
-}
-
-.cadastro.form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-
-.cadastro-btn{
-  background-color:#43A047;
-  border: 0;
-  font-weight: bold;
-}
-
-.cadastro-btn:hover{
-  background-color:#54B158;
-  border: 0;
-  font-weight: bold;
-}
-
-.cadastro-sub-form{
-  padding: 20px;
-}
-.cadastro-sub-form h2{
-  padding: 10px;
-  border-bottom: 1px solid #dddddd;
-}
+ 
 /*------------------------------*/
 /* ---- EXPANSÃO DO ANIMAL ----*/
 /*-----------------------------*/
