@@ -100,6 +100,27 @@ $app->get('/', function(){
   $page->setTpl("pages/footer");
 });
 
+$app->get('/animais/', function(){
+	$page = new Page();
+
+	$logado = Usuario::verifyLogin();
+	if (!$logado) {
+		header('Location: /find-a-pet/login');
+		exit;
+	}
+
+	$usuario = new Usuario();
+	$usuario->loadById($_SESSION['login']['usu_id']);
+
+	$page->setTpl("pages/header",array(
+		"nome" => $usuario->getNomeUsuario()
+	));
+
+  $page->setTpl("animais");
+
+  $page->setTpl("pages/footer");
+});
+
 $app->run();
 
 
