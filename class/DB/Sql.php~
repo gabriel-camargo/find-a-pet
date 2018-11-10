@@ -39,13 +39,6 @@
 
       return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
-
-    //Função que chama a função query, mas retorna  um objeto
-    public function selectObj($rawQuery, $params = array()):array{
-      $stmt = $this->query($rawQuery, $params);
-
-      return $stmt->fetchAll(\PDO::FETCH_OBJ);
-    }
   }
 
  ?>

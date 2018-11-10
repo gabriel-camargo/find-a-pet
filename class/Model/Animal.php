@@ -1,5 +1,9 @@
 <?php
 
+namespace FindAPet\Model;
+
+use \FindAPet\DB\Sql;
+
 class Animal{
   private $ani_id;
   private $ani_nome;
@@ -127,7 +131,7 @@ class Animal{
   public static function pesquisarAnimais($usuario){
     $sql = new Sql();
 
-    return $sql->select(
+    return $sql->selectObj(
       "SELECT * FROM cad_animais
        WHERE (usu_id <> :SEARCH) AND (
          (ani_status = 'adocao') OR (ani_status = 'perdido')
