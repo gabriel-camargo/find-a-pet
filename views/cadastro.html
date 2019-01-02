@@ -1,26 +1,39 @@
-<form class="cadastro-form-signup" method="post">
-  <h1 class="h3 mb-3 cadastro-titulo"> Cadastre-se </h1><br>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {include="pages/header-deslogado"}
+    </head>
+    <body>
 
-    <!-- INPUT DO NOME -->
-    <label for="inputNome" class="sr-only">Nome completo</label>
-    <input name="nome" type="text" id="inputNome" class="cadastro form-control"
-     placeholder="Nome completo" required autofocus>
+        {include="pages/navbar-deslogado"}
 
-    <!-- INPUT DO EMAIL -->
-    <label for="inputEmail" class="sr-only">Email</label>
-    <input name="email" type="email" id="inputEmail" class="cadastro form-control"
-     placeholder="Email" required>
+        <form class="cadastro-form-signup" method="post">
+            <h1 class="h3 mb-3 cadastro-titulo"> Cadastre-se </h1><br>
+            
+            <!-- INPUT DO NOME -->
+            <label for="inputNome" class="sr-only">Nome completo</label>
+            <input name="nome" type="text" id="inputNome" class="cadastro form-control"
+                placeholder="Nome completo" required autofocus>
+        
+            <!-- INPUT DO EMAIL -->
+            <label for="inputEmail" class="sr-only">Email</label>
+            <input name="email" type="email" id="inputEmail" class="cadastro form-control"
+                placeholder="Email" required>
+        
+            <!-- INPUT DE SENHA -->
+            <label for="inputSenha" class="sr-only">Senha</label>
+            <input name="senha" type="password" id="inputSenha" class="cadastro form-control"
+                placeholder="Senha" required >
+        
+            <!-- CONFIRMAÇÃO DE SENHA -->
+            <label for="inputSenhaConfirm" class="sr-only">Senha</label>
+            <input name="senhaConfirm" type="password" id="inputSenhaConfirm" class="cadastro form-control"
+                placeholder="Confirmar senha" required >
+            
+            <button class="btn btn-lg btn-success btn-block login-btn-entrar" type="submit" >Cadastrar <i class="fa fa-user-plus"></i></button>
+            <br>
+        </form>
 
-    <!-- INPUT DE SENHA -->
-    <label for="inputSenha" class="sr-only">Senha</label>
-    <input name="senha" type="password" id="inputSenha" class="cadastro form-control"
-     placeholder="Senha" required >
-
-    <!-- CONFIRMAÇÃO DE SENHA -->
-    <label for="inputSenhaConfirm" class="sr-only">Senha</label>
-    <input type="password" id="inputSenhaConfirm" class="cadastro form-control"
-     placeholder="Confirmar senha" required >
-
-  <button class="btn btn-lg btn-success btn-block login-btn-entrar" type="submit" >Cadastrar <i class="fa fa-user-plus"></i></button>
-<br>
-</form>
+        {include="pages/footer"}
+</body>
+</html>

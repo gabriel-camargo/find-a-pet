@@ -1,5 +1,7 @@
 <?php
 
+namespace FindAPet\Model;
+
 class Adocao{
   private $ado_id;
   private $ado_dt_hr;

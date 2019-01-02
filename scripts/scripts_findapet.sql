@@ -3,10 +3,9 @@ DROP TABLE IF EXISTS `cad_usuarios`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cad_usuarios` (
   `usu_id` int(11) NOT NULL AUTO_INCREMENT,
-  `usu_foto` mediumblob,
   `usu_nome` varchar(45) NOT NULL,
   `usu_email` varchar(50) NOT NULL,
-  `usu_senha` varchar(45) NOT NULL,
+  `usu_senha` varchar(255) NOT NULL,
   PRIMARY KEY (`usu_id`),
   UNIQUE KEY `usu_id_UNIQUE` (`usu_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
@@ -20,7 +19,6 @@ CREATE TABLE `cad_animais` (
   `ani_faixa_etaria` varchar(25) DEFAULT NULL,
   `ani_sexo` varchar(1) NOT NULL,
   `ani_informacoes` mediumtext,
-  `ani_foto` mediumblob NOT NULL,
   `ani_status` varchar(15) NOT NULL,
   `usu_id` int(11) NOT NULL,
   `ani_dt_hr` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
