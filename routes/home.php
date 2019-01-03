@@ -4,6 +4,10 @@ use \FindAPet\Page;
 use \FindAPet\Model\Usuario;
 use \FindAPet\Model\Animal;
 
+$app->get("/", function() use($app){
+	$app->redirect("/home/");
+});
+
 //ROTA PARA FAZER O LOGOUT DO USUÁRIO
 $app->get("/logout/", function(){
 	Usuario::logout();
@@ -20,7 +24,7 @@ $app->get('/home/', function(){
 	$page = new Page();
 
 	$page->setTpl("pages/header",array(
-		"nome" => $usuario->getusu_nome()
+		"nome" => $usuario->get_usu_nome()
 	));
 
   $page->setTpl("home");

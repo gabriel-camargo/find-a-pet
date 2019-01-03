@@ -4,6 +4,7 @@ namespace FindAPet\Model;
 
 use \FindAPet\DB\Sql;
 use \FindAPet\Model;
+use \FindAPet\Helper\MensagemHelper;
 
 class Usuario extends Model
 {
@@ -19,12 +20,17 @@ class Usuario extends Model
             ":SENHA" => $senha
         ));
 
-        if (count($results) === 0) throw new \Exception("Usuário inexistente ou senha inválida");
+        if (count($results) === 0){
+            MensagemHelper::setMensagemErro("Usuário inexistente ou senha inválida!");
+            return false;
+        } 
 
         $usuario = new Usuario();
         $usuario->setData($results[0]);
 
         $_SESSION[Usuario::SESSION] = $usuario->getValues();
+
+        return true;
     }
 
     public static function logout(){
@@ -96,9 +102,9 @@ class Usuario extends Model
         :EMAIL,
         :SENHA)",
         array(
-        ":NOME" => $this->getusu_nome(),
-        ":EMAIL" => $this->getusu_email(),
-        ":SENHA" => $this->getusu_senha()
+        ":NOME" => $this->get_usu_nome(),
+        ":EMAIL" => $this->get_usu_email(),
+        ":SENHA" => $this->get_usu_senha()
         ));
     }    
 

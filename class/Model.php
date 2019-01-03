@@ -8,15 +8,15 @@ class Model
 
     public function __call($name, $args)
     {
-        $method = substr($name, 0, 3);
-        $fieldName = substr($name, 3, strlen($name));
+        $method = substr($name, 0, 4);
+        $fieldName = substr($name, 4, strlen($name));
 
         switch ($method) {
-            case "get":
+            case "get_":
                 return (isset($this->values[$fieldName])) ? $this->values[$fieldName] : NULL;
                 break;
 
-            case "set":
+            case "set_":
                 $this->values[$fieldName] = $args[0];
                 break;
         }
@@ -26,7 +26,7 @@ class Model
     {
         foreach ($data as $key => $value) {
 			
-            $this->{"set".$key}($value);
+            $this->{"set_".$key}($value);
         }
     }
 

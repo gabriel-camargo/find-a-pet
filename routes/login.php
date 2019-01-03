@@ -2,14 +2,19 @@
 
 use \FindAPet\Page;
 use \FindAPet\Model\Usuario;
+use \FindAPet\Helper\MensagemHelper;
 
 // ROTA DA PAGINA DE LOGIN
 $app->get('/login/', function() {
 
 	Usuario::verifyLogout();
 
+	$erro = MensagemHelper::getMensagemErro();
+
 	$page = new Page();
-  	$page->setTpl("login");
+  	$page->setTpl("login", array(
+		"erro" => $erro
+	));
 	  
 });
 

@@ -14,8 +14,6 @@ body{
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
   background-color: #eaeaea;
   /* background: url("../img/bg.jpg"); */
   font-weight: bolder;
@@ -29,7 +27,6 @@ body{
 
 .login-form-signin, .cadastro-form-signup {
   width: 100%;
-  padding: 50px;
   margin: auto;
   background-color: rgba(250, 250, 250, 0.9);
 
