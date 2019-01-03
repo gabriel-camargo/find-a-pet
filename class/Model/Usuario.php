@@ -74,7 +74,28 @@ class Usuario extends Model
     {
 
         // SE AS SENHAS INFORMADAS FOREM DIFERENTES
-        if ($senha !== $senhaConfirm) throw new \Exception("Valores inválidos");       
+        if ($senha !== $senhaConfirm){
+            MensagemHelper::setMensagemErro("As senhas não correspondem!");
+            return false;
+        }
+        
+        // SE ALGUM DOS CAMPOS ESTÃO VAZIOS
+        if(
+            $nome === "" ||
+            $email === "" ||
+            $senha === "" ||
+            $senhaConfirm == ""
+        ){
+            MensagemHelper::setMensagemErro("Preencha todos os campos!");
+            return false;
+        }
+
+        //SE O EMAIL INFORMADO JA POSSUI UM CADASTRO
+        $results = Usuario::searchEmail($email);
+        if(count($results) > 0){
+            MensagemHelper::setMensagemErro("Este email já está cadastrado!");
+            return false;
+        }
 
         $usuario = new Usuario();
 
@@ -87,6 +108,21 @@ class Usuario extends Model
         $usuario->insert();
 
         Usuario::autenticar($email, $senha);
+
+        return true;
+    }
+
+    public static function searchEmail($email)
+    {
+        $sql = new Sql();
+
+        $results = $sql->select("SELECT *
+            from cad_usuarios
+            where usu_email = :EMAIL", array(
+                ":EMAIL" => $email
+        ));
+
+        return $results;
     }
 
     //Insere o usuário na tabela

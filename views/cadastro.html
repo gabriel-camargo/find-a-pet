@@ -30,8 +30,12 @@
             <input name="senhaConfirm" type="password" id="inputSenhaConfirm" class="cadastro form-control"
                 placeholder="Confirmar senha" required >
             
-            <button class="btn btn-lg btn-success btn-block login-btn-entrar" type="submit" >Cadastrar <i class="fa fa-user-plus"></i></button>
-            <br>
+            <button class="btn btn-lg btn-success btn-block login-btn-entrar m-1" type="submit" >Cadastrar <i class="fa fa-user-plus"></i></button>
+            {if="$erro != NULL"}
+                <div class="alert alert-danger mt-3" role="alert">
+                    {$erro}
+                </div>
+            {/if}
         </form>
 
         {include="pages/footer"}

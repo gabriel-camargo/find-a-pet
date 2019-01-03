@@ -34,21 +34,30 @@ $app->get('/cadastro/', function() {
 
 	Usuario::verifyLogout();
 
+	$erro = MensagemHelper::getMensagemErro();
+
 	$page = new Page();
-  	$page->setTpl("cadastro");
+  	$page->setTpl("cadastro", array(
+		"erro" => $erro
+	));
 });
 
 // ROTA DA PAGINA DE CADASTRO
 $app->post('/cadastro/', function() {
 
 	// RECUPERA OS VALORES DO FORMULARIO
-  	$nome = trim(isset($_POST['nome']) ? $_POST['nome'] : null);
-  	$email = trim(isset($_POST['email']) ? $_POST['email'] : null);
-	$senha = trim(isset($_POST['senha']) ? $_POST['senha'] : null);
-	$senhaConfirm = trim(isset($_POST['senhaConfirm']) ? $_POST['senhaConfirm'] : null);
+  	$nome = trim(isset($_POST['nome']) ? $_POST['nome'] : "");
+  	$email = trim(isset($_POST['email']) ? $_POST['email'] : "");
+	$senha = trim(isset($_POST['senha']) ? $_POST['senha'] : "");
+	$senhaConfirm = trim(isset($_POST['senhaConfirm']) ? $_POST['senhaConfirm'] : "");
 
-	Usuario::inserir($nome, $email, $senha, $senhaConfirm);
+	$cadastrou = Usuario::inserir($nome, $email, $senha, $senhaConfirm);
 
-	header("Location: /home/");
-	exit;
+	if ($cadastrou) {
+		header("Location: /home/");
+		exit;
+	} else {
+		header("Location: /cadastro/");
+		exit;
+	}	
 });
