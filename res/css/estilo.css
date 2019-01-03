@@ -2,6 +2,11 @@ html, body{
   font-family: 'Raleway', sans-serif;
   font-weight: lighter;
   height: 100vh;
+  background: url("/res/img/dust_scratches.png");
+}
+
+.navbar{
+  background-color: #ffffff;
 }
 
 /*---------------------------*/
@@ -45,9 +50,6 @@ html, body{
 /* -------- INDEX ---------- */
 /*---------------------------*/
 
-.publicacao-table td{
-  /* border: 1px solid black; */
-}
 
 .publicacao-td-foto{
   width: 25%;
