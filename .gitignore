@@ -1,5 +1,5 @@
 /vendor/
 /res/img/animal/
 /res/img/perfil/
-/views-cache/
+/views-cache/*
 composer.lock
