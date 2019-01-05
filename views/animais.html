@@ -1,25 +1,20 @@
-<style media="screen">
-  #myBtn {
-  position: fixed;
-  bottom: 30px;
-  right: 210px;
-  z-index: 9999;
-  border: none;
-  outline: none;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 1000px;
-  height: 60px;
-  width: 60px;
-}
+<!DOCTYPE html>
 
-#myBtn:hover {
-  background-color: #43A047;
-}
+<html lang="pt" dir="ltr">
 
-</style>
-<div class="container pt-2 text-center">
-  <h1>Animais</h1>
-  <button type="button"  class="bg-secundary" name="button" id="myBtn"></button>
-</div>
+    <head>
+        {include="pages/header"}
+    </head>
+
+    <body>
+        {include="pages/navbar"}
+
+        <div class="container pt-3">
+            <a role="button" href="/animais/create/" class="btn btn-success float-right text-white">
+                 Adicionar animal 
+            </a>
+        </div>
+
+        {include="pages/footer"}
+    </body>
+</html>

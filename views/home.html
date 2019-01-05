@@ -1,95 +1,60 @@
-<style media="screen">
-    div.col-3, div.col-9{
-        height: 90vh;
-    }
+<!DOCTYPE html>
 
-    div.sidebar{
-        height: 80vh;
-        border-radius: 8px;
-        /* border: none; */
-        font-size: 12pt;
-    }
-    div.sidebar a{
-        border: none;
-    }
+<html lang="pt" dir="ltr">
 
-    .publicacao-card{
-        height: 350px;
-        border-radius: 8px;
-    }
+    <head>
+        {include="pages/header"}
+        <style media="screen">    
 
-    .sidebar, .sidebar .bg-light, .publicacao-card{
-        background-color: #fefefe !important;
-    }
+            .sidebar, .sidebar .bg-light, .publicacao-card{
+            background-color: #fefefe !important;
+            }
 
-</style>
-<div class="container">
-    <div class="row">
-        <button class="btn btn-secundary btn-block mt-3 mx-3 d-md-none"> Filtrar </button>
+        </style>
+    </head>
 
-        <div class="col-3 p-3 d-none d-md-block">
+    <body>
+        {include="pages/navbar"}
 
-            <div class="sidebar bg-light">
 
-                {include="pages/sidebar"}
+        <div class="container">
+            <div class="row">
+                <button class="btn btn-secundary btn-block mt-3 mx-3 d-md-none"> Filtrar </button>
+
+                <div class="col-3 p-3 d-none d-md-block">
+
+                    <div class="sidebar bg-light">
+
+                        {include="pages/sidebar"}
+
+                    </div>
+                    <!-- sidebar -->
+                </div>
+                <!-- col-3 -->
+
+                <div class="col">
+                    <div class="row pt-3">
+
+                        <div class="col-lg-6 col-md-12 mb-3">
+                            <div class="card" style="width: inherit;">
+                                <img class="card-img-top" src="/res/img/perfil.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        Some quick example text to build on the card title and make up the bulk of the card's content.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>                
+
+                    </div>
+                    <!-- row publicacao -->
+                </div>
+                <!-- col-9 -->
 
             </div>
-            <!-- sidebar -->
+            <!-- row -->
         </div>
-        <!-- col-3 -->
-
-        <div class="col">
-            <div class="row pt-3">
-
-                <div class="col-lg-6 col-md-12 mb-3">
-                    <div class="card" style="width: inherit;">
-                        <img class="card-img-top" src="/find-a-pet/res/img/perfil.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <p class="card-text">
-                                Some quick example text to build on the card title and make up the bulk of the card's content.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-12 mb-3">
-                    <div class="publicacao-card">
-                        2
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-12 mb-3">
-                    <div class="publicacao-card">
-                        3
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-12 mb-3">
-                    <div class="publicacao-card">
-                        1
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-12 mb-3">
-                    <div class="publicacao-card">
-                        2
-                    </div>
-                </div>
-
-                <div class="col-lg-6 col-md-12 mb-3">
-                    <div class="publicacao-card">
-                        3
-                    </div>
-                </div>
-
-                
-
-            </div>
-            <!-- row publicacao -->
-        </div>
-        <!-- col-9 -->
-
-    </div>
-    <!-- row -->
-</div>
-<!-- container-fluid -->
+        <!-- container-fluid -->
+        {include="pages/footer"}
+    </body>
+</html>
