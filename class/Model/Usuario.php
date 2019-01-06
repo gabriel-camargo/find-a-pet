@@ -15,7 +15,7 @@ class Usuario extends Model
     {
         $sql = new Sql();
 
-        $results = $sql->select("SELECT * FROM cad_usuarios WHERE usu_email = :EMAIL AND usu_senha = :SENHA",array(
+        $results = $sql->select("SELECT * FROM tbl_usuarios WHERE usu_email = :EMAIL AND usu_senha = :SENHA",array(
             ":EMAIL" => $email,
             ":SENHA" => $senha
         ));
@@ -117,7 +117,7 @@ class Usuario extends Model
         $sql = new Sql();
 
         $results = $sql->select("SELECT *
-            from cad_usuarios
+            from tbl_usuarios
             where usu_email = :EMAIL", array(
                 ":EMAIL" => $email
         ));
@@ -129,7 +129,7 @@ class Usuario extends Model
     public function insert(){
         $sql = new Sql();
 
-        $results = $sql->query("INSERT INTO cad_usuarios(
+        $results = $sql->query("INSERT INTO tbl_usuarios(
         usu_nome,
         usu_email,
         usu_senha)
@@ -159,7 +159,7 @@ class Usuario extends Model
     public static function getList($usuario){
     $sql = new Sql();
 
-    return $sql->select("SELECT * FROM cad_usuarios WHERE usu_id <> :ID ORDER BY usu_id;", array(
+    return $sql->select("SELECT * FROM tbl_usuarios WHERE usu_id <> :ID ORDER BY usu_id;", array(
     ":ID" => $usuario
     ));
     }
@@ -172,7 +172,7 @@ class Usuario extends Model
 
     $sql = new Sql();
 
-    $sql->query("UPDATE cad_usuarios SET
+    $sql->query("UPDATE tbl_usuarios SET
     usu_foto = :FOTO
     WHERE usu_id = :ID",
     array(
@@ -186,7 +186,7 @@ class Usuario extends Model
 
     $sql = new Sql();
 
-    $sql->query("UPDATE cad_usuarios SET
+    $sql->query("UPDATE tbl_usuarios SET
     usu_nome = :NOME
     WHERE usu_id = :ID",
     array(
@@ -200,7 +200,7 @@ class Usuario extends Model
 
     $sql = new Sql();
 
-    $sql->query("UPDATE cad_usuarios SET
+    $sql->query("UPDATE tbl_usuarios SET
     usu_email = :EMAIL
     WHERE usu_id = :ID",
     array(
@@ -214,7 +214,7 @@ class Usuario extends Model
 
     $sql = new Sql();
 
-    $sql->query("UPDATE cad_usuarios SET
+    $sql->query("UPDATE tbl_usuarios SET
     usu_senha = :SENHA
     WHERE usu_id = :ID",
     array(
@@ -226,7 +226,7 @@ class Usuario extends Model
     public function delete(){
     $sql = new Sql();
 
-    $sql->query("DELETE FROM cad_usuarios WHERE usu_id = :ID", array(
+    $sql->query("DELETE FROM tbl_usuarios WHERE usu_id = :ID", array(
     ":ID" => $this->getIdUsuario()
     ));
 
