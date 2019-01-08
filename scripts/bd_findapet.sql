@@ -13,7 +13,6 @@
 
 
 -- Copiando estrutura do banco de dados para bd_findapet
-DROP DATABASE IF EXISTS `bd_findapet`;
 CREATE DATABASE IF NOT EXISTS `bd_findapet` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bd_findapet`;
 
@@ -41,8 +40,9 @@ CREATE TABLE IF NOT EXISTS `tbl_animais` (
   `ani_id` int(11) NOT NULL AUTO_INCREMENT,
   `ani_nome` varchar(45) NOT NULL,
   `ani_sexo` varchar(1) NOT NULL,
-  `ani_status` varchar(15) NOT NULL,
-  `ani_faixa_etaria` varchar(25) DEFAULT NULL,
+  `ani_status` tinyint(4) NOT NULL,
+  `ani_faixa_etaria` tinyint(4) NOT NULL,
+  `ani_porte` tinyint(11) NOT NULL,
   `ani_informacoes` mediumtext,
   `ani_dt_hr` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `usu_id` int(11) NOT NULL,
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `tbl_especies` (
   `esp_nome` varchar(45) NOT NULL,
   PRIMARY KEY (`esp_id`),
   UNIQUE KEY `esp_id_UNIQUE` (`esp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bd_findapet.tbl_usuarios
