@@ -21,7 +21,7 @@ class Usuario extends Model
         ));
 
         if (count($results) === 0){
-            MensagemHelper::setMensagemErro("Usuário inexistente ou senha inválida!");
+            MensagemHelper::setMensagem("Usuário inexistente ou senha inválida!");
             return false;
         } 
 
@@ -75,7 +75,7 @@ class Usuario extends Model
 
         // SE AS SENHAS INFORMADAS FOREM DIFERENTES
         if ($senha !== $senhaConfirm){
-            MensagemHelper::setMensagemErro("As senhas não correspondem!");
+            MensagemHelper::setMensagem("As senhas não correspondem!");
             return false;
         }
         
@@ -86,14 +86,14 @@ class Usuario extends Model
             $senha === "" ||
             $senhaConfirm == ""
         ){
-            MensagemHelper::setMensagemErro("Preencha todos os campos!");
+            MensagemHelper::setMensagem("Preencha todos os campos!");
             return false;
         }
 
         //SE O EMAIL INFORMADO JA POSSUI UM CADASTRO
         $results = Usuario::searchEmail($email);
         if(count($results) > 0){
-            MensagemHelper::setMensagemErro("Este email já está cadastrado!");
+            MensagemHelper::setMensagem("Este email já está cadastrado!");
             return false;
         }
 

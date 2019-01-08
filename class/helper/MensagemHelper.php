@@ -4,28 +4,28 @@ namespace FindAPet\Helper;
 
 class MensagemHelper
 {
-    const ERRO_SESSION = "Mensagem_Erro";
+    const MSG_SESSION = "Mensagem_Erro";
 
-    public static function setMensagemErro($msg)
+    public static function setMensagem($msg)
     {
-        $_SESSION[MensagemHelper::ERRO_SESSION] = $msg;
+        $_SESSION[MensagemHelper::MSG_SESSION] = $msg;
     }
 
-    public static function getMensagemErro()
+    public static function getMensagem()
     {
-        $msg = (isset($_SESSION[MensagemHelper::ERRO_SESSION]) &&
-            ($_SESSION[MensagemHelper::ERRO_SESSION])) ? 
-            $_SESSION[MensagemHelper::ERRO_SESSION] :
+        $msg = (isset($_SESSION[MensagemHelper::MSG_SESSION]) &&
+            ($_SESSION[MensagemHelper::MSG_SESSION])) ? 
+            $_SESSION[MensagemHelper::MSG_SESSION] :
             "";
 
-        MensagemHelper::limparMensagemErro();
+        MensagemHelper::limparMensagem();
 
         return $msg;
     }
 
-    public static function limparMensagemErro()
+    public static function limparMensagem()
     {
-        $_SESSION[MensagemHelper::ERRO_SESSION] = NULL;
+        $_SESSION[MensagemHelper::MSG_SESSION] = NULL;
     }
 
 }

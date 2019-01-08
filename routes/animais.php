@@ -4,6 +4,7 @@ use \FindAPet\Page;
 use \FindAPet\Model\Usuario;
 use \FindAPet\Model\Animal;
 use \FindAPet\Model\Especie;
+use \FindAPet\Helper\MensagemHelper;
 
 $app->get('/animais/', function(){	
 
@@ -12,8 +13,11 @@ $app->get('/animais/', function(){
 
 	$page = new Page();
 
+	$feedbackSuccess = MensagemHelper::getMensagem();
+
   	$page->setTpl("animais",array(
-		"nome" => $usuario->get_usu_nome()
+		"nome" => $usuario->get_usu_nome(),
+		"feedback_success" => $feedbackSuccess
 	));
 
 });
@@ -27,6 +31,9 @@ $app->get("/animais/create/", function(){
 	$porte = Animal::PORTE;
 	$status = Animal::STATUS_CADASTRO;
 
+	$erro = MensagemHelper::getMensagem();
+	$oldPost = Animal::getOldPost();
+
 	$page = new Page();
 
   	$page->setTpl("animais-create",array(
@@ -34,7 +41,9 @@ $app->get("/animais/create/", function(){
 		"especies" => $especies,
 		"faixa_etaria" => $faixaEtaria,
 		"porte" => $porte,
-		"status" => $status
+		"status" => $status,
+		"erro" => $erro,
+		"old_post" => $oldPost
 	));
 });
 
@@ -46,6 +55,10 @@ $app->post("/animais/create/", function(){
 	$_POST["usu_id"] = $usuario->get_usu_id();
 	
 	$cadastrou = Animal::inserir($_POST);
+
+	if(!$cadastrou){
+		header("Location: /animais/create");exit;
+	}
 
 	header("Location: /animais/");exit;
 });

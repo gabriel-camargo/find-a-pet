@@ -7,9 +7,14 @@
     </head>
 
     <body>
-        {include="pages/navbar"}
+        {include="pages/navbar"}        
 
         <div class="container pt-3">
+            {if="$feedback_success != NULL"}
+                <div class="alert alert-success mt-3" role="alert">
+                    {$feedback_success}
+                </div>
+            {/if}
             <a role="button" href="/animais/create/" class="btn btn-success float-right text-white">
                  Adicionar animal 
             </a>

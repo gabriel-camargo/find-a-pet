@@ -9,7 +9,7 @@ $app->get('/login/', function() {
 
 	Usuario::verifyLogout();
 
-	$erro = MensagemHelper::getMensagemErro();
+	$erro = MensagemHelper::getMensagem();
 
 	$page = new Page();
   	$page->setTpl("login", array(
@@ -34,7 +34,7 @@ $app->get('/cadastro/', function() {
 
 	Usuario::verifyLogout();
 
-	$erro = MensagemHelper::getMensagemErro();
+	$erro = MensagemHelper::getMensagem();
 
 	$page = new Page();
   	$page->setTpl("cadastro", array(

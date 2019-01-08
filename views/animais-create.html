@@ -4,6 +4,13 @@
 
     <head>
         {include="pages/header"}
+        <style>
+            .required{
+                color: #ff1744;
+                font-size: 20pt;
+                vertical-align: middle;
+            }
+        </style>
     </head>
 
     <body>
@@ -16,11 +23,20 @@
                 <div class="card-body px-4">
                     <form method="POST">
 
+                        {if="$erro != NULL"}
+                            <div class="alert alert-danger mt-3" role="alert">
+                                {$erro}
+                            </div>
+                        {/if}
+
                         <!-- INPUT DO NOME -->
                         <div class="form-row">
                             <div class="col form-group">
-                                <label for="inputNomeAnimal">Nome</label>
-                                <input name="ani_nome" type="text" class="form-control" id="inputNomeAnimal"
+                                <label for="inputNomeAnimal">Nome
+                                    <span class="required">*</span>
+                                </label>
+                                <input value='{if="$old_post != NULL"}{$old_post.ani_nome}{/if}'
+                                    name="ani_nome" type="text" class="form-control" id="inputNomeAnimal"
                                     placeholder="Insira o nome do animal" required>
                             </div>                                
                         </div>
@@ -32,7 +48,7 @@
 
                             <!-- INPUT DO SEXO -->
                             <div class="col-lg-4 md-12 form-group">
-                                    <label for=""> Sexo </label>
+                                    <label for=""> Sexo  <span class="required">*</span> </label>
                                     <br>
                                     <div class="custom-control custom-radio custom-control-inline mt-2">
                                         <input value="F" type="radio" id="ani_sexo_f" name="ani_sexo" class="custom-control-input">
@@ -46,9 +62,9 @@
 
                             <!-- INPUT DA ESPÉCIE -->
                             <div class="col-lg-8 md-12 form-group">
-                                    <label for="inputEspecieAnimal">Especie</label>
+                                    <label for="inputEspecieAnimal">Especie  <span class="required">*</span></label>
                                     <select name="esp_id" id="inputEspecieAnimal" class="custom-select">
-                                        <option selected> --- Selecione a espécie --- </option>                                        
+                                        <option selected value=""> --- Selecione a espécie --- </option>                                        
                                         {loop="$especies"}
                                             <option value="{$value.esp_id}">{$value.esp_nome}</option>
                                         {/loop}
@@ -63,9 +79,9 @@
 
                             <!-- INPUT DA FAIXA ETÁRIA -->
                             <div class="col-lg-4 md-12 form-group">
-                                    <label for="inputFaixaEtaria"> Faixa etária </label>
+                                    <label for="inputFaixaEtaria"> Faixa etária  <span class="required">*</span></label>
                                     <select name="ani_faixa_etaria" id="inputFaixaEtaria" class="custom-select">
-                                        <option selected> --- Selecione a faixa etária --- </option>
+                                        <option selected value=""> --- Selecione a faixa etária --- </option>
                                         {loop="$faixa_etaria"}
                                             <option value="{$key}">{$value}</option>
                                         {/loop}
@@ -74,9 +90,9 @@
 
                              <!-- INPUT DO PORTE -->
                              <div class="col-lg-4 md-12 form-group">
-                                    <label for="inputPorteAnimal">Porte</label>
+                                    <label for="inputPorteAnimal">Porte  <span class="required">*</span></label>
                                     <select name="ani_porte" id="inputPorteAnimal" class="custom-select">
-                                        <option selected> --- Selecione o porte --- </option>
+                                        <option selected value=""> --- Selecione o porte --- </option>
                                         {loop="$porte"}
                                             <option value="{$key}">{$value}</option>
                                         {/loop}
@@ -85,9 +101,9 @@
 
                             <!-- INPUT DO STATUS -->
                             <div class="col-lg-4 md-12 form-group">
-                                    <label for="inputStatusAnimal">Status</label>
+                                    <label for="inputStatusAnimal">Status  <span class="required">*</span></label>
                                     <select name="ani_status" id="inputStatusAnimal" class="custom-select">
-                                        <option selected> --- Selecione o status --- </option>
+                                        <option selected value=""> --- Selecione o status --- </option>
                                         {loop="$status"}
                                             <option value="{$key}">{$value}</option>
                                         {/loop}
@@ -105,7 +121,17 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-success px-4"> Salvar</button>
+                        <div class="row">
+                            <div class="col">
+                                    <button type="submit" class="btn btn-success px-4"> Salvar</button>
+                            </div>
+                            <div class="col text-right">
+                                <span style="color: #ff1744">
+                                     <span class="required">*</span> Campos obrigatórios 
+                                </span>
+                            </div>
+                        </div>
+                        
                     </form>
 
                 </div>
