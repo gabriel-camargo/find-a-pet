@@ -1,0 +1,9 @@
+{
+    "name": "find-a-pet",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "croppie": ">=2.6.2",
+        "exif-js": "^2.3.0"
+    }
+}

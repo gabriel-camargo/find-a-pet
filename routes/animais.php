@@ -62,3 +62,14 @@ $app->post("/animais/create/", function(){
 
 	header("Location: /animais/");exit;
 });
+
+$app->get("/animais/create/img/", function(){
+	Usuario::verifyLogin();
+	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+
+	$page = new Page();
+
+  	$page->setTpl("animais-create-img", array(
+		"nome" => $usuario->get_usu_nome(),
+	));
+});

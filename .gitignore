@@ -3,3 +3,5 @@
 /res/img/perfil/
 /views-cache/*
 composer.lock
+/package-lock.json
+/node_modules/
