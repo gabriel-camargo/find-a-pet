@@ -70,7 +70,7 @@ $image_crop = $('#image_demo').croppie({
    viewport: {
      width:200,
      height:200,
-     type:'square' //circle
+     type:'square'
    },
    boundary:{
      width:300,
@@ -97,7 +97,7 @@ $image_crop = $('#image_demo').croppie({
      size: 'viewport'
    }).then(function(response){
      $.ajax({
-       url:"upload.php",
+       url:"/animal/save-img/",
        type: "POST",
        data:{"image": response},
        success:function(data)

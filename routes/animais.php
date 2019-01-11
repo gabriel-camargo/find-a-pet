@@ -73,3 +73,9 @@ $app->get("/animais/create/img/", function(){
 		"nome" => $usuario->get_usu_nome(),
 	));
 });
+
+$app->post("/animal/save-img/", function(){
+	Animal::savePhoto($_POST["image"]);
+	// echo "Imagem salva!";
+	var_dump($_SERVER['DOCUMENT_ROOT']);
+});
