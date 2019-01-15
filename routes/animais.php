@@ -52,15 +52,16 @@ $app->post("/animais/create/", function(){
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
-	$_POST["usu_id"] = $usuario->get_usu_id();
+	$_POST["animal"]["usu_id"] = $usuario->get_usu_id();
+	var_dump ($_POST["animal"]);exit;
 	
-	$cadastrou = Animal::inserir($_POST);
+	// $cadastrou = Animal::inserir($_POST);
 
-	if(!$cadastrou){
-		header("Location: /animais/create");exit;
-	}
+	// if(!$cadastrou){
+	// 	header("Location: /animais/create");exit;
+	// }
 
-	header("Location: /animais/");exit;
+	// header("Location: /animais/");exit;
 });
 
 $app->get("/animais/create/img/", function(){
