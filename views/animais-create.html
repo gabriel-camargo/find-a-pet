@@ -22,7 +22,7 @@
                 <h5 class="card-header bg-success text-white">Adicionar animal</h5>
 
                 <div class="card-body px-4">
-                    <form method="POST">
+                    <form method="POST" onsubmit="createAnimal(event)">
 
                         {if="$erro != NULL"}
                             <div class="alert alert-danger mt-3" role="alert">
@@ -41,7 +41,7 @@
                                 <div class="px-3 my-2">
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" name="upload_image"
-                                            id="upload_image" accept="image/*" />
+                                            accept="image/*" onchange="loadImage(this)"/>
 
                                         <label class="custom-file-label" for="customFile">
                                             Escolher foto
@@ -144,7 +144,7 @@
 
                         <div class="row">
                             <div class="col">
-                                    <button id="submit-create-animal" type="submit" class="btn btn-success px-4"> Salvar</button>
+                                    <button type="submit" class="btn btn-success px-4"> Salvar</button>
                             </div>
                             <div class="col text-right">
                                 <span style="color: #ff1744">
@@ -178,48 +178,55 @@
                     }
                 });
 
-                $('#upload_image').on('change', function(){
-                    var reader = new FileReader();
-                    reader.onload = (event) => {
-                        $image_crop.croppie('bind', {
-                            url: event.target.result
-                        });
-                    }
-                    reader.readAsDataURL(this.files[0]);
-                });
+            }); 
+            
+            function loadImage(input) {
+                var reader = new FileReader();
 
-                $('#submit-create-animal').click( (event) => {
+                reader.onload = (event) => {
+                    $image_crop.croppie('bind', {
+                        url: event.target.result
+                    });
+                }
 
-                    event.preventDefault();
+                reader.readAsDataURL(input.files[0]);
+            }
 
-                    $image_crop.croppie('result', {
-                        type: 'canvas',
-                        size: 'viewport'
-                    }).then( (response) => {
+            function createAnimal(event){
+                event.preventDefault();
 
-                        let newAnimal = {
-                            "ani_nome": $("#inputNomeAnimal").val(),
-                            "ani_sexo": $('input[name="ani_sexo"]:checked').val(),
-                            "ani_status":$("#inputStatusAnimal").val(),
-                            "ani_faixa_etaria":$("#inputFaixaEtaria").val(),
-                            "ani_porte":$("#inputPorteAnimal").val(),
-                            "ani_informacoes":$("#inputInformacoesAnimal").val(),
-                            "esp_id":$("#inputEspecieAnimal").val()
-                        };
+                $image_crop.croppie('result', {
+                    type: 'canvas',
+                    size: 'viewport'
+                }).then( (response) => {
 
-                        $.ajax({
-                            url:"/animais/create/",
-                            type: "POST",
-                            data:{"image": response, "animal": newAnimal},
-                            success: (data) => {
-                                console.log("success"); 
-                                console.log(data);
-                                                               
-                            }
-                        });
-                    })
-                });
-            });  
+                    let newAnimal = {
+                        "ani_nome": $("#inputNomeAnimal").val(),
+                        "ani_sexo": $('input[name="ani_sexo"]:checked').val(),
+                        "ani_status":$("#inputStatusAnimal").val(),
+                        "ani_faixa_etaria":$("#inputFaixaEtaria").val(),
+                        "ani_porte":$("#inputPorteAnimal").val(),
+                        "ani_informacoes":$("#inputInformacoesAnimal").val(),
+                        "esp_id":$("#inputEspecieAnimal").val()
+                    };
+
+                    $.ajax({
+                        url:"/animais/create/",
+                        type: "POST",
+                        data:{"image": response, "animal": newAnimal},
+                        success: (data) => {
+                            console.log("success"); 
+                            console.log(data);
+                                                            
+                        },
+                        error: (error) => {
+                            $(window).scrollTop(0);
+                            location.reload();
+                            
+                        }
+                    });
+                })
+            }
         </script>
     </body>
 </html>

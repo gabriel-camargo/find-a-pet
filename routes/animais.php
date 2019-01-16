@@ -53,15 +53,14 @@ $app->post("/animais/create/", function(){
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
 	$_POST["animal"]["usu_id"] = $usuario->get_usu_id();
-	var_dump ($_POST["animal"]);exit;
-	
-	// $cadastrou = Animal::inserir($_POST);
 
-	// if(!$cadastrou){
-	// 	header("Location: /animais/create");exit;
-	// }
+	$return = Animal::inserir($_POST['animal']);
 
-	// header("Location: /animais/");exit;
+	if(!$return['cadastrou']){
+		throw new \Exception('Campos obrigatórios vazios!');
+	}
+
+	Animal::savePhoto($_POST["image"], $return['lastId']);
 });
 
 $app->get("/animais/create/img/", function(){

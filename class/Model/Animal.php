@@ -48,7 +48,8 @@ class Animal extends Model
         ) {
             Animal::setOldPost($data);
             MensagemHelper::setMensagem("Preencha todos os campos obrigatórios!");
-            return false;
+            $return['cadastrou'] = false;
+            return $return;
         }
         $data["ani_nome"] = utf8_decode($data["ani_nome"]);    
         $data["ani_informacoes"] = trim(utf8_decode($data["ani_informacoes"]));       
@@ -59,9 +60,22 @@ class Animal extends Model
 
         $animal->insert();
 
+        $return['cadastrou'] = true;
+        $return['lastId'] = Animal::getLastId();
+        
+
         MensagemHelper::setMensagem("Animal cadastrado com sucesso!");
 
-        return true;
+        return $return;
+    }
+
+    public static function getLastId()
+    {
+        $sql = new Sql();
+
+        $results = $sql->select("SELECT max(ani_id) as id FROM tbl_animais");
+
+        return $results[0]['id'];
     }
 
     public function insert()
@@ -121,9 +135,9 @@ class Animal extends Model
         $_SESSION[Animal::SESSION_OLD_POST] = NULL;
     }
 
-    public static function savePhoto($base64Image)
+    public static function savePhoto($base64Image, $imageName)
     {
-        $fileName =  'test.png';
+        $fileName =  $imageName.".png";
 
         $base64Image = trim($base64Image);
         $base64Image = str_replace('data:image/png;base64,', '', $base64Image);
