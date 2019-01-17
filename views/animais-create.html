@@ -22,13 +22,9 @@
                 <h5 class="card-header bg-success text-white">Adicionar animal</h5>
 
                 <div class="card-body px-4">
-                    <form method="POST" onsubmit="createAnimal(event)">
+                    <form method="POST" onsubmit="createAnimal(event)" id="form-create-animal">
 
-                        {if="$erro != NULL"}
-                            <div class="alert alert-danger mt-3" role="alert">
-                                {$erro}
-                            </div>
-                        {/if}
+                        <p id="div-alert-erro"></p>
 
                         <!-- LINHA DO NOME E DA FOTO -->
                         <div class="form-row">
@@ -40,7 +36,7 @@
                                 <!-- INPUT -->
                                 <div class="px-3 my-2">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="upload_image"
+                                        <input id="inputFotoAnimal" type="file" class="custom-file-input" name="upload_image"
                                             accept="image/*" onchange="loadImage(this)"/>
 
                                         <label class="custom-file-label" for="customFile">
@@ -59,8 +55,7 @@
                                     <label for="inputNomeAnimal">Nome
                                         <span class="required">*</span>
                                     </label>
-                                    <input value='{if="$old_post != NULL"}{$old_post.ani_nome}{/if}'
-                                        name="ani_nome" type="text" class="form-control" id="inputNomeAnimal"
+                                    <input name="ani_nome" type="text" class="form-control" id="inputNomeAnimal"
                                         placeholder="Insira o nome do animal" required>
                                 </div>
 
@@ -162,8 +157,10 @@
         {include="pages/footer"}
         <script src="/node_modules/exif-js/exif.js"></script>
         <script src="/node_modules/croppie/croppie.js"></script>
+        <script src="/res/js/model/Animal.js"></script>
         <script>
             $(document).ready(function(){
+                
 
                 $image_crop = $('#image_demo').croppie({
                     enableExif: true,
@@ -200,29 +197,34 @@
                     size: 'viewport'
                 }).then( (response) => {
 
-                    let newAnimal = {
-                        "ani_nome": $("#inputNomeAnimal").val(),
-                        "ani_sexo": $('input[name="ani_sexo"]:checked').val(),
-                        "ani_status":$("#inputStatusAnimal").val(),
-                        "ani_faixa_etaria":$("#inputFaixaEtaria").val(),
-                        "ani_porte":$("#inputPorteAnimal").val(),
-                        "ani_informacoes":$("#inputInformacoesAnimal").val(),
-                        "esp_id":$("#inputEspecieAnimal").val()
-                    };
+                    let newAnimal = new Animal(
+                        $("#inputNomeAnimal").val(),
+                        $('input[name="ani_sexo"]:checked').val(),
+                        $("#inputStatusAnimal").val(),
+                        $("#inputFaixaEtaria").val(),
+                        $("#inputPorteAnimal").val(),
+                        $("#inputInformacoesAnimal").val(),
+                        $("#inputEspecieAnimal").val()
+                    );
+
+                    if ($("#inputFotoAnimal").val() === "") {
+                        response = null;
+                    }
 
                     $.ajax({
                         url:"/animais/create/",
                         type: "POST",
                         data:{"image": response, "animal": newAnimal},
                         success: (data) => {
-                            console.log("success"); 
-                            console.log(data);
-                                                            
+                            window.location = "/animais/";                               
                         },
                         error: (error) => {
                             $(window).scrollTop(0);
-                            location.reload();
-                            
+                            $("#div-alert-erro p").remove();
+                            // location.reload(); 
+                            $("#div-alert-erro").append(`
+                                <p class="alert alert-danger"><strong> Erro! </strong> Você deve preencher todos os campos obrigatórios!</p>
+                            `); 
                         }
                     });
                 })
