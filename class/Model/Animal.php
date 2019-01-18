@@ -9,7 +9,6 @@ use \FindAPet\Helper\MensagemHelper;
 class Animal extends Model
 {
     const SESSION = "Animal";
-    // const SESSION_OLD_POST = "Animal_Old_Post";
 
     const FAIXA_ETARIA = array(
         "1" => "Filhote",
@@ -44,20 +43,17 @@ class Animal extends Model
             ||
             $data["esp_id"] == ""
             ||
-            !isset($data["ani_sexo"])
+            $data["ani_sexo"] == ""
         ) {
-            // Animal::setOldPost($data);
-            // MensagemHelper::setMensagem("Preencha todos os campos obrigatórios!");
             $return['cadastrou'] = false;
             return $return;
         }
+
         $data["ani_nome"] = utf8_decode($data["ani_nome"]);    
         $data["ani_informacoes"] = trim(utf8_decode($data["ani_informacoes"]));       
 
         $animal = new Animal();
-
         $animal->setData($data);
-
         $animal->insert();
 
         $return['cadastrou'] = true;
@@ -113,27 +109,6 @@ class Animal extends Model
             ":ESP" => $this->get_esp_id()
         ));
     }
-
-    // public static function setOldPost($data)
-    // {
-    //     $_SESSION[Animal::SESSION_OLD_POST] = $data;
-    // }
-
-    // public static function getOldPost()
-    // {
-    //     $data = (isset($_SESSION[Animal::SESSION_OLD_POST]) &&
-    //         ($_SESSION[Animal::SESSION_OLD_POST])) ? 
-    //         $_SESSION[Animal::SESSION_OLD_POST] :
-    //         "";
-        
-    //     Animal::limparOldPost();
-    //     return $data;
-    // }
-
-    // public static function limparOldPost()
-    // {
-    //     $_SESSION[Animal::SESSION_OLD_POST] = NULL;
-    // }
 
     public static function savePhoto($base64Image, $imageName)
     {

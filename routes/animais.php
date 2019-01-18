@@ -31,9 +31,6 @@ $app->get("/animais/create/", function(){
 	$porte = Animal::PORTE;
 	$status = Animal::STATUS_CADASTRO;
 
-	// $erro = MensagemHelper::getMensagem();
-	// $oldPost = Animal::getOldPost();
-
 	$page = new Page();
 
   	$page->setTpl("animais-create",array(
@@ -42,8 +39,6 @@ $app->get("/animais/create/", function(){
 		"faixa_etaria" => $faixaEtaria,
 		"porte" => $porte,
 		"status" => $status
-		// "erro" => $erro,
-		// "old_post" => $oldPost
 	));
 });
 
@@ -56,10 +51,8 @@ $app->post("/animais/create/", function(){
 
 	$return = Animal::inserir($_POST['animal']);
 
-	if(!$return['cadastrou']){
-		throw new \Exception('Campos obrigatórios vazios!');
-	}
+	if(!$return['cadastrou']) throw new \Exception('Campos obrigatórios vazios!');	
 
 	if($_POST['image'] != NULL)Animal::savePhoto($_POST["image"], $return['lastId']);
-	var_dump($_POST['image']);exit;
+
 });
