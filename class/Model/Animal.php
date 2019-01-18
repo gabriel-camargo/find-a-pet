@@ -127,7 +127,6 @@ class Animal extends Model
             "res" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .
             "animal" . DIRECTORY_SEPARATOR . $fileName;
 
-
         file_put_contents($filePath, $imageData);
     }
 

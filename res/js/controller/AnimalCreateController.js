@@ -7,14 +7,14 @@ class AnimalCreateController{
         this._inputPorte = $("#inputPorteAnimal");
         this._inputInformacoes = $("#inputInformacoesAnimal");
         this._inputEspecie = $("#inputEspecieAnimal");
+        this._inputFoto = $("#inputFotoAnimal");
 
         this._croppieImage = this.cropImage();
     }
 
     cropImage(){
-        let image;
 
-        image = $('#image_demo').croppie({
+        return $('#image_demo').croppie({
             enableExif: true,
             viewport: {
                 width:200,
@@ -26,12 +26,11 @@ class AnimalCreateController{
                 height:250
             }
         });
-
-        return image;
+        
     }
 
     loadImage(input){
-        var reader = new FileReader();
+        let reader = new FileReader();
 
         reader.onload = (event) => {
             this._croppieImage.croppie('bind', {
@@ -50,19 +49,9 @@ class AnimalCreateController{
             size: 'viewport'
         }).then( (response) => {
 
-            let newAnimal = new Animal(
-                this._inputNome.val(),
-                $('input[name="ani_sexo"]:checked').val(),
-                this._inputStatus.val(),
-                this._inputFaixaEtaria.val(),
-                this._inputPorte.val(),
-                this._inputInformacoes.val(),
-                this._inputEspecie.val()
-            );            
+            let newAnimal = this.newAnimal();         
 
-            if ($("#inputFotoAnimal").val() === "") {
-                response = null;
-            }
+            if (this._inputFoto.val() === "") response = null;            
 
             $.ajax({
                 url:"/animais/create/",
@@ -85,16 +74,14 @@ class AnimalCreateController{
     }
 
     newAnimal(){
-        let animal = new Animal(
-            this._inputNome,
-            this._inputSexo,
-            this._inputStatus,
-            this._inputFaixaEtaria,
-            this._inputPorte,
-            this._inputInformacoes,
-            this._inputEspecie
-        );
-
-        return animal;
+        return new Animal(
+            this._inputNome.val(),
+            $('input[name="ani_sexo"]:checked').val(),
+            this._inputStatus.val(),
+            this._inputFaixaEtaria.val(),
+            this._inputPorte.val(),
+            this._inputInformacoes.val(),
+            this._inputEspecie.val()
+        );  
     }
 }
