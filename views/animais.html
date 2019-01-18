@@ -4,6 +4,44 @@
 
     <head>
         {include="pages/header"}
+        <style>
+            .container-img{
+                position: relative;
+            }
+        .card-img-top{
+            display: block !important;
+        }
+
+        .overlay{
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: rgba(216,67,21,0.73);
+        }
+
+        .card:hover .overlay {
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .text {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        </style>
     </head>
 
     <body>
@@ -16,8 +54,33 @@
                 </div>
             {/if}
             <a role="button" href="/animais/create/" class="btn btn-success float-right text-white">
-                 Adicionar animal 
+                Adicionar animal 
             </a>
+            
+            <div class="row mt-5">
+                    <div class="col-xl-3 col-md-4 col-sm-6 col-xs-12 mb-3">
+                            <div class="card">
+                                <div class="container-img">
+                                        <img class="card-img-top" src="/res/img/animal/36.png" alt="Card image cap">
+                                        <div class="overlay">
+                                            <div class="text">Hello World</div>
+                                        </div>
+                                </div>
+                                
+                                <div class="card-body">
+                                    <h5 class="card-title">{Nome do animal}</h5>
+                                    <p class="card-text">{Especie, Sexo}</p>
+                                    <p class="card-text">{Porte}</p>
+                                    <p class="card-text">{Status}</p>
+                                    
+                                </div>
+                            </div>
+                        </div>  
+
+                        
+            </div>
+             
+            
         </div>
 
         {include="pages/footer"}
