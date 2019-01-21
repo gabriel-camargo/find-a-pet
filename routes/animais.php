@@ -15,9 +15,12 @@ $app->get('/animais/', function(){
 
 	$feedbackSuccess = MensagemHelper::getMensagem();
 
+	$animais = Animal::listByUser($usuario->get_usu_id());
+
   	$page->setTpl("animais",array(
 		"nome" => $usuario->get_usu_nome(),
-		"feedback_success" => $feedbackSuccess
+		"feedback_success" => $feedbackSuccess,
+		"animais" =>$animais
 	));
 
 });

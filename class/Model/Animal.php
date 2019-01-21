@@ -130,6 +130,27 @@ class Animal extends Model
         file_put_contents($filePath, $imageData);
     }
 
+    public static function listByUser($userId)
+    {
+        $return = array();
+        $sql = new Sql();
+
+        $results = $sql->select(
+            "SELECT t1.*, t2.esp_nome
+             FROM tbl_animais t1 
+             INNER JOIN tbl_especies t2 on (t1.esp_id = t2.esp_id)
+             WHERE t1.usu_id = :USER", array(
+            ":USER" => $userId
+        ));
+
+        foreach($results as $r){
+            $r = array_map("utf8_encode", $r);
+            array_push($return, $r);
+        }
+
+        return $return;
+    }
+
     //Carrega os animais que NÃO SÃO do usuario
     public static function pesquisarAnimais($usuario){
     $sql = new Sql();
