@@ -67,7 +67,7 @@
                 {loop="$animais"}
 
                 <div class="col-xl-3 col-md-4 col-sm-6 col-xs-12 mb-3">
-                    <div class="card">
+                    <div class="card" id="card-{$value.ani_id}" onclick="routeToUpdate(this)">
                         
                         <div class="container-img">
                                 <img class="card-img-top" src="/res/img/animal/{$value.ani_id}.png" alt="Card image cap">
@@ -123,5 +123,14 @@
         <!-- div.container -->
 
         {include="pages/footer"}
+
+        <script>
+
+            function routeToUpdate(element){                
+                let id = $(element).attr("id").split("-")[1];
+                window.location = "/animais/"+id;                
+            }
+            
+        </script>
     </body>
 </html>

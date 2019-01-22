@@ -59,3 +59,26 @@ $app->post("/animais/create/", function(){
 	if($_POST['image'] != NULL)Animal::savePhoto($_POST["image"], $return['lastId']);
 
 });
+
+$app->get("/animais/:id", function($id){
+
+	Usuario::verifyLogin();
+	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+
+	$animal = Animal::searchById($id);
+
+	// VERIFICAR SE IMAGEM EXISTE
+	$foto = (file_exists(
+			$_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
+			"res" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .
+			"animal" . DIRECTORY_SEPARATOR .  $id . ".png"
+		)) ? $animal['ani_id'] : "default" ;
+
+	$page = new Page();
+
+	$page->setTpl("animais-update", array(
+		"nome" => $usuario->get_usu_nome(),
+		"animal" => $animal,
+		"foto" => $foto
+	));
+});

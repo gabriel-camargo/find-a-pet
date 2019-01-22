@@ -27,6 +27,24 @@ class Animal extends Model
         "2"=> "Perdido"
     );
 
+    public static function searchById($id)
+    {
+        $sql = new Sql();
+
+        $results = $sql->select("SELECT * from tbl_animais where ani_id = :ID", array(
+            ":ID"=>$id
+        ));
+        
+        if (count($results) > 0) {
+            $results[0] = array_map("utf8_encode", $results[0]);
+            return $results[0];
+        }
+            
+        
+        throw new \Exception('Erro ao carregar animal!');
+        
+    }
+
     public static function inserir($data)
     {
         $data["ani_nome"] = trim($data["ani_nome"]);
