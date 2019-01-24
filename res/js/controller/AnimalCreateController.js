@@ -1,4 +1,4 @@
-class AnimalController{
+class AnimalCreateController{
 
     constructor(){
         this._inputNome = $("#inputNomeAnimal");

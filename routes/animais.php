@@ -67,6 +67,11 @@ $app->get("/animais/:id", function($id){
 
 	$animal = Animal::searchById($id);
 
+	$especies = Especie::listAll();
+	$faixaEtaria = Animal::FAIXA_ETARIA;
+	$porte = Animal::PORTE;
+	$status = Animal::STATUS_CADASTRO;
+
 	// VERIFICAR SE IMAGEM EXISTE
 	$foto = (file_exists(
 			$_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
@@ -79,6 +84,10 @@ $app->get("/animais/:id", function($id){
 	$page->setTpl("animais-update", array(
 		"nome" => $usuario->get_usu_nome(),
 		"animal" => $animal,
-		"foto" => $foto
+		"foto" => $foto,
+		"especies" => $especies,
+		"faixa_etaria" => $faixaEtaria,
+		"porte" => $porte,
+		"status" => $status
 	));
 });

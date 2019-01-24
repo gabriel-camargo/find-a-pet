@@ -11,6 +11,13 @@
                 font-size: 20pt;
                 vertical-align: middle;
             }
+
+            #imagem-animal{
+                background: url('/res/img/animal/{$foto}.png');
+                background-repeat: no-repeat;
+                min-height: 200px;
+                background-position: center;
+            }
         </style>
     </head>
 
@@ -19,13 +26,155 @@
 
         <div class="container my-3">
             <div class="card border-success">
-                <h5 class="card-header bg-success text-white">Adicionar animal</h5>
+                <h5 class="card-header bg-success text-white">Editar animal</h5>
 
                 <div class="card-body px-4">
                     
-                    {$animal.ani_nome}
-                    <br>
-                    {$foto}
+                    <form method="POST" onsubmit="animalCreateController.createAnimal(event)" id="form-create-animal">
+
+                        <p id="div-alert-erro"></p>
+
+                        <!-- LINHA DO NOME E DA FOTO -->
+                        <div class="form-row">
+
+                            <!-- INPUT DA FOTO  -->
+                            <div class="col-lg-4 col-md-12 form-group text-center mt-2">                                
+                               <div id="imagem-animal">
+                                </div>
+                                <button class="btn btn-success mt-1" style="width:200px">
+                                    Alterar foto
+                                </button>
+                            </div>
+                            <!-- ./ INPUT DA FOTO -->
+
+                            <!-- LINHA DO NOME, ESPECIE E STATUS -->
+                            <div class="col-lg-8 col-md-12 form-group">
+
+                                <!-- INPUT DO NOME  -->
+                                <div class="form-row mb-3 mt-1">
+                                    <label for="inputNomeAnimal">Nome
+                                        
+                                    </label>
+                                    <input name="ani_nome" type="text" class="form-control" id="inputNomeAnimal"
+                                        placeholder="Insira o nome do animal" value="{$animal.ani_nome}" required>
+                                </div>
+
+                                <!-- INPUT DA ESPECIE -->
+                                <div class="form-row mb-3">
+                                        <label for="inputEspecieAnimal">Especie  </label>
+                                        <select name="esp_id" id="inputEspecieAnimal" class="custom-select">                                     
+                                            {loop="$especies"}
+                                                {if="$value.esp_id == $animal.esp_id"}
+                                                    <option value="{$value.esp_id}" selected>{$value.esp_nome}</option>
+                                                {else}
+                                                    <option value="{$value.esp_id}">{$value.esp_nome}</option>
+                                                {/if}                                                
+                                            {/loop}
+                                        </select>
+                                </div>
+
+                                <!-- INPUT DO STATUS -->
+                                <div class="form-row">
+                                        <label for="inputStatusAnimal">Status  </label>
+                                        <select name="ani_status" id="inputStatusAnimal" class="custom-select">
+                                            {loop="$status"}
+                                                {if="$key == $animal.ani_status"}
+                                                    <option value="{$key}" selected>{$value}</option>
+                                                {else}
+                                                    <option value="{$key}">{$value}</option>
+                                                {/if} 
+                                            {/loop}
+                                        </select>
+                                </div>
+                            </div>
+                            <!-- ./LINHA DO NOME, ESPECIE E STATUS -->
+                        </div>
+                        <!-- ./FORM-ROW -->
+
+                        <!-- LINHA DA FAIXA ETÁRIA E SEXO -->
+                        <div class="form-row">
+
+                            <!-- INPUT DO SEXO -->
+                            <div class="col-lg-4 md-12 form-group">
+                                    <label for=""> Sexo   </label>
+                                    <br>
+                                    <div class="custom-control custom-radio custom-control-inline mt-2">
+
+                                            {if="$animal.ani_sexo == 'F'"}
+                                            <input checked="checked" value="F" type="radio" id="ani_sexo_f"
+                                            name="ani_sexo" class="custom-control-input">
+                                            {else}
+                                            <input value="F" type="radio" id="ani_sexo_f"
+                                            name="ani_sexo" class="custom-control-input">
+                                            {/if}
+
+                                        <label class="custom-control-label" for="ani_sexo_f">Fêmea</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+
+                                            {if="$animal.ani_sexo == 'M'"}
+                                            <input checked="checked" value="M" type="radio" id="ani_sexo_m" 
+                                            name="ani_sexo" class="custom-control-input">
+                                            {else}
+                                            <input value="M" type="radio" id="ani_sexo_m" 
+                                            name="ani_sexo" class="custom-control-input">
+                                            {/if}
+
+                                        
+                                        <label class="custom-control-label" for="ani_sexo_m">Macho</label>
+                                    </div>
+                            </div>
+
+                            <!-- INPUT DA FAIXA ETÁRIA -->
+                            <div class="col-lg-4 md-12 form-group">
+                                    <label for="inputFaixaEtaria"> Faixa etária  </label>
+                                    <select name="ani_faixa_etaria" id="inputFaixaEtaria" class="custom-select">
+                                        {loop="$faixa_etaria"}
+                                        {if="$key == $animal.ani_faixa_etaria"}
+                                            <option value="{$key}" selected>{$value}</option>
+                                        {else}
+                                            <option value="{$key}">{$value}</option>
+                                        {/if} 
+                                        {/loop}
+                                    </select>
+                            </div>
+
+                             <!-- INPUT DO PORTE -->
+                             <div class="col-lg-4 md-12 form-group">
+                                    <label for="inputPorteAnimal">Porte  </label>
+                                    <select name="ani_porte" id="inputPorteAnimal" class="custom-select">
+                                        {loop="$porte"}
+                                                {if="$key == $animal.ani_porte"}
+                                                    <option value="{$key}" selected>{$value}</option>
+                                                {else}
+                                                    <option value="{$key}">{$value}</option>
+                                                {/if} 
+                                                
+                                        {/loop}
+                                    </select>
+                            </div>                            
+
+                        </div>
+                        <!-- ./FORM-ROW -->
+
+                        <!-- INPUT DE OUTRAS INFORMAÇÕES -->
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label for="inputInformacoesAnimal"> Outras informações </label>
+                                <textarea name="ani_informacoes" class="form-control" id="inputInformacoesAnimal" rows="5"
+                                placeholder="Escreva um texto que informe para as pessoas sobre características sobre seu animal :)"
+                                >{$animal.ani_informacoes}</textarea>
+                                          
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                    <button type="submit" class="btn btn-success px-4"> Salvar</button>
+                            </div>
+                        </div>
+                        
+                    </form>
 
                 </div>
             </div>
