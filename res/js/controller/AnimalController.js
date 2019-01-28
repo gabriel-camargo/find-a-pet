@@ -1,6 +1,7 @@
-class AnimalCreateController{
+class AnimalController{
 
     constructor(){
+        this._inputId = $("#inputIdAnimal");
         this._inputNome = $("#inputNomeAnimal");
         this._inputStatus = $("#inputStatusAnimal");
         this._inputFaixaEtaria = $("#inputFaixaEtaria");
@@ -24,7 +25,8 @@ class AnimalCreateController{
             boundary:{
                 width:250,
                 height:250
-            }
+            },
+            
         });
         
     }
@@ -71,6 +73,29 @@ class AnimalCreateController{
                 }
             });
         })
+    }
+
+    savePhoto(ani_id){
+        this._croppieImage.croppie('result', {
+            type: 'canvas',
+            size: 'viewport'
+        }).then( (response) =>{
+            if (this._inputFoto.val() === "") response = null;
+
+            $.ajax({
+                url:"/animais/savePhoto/"+ani_id,
+                type: "POST",
+                data:{"image": response},
+                success: (data) => {
+                    window.location = "/animais/";                
+                },
+                error: (error) => {
+                    //recarregar tela 
+                }
+            });
+
+        });
+        
     }
 
     newAnimal(){

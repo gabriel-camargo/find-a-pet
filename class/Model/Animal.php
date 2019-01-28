@@ -83,6 +83,42 @@ class Animal extends Model
         return $return;
     }
 
+    public static function edit($data)
+    {
+        $data["ani_nome"] = trim($data["ani_nome"]);
+
+        //Condições para validar o cadastro
+        if (
+            $data["ani_nome"] == ""
+            ||
+            $data["ani_status"] == ""            
+            ||
+            $data["ani_faixa_etaria"] == ""
+            ||
+            $data["ani_porte"] == ""
+            ||
+            $data["esp_id"] == ""
+            ||
+            $data["ani_sexo"] == ""
+        ) {
+            MensagemHelper::setMensagem("Campos obrigatórios vazios!");
+            $return['cadastrou'] = false;
+            return $return;
+        }
+
+        $data["ani_nome"] = utf8_decode($data["ani_nome"]);    
+        $data["ani_informacoes"] = trim(utf8_decode($data["ani_informacoes"]));  
+        
+        $animal = new Animal();
+        $animal->setData($data);
+        $animal->update();
+
+        $return['cadastrou'] = true;
+
+        MensagemHelper::setMensagem("Animal atualizado com sucesso!");
+        return $return;
+    }
+
     public static function getLastId()
     {
         $sql = new Sql();
@@ -124,6 +160,30 @@ class Animal extends Model
             ":PORTE" => $this->get_ani_porte(),
             ":INFO" =>$this->get_ani_informacoes(),
             ":USU" => $this->get_usu_id(),
+            ":ESP" => $this->get_esp_id()
+        ));
+    }
+
+    public function update(){
+        $sql = new Sql();
+
+        $results = $sql->query("UPDATE tbl_animais SET 
+            ani_nome=:NOME,
+            ani_sexo=:SEXO,
+            ani_status=:ANI_STATUS, 
+            ani_faixa_etaria=:FAIXA_ETARIA,
+            ani_porte=:PORTE,
+            ani_informacoes=:INFO,
+            esp_id=:ESP
+            WHERE ani_id=:ID ",
+        array(
+            ":NOME" => $this->get_ani_nome(),
+            ":SEXO" => $this->get_ani_sexo(),
+            ":ANI_STATUS" => $this->get_ani_status(),
+            ":FAIXA_ETARIA" => $this->get_ani_faixa_etaria(),
+            ":PORTE" => $this->get_ani_porte(),
+            ":INFO" =>$this->get_ani_informacoes(),
+            ":ID" => $this->get_ani_id(),
             ":ESP" => $this->get_esp_id()
         ));
     }

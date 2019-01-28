@@ -67,6 +67,8 @@ $app->get("/animais/:id", function($id){
 
 	$animal = Animal::searchById($id);
 
+	$error = MensagemHelper::getMensagem();
+
 	$especies = Especie::listAll();
 	$faixaEtaria = Animal::FAIXA_ETARIA;
 	$porte = Animal::PORTE;
@@ -88,6 +90,32 @@ $app->get("/animais/:id", function($id){
 		"especies" => $especies,
 		"faixa_etaria" => $faixaEtaria,
 		"porte" => $porte,
-		"status" => $status
+		"status" => $status,
+		"error" => $error
 	));
+});
+
+$app->post("/animais/:id", function($id){
+
+	Usuario::verifyLogin();
+	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+
+	$return = Animal::edit($_POST);
+
+	if(!$return['cadastrou']) {
+		header("Location: /animais/$id");
+		exit;
+	}
+	header("Location: /animais");
+	exit;
+});
+
+$app->post("/animais/savePhoto/:id", function($id){
+	Animal::savePhoto($_POST["image"], $id);
+
+	MensagemHelper::setMensagem("Foto de animal atualizada com sucesso!");
+
+	header("Location: /animais");
+	exit;
+
 });

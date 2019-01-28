@@ -22,7 +22,7 @@
                 <h5 class="card-header bg-success text-white">Adicionar animal</h5>
 
                 <div class="card-body px-4">
-                    <form method="POST" onsubmit="animalCreateController.createAnimal(event)" id="form-create-animal">
+                    <form method="POST" onsubmit="animalController.createAnimal(event)" id="form-create-animal">
 
                         <p id="div-alert-erro"></p>
 
@@ -37,7 +37,7 @@
                                 <div class="px-3 my-2">
                                     <div class="custom-file">
                                         <input id="inputFotoAnimal" type="file" class="custom-file-input" name="upload_image"
-                                            accept="image/*" onchange="animalCreateController.loadImage(this)"/>
+                                            accept="image/*" onchange="animalController.loadImage(this)"/>
 
                                         <label class="custom-file-label" for="customFile">
                                             Escolher foto
@@ -159,10 +159,10 @@
         <script src="/node_modules/exif-js/exif.js"></script>
         <script src="/node_modules/croppie/croppie.js"></script>
         <script src="/res/js/model/Animal.js"></script>
-        <script src="/res/js/controller/AnimalCreateController.js"></script>
+        <script src="/res/js/controller/AnimalController.js"></script>
         <script>
 
-            let animalCreateController = new AnimalCreateController();
+            let animalController = new AnimalController();
 
         </script>
     </body>
