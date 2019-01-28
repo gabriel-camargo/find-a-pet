@@ -86,6 +86,7 @@ $app->get("/animais/:id", function($id){
 	$page->setTpl("animais-update", array(
 		"nome" => $usuario->get_usu_nome(),
 		"animal" => $animal,
+		"id" =>$animal['ani_id'],
 		"foto" => $foto,
 		"especies" => $especies,
 		"faixa_etaria" => $faixaEtaria,
