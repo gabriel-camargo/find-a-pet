@@ -16,45 +16,6 @@
 CREATE DATABASE IF NOT EXISTS `bd_findapet` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bd_findapet`;
 
--- Copiando estrutura para tabela bd_findapet.tbl_adocoes
-DROP TABLE IF EXISTS `tbl_adocoes`;
-CREATE TABLE IF NOT EXISTS `tbl_adocoes` (
-  `ado_id` int(11) NOT NULL AUTO_INCREMENT,
-  `ado_dt_hr` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `usu_doador_id` int(11) NOT NULL,
-  `usu_adotador_id` int(11) NOT NULL,
-  `ani_id` int(11) NOT NULL,
-  PRIMARY KEY (`ado_id`),
-  KEY `fk_adocoes_cad_usuarios1_idx` (`usu_doador_id`),
-  KEY `fk_adocoes_cad_usuarios2_idx` (`usu_adotador_id`),
-  KEY `fk_adocoes_cad_animais1_idx` (`ani_id`),
-  CONSTRAINT `fk_adocoes_cad_animais1` FOREIGN KEY (`ani_id`) REFERENCES `tbl_animais` (`ani_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_adocoes_cad_usuarios1` FOREIGN KEY (`usu_doador_id`) REFERENCES `tbl_usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_adocoes_cad_usuarios2` FOREIGN KEY (`usu_adotador_id`) REFERENCES `tbl_usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Exportação de dados foi desmarcado.
--- Copiando estrutura para tabela bd_findapet.tbl_animais
-DROP TABLE IF EXISTS `tbl_animais`;
-CREATE TABLE IF NOT EXISTS `tbl_animais` (
-  `ani_id` int(11) NOT NULL AUTO_INCREMENT,
-  `ani_nome` varchar(45) NOT NULL,
-  `ani_sexo` varchar(1) NOT NULL,
-  `ani_status` tinyint(4) NOT NULL,
-  `ani_faixa_etaria` tinyint(4) NOT NULL,
-  `ani_porte` tinyint(11) NOT NULL,
-  `ani_informacoes` mediumtext,
-  `ani_dt_hr` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `usu_id` int(11) NOT NULL,
-  `esp_id` int(11) NOT NULL,
-  PRIMARY KEY (`ani_id`),
-  UNIQUE KEY `ani_id_UNIQUE` (`ani_id`),
-  KEY `fk_cad_animais_cad_usuarios1_idx` (`usu_id`),
-  KEY `fk_esp_id` (`esp_id`),
-  CONSTRAINT `fk_cad_animais_cad_usuarios1` FOREIGN KEY (`usu_id`) REFERENCES `tbl_usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_esp_id` FOREIGN KEY (`esp_id`) REFERENCES `tbl_especies` (`esp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
-
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bd_findapet.tbl_especies
 DROP TABLE IF EXISTS `tbl_especies`;
@@ -106,6 +67,45 @@ CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
   PRIMARY KEY (`usu_id`),
   UNIQUE KEY `usu_id_UNIQUE` (`usu_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bd_findapet.tbl_animais
+DROP TABLE IF EXISTS `tbl_animais`;
+CREATE TABLE IF NOT EXISTS `tbl_animais` (
+  `ani_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ani_nome` varchar(45) NOT NULL,
+  `ani_sexo` varchar(1) NOT NULL,
+  `ani_status` tinyint(4) NOT NULL,
+  `ani_faixa_etaria` tinyint(4) NOT NULL,
+  `ani_porte` tinyint(11) NOT NULL,
+  `ani_informacoes` mediumtext,
+  `ani_dt_hr` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `usu_id` int(11) NOT NULL,
+  `esp_id` int(11) NOT NULL,
+  PRIMARY KEY (`ani_id`),
+  UNIQUE KEY `ani_id_UNIQUE` (`ani_id`),
+  KEY `fk_cad_animais_cad_usuarios1_idx` (`usu_id`),
+  KEY `fk_esp_id` (`esp_id`),
+  CONSTRAINT `fk_cad_animais_cad_usuarios1` FOREIGN KEY (`usu_id`) REFERENCES `tbl_usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_esp_id` FOREIGN KEY (`esp_id`) REFERENCES `tbl_especies` (`esp_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+
+-- Copiando estrutura para tabela bd_findapet.tbl_adocoes
+DROP TABLE IF EXISTS `tbl_adocoes`;
+CREATE TABLE IF NOT EXISTS `tbl_adocoes` (
+  `ado_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ado_dt_hr` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `usu_doador_id` int(11) NOT NULL,
+  `usu_adotador_id` int(11) NOT NULL,
+  `ani_id` int(11) NOT NULL,
+  PRIMARY KEY (`ado_id`),
+  KEY `fk_adocoes_cad_usuarios1_idx` (`usu_doador_id`),
+  KEY `fk_adocoes_cad_usuarios2_idx` (`usu_adotador_id`),
+  KEY `fk_adocoes_cad_animais1_idx` (`ani_id`),
+  CONSTRAINT `fk_adocoes_cad_animais1` FOREIGN KEY (`ani_id`) REFERENCES `tbl_animais` (`ani_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_adocoes_cad_usuarios1` FOREIGN KEY (`usu_doador_id`) REFERENCES `tbl_usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_adocoes_cad_usuarios2` FOREIGN KEY (`usu_adotador_id`) REFERENCES `tbl_usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
