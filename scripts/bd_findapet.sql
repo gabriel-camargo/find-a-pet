@@ -2,7 +2,7 @@
 -- Servidor:                     127.0.0.1
 -- Versão do servidor:           10.1.36-MariaDB - mariadb.org binary distribution
 -- OS do Servidor:               Win32
--- HeidiSQL Versão:              9.5.0.5196
+-- HeidiSQL Versão:              10.0.0.5460
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `tbl_animais` (
   KEY `fk_esp_id` (`esp_id`),
   CONSTRAINT `fk_cad_animais_cad_usuarios1` FOREIGN KEY (`usu_id`) REFERENCES `tbl_usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_esp_id` FOREIGN KEY (`esp_id`) REFERENCES `tbl_especies` (`esp_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bd_findapet.tbl_especies
@@ -66,6 +66,36 @@ CREATE TABLE IF NOT EXISTS `tbl_especies` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bd_findapet.tbl_faixa_etaria
+DROP TABLE IF EXISTS `tbl_faixa_etaria`;
+CREATE TABLE IF NOT EXISTS `tbl_faixa_etaria` (
+  `fai_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fai_nome` varchar(45) NOT NULL,
+  PRIMARY KEY (`fai_id`),
+  UNIQUE KEY `fai_id_UNIQUE` (`fai_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bd_findapet.tbl_porte
+DROP TABLE IF EXISTS `tbl_porte`;
+CREATE TABLE IF NOT EXISTS `tbl_porte` (
+  `por_id` int(11) NOT NULL AUTO_INCREMENT,
+  `por_nome` varchar(45) NOT NULL,
+  PRIMARY KEY (`por_id`),
+  UNIQUE KEY `por_id_UNIQUE` (`por_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
+-- Copiando estrutura para tabela bd_findapet.tbl_status
+DROP TABLE IF EXISTS `tbl_status`;
+CREATE TABLE IF NOT EXISTS `tbl_status` (
+  `sta_id` int(11) NOT NULL AUTO_INCREMENT,
+  `sta_nome` varchar(45) NOT NULL,
+  PRIMARY KEY (`sta_id`),
+  UNIQUE KEY `sta_id_UNIQUE` (`sta_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bd_findapet.tbl_usuarios
 DROP TABLE IF EXISTS `tbl_usuarios`;
 CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
@@ -75,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
   `usu_senha` varchar(255) NOT NULL,
   PRIMARY KEY (`usu_id`),
   UNIQUE KEY `usu_id_UNIQUE` (`usu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

@@ -10,23 +10,6 @@ class Animal extends Model
 {
     const SESSION = "Animal";
 
-    const FAIXA_ETARIA = array(
-        "1" => "Filhote",
-        "2" => "Comum",
-        "3" => "Velho"
-    );
-
-    const PORTE = array(
-        "1"=> "Pequeno",
-        "2"=> "Médio",
-        "3"=> "Grande"
-    );
-
-    const STATUS_CADASTRO = array(
-        "1"=> "Em adoção",
-        "2"=> "Perdido"
-    );
-
     public static function searchById($id)
     {
         $sql = new Sql();
@@ -38,8 +21,7 @@ class Animal extends Model
         if (count($results) > 0) {
             $results[0] = array_map("utf8_encode", $results[0]);
             return $results[0];
-        }
-            
+        }            
         
         throw new \Exception('Erro ao carregar animal!');
         
@@ -48,16 +30,18 @@ class Animal extends Model
     public static function inserir($data)
     {
         $data["ani_nome"] = trim($data["ani_nome"]);
+
+       
         
         //Condições para validar o cadastro
         if (
             $data["ani_nome"] == ""
             ||
-            $data["ani_status"] == ""            
+            $data["sta_id"] == ""            
             ||
-            $data["ani_faixa_etaria"] == ""
+            $data["fai_id"] == ""
             ||
-            $data["ani_porte"] == ""
+            $data["por_id"] == ""
             ||
             $data["esp_id"] == ""
             ||
@@ -91,11 +75,11 @@ class Animal extends Model
         if (
             $data["ani_nome"] == ""
             ||
-            $data["ani_status"] == ""            
+            $data["sta_id"] == ""            
             ||
-            $data["ani_faixa_etaria"] == ""
+            $data["fai_id"] == ""
             ||
-            $data["ani_porte"] == ""
+            $data["por_id"] == ""
             ||
             $data["esp_id"] == ""
             ||
@@ -135,9 +119,9 @@ class Animal extends Model
         $results = $sql->query("INSERT INTO tbl_animais(
             ani_nome,
             ani_sexo,
-            ani_status,
-            ani_faixa_etaria,
-            ani_porte,
+            sta_id,
+            fai_id,
+            por_id,
             ani_informacoes,
             usu_id,
             esp_id
@@ -155,9 +139,9 @@ class Animal extends Model
         array(
             ":NOME" => $this->get_ani_nome(),
             ":SEXO" => $this->get_ani_sexo(),
-            ":ANI_STATUS" => $this->get_ani_status(),
-            ":FAIXA_ETARIA" => $this->get_ani_faixa_etaria(),
-            ":PORTE" => $this->get_ani_porte(),
+            ":ANI_STATUS" => $this->get_sta_id(),
+            ":FAIXA_ETARIA" => $this->get_fai_id(),
+            ":PORTE" => $this->get_por_id(),
             ":INFO" =>$this->get_ani_informacoes(),
             ":USU" => $this->get_usu_id(),
             ":ESP" => $this->get_esp_id()
@@ -170,18 +154,18 @@ class Animal extends Model
         $results = $sql->query("UPDATE tbl_animais SET 
             ani_nome=:NOME,
             ani_sexo=:SEXO,
-            ani_status=:ANI_STATUS, 
-            ani_faixa_etaria=:FAIXA_ETARIA,
-            ani_porte=:PORTE,
+            sta_id=:ANI_STATUS, 
+            fai_id=:FAIXA_ETARIA,
+            por_id=:PORTE,
             ani_informacoes=:INFO,
             esp_id=:ESP
             WHERE ani_id=:ID ",
         array(
             ":NOME" => $this->get_ani_nome(),
             ":SEXO" => $this->get_ani_sexo(),
-            ":ANI_STATUS" => $this->get_ani_status(),
-            ":FAIXA_ETARIA" => $this->get_ani_faixa_etaria(),
-            ":PORTE" => $this->get_ani_porte(),
+            ":ANI_STATUS" => $this->get_sta_id(),
+            ":FAIXA_ETARIA" => $this->get_fai_id(),
+            ":PORTE" => $this->get_por_id(),
             ":INFO" =>$this->get_ani_informacoes(),
             ":ID" => $this->get_ani_id(),
             ":ESP" => $this->get_esp_id()

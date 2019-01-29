@@ -4,6 +4,9 @@ use \FindAPet\Page;
 use \FindAPet\Model\Usuario;
 use \FindAPet\Model\Animal;
 use \FindAPet\Model\Especie;
+use \FindAPet\Model\FaixaEtaria;
+use \FindAPet\Model\Status;
+use \FindAPet\Model\Porte;
 use \FindAPet\Helper\MensagemHelper;
 
 $app->get('/animais/', function(){	
@@ -29,10 +32,10 @@ $app->get("/animais/create/", function(){
     Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
-	$especies = Especie::listAll();
-	$faixaEtaria = Animal::FAIXA_ETARIA;
-	$porte = Animal::PORTE;
-	$status = Animal::STATUS_CADASTRO;
+	$especies = Especie::all();
+	$faixaEtaria = FaixaEtaria::all();
+	$porte = Porte::all();
+	$status = Status::find("cad");
 
 	$page = new Page();
 
@@ -69,10 +72,10 @@ $app->get("/animais/:id", function($id){
 
 	$error = MensagemHelper::getMensagem();
 
-	$especies = Especie::listAll();
-	$faixaEtaria = Animal::FAIXA_ETARIA;
-	$porte = Animal::PORTE;
-	$status = Animal::STATUS_CADASTRO;
+	$especies = Especie::all();
+	$faixaEtaria = FaixaEtaria::all();
+	$porte = Porte::all();
+	$status = Status::find("cad");
 
 	// VERIFICAR SE IMAGEM EXISTE
 	$foto = (file_exists(

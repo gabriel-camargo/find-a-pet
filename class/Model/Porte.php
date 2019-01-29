@@ -5,16 +5,16 @@ namespace FindAPet\Model;
 use \FindAPet\DB\Sql;
 use \FindAPet\Model;
 
-class Especie extends Model
+class Porte extends Model
 {
-    //Lista todas as espécies
+    //Lista todas os portes
     public static function all()
     {
         $return = array();
 
         $sql = new Sql();
 
-        $results = $sql->select("SELECT * FROM tbl_especies");
+        $results = $sql->select("SELECT * FROM tbl_portes");
 
         foreach($results as $r){
             $r = array_map("utf8_encode", $r);

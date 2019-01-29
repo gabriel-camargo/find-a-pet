@@ -73,10 +73,10 @@
                                 <!-- INPUT DO STATUS -->
                                 <div class="form-row mt-1">
                                         <label for="inputStatusAnimal">Status  <span class="required">*</span></label>
-                                        <select name="ani_status" id="inputStatusAnimal" class="custom-select">
+                                        <select name="sta_id" id="inputStatusAnimal" class="custom-select">
                                             <option selected value=""> --- Selecione o status --- </option>
                                             {loop="$status"}
-                                                <option value="{$key}">{$value}</option>
+                                                <option value="{$value.sta_id}">{$value.sta_nome}</option>
                                             {/loop}
                                         </select>
                                 </div>
@@ -105,10 +105,10 @@
                             <!-- INPUT DA FAIXA ETÁRIA -->
                             <div class="col-lg-4 md-12 form-group">
                                     <label for="inputFaixaEtaria"> Faixa etária  <span class="required">*</span></label>
-                                    <select name="ani_faixa_etaria" id="inputFaixaEtaria" class="custom-select">
+                                    <select name="fai_id" id="inputFaixaEtaria" class="custom-select">
                                         <option selected value=""> --- Selecione a faixa etária --- </option>
                                         {loop="$faixa_etaria"}
-                                            <option value="{$key}">{$value}</option>
+                                            <option value="{$value.fai_id}">{$value.fai_nome}</option>
                                         {/loop}
                                     </select>
                             </div>
@@ -116,10 +116,10 @@
                              <!-- INPUT DO PORTE -->
                              <div class="col-lg-4 md-12 form-group">
                                     <label for="inputPorteAnimal">Porte  <span class="required">*</span></label>
-                                    <select name="ani_porte" id="inputPorteAnimal" class="custom-select">
+                                    <select name="por_id" id="inputPorteAnimal" class="custom-select">
                                         <option selected value=""> --- Selecione o porte --- </option>
                                         {loop="$porte"}
-                                            <option value="{$key}">{$value}</option>
+                                            <option value="{$value.por_id}">{$value.por_nome}</option>
                                         {/loop}
                                     </select>
                             </div>                            

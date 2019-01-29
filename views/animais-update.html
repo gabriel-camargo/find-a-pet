@@ -119,12 +119,12 @@
                                 <!-- INPUT DO STATUS -->
                                 <div class="form-row">
                                         <label for="inputStatusAnimal">Status  </label>
-                                        <select name="ani_status" id="inputStatusAnimal" class="custom-select">
+                                        <select name="sta_id" id="inputStatusAnimal" class="custom-select">
                                             {loop="$status"}
-                                                {if="$key == $animal.ani_status"}
-                                                    <option value="{$key}" selected>{$value}</option>
+                                                {if="$value.sta_id == $animal.sta_id"}
+                                                    <option value="{$value.sta_id}" selected>{$value.sta_nome}</option>
                                                 {else}
-                                                    <option value="{$key}">{$value}</option>
+                                                    <option value="{$value.sta_id}">{$value.sta_nome}</option>
                                                 {/if} 
                                             {/loop}
                                         </select>
@@ -171,12 +171,12 @@
                             <!-- INPUT DA FAIXA ETÁRIA -->
                             <div class="col-lg-4 md-12 form-group">
                                     <label for="inputFaixaEtaria"> Faixa etária  </label>
-                                    <select name="ani_faixa_etaria" id="inputFaixaEtaria" class="custom-select">
+                                    <select name="fai_id" id="inputFaixaEtaria" class="custom-select">
                                         {loop="$faixa_etaria"}
-                                        {if="$key == $animal.ani_faixa_etaria"}
-                                            <option value="{$key}" selected>{$value}</option>
+                                        {if="$value.fai_id == $animal.fai_id"}
+                                            <option value="{$value.fai_id}" selected>{$value.fai_nome}</option>
                                         {else}
-                                            <option value="{$key}">{$value}</option>
+                                            <option value="{$value.fai_id}">{$value.fai_nome}</option>
                                         {/if} 
                                         {/loop}
                                     </select>
@@ -185,12 +185,12 @@
                              <!-- INPUT DO PORTE -->
                              <div class="col-lg-4 md-12 form-group">
                                     <label for="inputPorteAnimal">Porte  </label>
-                                    <select name="ani_porte" id="inputPorteAnimal" class="custom-select">
+                                    <select name="por_id" id="inputPorteAnimal" class="custom-select">
                                         {loop="$porte"}
-                                                {if="$key == $animal.ani_porte"}
-                                                    <option value="{$key}" selected>{$value}</option>
+                                                {if="$value.por_id == $animal.por_id"}
+                                                    <option value="{$value.por_id}" selected>{$value.por_nome}</option>
                                                 {else}
-                                                    <option value="{$key}">{$value}</option>
+                                                    <option value="{$value.por_id}">{$value.por_nome}</option>
                                                 {/if} 
                                                 
                                         {/loop}
