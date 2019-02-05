@@ -115,6 +115,10 @@ $app->post("/animais/:id", function($id){
 });
 
 $app->post("/animais/savePhoto/:id", function($id){
+
+	Usuario::verifyLogin();
+	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+
 	Animal::savePhoto($_POST["image"], $id);
 
 	MensagemHelper::setMensagem("Foto de animal atualizada com sucesso!");
@@ -122,4 +126,14 @@ $app->post("/animais/savePhoto/:id", function($id){
 	header("Location: /animais");
 	exit;
 
+});
+
+$app->get("/animais/delete/:id", function($id){
+
+	Usuario::verifyLogin();
+	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+
+	Animal::delete($id);
+
+	MensagemHelper::setMensagem("Animal excluído com sucesso!");	
 });

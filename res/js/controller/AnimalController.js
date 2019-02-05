@@ -109,4 +109,41 @@ class AnimalController{
             this._inputEspecie.val()
         );  
     }
+
+    excluir(id)
+    {
+        Swal.fire({
+            title: 'Tem certeza que deseja excluir este animal?',
+            text: "Esta ação não poderá ser revertida!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#888',
+            confirmButtonText: 'Excluir!',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url:"/animais/delete/"+id,
+                    type: "GET",
+                    success: (data) => {
+                        Swal.fire(
+                            'Pronto!',
+                            'O animal foi excluído com sucesso!',
+                            'success'
+                        ).then((result)=>{
+                            document.location.href = "/animais";
+                        });
+                    },
+                    error: (error) => {
+                        Swal.fire(
+                            'Erro!',
+                            'Não foi possível excluir este animal!',
+                            'error'
+                        );
+                    }
+                });
+            }
+          })
+    }
 }

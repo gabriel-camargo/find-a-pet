@@ -201,8 +201,10 @@ class Animal extends Model
             "SELECT t1.*, t2.esp_nome
              FROM tbl_animais t1 
              INNER JOIN tbl_especies t2 on (t1.esp_id = t2.esp_id)
-             WHERE t1.usu_id = :USER", array(
-            ":USER" => $userId
+             INNER JOIN tbl_status t3 on (t1.sta_id = t3.sta_id)
+             WHERE t1.usu_id = :USER AND t3.sta_tipo <> :TIPO", array(
+            ":USER" => $userId,
+            ":TIPO" => "del"
         ));
 
         foreach($results as $r){
@@ -211,6 +213,20 @@ class Animal extends Model
         }
 
         return $return;
+    }
+
+    public static function delete($id)
+    {
+        $sql = new Sql();
+
+        $sql->query(
+            "UPDATE tbl_animais
+            SET `sta_id` = 5
+            WHERE `ani_id` = :ID",
+            array(
+                ":ID" => $id
+            )
+        );
     }
 
     //Carrega os animais que NÃO SÃO do usuario
