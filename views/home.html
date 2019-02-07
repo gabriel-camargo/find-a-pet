@@ -4,13 +4,7 @@
 
     <head>
         {include="pages/header"}
-        <style media="screen">    
-
-            .sidebar, .sidebar .bg-light, .publicacao-card{
-            background-color: #fefefe !important;
-            }
-
-        </style>
+        <link rel="stylesheet" href="/res/css/sidebar.css">
     </head>
 
     <body>
@@ -35,16 +29,53 @@
                 <div class="col">
                     <div class="row pt-3">
 
-                        <div class="col-lg-6 col-md-12 mb-3">
-                            <div class="card" style="width: inherit;">
-                                <img class="card-img-top" src="/res/img/perfil.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <p class="card-text">
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                    </p>
+                        <!-- Início do loop -->
+                        <div class="col-xl-4 col-sm-6 col-xs-12 mb-3">
+
+                            <div class="card" id="card-id" onclick="abrirModal(this)">
+                        
+                                <div class="container-img">
+                                        <img class="card-img-top" src="#" alt="Card image cap">
+                                        <div class="overlay">
+                                            <div class="text">
+                                                Ver detalhes
+                                            </div>
+                                        </div>
                                 </div>
+                                <!-- div.container-img -->
+                                
+                                <div class="card-body">
+        
+                                    <h5 class="card-title">
+                                        <span class="font-weight-bold">Nome do Animal</span>,
+                                        <span class="font-italic">Espécie do animal</span>
+                                    </h5>
+                                    
+                                    <p class="card-text mb-2 font-weight-bold">
+                                        
+                                    </p> 
+        
+                                    <p class="card-text mb-2 font-weight-bold">
+                                        
+                                        <!-- If = F -->
+                                            <span style="color:#f06292">Fêmea</span> 
+                                        <!-- else -->
+                                        <span style="color:blue">Macho</span>
+                                        <!-- end if -->
+                                    </p>
+                                    
+                                    <p class="card-text">
+                                        <span class="font-weight-bold">Status:</span>
+                                        status
+                                    </p>
+                                    
+                                </div>
+                                <!-- div.card-body -->
                             </div>
-                        </div>                
+                            <!-- div.card -->
+
+                        </div>  
+                        <!-- Fim do loop -->
 
                     </div>
                     <!-- row publicacao -->
