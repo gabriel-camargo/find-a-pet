@@ -16,7 +16,7 @@
 }
 
 .item a:hover{
-    color: #43A047;
+    color: #f57c00;
     text-decoration: none;
 }
 
@@ -50,20 +50,20 @@
     max-height: 0;
 }
 
-.smenu a{
+.smenu .custom-checkbox{
     display: block;
-    padding: 16px 26px;
+    padding: 0px 30px;
     color: #333;
     font-size: 14px;
-    margin: 4px 0;
+    margin: 20px 20px;
     position: relative;
 }
 
-.smenu a:hover{
+.smenu .custom-checkbox:hover{
     color: #333;
 }
 
-.smenu a:before{
+/* .smenu .custom-checkbox:before{
     content: "";
     position: absolute;
     width: 6px;
@@ -73,9 +73,9 @@
     top: 0;
     transition: 0.3s;
     opacity: 0;
-}
+} */
 
-.smenu a:hover:before{
+.smenu .custom-checkbox:hover:before{
     opacity: 1;
 }
 

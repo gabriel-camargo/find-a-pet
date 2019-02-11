@@ -121,7 +121,8 @@ class AnimalController{
             cancelButtonColor: '#888',
             confirmButtonText: 'Excluir!',
             cancelButtonText: 'Cancelar'
-          }).then((result) => {
+        })
+        .then((result) => {
             if (result.value) {
                 $.ajax({
                     url:"/animais/delete/"+id,
@@ -144,6 +145,6 @@ class AnimalController{
                     }
                 });
             }
-          })
+        });
     }
 }

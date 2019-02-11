@@ -1,44 +1,91 @@
 <div class="menu">
+
+  <li class="item">
+    <a href="#" class="botao font-weight-bold text-center" style="color: #aaa;cursor:default">
+       Filtros
+    </a>
+  </li>
 	  
   <li class="item" id='especie'>
-    <a href="#especie" class="botao"><i class="far fa-user"></i>Espécie</a>
+    <a href="#especie" class="botao"><i class="fas fa-paw"></i>Espécie</a>
     <div class="smenu">
-      <a href="#">Cachorro</a>
-      <a href="#">Gato</a>
+      
+      {loop="$especies"}
+
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="especie-{$value.esp_id}">
+          <label class="custom-control-label" for="especie-{$value.esp_id}"> {$value.esp_nome} </label>
+        </div>
+
+      {/loop}     
+
     </div>
   </li>
   
   <li class="item" id="sexo">
-    <a href="#sexo" class="botao"><i class="fas fa-cog"></i>Sexo</a>
+    <a href="#sexo" class="botao"> <i class="fas fa-venus-mars"></i> Sexo</a>
     <div class="smenu">
-      <a href="#">Fêmea</a>
-      <a href="#">Macho</a>
+      
+        <!-- CHECKBOX FÊMEA -->
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="sexo-f">
+          <label class="custom-control-label" for="sexo-f"> Fêmea </label>
+        </div>
+
+        <!-- CHECKBOX MACHO -->
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="sexo-m">
+          <label class="custom-control-label" for="sexo-m"> Macho </label>
+        </div>
+
     </div>
   </li>
 
   <li class="item" id="status">
     <a href="#status" class="botao"><i class="fas fa-cog"></i>Status</a>
     <div class="smenu">
-      <a href="#">Em adoção</a>
-      <a href="#">Perdido</a>
+      
+      {loop="$status"}
+
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="status-{$value.sta_id}">
+          <label class="custom-control-label" for="status-{$value.sta_id}"> {$value.sta_nome} </label>
+        </div>
+
+      {/loop}   
+
     </div>
   </li>
 
   <li class="item" id="porte">
     <a href="#porte" class="botao"><i class="fas fa-cog"></i>Porte</a>
     <div class="smenu">
-      <a href="#">Pequeno</a>
-      <a href="#">Médio</a>
-      <a href="#">Grande</a>
+
+      {loop="$porte"}
+
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="porte-{$value.por_id}">
+          <label class="custom-control-label" for="porte-{$value.por_id}"> {$value.por_nome} </label>
+        </div>
+
+      {/loop}  
+
     </div>
   </li>
 
   <li class="item" id="faixa-etaria">
     <a href="#faixa-etaria" class="botao"><i class="far fa-envelope"></i>Faixa Etária</a>
     <div class="smenu">
-      <a href="#">Filhote</a>
-      <a href="#">Comum</a>
-      <a href="#">Velho</a>
+      
+      {loop="$faixaEtaria"}
+
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="faixa-{$value.fai_id}">
+          <label class="custom-control-label" for="faixa-{$value.fai_id}"> {$value.fai_nome} </label>
+        </div>
+
+      {/loop}  
+
     </div>
   </li>
 
