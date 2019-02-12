@@ -30,6 +30,9 @@ $app->get('/home/', function(){
 	$porte = Porte::all();
 	$faixaEtaria = FaixaEtaria::all();
 
+	//listar animais que não são do usuário, e que estão em adoção ou perdidos
+	$animais = Animal::list($usuario->get_usu_id());	
+
 	$page = new Page();
 
 	$page->setTpl("home",array(
@@ -37,6 +40,7 @@ $app->get('/home/', function(){
 		"especies" => $especies,
 		"status" => $status,
 		"porte" => $porte,
-		"faixaEtaria" => $faixaEtaria
+		"faixaEtaria" => $faixaEtaria,
+		"animais" => $animais
 	));
 });

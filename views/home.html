@@ -23,13 +23,13 @@
                 <div class="col">
                     <div class="row pt-3">
 
-                        <!-- Início do loop -->
+                        {loop="$animais"}
                         <div class="col-xl-4 col-sm-6 col-xs-12 mb-3">
 
                             <div class="card" id="card-id" onclick="abrirModal(this)">
                         
                                 <div class="container-img">
-                                        <img class="card-img-top" src="#" alt="Card image cap">
+                                        <img class="card-img-top" src="/res/img/animal/{$value.id}.png" alt="Card image cap">
                                         <div class="overlay">
                                             <div class="text">
                                                 Ver detalhes
@@ -41,8 +41,8 @@
                                 <div class="card-body">
         
                                     <h5 class="card-title">
-                                        <span class="font-weight-bold">Nome do Animal</span>,
-                                        <span class="font-italic">Espécie do animal</span>
+                                        <span class="font-weight-bold text-capitalize">{$value.nome}</span>,
+                                        {$value.status}
                                     </h5>
                                     
                                     <p class="card-text mb-2 font-weight-bold">
@@ -51,16 +51,16 @@
         
                                     <p class="card-text mb-2 font-weight-bold">
                                         
-                                        <!-- If = F -->
+                                        {if="$value.sexo=='F'"}
                                             <span style="color:#f06292">Fêmea</span> 
-                                        <!-- else -->
-                                        <span style="color:blue">Macho</span>
-                                        <!-- end if -->
+                                        {else}
+                                            <span style="color:blue">Macho</span>
+                                        {/if}
                                     </p>
                                     
                                     <p class="card-text">
-                                        <span class="font-weight-bold">Status:</span>
-                                        status
+                                        <span class="font-weight-bold">Porte:</span>
+                                        {$value.porte}
                                     </p>
                                     
                                 </div>
@@ -69,7 +69,7 @@
                             <!-- div.card -->
 
                         </div>  
-                        <!-- Fim do loop -->
+                        {/loop}
 
                     </div>
                     <!-- row publicacao -->
