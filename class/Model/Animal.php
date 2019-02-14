@@ -5,67 +5,57 @@ namespace FindAPet\Model;
 use \FindAPet\DB\Sql;
 use \FindAPet\Model;
 use \FindAPet\Helper\MensagemHelper;
+use \FindAPet\Dao\AnimalDao;
 
 class Animal extends Model
 {
     const SESSION = "Animal";
 
-    public static function searchById($id)
-    {
-        $sql = new Sql();
-
-        $results = $sql->select("SELECT * from tbl_animais where ani_id = :ID", array(
-            ":ID"=>$id
-        ));
-        
-        if (count($results) > 0) {
-            $results[0] = array_map("utf8_encode", $results[0]);
-            return $results[0];
-        }            
-        
-        throw new \Exception('Erro ao carregar animal!');
-        
-    }
-
-    public static function inserir($data)
-    {
-        $data["ani_nome"] = trim($data["ani_nome"]);
-
-       
-        
+    public function inserir()
+    {        
         //Condições para validar o cadastro
         if (
-            $data["ani_nome"] == ""
+            trim($this->get_ani_nome()) == ""
             ||
-            $data["sta_id"] == ""            
+            $this->get_sta_id() == ""            
             ||
-            $data["fai_id"] == ""
+            $this->get_fai_id() == ""
             ||
-            $data["por_id"] == ""
+            $this->get_por_id() == ""
             ||
-            $data["esp_id"] == ""
+            $this->get_esp_id() == ""
             ||
-            $data["ani_sexo"] == ""
+            $this->get_ani_sexo() == ""
         ) {
             $return['cadastrou'] = false;
             return $return;
         }
 
-        $data["ani_nome"] = utf8_decode($data["ani_nome"]);    
-        $data["ani_informacoes"] = trim(utf8_decode($data["ani_informacoes"]));       
+        $this->set_ani_nome( utf8_decode( $this->get_ani_nome() ));
+        $this->set_ani_informacoes( utf8_decode( $this->get_ani_informacoes() )); 
 
-        $animal = new Animal();
-        $animal->setData($data);
-        $animal->insert();
+        AnimalDao::create($this);
 
         $return['cadastrou'] = true;
-        $return['lastId'] = Animal::getLastId();
-        
+        $return['lastId'] = Animal::getLastId();        
 
         MensagemHelper::setMensagem("Animal cadastrado com sucesso!");
 
         return $return;
     }
+
+    public function loadById($id)
+    {
+        $results = AnimalDao::find($id);
+        
+        if (count($results) > 0) {
+            $results[0] = array_map("utf8_encode", $results[0]);
+
+            $this->setData($results[0]);
+        } else{
+            throw new \Exception('Erro ao carregar animal!');  
+        }              
+    }    
 
     public static function edit($data)
     {
@@ -110,42 +100,6 @@ class Animal extends Model
         $results = $sql->select("SELECT max(ani_id) as id FROM tbl_animais");
 
         return $results[0]['id'];
-    }
-
-    public function insert()
-    {
-        $sql = new Sql();
-
-        $results = $sql->query("INSERT INTO tbl_animais(
-            ani_nome,
-            ani_sexo,
-            sta_id,
-            fai_id,
-            por_id,
-            ani_informacoes,
-            usu_id,
-            esp_id
-        )
-        VALUES(
-            :NOME,
-            :SEXO,
-            :ANI_STATUS,
-            :FAIXA_ETARIA,
-            :PORTE,
-            :INFO,
-            :USU,
-            :ESP
-        )",
-        array(
-            ":NOME" => $this->get_ani_nome(),
-            ":SEXO" => $this->get_ani_sexo(),
-            ":ANI_STATUS" => $this->get_sta_id(),
-            ":FAIXA_ETARIA" => $this->get_fai_id(),
-            ":PORTE" => $this->get_por_id(),
-            ":INFO" =>$this->get_ani_informacoes(),
-            ":USU" => $this->get_usu_id(),
-            ":ESP" => $this->get_esp_id()
-        ));
     }
 
     public function update(){
@@ -256,18 +210,5 @@ class Animal extends Model
                 ":ID" => $id
             )
         );
-    }
-
-    //Carrega os animais que NÃO SÃO do usuario
-    public static function pesquisarAnimais($usuario){
-    $sql = new Sql();
-
-    return $sql->selectObj(
-    "SELECT * FROM cad_animais
-    WHERE (usu_id <> :SEARCH) AND (
-    (ani_status = 'adocao') OR (ani_status = 'perdido')
-    ) ORDER BY ani_id ", array(
-    ":SEARCH" => $usuario
-    ));
     }
 }

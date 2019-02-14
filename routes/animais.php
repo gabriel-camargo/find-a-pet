@@ -48,14 +48,17 @@ $app->get("/animais/create/", function(){
 	));
 });
 
-$app->post("/animais/create/", function(){
+$app->post("/animais/create/", function() {
 
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
-	$_POST["animal"]["usu_id"] = $usuario->get_usu_id();
+	$_POST["animal"]["usu_id"] = $usuario->get_usu_id();	
 
-	$return = Animal::inserir($_POST['animal']);
+	$animal = new Animal();
+    $animal->setData($_POST['animal']);
+
+	$return = $animal->inserir();
 
 	if(!$return['cadastrou']) throw new \Exception('Campos obrigatórios vazios!');	
 
@@ -68,7 +71,8 @@ $app->get("/animais/:id", function($id){
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
-	$animal = Animal::searchById($id);
+	$animal = new Animal();
+	$animal->loadById($id);
 
 	$error = MensagemHelper::getMensagem();
 
@@ -82,14 +86,14 @@ $app->get("/animais/:id", function($id){
 			$_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
 			"res" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .
 			"animal" . DIRECTORY_SEPARATOR .  $id . ".png"
-		)) ? $animal['ani_id'] : "default" ;
+		)) ? $animal->get_ani_id() : "default" ;
 
 	$page = new Page();
 
 	$page->setTpl("animais-update", array(
 		"nome" => $usuario->get_usu_nome(),
 		"animal" => $animal,
-		"id" =>$animal['ani_id'],
+		"id" =>$animal->get_ani_id(),
 		"foto" => $foto,
 		"especies" => $especies,
 		"faixa_etaria" => $faixaEtaria,

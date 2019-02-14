@@ -40,7 +40,7 @@
 
                         <p id="div-alert-erro"></p>
 
-                        <input value="{$animal.ani_id}" id="inputIdAnimal" type="hidden" name="ani_id">
+                        <input value="{$animal->get_ani_id()}" id="inputIdAnimal" type="hidden" name="ani_id">
 
                         <!-- LINHA DO NOME E DA FOTO -->
                         <div class="form-row">
@@ -99,7 +99,7 @@
                                         
                                     </label>
                                     <input name="ani_nome" type="text" class="form-control" id="inputNomeAnimal"
-                                        placeholder="Insira o nome do animal" value="{$animal.ani_nome}" required>
+                                        placeholder="Insira o nome do animal" value="{$animal->get_ani_nome()}" required>
                                 </div>
 
                                 <!-- INPUT DA ESPECIE -->
@@ -107,7 +107,7 @@
                                         <label for="inputEspecieAnimal">Especie  </label>
                                         <select name="esp_id" id="inputEspecieAnimal" class="custom-select">                                     
                                             {loop="$especies"}
-                                                {if="$value.esp_id == $animal.esp_id"}
+                                                {if="$value.esp_id == $animal->get_esp_id()"}
                                                     <option value="{$value.esp_id}" selected>{$value.esp_nome}</option>
                                                 {else}
                                                     <option value="{$value.esp_id}">{$value.esp_nome}</option>
@@ -121,7 +121,7 @@
                                         <label for="inputStatusAnimal">Status  </label>
                                         <select name="sta_id" id="inputStatusAnimal" class="custom-select">
                                             {loop="$status"}
-                                                {if="$value.sta_id == $animal.sta_id"}
+                                                {if="$value.sta_id == $animal->get_sta_id()"}
                                                     <option value="{$value.sta_id}" selected>{$value.sta_nome}</option>
                                                 {else}
                                                     <option value="{$value.sta_id}">{$value.sta_nome}</option>
@@ -143,7 +143,7 @@
                                     <br>
                                     <div class="custom-control custom-radio custom-control-inline mt-2">
 
-                                            {if="$animal.ani_sexo == 'F'"}
+                                            {if="$animal->get_ani_sexo() == 'F'"}
                                             <input checked="checked" value="F" type="radio" id="ani_sexo_f"
                                             name="ani_sexo" class="custom-control-input">
                                             {else}
@@ -155,7 +155,7 @@
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
 
-                                            {if="$animal.ani_sexo == 'M'"}
+                                            {if="$animal->get_ani_sexo() == 'M'"}
                                             <input checked="checked" value="M" type="radio" id="ani_sexo_m" 
                                             name="ani_sexo" class="custom-control-input">
                                             {else}
@@ -173,7 +173,7 @@
                                     <label for="inputFaixaEtaria"> Faixa etária  </label>
                                     <select name="fai_id" id="inputFaixaEtaria" class="custom-select">
                                         {loop="$faixa_etaria"}
-                                        {if="$value.fai_id == $animal.fai_id"}
+                                        {if="$value.fai_id == $animal->get_fai_id()"}
                                             <option value="{$value.fai_id}" selected>{$value.fai_nome}</option>
                                         {else}
                                             <option value="{$value.fai_id}">{$value.fai_nome}</option>
@@ -187,7 +187,7 @@
                                     <label for="inputPorteAnimal">Porte  </label>
                                     <select name="por_id" id="inputPorteAnimal" class="custom-select">
                                         {loop="$porte"}
-                                                {if="$value.por_id == $animal.por_id"}
+                                                {if="$value.por_id == $animal->get_por_id()"}
                                                     <option value="{$value.por_id}" selected>{$value.por_nome}</option>
                                                 {else}
                                                     <option value="{$value.por_id}">{$value.por_nome}</option>
@@ -206,7 +206,7 @@
                                 <label for="inputInformacoesAnimal"> Outras informações </label>
                                 <textarea name="ani_informacoes" class="form-control" id="inputInformacoesAnimal" rows="5"
                                 placeholder="Escreva um texto que informe para as pessoas sobre características sobre seu animal :)"
-                                >{$animal.ani_informacoes}</textarea>
+                                >{$animal->get_ani_informacoes()}</textarea>
                                           
                             </div>
                         </div>
