@@ -10,12 +10,29 @@ class Usuario extends Model
 {
     const SESSION = "User";
 
+    public static function verifyLogin()
+    {
+        if(!Usuario::checkLogin()){
+            header("Location: /login/");
+            exit;
+        }
+    }
+
+    public static function verifyLogout()
+    {
+        if(Usuario::checkLogin()){
+            header("Location: /home/");
+            exit;
+        }
+    }
+
     //Autentica o usuário utilizando email e senha
     public static function autenticar($email, $senha)
     {
         $sql = new Sql();
 
-        $results = $sql->select("SELECT * FROM tbl_usuarios WHERE usu_email = :EMAIL AND usu_senha = :SENHA",array(
+        $results = $sql->select(
+            "SELECT * FROM tbl_usuarios WHERE usu_email = :EMAIL AND usu_senha = :SENHA",array(
             ":EMAIL" => $email,
             ":SENHA" => $senha
         ));
@@ -35,39 +52,7 @@ class Usuario extends Model
 
     public static function logout(){
         $_SESSION[Usuario::SESSION] = NULL;
-    }
-
-    public static function checkLogin()
-    {
-        if (
-            !isset($_SESSION[Usuario::SESSION])
-		    ||
-		    !$_SESSION[Usuario::SESSION]
-		    ||
-		    !(int)$_SESSION[Usuario::SESSION]["usu_id"] > 0
-        ) {
-            // Não está logado
-            return false;
-        }
-
-        return true;
-    }
-
-    public static function verifyLogin()
-    {
-        if(!Usuario::checkLogin()){
-            header("Location: /login/");
-            exit;
-        }
-    }
-
-    public static function verifyLogout()
-    {
-        if(Usuario::checkLogin()){
-            header("Location: /home/");
-            exit;
-        }
-    }
+    }   
 
     //Insere um novo usuário no banco de dados e autentica o usuário
     public static function inserir($nome, $email, $senha, $senhaConfirm)
@@ -111,6 +96,17 @@ class Usuario extends Model
         return true;
     }
 
+    //Função para retornar os dados de um usuário da sessão
+    public static function loadBySession(){
+        $usuario = new Usuario();
+
+        if (isset($_SESSION[Usuario::SESSION]) && (int)$_SESSION[Usuario::SESSION]['usu_id'] > 0) {
+			$usuario->setData($_SESSION[Usuario::SESSION]);
+        }
+        
+        return $usuario;
+    }
+
     private static function searchEmail($email)
     {
         $sql = new Sql();
@@ -143,14 +139,21 @@ class Usuario extends Model
         ));
     }    
 
-    //Função para retornar os dados de um usuário da sessão
-    public static function loadBySession(){
-        $usuario = new Usuario();
-
-        if (isset($_SESSION[Usuario::SESSION]) && (int)$_SESSION[Usuario::SESSION]['usu_id'] > 0) {
-			$usuario->setData($_SESSION[Usuario::SESSION]);
+    private static function checkLogin()
+    {
+        if (
+            !isset($_SESSION[Usuario::SESSION])
+		    ||
+		    !$_SESSION[Usuario::SESSION]
+		    ||
+		    !(int)$_SESSION[Usuario::SESSION]["usu_id"] > 0
+        ) {
+            // Não está logado
+            return false;
         }
-        
-        return $usuario;
+
+        return true;
     }
+
+    
 }
