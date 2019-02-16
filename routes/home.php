@@ -7,6 +7,7 @@ use \FindAPet\Model\Especie;
 use \FindAPet\Model\Status;
 use \FindAPet\Model\Porte;
 use \FindAPet\Model\FaixaEtaria;
+use \FindAPet\Repositories\AnimalsRepository;
 
 $app->get("/", function() use($app){
 	$app->redirect("/home/");
@@ -31,7 +32,8 @@ $app->get('/home/', function(){
 	$faixaEtaria = FaixaEtaria::all();
 
 	//listar animais que não são do usuário, e que estão em adoção ou perdidos
-	$animais = Animal::list($usuario->get_usu_id());	
+	$animalsRepository = new AnimalsRepository();
+	$animais = $animalsRepository->list($usuario->get_usu_id());	
 
 	$page = new Page();
 

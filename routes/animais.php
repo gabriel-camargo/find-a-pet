@@ -8,6 +8,8 @@ use \FindAPet\Model\FaixaEtaria;
 use \FindAPet\Model\Status;
 use \FindAPet\Model\Porte;
 use \FindAPet\Helper\MensagemHelper;
+use \FindAPet\Helper\ImageHelper;
+use \FindAPet\Repositories\AnimalsRepository;
 
 $app->get('/animais/', function(){	
 
@@ -17,8 +19,10 @@ $app->get('/animais/', function(){
 	$page = new Page();
 
 	$feedbackSuccess = MensagemHelper::getMensagem();
+	
+	$animalsRepository = new AnimalsRepository();
 
-	$animais = Animal::listByUser($usuario->get_usu_id());
+	$animais = $animalsRepository->listByUser($usuario->get_usu_id());
 
   	$page->setTpl("animais",array(
 		"nome" => $usuario->get_usu_nome(),
@@ -58,11 +62,11 @@ $app->post("/animais/create/", function() {
 	$animal = new Animal();
     $animal->setData($_POST['animal']);
 
-	$return = $animal->inserir();
+	$return = $animal->save();
 
 	if(!$return['cadastrou']) throw new \Exception('Campos obrigatórios vazios!');	
 
-	if($_POST['image'] != NULL)Animal::savePhoto($_POST["image"], $return['lastId']);
+	if($_POST['image'] != NULL) ImageHelper::savePhoto($_POST["image"], $return['lastId'], "animal");
 
 });
 
@@ -72,7 +76,7 @@ $app->get("/animais/:id", function($id){
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
 	$animal = new Animal();
-	$animal->loadById($id);
+	$animal->find($id);
 
 	$error = MensagemHelper::getMensagem();
 
@@ -108,12 +112,17 @@ $app->post("/animais/:id", function($id){
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
-	$return = Animal::edit($_POST);
+	$animal = new Animal();
+	$animal->setData($_POST);
+
+	$return = $animal->save();
 
 	if(!$return['cadastrou']) {
+		MensagemHelper::setMensagem("Preencha os campos obrigatórios!");
 		header("Location: /animais/$id");
 		exit;
 	}
+
 	header("Location: /animais");
 	exit;
 });
@@ -123,7 +132,7 @@ $app->post("/animais/savePhoto/:id", function($id){
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
-	Animal::savePhoto($_POST["image"], $id);
+	ImageHelper::savePhoto($_POST["image"], $id, "animal");
 
 	MensagemHelper::setMensagem("Foto de animal atualizada com sucesso!");
 
