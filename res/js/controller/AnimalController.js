@@ -1,21 +1,25 @@
 class AnimalController{
 
     constructor(){
-        this._inputId = $("#inputIdAnimal");
-        this._inputNome = $("#inputNomeAnimal");
-        this._inputStatus = $("#inputStatusAnimal");
-        this._inputFaixaEtaria = $("#inputFaixaEtaria");
-        this._inputPorte = $("#inputPorteAnimal");
-        this._inputInformacoes = $("#inputInformacoesAnimal");
-        this._inputEspecie = $("#inputEspecieAnimal");
-        this._inputFoto = $("#inputFotoAnimal");
+        this._inputId = document.querySelector("#inputIdAnimal");
+        this._inputNome = document.querySelector("#inputNomeAnimal");
+        this._inputStatus = document.querySelector("#inputStatusAnimal");
+        this._inputFaixaEtaria = document.querySelector("#inputFaixaEtaria");
+        this._inputPorte = document.querySelector("#inputPorteAnimal");
+        this._inputInformacoes = document.querySelector("#inputInformacoesAnimal");
+        this._inputEspecie = document.querySelector("#inputEspecieAnimal");
+        this._inputFoto = document.querySelector("#inputFotoAnimal");
 
         this._croppieImage = this.cropImage();
+        this._http = new HttpService();
     }
 
     cropImage(){
 
-        return $('#image_demo').croppie({
+        let el = document.getElementById('image_demo');
+
+        // return $('#image_demo').croppie({
+        return new Croppie( el, {
             enableExif: true,
             viewport: {
                 width:200,
@@ -35,7 +39,7 @@ class AnimalController{
         let reader = new FileReader();
 
         reader.onload = (event) => {
-            this._croppieImage.croppie('bind', {
+            this._croppieImage.bind({
                 url: event.target.result
             });
         }
@@ -46,41 +50,58 @@ class AnimalController{
     createAnimal(event){
         event.preventDefault();
 
-        this._croppieImage.croppie('result', {
+        this._croppieImage.result({
             type: 'canvas',
             size: 'viewport'
         }).then( (response) => {
 
             let newAnimal = this.newAnimal();         
 
-            if (this._inputFoto.val() === "") response = null;            
-
-            $.ajax({
-                url:"/animais/create/",
-                type: "POST",
-                data:{"image": response, "animal": newAnimal},
-                success: (data) => {
-                    window.location = "/animais/";                
-                },
-                error: (error) => {
-                    $(window).scrollTop(0);
-
-                    $("#div-alert-erro p").remove();
+            if (this._inputFoto.value === "") response = null;  
+            
+            this._http
+                .post('/animais/create/', newAnimal)
+                .then(data => {
+                    console.log(data);
                     
-                    $("#div-alert-erro").append(`
+                    if(response) this.savePhoto(data);
+                    window.location = "/animais/";  
+                })
+                .catch(err => {
+                    console.log(err.message);
+
+                    window.scrollTo(0,0);                   
+                    document.getElementById("div-alert-erro").innerHTML = `
                         <p class="alert alert-danger"><strong> Erro! </strong> Você deve preencher todos os campos obrigatórios!</p>
-                    `); 
-                }
-            });
+                    `; 
+                });
+
+            // $.ajax({
+            //     url:"/animais/create/",
+            //     type: "POST",
+            //     data:{"image": response, "animal": newAnimal},
+            //     success: (data) => {
+            //         window.location = "/animais/";                
+            //     },
+            //     error: (error) => {
+            //         document.querySelector(window).scrollTop(0);
+
+            //         document.getElementById("div-alert-erro p").remove();
+                    
+            //         document.getElementById("div-alert-erro").append(`
+            //             <p class="alert alert-danger"><strong> Erro! </strong> Você deve preencher todos os campos obrigatórios!</p>
+            //         `); 
+            //     }
+            // });
         })
     }
 
     savePhoto(ani_id){
-        this._croppieImage.croppie('result', {
+        this._croppieImage.result({
             type: 'canvas',
             size: 'viewport'
         }).then( (response) =>{
-            if (this._inputFoto.val() === "") response = null;
+            if (this._inputFoto.value === "") response = null;
 
             $.ajax({
                 url:"/animais/savePhoto/"+ani_id,
@@ -100,13 +121,13 @@ class AnimalController{
 
     newAnimal(){
         return new Animal(
-            this._inputNome.val(),
-            $('input[name="ani_sexo"]:checked').val(),
-            this._inputStatus.val(),
-            this._inputFaixaEtaria.val(),
-            this._inputPorte.val(),
-            this._inputInformacoes.val(),
-            this._inputEspecie.val()
+            this._inputNome.value,
+            document.querySelector('input[name="ani_sexo"]:checked').value,
+            this._inputStatus.value,
+            this._inputFaixaEtaria.value,
+            this._inputPorte.value,
+            this._inputInformacoes.value,
+            this._inputEspecie.value
         );  
     }
 

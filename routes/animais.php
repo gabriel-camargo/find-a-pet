@@ -57,16 +57,18 @@ $app->post("/animais/create/", function() {
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
-	$_POST["animal"]["usu_id"] = $usuario->get_usu_id();	
+	$_POST["usu_id"] = $usuario->get_usu_id();	
 
 	$animal = new Animal();
-    $animal->setData($_POST['animal']);
+    $animal->setData($_POST);
 
 	$return = $animal->save();
 
 	if(!$return['cadastrou']) throw new \Exception('Campos obrigatórios vazios!');	
 
-	if($_POST['image'] != NULL) ImageHelper::savePhoto($_POST["image"], $return['lastId'], "animal");
+	echo json_encode($return['lastId']);
+
+	// if($_POST['image'] != NULL) ImageHelper::savePhoto($_POST["image"], $return['lastId'], "animal");
 
 });
 
