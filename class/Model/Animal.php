@@ -20,8 +20,6 @@ class Animal extends Model
 
         $this->set_ani_nome( utf8_decode( $this->get_ani_nome() ));
         $this->set_ani_informacoes( utf8_decode( $this->get_ani_informacoes() )); 
-
-        // AnimalDao::create($this); 
         
         if($this->get_ani_id() > 0 && $this->get_ani_id() != NULL) $this->update();
         else $this->insert();        

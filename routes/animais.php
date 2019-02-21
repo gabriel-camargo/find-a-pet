@@ -66,7 +66,7 @@ $app->post("/animais/create/", function() {
 
 	if(!$return['cadastrou']) throw new \Exception('Campos obrigatórios vazios!');	
 
-	echo json_encode($return['lastId']);
+	echo json_encode($return);
 
 	// if($_POST['image'] != NULL) ImageHelper::savePhoto($_POST["image"], $return['lastId'], "animal");
 
@@ -129,17 +129,12 @@ $app->post("/animais/:id", function($id){
 	exit;
 });
 
-$app->post("/animais/savePhoto/:id", function($id){
+$app->post("/animais/savePhoto/", function(){
 
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
-	ImageHelper::savePhoto($_POST["image"], $id, "animal");
-
-	MensagemHelper::setMensagem("Foto de animal atualizada com sucesso!");
-
-	header("Location: /animais");
-	exit;
+	ImageHelper::savePhoto($_POST["image"], $_POST['id'], "animal");
 
 });
 
@@ -150,5 +145,7 @@ $app->get("/animais/delete/:id", function($id){
 
 	Animal::delete($id);
 
-	MensagemHelper::setMensagem("Animal excluído com sucesso!");	
+	MensagemHelper::setMensagem("Animal excluído com sucesso!");
+	
+	echo json_encode("Animal excluído com sucesso!");
 });

@@ -1,16 +1,12 @@
 class HttpService {
 
-    _handleErrors(res) {
-        if(!res.ok) throw new Error(res.statusText);
-        return res;
-    }
-
-
     async get(url) {
 
-        return fetch(url)
-            .then(res => this._handleErrors(res))
-            .then(res => res.json());
+        let response =  await fetch(url);
+
+        let data = await response.json();
+        
+        return data;       
         
     }
     

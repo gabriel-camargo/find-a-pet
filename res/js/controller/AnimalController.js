@@ -17,8 +17,7 @@ class AnimalController{
     cropImage(){
 
         let el = document.getElementById('image_demo');
-
-        // return $('#image_demo').croppie({
+        
         return new Croppie( el, {
             enableExif: true,
             viewport: {
@@ -55,67 +54,45 @@ class AnimalController{
             size: 'viewport'
         }).then( (response) => {
 
-            let newAnimal = this.newAnimal();         
+            let newAnimal = this.newAnimal();       
 
-            if (this._inputFoto.value === "") response = null;  
+            if (this._inputFoto.value === "") response = null; 
             
             this._http
                 .post('/animais/create/', newAnimal)
                 .then(data => {
-                    console.log(data);
-                    
-                    if(response) this.savePhoto(data);
-                    window.location = "/animais/";  
-                })
+
+                    if(response) this.savePhoto(data.lastId, response);
+                    window.location = "/animais/"; 
+
+                } )
                 .catch(err => {
                     console.log(err.message);
 
                     window.scrollTo(0,0);                   
                     document.getElementById("div-alert-erro").innerHTML = `
-                        <p class="alert alert-danger"><strong> Erro! </strong> Você deve preencher todos os campos obrigatórios!</p>
+
+                        <p class="alert alert-danger">
+                            <strong> Erro! </strong> 
+                            Você deve preencher todos os campos obrigatórios!
+                        </p>
+
                     `; 
                 });
-
-            // $.ajax({
-            //     url:"/animais/create/",
-            //     type: "POST",
-            //     data:{"image": response, "animal": newAnimal},
-            //     success: (data) => {
-            //         window.location = "/animais/";                
-            //     },
-            //     error: (error) => {
-            //         document.querySelector(window).scrollTop(0);
-
-            //         document.getElementById("div-alert-erro p").remove();
-                    
-            //         document.getElementById("div-alert-erro").append(`
-            //             <p class="alert alert-danger"><strong> Erro! </strong> Você deve preencher todos os campos obrigatórios!</p>
-            //         `); 
-            //     }
-            // });
         })
     }
 
-    savePhoto(ani_id){
-        this._croppieImage.result({
-            type: 'canvas',
-            size: 'viewport'
-        }).then( (response) =>{
-            if (this._inputFoto.value === "") response = null;
+    savePhoto(ani_id, image){        
 
-            $.ajax({
-                url:"/animais/savePhoto/"+ani_id,
-                type: "POST",
-                data:{"image": response},
-                success: (data) => {
-                    window.location = "/animais/";                
-                },
-                error: (error) => {
-                    //recarregar tela 
-                }
+        this._http
+            .post('/animais/savePhoto/', {
+                "id": ani_id,
+                "image": image
+            })
+            .then(data => console.log(data))
+            .catch(err => {
+                console.log(err.message);
             });
-
-        });
         
     }
 
@@ -144,27 +121,32 @@ class AnimalController{
             cancelButtonText: 'Cancelar'
         })
         .then((result) => {
+
             if (result.value) {
-                $.ajax({
-                    url:"/animais/delete/"+id,
-                    type: "GET",
-                    success: (data) => {
+                this._http
+                    .get(`/animais/delete/${id}`)
+                    .then(data =>{ 
+
                         Swal.fire(
                             'Pronto!',
-                            'O animal foi excluído com sucesso!',
+                            data,
                             'success'
-                        ).then((result)=>{
-                            document.location.href = "/animais";
-                        });
-                    },
-                    error: (error) => {
+                        ).then(()=>
+                            document.location.href = "/animais"
+                        );
+
+                    })
+                    .catch(err => {
+
+                        console.log(err.message);
+                        
                         Swal.fire(
                             'Erro!',
                             'Não foi possível excluir este animal!',
                             'error'
                         );
-                    }
-                });
+
+                    });
             }
         });
     }
