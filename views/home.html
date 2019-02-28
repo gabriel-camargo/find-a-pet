@@ -5,6 +5,15 @@
     <head>
         {include="pages/header"}
         <link rel="stylesheet" href="/res/css/sidebar.css">
+        <style>
+            #btn-filter{
+                background-color: #d85c15;
+            }
+
+            #btn-filter:hover{
+                background-color: #d85c15;
+            }
+        </style>
     </head>
 
     <body>
@@ -13,7 +22,7 @@
 
         <div class="container">
             <div class="row">
-                <button class="btn btn-secundary btn-block mt-3 mx-3 d-md-none"> Filtrar </button>
+                <button id="btn-filter" class="btn btn-danger btn-block mt-3 mx-3 d-md-none"> Filtrar </button>
 
                 <div class="col-3 p-3 d-none d-md-block">
                     {include="pages/sidebar"}
