@@ -24,6 +24,8 @@ $app->get('/animais/', function(){
 
 	$animais = $animalsRepository->listByUser($usuario->get_usu_id());
 
+	// var_dump($animais);
+
   	$page->setTpl("animais",array(
 		"nome" => $usuario->get_usu_nome(),
 		"feedback_success" => $feedbackSuccess,

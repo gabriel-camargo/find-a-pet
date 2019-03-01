@@ -96,6 +96,18 @@ class AnimalController{
         
     }
 
+    updatePhoto(id){
+        this._croppieImage.result({
+            type: 'canvas',
+            size: 'viewport'
+        })
+        .then( (response) =>{
+            if (this._inputFoto.value === "") response = null;
+            this.savePhoto(id, response);
+            window.location = "/animais/"; 
+        });
+    }
+
     newAnimal(){
         return new Animal(
             this._inputNome.value,
