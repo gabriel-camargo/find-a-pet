@@ -13,12 +13,12 @@
             
             <!-- INPUT DO NOME -->
             <label for="inputNome" class="sr-only">Nome completo</label>
-            <input name="nome" type="text" id="inputNome" class="cadastro form-control"
+            <input name="usu_nome" type="text" id="inputNome" class="cadastro form-control"
                 placeholder="Nome completo" required autofocus>
         
             <!-- INPUT DO EMAIL -->
             <label for="inputEmail" class="sr-only">Email</label>
-            <input name="email" type="email" id="inputEmail" class="cadastro form-control"
+            <input name="usu_email" type="email" id="inputEmail" class="cadastro form-control"
                 placeholder="Email" required>
 
             <!-- LINHA DE SENHA E CONFIRMAÇÃO DE SENHA -->
@@ -27,14 +27,14 @@
                 <!-- INPUT DE SENHA -->
                 <div class="col-md-6 col-sm-12">                    
                     <label for="inputSenha" class="sr-only">Senha</label>
-                    <input name="senha" type="password" id="inputSenha" class="cadastro form-control"
+                    <input name="usu_senha" type="password" id="inputSenha" class="cadastro form-control"
                         placeholder="Senha" required >
                 </div>
 
                 <!-- CONFIRMAÇÃO DE SENHA -->
                 <div class="col-md-6 col-sm-12">                    
                     <label for="inputSenhaConfirm" class="sr-only">Senha</label>
-                    <input name="senhaConfirm" type="password" id="inputSenhaConfirm" class="cadastro form-control"
+                    <input name="usu_senha_confirm" type="password" id="inputSenhaConfirm" class="cadastro form-control"
                         placeholder="Confirmar senha" required >
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 <div class="col-md-6 col-sm-12 mb-2">                    
                     
                     <select name="usu_uf" id="inputUf" class="custom-select" onchange="popularCidade()">
-                        <option selected>Selecione seu estado</option>
+                        <option selected value="">Selecione seu estado</option>
                     </select>
 
                 </div>

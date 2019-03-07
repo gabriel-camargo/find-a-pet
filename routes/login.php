@@ -45,13 +45,13 @@ $app->get('/cadastro/', function() {
 // ROTA DA PAGINA DE CADASTRO
 $app->post('/cadastro/', function() {
 
-	// RECUPERA OS VALORES DO FORMULARIO
-  	$nome = trim(isset($_POST['nome']) ? $_POST['nome'] : "");
-  	$email = trim(isset($_POST['email']) ? $_POST['email'] : "");
-	$senha = trim(isset($_POST['senha']) ? $_POST['senha'] : "");
-	$senhaConfirm = trim(isset($_POST['senhaConfirm']) ? $_POST['senhaConfirm'] : "");
+	// FORÇA O USO DE USU_CIDADE
+	$_POST['usu_cidade'] = (isset($_POST['usu_cidade'])) ? $_POST['usu_cidade'] : '';
 
-	$cadastrou = Usuario::inserir($nome, $email, $senha, $senhaConfirm);
+	$usuario = new Usuario();
+	$usuario->setData($_POST);
+	
+	$cadastrou = $usuario->save();
 
 	if ($cadastrou) {
 		header("Location: /home/");
@@ -59,5 +59,6 @@ $app->post('/cadastro/', function() {
 	} else {
 		header("Location: /cadastro/");
 		exit;
-	}	
+	}
+	
 });

@@ -10,6 +10,28 @@ class Usuario extends Model
 {
     const SESSION = "User";
 
+    public function save()
+    {
+        $this->set_usu_nome( trim(utf8_decode( $this->get_usu_nome() )));
+        $this->set_usu_email( trim(utf8_decode( $this->get_usu_email() )));
+        $this->set_usu_senha( trim(utf8_decode( $this->get_usu_senha() )));  
+        $this->set_usu_senha_confirm( trim(utf8_decode( $this->get_usu_senha_confirm() )));    
+        $this->set_usu_uf( trim(utf8_decode( $this->get_usu_uf() )));       
+        $this->set_usu_cidade( trim(utf8_decode( $this->get_usu_cidade() )));     
+               
+        if($this->get_usu_id() > 0 && $this->get_usu_id() != NULL){
+            $this->update();
+        } 
+        else{
+            if(!$this->checkInsert()) return false;
+            $this->insert(); 
+        }        
+
+        Usuario::autenticar($this->get_usu_email(), $this->get_usu_senha());
+
+        return true;
+    }
+
     public static function verifyLogin()
     {
         if(!Usuario::checkLogin()){
@@ -54,48 +76,6 @@ class Usuario extends Model
         $_SESSION[Usuario::SESSION] = NULL;
     }   
 
-    //Insere um novo usuário no banco de dados e autentica o usuário
-    public static function inserir($nome, $email, $senha, $senhaConfirm)
-    {
-
-        // SE AS SENHAS INFORMADAS FOREM DIFERENTES
-        if ($senha !== $senhaConfirm){
-            MensagemHelper::setMensagem("As senhas não correspondem!");
-            return false;
-        }
-        
-        // SE ALGUM DOS CAMPOS ESTÃO VAZIOS
-        if(
-            $nome === "" ||
-            $email === "" ||
-            $senha === "" 
-        ){
-            MensagemHelper::setMensagem("Preencha todos os campos!");
-            return false;
-        }
-
-        //SE O EMAIL INFORMADO JA POSSUI UM CADASTRO
-        $results = Usuario::searchEmail($email);
-        if(count($results) > 0){
-            MensagemHelper::setMensagem("Este email já está cadastrado!");
-            return false;
-        }
-
-        $usuario = new Usuario();
-
-        $usuario->setData([
-            "usu_nome"=>$nome,
-            "usu_email"=>$email,
-            "usu_senha"=>$senha
-        ]);
-
-        $usuario->insert();
-
-        Usuario::autenticar($email, $senha);
-
-        return true;
-    }
-
     //Função para retornar os dados de um usuário da sessão
     public static function loadBySession(){
         $usuario = new Usuario();
@@ -127,15 +107,21 @@ class Usuario extends Model
         $results = $sql->query("INSERT INTO tbl_usuarios(
         usu_nome,
         usu_email,
-        usu_senha)
+        usu_senha,
+        usu_uf,
+        usu_cidade)
         VALUES(
         :NOME,
         :EMAIL,
-        :SENHA)",
+        :SENHA,
+        :UF,
+        :CIDADE)",
         array(
         ":NOME" => $this->get_usu_nome(),
         ":EMAIL" => $this->get_usu_email(),
-        ":SENHA" => $this->get_usu_senha()
+        ":SENHA" => $this->get_usu_senha(),
+        ":UF" => $this->get_usu_uf(),
+        ":CIDADE" => $this->get_usu_cidade()
         ));
     }    
 
@@ -155,5 +141,33 @@ class Usuario extends Model
         return true;
     }
 
-    
+    private function checkInsert()
+    {
+        // SE AS SENHAS INFORMADAS FOREM DIFERENTES
+        if (
+            $this->get_usu_senha() !== $this->get_usu_senha_confirm()
+        ){
+            MensagemHelper::setMensagem("As senhas não correspondem!");
+            return false;
+        }
+        
+        // SE ALGUM DOS CAMPOS ESTÃO VAZIOS
+        if(
+            $this->get_usu_nome() === "" ||
+            $this->get_usu_email() === "" ||
+            $this->get_usu_senha() === "" 
+        ){
+            MensagemHelper::setMensagem("Preencha todos os campos!");
+            return false;
+        }
+
+        //SE O EMAIL INFORMADO JA POSSUI UM CADASTRO
+        $results = Usuario::searchEmail($this->get_usu_email());
+        if(count($results) > 0){
+            MensagemHelper::setMensagem("Este email já está cadastrado!");
+            return false;
+        }
+
+        return true;
+    }    
 }
