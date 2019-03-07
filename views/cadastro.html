@@ -20,18 +20,50 @@
             <label for="inputEmail" class="sr-only">Email</label>
             <input name="email" type="email" id="inputEmail" class="cadastro form-control"
                 placeholder="Email" required>
-        
-            <!-- INPUT DE SENHA -->
-            <label for="inputSenha" class="sr-only">Senha</label>
-            <input name="senha" type="password" id="inputSenha" class="cadastro form-control"
-                placeholder="Senha" required >
-        
-            <!-- CONFIRMAÇÃO DE SENHA -->
-            <label for="inputSenhaConfirm" class="sr-only">Senha</label>
-            <input name="senhaConfirm" type="password" id="inputSenhaConfirm" class="cadastro form-control"
-                placeholder="Confirmar senha" required >
+
+            <!-- LINHA DE SENHA E CONFIRMAÇÃO DE SENHA -->
+            <div class="form-row">
+
+                <!-- INPUT DE SENHA -->
+                <div class="col-md-6 col-sm-12">                    
+                    <label for="inputSenha" class="sr-only">Senha</label>
+                    <input name="senha" type="password" id="inputSenha" class="cadastro form-control"
+                        placeholder="Senha" required >
+                </div>
+
+                <!-- CONFIRMAÇÃO DE SENHA -->
+                <div class="col-md-6 col-sm-12">                    
+                    <label for="inputSenhaConfirm" class="sr-only">Senha</label>
+                    <input name="senhaConfirm" type="password" id="inputSenhaConfirm" class="cadastro form-control"
+                        placeholder="Confirmar senha" required >
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- LINHA DE UF E CIDADE -->
+            <div class="form-row mt-4 mb-2">
+
+                <!-- INPUT DE UF -->
+                <div class="col-md-6 col-sm-12 mb-2">                    
+                    
+                    <select name="usu_uf" id="inputUf" class="custom-select" onchange="popularCidade()">
+                        <option selected>Selecione seu estado</option>
+                    </select>
+
+                </div>
+
+                <!-- CONFIRMAÇÃO DE CIDADE -->
+                <div class="col-md-6 col-sm-12">                    
+                    
+                    <select name="usu_cidade" id="inputCidade" class="custom-select">
+                        <option selected>Selecione sua cidade</option>
+                    </select>
+
+                </div>
+            </div>
             
-            <button class="btn btn-lg btn-success btn-block login-btn-entrar m-1" type="submit" >Cadastrar <i class="fa fa-user-plus"></i></button>
+            <button class="btn btn-lg btn-success btn-block login-btn-entrar m-1 mt-4" type="submit" >Cadastrar <i class="fa fa-user-plus"></i></button>
             {if="$erro != NULL"}
                 <div class="alert alert-danger mt-3" role="alert">
                     {$erro}
@@ -40,5 +72,59 @@
         </form>
 
         {include="pages/footer"}
-</body>
+        <script type="module">
+
+        import getEstadosCidades from '/res/js/services/estados_cidades.js';
+        
+        function popularUF(data)
+        {
+
+            data.forEach(estado => {
+
+                // novoElemento
+                let el = document.createElement('option');
+                el.textContent = estado.nome;
+                el.value = estado.sigla;
+
+                // Get the parent node
+                let parent = document.querySelector('#inputUf');
+
+                // Insert the new node after the last element in the parent node
+                parent.append(el);
+            });
+        }
+
+        popularUF(getEstadosCidades());
+
+        document.querySelector('#inputUf').onchange = function() {
+            let uf = this.options[this.selectedIndex].value;
+
+            let data = getEstadosCidades();
+
+            let parent = document.querySelector('#inputCidade');
+
+            while(parent.firstChild){
+                parent.removeChild(parent.firstChild);
+            }
+
+            data.forEach(estado => {
+
+                if(estado.sigla == uf){
+                    
+
+                    estado.cidades.forEach(cidade =>{
+
+                        //novo elemento
+                        let el = document.createElement('option');
+                        el.textContent = cidade;
+                        el.value = cidade;
+
+                        parent.append(el);
+                    });
+                }
+            });
+        };
+        
+        </script>
+    </body>
 </html>
