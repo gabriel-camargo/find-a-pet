@@ -200,6 +200,32 @@
                         </div>
                         <!-- ./FORM-ROW -->
 
+                        <!-- LINHA DE UF E CIDADE -->
+                        <div class="form-row">
+
+                            <!-- INPUT DE UF -->
+                            <div class="col-lg-6 col-md-12 form-group">   
+                                
+                                <label for="inputUf">Estado </label>
+                                
+                                <select name="ani_uf" id="inputUf" class="custom-select">
+                                    <!-- <option value="">Selecione seu estado</option> -->
+                                </select>
+
+                            </div>
+
+                            <!-- CONFIRMAÇÃO DE CIDADE -->
+                            <div class="col-lg-6 col-md-12 form-group">  
+                                
+                                <label for="inputCidade">Cidade  </label>
+                                
+                                <select name="ani_cidade" id="inputCidade" class="custom-select">
+                                    <option value="{$animal->get_ani_cidade()}">{$animal->get_ani_cidade()}</option>
+                                </select>
+
+                            </div>
+                        </div>
+
                         <!-- INPUT DE OUTRAS INFORMAÇÕES -->
                         <div class="form-row">
                             <div class="col form-group">
@@ -230,6 +256,102 @@
         <script src="/node_modules/croppie/croppie.js"></script>
         <script src="/res/js/model/Animal.js"></script>
         <script src="/res/js/controller/AnimalController.js"></script>
+
+        <script type="module">
+
+            import getEstadosCidades from '/res/js/services/estados_cidades.js';
+            
+            function popularUF(data)
+            {
+                // Get the parent node
+                let parent = document.querySelector('#inputUf');
+
+                data.forEach(estado => {
+
+                    // novoElemento
+                    let el = document.createElement('option');
+                    el.textContent = estado.nome;
+                    el.value = estado.sigla;
+
+                    // Insert the new node after the last element in the parent node
+                    parent.append(el);
+
+                    
+                });
+
+                parent.value="{$animal->get_ani_uf()}";
+
+                popularCidade();
+            }
+
+            function popularCidade() {
+                let inputUf = document.querySelector('#inputUf');
+
+                let uf = inputUf.options[inputUf.selectedIndex].value;
+
+                let data = getEstadosCidades();
+
+                let parent = document.querySelector('#inputCidade');
+
+                while(parent.firstChild){
+                    parent.removeChild(parent.firstChild);
+                }
+
+                data.forEach(estado => {
+
+                    if(estado.sigla == uf){
+                        
+
+                        estado.cidades.forEach(cidade =>{
+
+                            //novo elemento
+                            let el = document.createElement('option');
+                            el.textContent = cidade;
+                            el.value = cidade;
+
+                            parent.append(el);
+                        });
+                    }
+                });
+
+                parent.value="{$animal->get_ani_cidade()}";
+            };
+
+            popularUF(getEstadosCidades());
+
+            document.querySelector('#inputUf').onchange = () => {
+                let inputUf = document.querySelector('#inputUf');
+
+                let uf = inputUf.options[inputUf.selectedIndex].value;
+
+                let data = getEstadosCidades();
+
+                let parent = document.querySelector('#inputCidade');
+
+                while(parent.firstChild){
+                    parent.removeChild(parent.firstChild);
+                }
+
+                data.forEach(estado => {
+
+                    if(estado.sigla == uf){
+                        
+
+                        estado.cidades.forEach(cidade =>{
+
+                            //novo elemento
+                            let el = document.createElement('option');
+                            el.textContent = cidade;
+                            el.value = cidade;
+
+                            parent.append(el);
+                        });
+                    }
+                });
+            };
+            
+            
+        </script>
         <script>
 
             let animalController = new AnimalController();

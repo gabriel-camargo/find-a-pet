@@ -20,6 +20,8 @@ class Animal extends Model
 
         $this->set_ani_nome( utf8_decode( $this->get_ani_nome() ));
         $this->set_ani_informacoes( utf8_decode( $this->get_ani_informacoes() )); 
+        $this->set_ani_uf( utf8_decode( $this->get_ani_uf() )); 
+        $this->set_ani_cidade( utf8_decode( $this->get_ani_cidade() )); 
         
         if($this->get_ani_id() > 0 && $this->get_ani_id() != NULL) $this->update();
         else $this->insert();        
@@ -83,7 +85,9 @@ class Animal extends Model
             por_id,
             ani_informacoes,
             usu_id,
-            esp_id
+            esp_id,
+            ani_uf,
+            ani_cidade
         )
         VALUES(
             :NOME,
@@ -93,7 +97,9 @@ class Animal extends Model
             :PORTE,
             :INFO,
             :USU,
-            :ESP
+            :ESP,
+            :UF,
+            :CIDADE
         )",
         array(
             ":NOME" => $this->get_ani_nome(),
@@ -103,7 +109,9 @@ class Animal extends Model
             ":PORTE" => $this->get_por_id(),
             ":INFO" => $this->get_ani_informacoes(),
             ":USU" => $this->get_usu_id(),
-            ":ESP" => $this->get_esp_id()
+            ":ESP" => $this->get_esp_id(),
+            ":UF" => $this->get_ani_uf(),
+            ":CIDADE" => $this->get_ani_cidade()
         ));
     }
 
@@ -117,7 +125,9 @@ class Animal extends Model
             fai_id=:FAIXA_ETARIA,
             por_id=:PORTE,
             ani_informacoes=:INFO,
-            esp_id=:ESP
+            esp_id=:ESP,
+            ani_uf=:UF,
+            ani_cidade=:CIDADE
             WHERE ani_id=:ID ",
         array(
             ":NOME" => $this->get_ani_nome(),
@@ -127,7 +137,9 @@ class Animal extends Model
             ":PORTE" => $this->get_por_id(),
             ":INFO" =>$this->get_ani_informacoes(),
             ":ID" => $this->get_ani_id(),
-            ":ESP" => $this->get_esp_id()
+            ":ESP" => $this->get_esp_id(),
+            ":UF" => $this->get_ani_uf(),
+            ":CIDADE" => $this->get_ani_cidade()
         ));
     }
 
@@ -145,6 +157,10 @@ class Animal extends Model
             $this->get_esp_id() == ""
             ||
             $this->get_ani_sexo() == ""
+            ||
+            $this->get_ani_uf() == ""
+            ||
+            $this->get_ani_cidade() == ""
         )
         {
             return false;

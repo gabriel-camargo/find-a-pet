@@ -9,6 +9,8 @@ class AnimalController{
         this._inputInformacoes = document.querySelector("#inputInformacoesAnimal");
         this._inputEspecie = document.querySelector("#inputEspecieAnimal");
         this._inputFoto = document.querySelector("#inputFotoAnimal");
+        this._inputUf = document.querySelector("#inputUf");
+        this._inputCidade = document.querySelector("#inputCidade");
 
         this._croppieImage = this.cropImage();
         this._http = new HttpService();
@@ -116,7 +118,9 @@ class AnimalController{
             this._inputFaixaEtaria.value,
             this._inputPorte.value,
             this._inputInformacoes.value,
-            this._inputEspecie.value
+            this._inputEspecie.value,
+            this._inputUf.value,
+            this._inputCidade.value 
         );  
     }
 

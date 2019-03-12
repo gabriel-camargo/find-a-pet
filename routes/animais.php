@@ -38,6 +38,9 @@ $app->get("/animais/create/", function(){
     Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
+	$ufPadrao = ($usuario->get_usu_uf() != "") ? $usuario->get_usu_uf() : null;
+	$cidadePadrao = ($usuario->get_usu_cidade() != "") ? $usuario->get_usu_cidade() : null;
+
 	$especies = Especie::all();
 	$faixaEtaria = FaixaEtaria::all();
 	$porte = Porte::all();
@@ -50,7 +53,9 @@ $app->get("/animais/create/", function(){
 		"especies" => $especies,
 		"faixa_etaria" => $faixaEtaria,
 		"porte" => $porte,
-		"status" => $status
+		"status" => $status,
+		"uf" => $ufPadrao,
+		"cidade" => utf8_encode($cidadePadrao)
 	));
 });
 
