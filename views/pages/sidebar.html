@@ -1,115 +1,188 @@
-<div class="menu">
+<style>
+.card-header{
+    background-color: #fcfcfc !important; 
+}
 
-  <li class="item">
-    <a href="#" class="botao font-weight-bold text-center" style="color: #aaa;cursor:default">
-       Filtros
-    </a>
-  </li>
-	  
-  <li class="item" id='especie'>
-    <a href="#especie" class="botao"><i class="fas fa-paw"></i>Espécie</a>
-    <div class="smenu">
-      
-      {loop="$especies"}
+.item-filtro{
+    color: #222;
+}
+.item-filtro:hover{
+    color: #f57c00;
+    text-decoration: none;
+}
+</style>
 
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="especie-{$value.esp_id}">
-          <label class="custom-control-label" for="especie-{$value.esp_id}"> {$value.esp_nome} </label>
-        </div>
+<div class="accordion" id="menu-filtro">
 
-      {/loop}     
+        <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button">
+                         Filtros
+                        </button>
+                    </h2>
+                </div>
+            </div>
 
-    </div>
-  </li>
-  
-  <li class="item" id="sexo">
-    <a href="#sexo" class="botao"> <i class="fas fa-venus-mars"></i> Sexo</a>
-    <div class="smenu">
-      
-        <!-- CHECKBOX FÊMEA -->
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="sexo-f">
-          <label class="custom-control-label" for="sexo-f"> Fêmea </label>
-        </div>
-
-        <!-- CHECKBOX MACHO -->
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="sexo-m">
-          <label class="custom-control-label" for="sexo-m"> Macho </label>
-        </div>
-
-    </div>
-  </li>
-
-  <li class="item" id="status">
-    <a href="#status" class="botao"><i class="fas fa-cog"></i>Status</a>
-    <div class="smenu">
-      
-      {loop="$status"}
-
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="status-{$value.sta_id}">
-          <label class="custom-control-label" for="status-{$value.sta_id}"> {$value.sta_nome} </label>
-        </div>
-
-      {/loop}   
-
-    </div>
-  </li>
-
-  <li class="item" id="porte">
-    <a href="#porte" class="botao"><i class="fas fa-cog"></i>Porte</a>
-    <div class="smenu">
-
-      {loop="$porte"}
-
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="porte-{$value.por_id}">
-          <label class="custom-control-label" for="porte-{$value.por_id}"> {$value.por_nome} </label>
-        </div>
-
-      {/loop}  
-
-    </div>
-  </li>
-
-  <li class="item" id="faixa-etaria">
-    <a href="#faixa-etaria" class="botao"><i class="far fa-envelope"></i>Faixa Etária</a>
-    <div class="smenu">
-      
-      {loop="$faixaEtaria"}
-
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="faixa-{$value.fai_id}">
-          <label class="custom-control-label" for="faixa-{$value.fai_id}"> {$value.fai_nome} </label>
-        </div>
-
-      {/loop}  
-
-    </div>
-  </li>
-
-  <li class="item" id="localizacao">
-      <a href="#localizacao" class="botao"><i class="far fa-envelope"></i>Localização</a>
-      <div class="smenu">
+        <div class="card">
+                <div class="card-header" id="headingOn">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed item-filtro" type="button" data-toggle="collapse" 
+                        data-target="#collapseOn" aria-expanded="false" aria-controls="collapseOn">
+                        <i class="fas fa-paw"></i> Espécie
+                        </button>
+                    </h2>
+                </div>
         
-  
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="uf">
-            <label class="custom-control-label" for="uf"> Mesmo Estado </label>
-          </div>
+                <div id="collapseOn" class="collapse" aria-labelledby="headingOn" data-parent="#menu-filtro">
+                    <div class="card-body">
+                            {loop="$especies"}
+      
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input" id="especie-{$value.esp_id}">
+                              <label class="custom-control-label" for="especie-{$value.esp_id}"> {$value.esp_nome} </label>
+                            </div>
+                    
+                          {/loop}  
+                    </div>
+                </div>
+            </div>
 
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="cidade">
-            <label class="custom-control-label" for="cidade"> Mesma Cidade </label>
-          </div>
-  
-  
-      </div>
-    </li>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed item-filtro" type="button" data-toggle="collapse" 
+                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <i class="fas fa-venus-mars"></i> Sexo
+                </button>
+            </h2>
+        </div>
 
-  <li class="item">
-    <a class="botao" href="#"><i class="fas fa-sign-out-alt"></i>Fechar</a>
-  </li>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#menu-filtro">
+            <div class="card-body">
+                
+                <!-- CHECKBOX FÊMEA -->
+              <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="sexo-f">
+                    <label class="custom-control-label" for="sexo-f"> Fêmea </label>
+                  </div>
+          
+                  <!-- CHECKBOX MACHO -->
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="sexo-m">
+                    <label class="custom-control-label" for="sexo-m"> Macho </label>
+                  </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed item-filtro" type="button" data-toggle="collapse" 
+                data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <i class="fas fa-cog"></i> Status
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#menu-filtro">
+            <div class="card-body">
+                
+                    {loop="$status"}
+      
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="status-{$value.sta_id}">
+                      <label class="custom-control-label" for="status-{$value.sta_id}"> {$value.sta_nome} </label>
+                    </div>
+            
+                  {/loop}  
+
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="headingfour">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed item-filtro" type="button" data-toggle="collapse" 
+                data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+                <i class="fas fa-cog"></i> Porte
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#menu-filtro">
+            <div class="card-body">
+                
+                    {loop="$porte"}
+    
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="porte-{$value.por_id}">
+                        <label class="custom-control-label" for="porte-{$value.por_id}"> {$value.por_nome} </label>
+                    </div>
+            
+                    {/loop} 
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+            <div class="card-header" id="headingfive">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed item-filtro" type="button" data-toggle="collapse" 
+                    data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+                    <i class="far fa-envelope"></i> Faixa Etária
+                    </button>
+                </h2>
+            </div>
+    
+            <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#menu-filtro">
+                <div class="card-body">
+                    
+                        {loop="$faixaEtaria"}
+      
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="faixa-{$value.fai_id}">
+                <label class="custom-control-label" for="faixa-{$value.fai_id}"> {$value.fai_nome} </label>
+              </div>
+      
+            {/loop}  
+    
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+                <div class="card-header" id="headingsix">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed item-filtro" type="button" data-toggle="collapse" 
+                        data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+                        <i class="far fa-envelope"></i> Localização
+                        </button>
+                    </h2>
+                </div>
+        
+                <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#menu-filtro">
+                    <div class="card-body">
+                        
+                          
+                <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="uf">
+                        <label class="custom-control-label" for="uf"> Mesmo Estado </label>
+                      </div>
+            
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="cidade">
+                        <label class="custom-control-label" for="cidade"> Mesma Cidade </label>
+                      </div>
+        
+                    </div>
+                </div>
+            </div>
 
 </div>
