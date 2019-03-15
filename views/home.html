@@ -37,7 +37,7 @@
                             <div class="card" id="card-id" onclick="abrirModal(this)">
                         
                                 <div class="container-img">
-                                        <img class="card-img-top" src="/res/img/animal/{$value.id}.png" alt="Card image cap">
+                                        <img class="card-img-top" src="/res/img/animal/{$value.foto}.png" alt="Card image cap">
                                         <div class="overlay">
                                             <div class="text">
                                                 Ver detalhes
@@ -89,5 +89,12 @@
         </div>
         <!-- container-fluid -->
         {include="pages/footer"}
+        <script src="/res/js/controller/HomeController.js"></script>
+        <script>
+
+        let homeController = new HomeController();
+        homeController.log();
+
+        </script>
     </body>
 </html>

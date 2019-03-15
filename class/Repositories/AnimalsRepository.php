@@ -61,6 +61,13 @@ class AnimalsRepository implements AnimalsRepositoryInterface
 
         foreach($results as $r){
             $r = array_map("utf8_encode", $r);
+
+            $r['foto'] = (file_exists(
+                $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
+                "res" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .
+                "animal" . DIRECTORY_SEPARATOR .  $r['id'] . ".png"
+            )) ? $r['id'] : "default" ;
+
             array_push($return, $r);
         }
 
