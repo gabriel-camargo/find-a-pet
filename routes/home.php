@@ -32,8 +32,8 @@ $app->get('/home/', function(){
 	$faixaEtaria = FaixaEtaria::all();
 
 	//listar animais que não são do usuário, e que estão em adoção ou perdidos
-	$animalsRepository = new AnimalsRepository();
-	$animais = $animalsRepository->list($usuario->get_usu_id());	
+	// $animalsRepository = new AnimalsRepository();
+	// $animais = $animalsRepository->list($usuario->get_usu_id());	
 
 	$page = new Page();
 
@@ -43,6 +43,16 @@ $app->get('/home/', function(){
 		"status" => $status,
 		"porte" => $porte,
 		"faixaEtaria" => $faixaEtaria,
-		"animais" => $animais
+		// "animais" => $animais
 	));
+});
+
+$app->post('/home/search', function(){
+	Usuario::verifyLogin();
+	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+
+	$animalsRepository = new AnimalsRepository();
+	$animais = $animalsRepository->list($usuario->get_usu_id());	
+
+	echo json_encode($animais);
 });

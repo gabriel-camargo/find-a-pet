@@ -29,57 +29,7 @@
                 <!-- col-3 -->
 
                 <div class="col">
-                    <div class="row pt-3">
-
-                        {loop="$animais"}
-                        <div class="col-xl-4 col-sm-6 col-xs-12 mb-3">
-
-                            <div class="card" id="card-id" onclick="abrirModal(this)">
-                        
-                                <div class="container-img">
-                                        <img class="card-img-top" src="/res/img/animal/{$value.foto}.png" alt="Card image cap">
-                                        <div class="overlay">
-                                            <div class="text">
-                                                Ver detalhes
-                                            </div>
-                                        </div>
-                                </div>
-                                <!-- div.container-img -->
-                                
-                                <div class="card-body">
-        
-                                    <h5 class="card-title">
-                                        <span class="font-weight-bold text-capitalize">{$value.nome}</span>,
-                                        {$value.status}
-                                    </h5>
-                                    
-                                    <p class="card-text mb-2 font-weight-bold">
-                                        
-                                    </p> 
-        
-                                    <p class="card-text mb-2 font-weight-bold">
-                                        
-                                        {if="$value.sexo=='F'"}
-                                            <span style="color:#f06292">Fêmea</span> 
-                                        {else}
-                                            <span style="color:blue">Macho</span>
-                                        {/if}
-                                    </p>
-                                    
-                                    <p class="card-text">
-                                        <span class="font-weight-bold">Porte:</span>
-                                        {$value.porte}
-                                    </p>
-                                    
-                                </div>
-                                <!-- div.card-body -->
-                            </div>
-                            <!-- div.card -->
-
-                        </div>  
-                        {/loop}
-
-                    </div>
+                    <div class="row pt-3" id="view-publicacoes"></div>
                     <!-- row publicacao -->
                 </div>
                 <!-- col-9 -->
@@ -89,11 +39,12 @@
         </div>
         <!-- container-fluid -->
         {include="pages/footer"}
+        <script src="/res/js/view/HomeView.js"></script>
         <script src="/res/js/controller/HomeController.js"></script>
         <script>
 
         let homeController = new HomeController();
-        homeController.log();
+        homeController.load();
 
         </script>
     </body>
