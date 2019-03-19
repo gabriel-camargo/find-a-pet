@@ -45,7 +45,7 @@
                             {loop="$especies"}
       
                             <div class="custom-control custom-checkbox">
-                              <input value="{$value.esp_id}" type="checkbox" onchange="homeController.log()"
+                              <input value="{$value.esp_id}" type="checkbox" onchange="homeController.load()"
                                class="custom-control-input check-especie" id="especie-{$value.esp_id}">
                               <label class="custom-control-label" for="especie-{$value.esp_id}"> {$value.esp_nome} </label>
                             </div>

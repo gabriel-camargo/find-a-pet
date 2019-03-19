@@ -31,10 +31,6 @@ $app->get('/home/', function(){
 	$porte = Porte::all();
 	$faixaEtaria = FaixaEtaria::all();
 
-	//listar animais que não são do usuário, e que estão em adoção ou perdidos
-	// $animalsRepository = new AnimalsRepository();
-	// $animais = $animalsRepository->list($usuario->get_usu_id());	
-
 	$page = new Page();
 
 	$page->setTpl("home",array(
@@ -42,8 +38,7 @@ $app->get('/home/', function(){
 		"especies" => $especies,
 		"status" => $status,
 		"porte" => $porte,
-		"faixaEtaria" => $faixaEtaria,
-		// "animais" => $animais
+		"faixaEtaria" => $faixaEtaria
 	));
 });
 
@@ -52,7 +47,7 @@ $app->post('/home/search', function(){
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
 	$animalsRepository = new AnimalsRepository();
-	$animais = $animalsRepository->list($usuario->get_usu_id());	
+	$animais = $animalsRepository->list($usuario->get_usu_id(), $_POST['filter']);	
 
 	echo json_encode($animais);
 });

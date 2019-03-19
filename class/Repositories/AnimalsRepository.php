@@ -38,7 +38,7 @@ class AnimalsRepository implements AnimalsRepositoryInterface
         return $return;
     }
 
-    public function list($user)
+    public function list($user, $filtro)
     {
         $return = array();
 
@@ -53,7 +53,7 @@ class AnimalsRepository implements AnimalsRepositoryInterface
             INNER JOIN tbl_faixa_etaria t3 ON (t1.fai_id = t3.fai_id)
             INNER JOIN tbl_portes t4 ON ( t1.por_id = t4.por_id )
             INNER JOIN tbl_usuarios t5 ON (t1.usu_id = t5.usu_id)
-            WHERE t1.usu_id <> :USUARIO AND t2.sta_tipo = :TIPO", array(
+            WHERE t1.usu_id <> :USUARIO AND t2.sta_tipo = :TIPO $filtro", array(
                 "USUARIO" => $user,
                 ":TIPO" => "cad"
             )
