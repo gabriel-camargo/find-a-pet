@@ -30,12 +30,18 @@ class HomeController{
 
         //Novo array formado apenas com os checkbox marcados
         const inputListEspecieChecked = this._inputListEspecie.filter(el => el.checked);
-        if(inputListEspecieChecked.length >= 1) filterEspecie += this._addFilter(inputListEspecieChecked, "t1.esp_id", filterEspecie); 
+
+        //Se tiver algum checkbox marcado, chama a função que adiciona o filtro SQL
+        if(inputListEspecieChecked.length >= 1) 
+            filterEspecie += this._addFilter(inputListEspecieChecked, "t1.esp_id", filterEspecie); 
+
+        //A mesma lógica se repete para os outros filtros
         
         let filterSexo = "";
         const inputListSexoChecked = this._inputListSexo.filter(el => el.checked);
         if(inputListSexoChecked.length >= 1) filterSexo += this._addFilter(inputListSexoChecked, "t1.ani_sexo", filterSexo);
 
+        //soma todos os filtros e retorna o mesmo na função
         let filter = filterEspecie + filterSexo;
         return filter;
     }
