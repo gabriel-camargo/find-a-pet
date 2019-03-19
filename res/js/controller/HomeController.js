@@ -26,39 +26,34 @@ class HomeController{
 
     _checkFilter() {
 
-        let filter = "";
+        let filterEspecie = "";
 
         //Novo array formado apenas com os checkbox marcados
         const inputListEspecieChecked = this._inputListEspecie.filter(el => el.checked);
-
-        if(inputListEspecieChecked.length >= 1) {
-
-            filter += " and ( ";
-
-            for (let index = 0; index < inputListEspecieChecked.length; index++) {
-
-                filter += `t1.esp_id = ${inputListEspecieChecked[index].value}`;
-
-                if( ( index + 1) != inputListEspecieChecked.length) filter +=" or ";
-                else filter += ")";            
-            }
-        }
-
+        if(inputListEspecieChecked.length >= 1) filterEspecie += this._addFilter(inputListEspecieChecked, "t1.esp_id", filterEspecie); 
+        
+        let filterSexo = "";
         const inputListSexoChecked = this._inputListSexo.filter(el => el.checked);
+        if(inputListSexoChecked.length >= 1) filterSexo += this._addFilter(inputListSexoChecked, "t1.ani_sexo", filterSexo);
 
-        if(inputListSexoChecked.length >= 1) {
+        let filter = filterEspecie + filterSexo;
+        return filter;
+    }
 
-            filter += " and ( ";
+    _addFilter(arr, field, filter) {
 
-            for (let index = 0; index < inputListSexoChecked.length; index++) {
+        filter += " and ( ";
 
-                filter += `t1.ani_sexo = ${inputListSexoChecked[index].value}`;
+        for (let index = 0; index < arr.length; index++) {
 
-                if( ( index + 1) != inputListSexoChecked.length) filter +=" or ";
-                else filter += ")";            
-            }
+            filter += `${field} = ${arr[index].value}`;
+
+            if( ( index + 1) != arr.length) filter +=" or ";
+            else filter += ")";            
         }
 
         return filter;
     }
+
+    
 }
