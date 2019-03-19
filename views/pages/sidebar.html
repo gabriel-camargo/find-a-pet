@@ -70,13 +70,15 @@
                 
                 <!-- CHECKBOX FÊMEA -->
               <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="sexo-f">
+                    <input value="'F'" type="checkbox"  onchange="homeController.load()" 
+                    class="custom-control-input check-sexo" id="sexo-f">
                     <label class="custom-control-label" for="sexo-f"> Fêmea </label>
                   </div>
           
                   <!-- CHECKBOX MACHO -->
                   <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="sexo-m">
+                    <input value="'M'" type="checkbox" onchange="homeController.load()" 
+                    class="custom-control-input check-sexo" id="sexo-m">
                     <label class="custom-control-label" for="sexo-m"> Macho </label>
                   </div>
 
