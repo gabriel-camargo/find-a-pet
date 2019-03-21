@@ -1,4 +1,4 @@
-class HomeView extends View {
+class PublicacoesView extends View {
 
     constructor(el) {
         super(el);

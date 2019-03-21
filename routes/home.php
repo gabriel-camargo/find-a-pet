@@ -38,7 +38,9 @@ $app->get('/home/', function(){
 		"especies" => $especies,
 		"status" => $status,
 		"porte" => $porte,
-		"faixaEtaria" => $faixaEtaria
+		"faixaEtaria" => $faixaEtaria,
+		"uf" => utf8_encode($usuario->get_usu_uf()),
+		"cidade" => utf8_encode($usuario->get_usu_cidade())
 	));
 });
 
@@ -47,7 +49,7 @@ $app->post('/home/search', function(){
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
 	$animalsRepository = new AnimalsRepository();
-	$animais = $animalsRepository->list($usuario->get_usu_id(), $_POST['filter']);	
+	$animais = $animalsRepository->list($usuario->get_usu_id(), utf8_decode($_POST['filter']));	
 
 	echo json_encode($animais);
 });

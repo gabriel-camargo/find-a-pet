@@ -5,13 +5,20 @@ html, body{
   background: url("/res/img/dust_scratches.png");
 }
 
-.navbar{
-  background-color: #ffffff;
+.form-control, .custom-select, .custom-file-input{
+  border-radius: 20px;
+  min-height: 40px;
+  padding-left: 28px;
+  padding-right: 28px;
 }
 
 /*---------------------------*/
 /* ----------NAVBAR--------- */
 /*---------------------------*/
+
+/* .navbar{
+  background-color: #43A047;
+} */
 
 /* .navbar-img-usuario{
   border-radius: 50%;
@@ -40,9 +47,9 @@ html, body{
   padding: 1px;
 } */
 
-.navbar-titulo:hover, .nav-link:hover{
+/* .navbar-titulo:hover, .nav-link:hover{
   color: #43A047 !important;
-}
+} */
 
 
 

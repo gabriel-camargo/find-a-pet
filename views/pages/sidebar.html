@@ -103,8 +103,10 @@
                     {loop="$status"}
       
                     <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="status-{$value.sta_id}">
-                      <label class="custom-control-label" for="status-{$value.sta_id}"> {$value.sta_nome} </label>
+                        <input value="{$value.sta_id}" type="checkbox" onchange="homeController.load()" 
+                            class="custom-control-input check-status" id="status-{$value.sta_id}">
+
+                        <label class="custom-control-label" for="status-{$value.sta_id}"> {$value.sta_nome} </label>
                     </div>
             
                   {/loop}  
@@ -130,7 +132,8 @@
                     {loop="$porte"}
     
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="porte-{$value.por_id}">
+                        <input value="{$value.por_id}" type="checkbox" onchange="homeController.load()" 
+                            class="custom-control-input check-porte" id="porte-{$value.por_id}">
                         <label class="custom-control-label" for="porte-{$value.por_id}"> {$value.por_nome} </label>
                     </div>
             
@@ -155,12 +158,13 @@
                     
                         {loop="$faixaEtaria"}
       
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="faixa-{$value.fai_id}">
-                <label class="custom-control-label" for="faixa-{$value.fai_id}"> {$value.fai_nome} </label>
-              </div>
-      
-            {/loop}  
+                            <div class="custom-control custom-checkbox">
+                                <input value="{$value.fai_id}" type="checkbox" onchange="homeController.load()"
+                                    class="custom-control-input check-faixa" id="faixa-{$value.fai_id}">
+                                <label class="custom-control-label" for="faixa-{$value.fai_id}"> {$value.fai_nome} </label>
+                            </div>
+                
+                        {/loop}  
     
                 </div>
             </div>
@@ -181,12 +185,14 @@
                         
                           
                 <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="uf">
+                        <input value="'{$uf}'" type="checkbox" onchange="homeController.load()"
+                            class="custom-control-input check-uf" id="uf">
                         <label class="custom-control-label" for="uf"> Mesmo Estado </label>
                       </div>
             
                       <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="cidade">
+                        <input value="'{$cidade}'" type="checkbox" onchange="homeController.load()"
+                            class="custom-control-input check-cidade" id="cidade">
                         <label class="custom-control-label" for="cidade"> Mesma Cidade </label>
                       </div>
         
