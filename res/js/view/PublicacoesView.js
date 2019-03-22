@@ -12,7 +12,7 @@ class PublicacoesView extends View {
             html += `
             <div class="col-xl-4 col-sm-6 col-xs-12 mb-3">
     
-                <div class="card" id="card-id" onclick="abrirModal(this)">
+                <div class="card shadow-sm rounded" id="card-id" onclick="abrirModal(this)">
     
                     <div class="container-img">
                             <img class="card-img-top" src="/res/img/animal/${el.foto}.png" alt="Foto de ${el.nome}">
