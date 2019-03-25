@@ -9,20 +9,40 @@ class HomeController{
         this._inputListCidade = Array.from(document.querySelectorAll(".check-cidade"));
         this._inputListUf = Array.from(document.querySelectorAll(".check-uf"));
 
+        this._filter = "";
+
         this._http = new HttpService();
         this._view = new PublicacoesView(document.querySelector('#view-publicacoes'));
 
-        this.load();
+
+        this._init();
     }
+
+    changePagination(){
+        setTimeout(() => {
+             console.log(document.querySelector('.active').textContent) 
+        }, 250);
+    }
+
+    _pagination(size = 30, page = 1) {
+        Pagination.Init(
+            document.getElementById('pagination'),
+            {
+                size:size,
+                page:page,
+                step:2
+            }
+        )
+    };
 
     load() {
 
-        let filter = this._checkFilter();
-        console.log(`Filtro => ${filter}`);
+        this._filter = this._checkFilter();
+        console.log(`Filtro => ${this._filter}`);
 
         this._http
             .post("/home/search", {
-                "filter": filter,
+                "filter": this._filter,
                 "page": 1
             })
             .then(data => this._view.update(data))
@@ -90,6 +110,11 @@ class HomeController{
         }
 
         return filter;
+    }
+
+    _init() {
+        this.load();
+        this._pagination();    
     }
 
     
