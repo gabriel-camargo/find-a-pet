@@ -53,3 +53,13 @@ $app->post('/home/search', function(){
 
 	echo json_encode($animais);
 });
+
+$app->post('/home/check-total', function(){
+	Usuario::verifyLogin();
+	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+
+	$animalsRepository = new AnimalsRepository();
+	$count = (array) $animalsRepository->checkTotal($usuario->get_usu_id(), utf8_decode($_POST['filter']) );	
+
+	echo json_encode($count[0]);
+});

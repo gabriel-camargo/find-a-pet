@@ -45,7 +45,7 @@
                             {loop="$especies"}
       
                             <div class="custom-control custom-checkbox">
-                              <input value="{$value.esp_id}" type="checkbox" onchange="homeController.load()"
+                              <input value="{$value.esp_id}" type="checkbox" onchange="homeController.changeFilter()"
                                class="custom-control-input check-especie" id="especie-{$value.esp_id}">
                               <label class="custom-control-label" for="especie-{$value.esp_id}"> {$value.esp_nome} </label>
                             </div>
@@ -70,14 +70,14 @@
                 
                 <!-- CHECKBOX FÊMEA -->
               <div class="custom-control custom-checkbox">
-                    <input value="'F'" type="checkbox"  onchange="homeController.load()" 
+                    <input value="'F'" type="checkbox"  onchange="homeController.changeFilter()" 
                     class="custom-control-input check-sexo" id="sexo-f">
                     <label class="custom-control-label" for="sexo-f"> Fêmea </label>
                   </div>
           
                   <!-- CHECKBOX MACHO -->
                   <div class="custom-control custom-checkbox">
-                    <input value="'M'" type="checkbox" onchange="homeController.load()" 
+                    <input value="'M'" type="checkbox" onchange="homeController.changeFilter()" 
                     class="custom-control-input check-sexo" id="sexo-m">
                     <label class="custom-control-label" for="sexo-m"> Macho </label>
                   </div>
@@ -103,7 +103,7 @@
                     {loop="$status"}
       
                     <div class="custom-control custom-checkbox">
-                        <input value="{$value.sta_id}" type="checkbox" onchange="homeController.load()" 
+                        <input value="{$value.sta_id}" type="checkbox" onchange="homeController.changeFilter()" 
                             class="custom-control-input check-status" id="status-{$value.sta_id}">
 
                         <label class="custom-control-label" for="status-{$value.sta_id}"> {$value.sta_nome} </label>
@@ -132,7 +132,7 @@
                     {loop="$porte"}
     
                     <div class="custom-control custom-checkbox">
-                        <input value="{$value.por_id}" type="checkbox" onchange="homeController.load()" 
+                        <input value="{$value.por_id}" type="checkbox" onchange="homeController.changeFilter()" 
                             class="custom-control-input check-porte" id="porte-{$value.por_id}">
                         <label class="custom-control-label" for="porte-{$value.por_id}"> {$value.por_nome} </label>
                     </div>
@@ -159,7 +159,7 @@
                         {loop="$faixaEtaria"}
       
                             <div class="custom-control custom-checkbox">
-                                <input value="{$value.fai_id}" type="checkbox" onchange="homeController.load()"
+                                <input value="{$value.fai_id}" type="checkbox" onchange="homeController.changeFilter()"
                                     class="custom-control-input check-faixa" id="faixa-{$value.fai_id}">
                                 <label class="custom-control-label" for="faixa-{$value.fai_id}"> {$value.fai_nome} </label>
                             </div>
@@ -185,13 +185,13 @@
                         
                           
                 <div class="custom-control custom-checkbox">
-                        <input value="'{$uf}'" type="checkbox" onchange="homeController.load()"
+                        <input value="'{$uf}'" type="checkbox" onchange="homeController.changeFilter()"
                             class="custom-control-input check-uf" id="uf">
                         <label class="custom-control-label" for="uf"> Mesmo Estado </label>
                       </div>
             
                       <div class="custom-control custom-checkbox">
-                        <input value="'{$cidade}'" type="checkbox" onchange="homeController.load()"
+                        <input value="'{$cidade}'" type="checkbox" onchange="homeController.changeFilter()"
                             class="custom-control-input check-cidade" id="cidade">
                         <label class="custom-control-label" for="cidade"> Mesma Cidade </label>
                       </div>

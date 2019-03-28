@@ -73,4 +73,27 @@ class AnimalsRepository implements AnimalsRepositoryInterface
 
         return $return;
     }
+
+    public function checkTotal($user, $filter)
+    {
+
+        $sql = new Sql();
+
+        $count = $sql->select(
+            "SELECT count(1) as count
+            FROM tbl_animais t1
+            INNER JOIN tbl_status t2 ON (t1.sta_id = t2.sta_id)
+            INNER JOIN tbl_faixa_etaria t3 ON (t1.fai_id = t3.fai_id)
+            INNER JOIN tbl_portes t4 ON ( t1.por_id = t4.por_id )
+            INNER JOIN tbl_usuarios t5 ON (t1.usu_id = t5.usu_id)
+            WHERE t1.usu_id <> :USUARIO AND t2.sta_tipo = :TIPO $filter", array(
+                "USUARIO" => $user,
+                ":TIPO" => "cad"
+            )
+        );
+
+
+        return $count;
+
+    }
 }

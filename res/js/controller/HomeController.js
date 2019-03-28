@@ -10,6 +10,7 @@ class HomeController{
         this._inputListUf = Array.from(document.querySelectorAll(".check-uf"));
 
         this._filter = "";
+        this._page = 1;
 
         this._http = new HttpService();
         this._view = new PublicacoesView(document.querySelector('#view-publicacoes'));
@@ -18,13 +19,37 @@ class HomeController{
         this._init();
     }
 
-    changePagination(){
+    changePagination() {
         setTimeout(() => {
              console.log(document.querySelector('.active').textContent) 
         }, 250);
     }
 
-    _pagination(size = 30, page = 1) {
+    async changeFilter() {
+        this._filter = this._checkFilter();
+        console.log(`Filtro => ${this._filter}`);
+
+        const count =  await this._checkTotal();
+        this._pagination(parseInt(count)); 
+        
+        this._load();
+    }
+
+    _checkTotal() {
+        
+        return this._http
+            .post("/home/check-total", {
+                "filter": this._filter
+            })
+            .then(data => data.count)
+            .catch(err => console.log(err.message));
+    }
+
+    _pagination(size , page=1) {
+
+        document.getElementById('pagination').innerHTML = '';
+
+        console.log("size: "+size);
         Pagination.Init(
             document.getElementById('pagination'),
             {
@@ -33,21 +58,7 @@ class HomeController{
                 step:2
             }
         )
-    };
-
-    load() {
-
-        this._filter = this._checkFilter();
-        console.log(`Filtro => ${this._filter}`);
-
-        this._http
-            .post("/home/search", {
-                "filter": this._filter,
-                "page": 1
-            })
-            .then(data => this._view.update(data))
-            .catch(err => console.log(err.message));
-    }
+    };    
 
     _checkFilter() {
 
@@ -112,10 +123,24 @@ class HomeController{
         return filter;
     }
 
-    _init() {
-        this.load();
-        this._pagination();    
+    _load() {
+
+        this._http
+            .post("/home/search", {
+                "filter": this._filter,
+                "page": this._page,
+            })
+            .then(data => this._view.update(data))
+            .catch(err => console.log(err.message));
     }
 
-    
+    async _init() {
+
+        this._load(); 
+        
+        const count =  await this._checkTotal();
+
+        this._pagination(parseInt(count));    
+               
+    }    
 }
