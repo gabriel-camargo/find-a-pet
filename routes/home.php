@@ -49,7 +49,12 @@ $app->post('/home/search', function(){
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
 	$animalsRepository = new AnimalsRepository();
-	$animais = $animalsRepository->list($usuario->get_usu_id(), utf8_decode($_POST['filter']));	
+	$animais = $animalsRepository->list(
+		$usuario->get_usu_id(),
+		utf8_decode($_POST['filter']),
+		$_POST['page'],
+		$_POST['per_page']
+	);	
 
 	echo json_encode($animais);
 });

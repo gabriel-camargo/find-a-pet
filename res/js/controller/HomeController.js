@@ -11,6 +11,7 @@ class HomeController{
 
         this._filter = "";
         this._page = 1;
+        this._animalsPerPage = 12;
 
         this._http = new HttpService();
         this._view = new PublicacoesView(document.querySelector('#view-publicacoes'));
@@ -21,17 +22,20 @@ class HomeController{
 
     changePagination() {
         setTimeout(() => {
-             console.log(document.querySelector('.active').textContent) 
+            this._page = parseInt(document.querySelector('.active').textContent);
+            this._load();
         }, 250);
     }
 
     async changeFilter() {
+        this._page = 1;
+        
         this._filter = this._checkFilter();
-        console.log(`Filtro => ${this._filter}`);
 
         const count =  await this._checkTotal();
-        this._pagination(parseInt(count)); 
-        
+        let qtdPaginacao = parseInt(parseInt(count)/this._animalsPerPage)+1;
+
+        this._pagination(qtdPaginacao);        
         this._load();
     }
 
@@ -49,7 +53,6 @@ class HomeController{
 
         document.getElementById('pagination').innerHTML = '';
 
-        console.log("size: "+size);
         Pagination.Init(
             document.getElementById('pagination'),
             {
@@ -124,11 +127,16 @@ class HomeController{
     }
 
     _load() {
+        console.log(`Filter: ${this._filter}`);
+        console.log(`Page: ${this._page}`);
+        console.log(`Per Page: ${this._animalsPerPage}`);
+        console.log(`Page Skip: ${parseInt((this._page * this._animalsPerPage) - this._animalsPerPage)}`);
 
         this._http
             .post("/home/search", {
                 "filter": this._filter,
-                "page": this._page,
+                "page": parseInt((this._page * this._animalsPerPage) - this._animalsPerPage),
+                "per_page": parseInt(this._animalsPerPage)
             })
             .then(data => this._view.update(data))
             .catch(err => console.log(err.message));
@@ -139,8 +147,9 @@ class HomeController{
         this._load(); 
         
         const count =  await this._checkTotal();
+        let qtdPaginacao = parseInt(parseInt(count)/this._animalsPerPage)+1;
 
-        this._pagination(parseInt(count));    
+        this._pagination(qtdPaginacao);    
                
     }    
 }
