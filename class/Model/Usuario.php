@@ -10,14 +10,28 @@ class Usuario extends Model
 {
     const SESSION = "User";
 
-    public function save()
+    private function usu_utf8_decode()
     {
         $this->set_usu_nome( trim(utf8_decode( $this->get_usu_nome() )));
         $this->set_usu_email( trim(utf8_decode( $this->get_usu_email() )));
         $this->set_usu_senha( trim(utf8_decode( $this->get_usu_senha() )));  
         $this->set_usu_senha_confirm( trim(utf8_decode( $this->get_usu_senha_confirm() )));    
         $this->set_usu_uf( trim(utf8_decode( $this->get_usu_uf() )));       
-        $this->set_usu_cidade( trim(utf8_decode( $this->get_usu_cidade() )));     
+        $this->set_usu_cidade( trim(utf8_decode( $this->get_usu_cidade() )));  
+    }
+
+    private function usu_utf8_encode()
+    {
+        $this->set_usu_nome( trim(utf8_encode( $this->get_usu_nome() )));
+        $this->set_usu_email( trim(utf8_encode( $this->get_usu_email() )));
+        $this->set_usu_senha( trim(utf8_encode( $this->get_usu_senha() )));     
+        $this->set_usu_uf( trim(utf8_encode( $this->get_usu_uf() )));       
+        $this->set_usu_cidade( trim(utf8_encode( $this->get_usu_cidade() )));  
+    }
+
+    public function save()
+    {
+        $this->usu_utf8_decode();   
                
         if($this->get_usu_id() > 0 && $this->get_usu_id() != NULL){
             $this->update();
@@ -81,7 +95,9 @@ class Usuario extends Model
         $usuario = new Usuario();
 
         if (isset($_SESSION[Usuario::SESSION]) && (int)$_SESSION[Usuario::SESSION]['usu_id'] > 0) {
-			$usuario->setData($_SESSION[Usuario::SESSION]);
+            $usuario->setData($_SESSION[Usuario::SESSION]);
+            
+            $usuario->usu_utf8_encode();
         }
         
         return $usuario;

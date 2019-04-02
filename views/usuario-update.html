@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="pt" dir="ltr">
+
+    <head>
+        {include="pages/header"}
+
+        <style>
+            .card-header{
+                background-color: #fcfcfc !important; 
+            }
+            
+            .item-filtro{
+                color: #222;
+            }
+            .item-filtro:hover{
+                color: #f57c00;
+                text-decoration: none;
+            }
+            
+            #title-sidebar{
+                font-size: 14pt;
+                font-weight: bold;
+                color: #999;
+                text-align: center;
+            
+            }
+        </style>
+
+    </head>
+
+    <body>
+        {include="pages/navbar"}        
+
+        <div class="container">
+           
+
+            <div class="row mt-3">
+
+                <!-- SIDEBAR -->
+                <div class="col-md-3 col-sm-12">    
+
+                    <div class="accordion" id="menu-filtro">
+                            
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="mb-0 p-1" id="title-sidebar">
+                                        Configurações
+                                </h3>
+                            </div>
+                        </div>
+                            
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link" type="button">
+                                    <i class="fas fa-paw"></i> Dados cadastrais
+                                    </button>
+                                </h2>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link" type="button">
+                                    <i class="fas fa-paw"></i> Alterar senha
+                                    </button>
+                                </h2>
+                            </div>
+                        </div>
+
+                    </div>                           
+                    
+                </div>
+                <!-- FIM - SIDEBAR -->
+
+                <div class="col-md-9 col-sm-12">
+
+                    <div class="card">
+                        <h5 class="card-header">Dados Cadastrais</h5>
+        
+                        <div class="card-body px-4">
+
+                            <form method="POST">
+
+                                <input type="hidden" name="usu_id" value="{$usuario->get_usu_id()}">
+
+                                <div class="form-row">
+
+                                    <div class="col-xs-4">
+                                        
+                                        <img src="/res/img/animal/default.png" alt="..." width="80" height="80" class="img-thumbnail"
+                                        style="border-radius:100%">
+                                    
+                                        
+                                    </div>
+
+                                    <div class="col-xs-8">
+                                        <button style="margin-top: 20px;" class="btn btn-link">Alterar foto</button>
+                                    </div>
+                                </div>
+                                                                
+
+                                <!-- INPUT DO NOME  -->
+                                <div class="form-row mb-3 mt-3">
+                                    <label for="inputNome">Nome
+                                        
+                                    </label>
+                                    <input name="usu_nome" type="text" class="form-control" id="inputNome"
+                                        value="{$usuario->get_usu_nome()}" required>
+                                </div>
+
+                                <!-- INPUT DO EMAIL  -->
+                                <div class="form-row mb-3 mt-1">
+                                    <label for="inputEmail"> Email
+                                        
+                                    </label>
+                                    <input name="usu_email" type="email" class="form-control" id="inputEmail"
+                                        value="{$usuario->get_usu_email()}" required>
+                                </div>
+
+                                <!-- LINHA DE UF E CIDADE -->
+                                <div class="form-row mt-4 mb-2">
+
+                                    <!-- INPUT DE UF -->
+                                    <div class="col-md-6 col-sm-12 mb-2">                    
+                                        
+                                        <label for="inputUf">Nome</label>
+                                        <select name="usu_uf" id="inputUf" class="custom-select" onchange="popularCidade()">
+                                            <option selected value="">Selecione seu estado</option>
+                                        </select>
+                    
+                                    </div>
+    
+                                    <!-- CONFIRMAÇÃO DE CIDADE -->
+                                    <div class="col-md-6 col-sm-12">                    
+                                        
+                                        <label for="inputCidade">Nome</label>
+                                        <select name="usu_cidade" id="inputCidade" class="custom-select">
+                                            <option selected>Selecione sua cidade</option>
+                                        </select>
+                    
+                                    </div>
+                                </div>                
+                                
+                                <button type="submit" class="btn btn-success btn-block mt-4 mb-2"> Gravar </button>
+                            </form>
+        
+                        </div>
+                        <!-- div.card-body -->
+                    </div>
+                    <!-- div.card -->
+                </div>
+                <!-- div.col -->
+            </div>
+            <!-- div.row -->
+
+            <div class="jumbotron mt-5">
+                <ul>
+                    <li>ID: {$usuario->get_usu_id()}</li>
+                    <li>Nome: {$usuario->get_usu_nome()}</li>
+                    <li>Email: {$usuario->get_usu_email()}</li>
+                    <li>Senha: {$usuario->get_usu_senha()}</li>
+                    <li>UF: {$usuario->get_usu_uf()}</li>
+                    <li>Cidade: {$usuario->get_usu_cidade()}</li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- div.container -->
+
+        {include="pages/footer"}
+        <script type="module">
+
+            import getEstadosCidades from '/res/js/services/estados_cidades.js';
+            
+            function popularUF(data)
+            {
+                // Get the parent node
+                let parent = document.querySelector('#inputUf');
+
+                data.forEach(estado => {
+
+                    // novoElemento
+                    let el = document.createElement('option');
+                    el.textContent = estado.nome;
+                    el.value = estado.sigla;
+
+                    // Insert the new node after the last element in the parent node
+                    parent.append(el);
+
+                    
+                });
+
+                if("{$uf}" != null){
+                    parent.value="{$uf}";
+
+                    popularCidade();
+                }
+            }
+
+            function popularCidade() {
+                let inputUf = document.querySelector('#inputUf');
+
+                let uf = inputUf.options[inputUf.selectedIndex].value;
+
+                let data = getEstadosCidades();
+
+                let parent = document.querySelector('#inputCidade');
+
+                while(parent.firstChild){
+                    parent.removeChild(parent.firstChild);
+                }
+
+                data.forEach(estado => {
+
+                    if(estado.sigla == uf){
+                        
+
+                        estado.cidades.forEach(cidade =>{
+
+                            //novo elemento
+                            let el = document.createElement('option');
+                            el.textContent = cidade;
+                            el.value = cidade;
+
+                            parent.append(el);
+                        });
+                    }
+                });
+
+                if("{$cidade}" != null) parent.value="{$cidade}";
+            };
+
+            popularUF(getEstadosCidades());
+
+            document.querySelector('#inputUf').onchange = () => {
+                let inputUf = document.querySelector('#inputUf');
+
+                let uf = inputUf.options[inputUf.selectedIndex].value;
+
+                let data = getEstadosCidades();
+
+                let parent = document.querySelector('#inputCidade');
+
+                while(parent.firstChild){
+                    parent.removeChild(parent.firstChild);
+                }
+
+                data.forEach(estado => {
+
+                    if(estado.sigla == uf){
+                        
+
+                        estado.cidades.forEach(cidade =>{
+
+                            //novo elemento
+                            let el = document.createElement('option');
+                            el.textContent = cidade;
+                            el.value = cidade;
+
+                            parent.append(el);
+                        });
+                    }
+                });
+            };
+        
+        </script>
+    </body>
+</html>

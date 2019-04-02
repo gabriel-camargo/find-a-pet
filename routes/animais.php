@@ -55,7 +55,7 @@ $app->get("/animais/create/", function(){
 		"porte" => $porte,
 		"status" => $status,
 		"uf" => $ufPadrao,
-		"cidade" => utf8_encode($cidadePadrao)
+		"cidade" => $cidadePadrao
 	));
 });
 
