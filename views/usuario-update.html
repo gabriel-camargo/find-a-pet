@@ -82,22 +82,21 @@
         
                         <div class="card-body px-4">
 
-                            <form method="POST">
+                            <form method="POST" onsubmit="usuarioConfiguracoesController.submit(event)">
 
-                                <input type="hidden" name="usu_id" value="{$usuario->get_usu_id()}">
+                                <input id="inputId" type="hidden" name="usu_id" value="{$usuario->get_usu_id()}">
 
                                 <div class="form-row">
 
                                     <div class="col-xs-4">
                                         
-                                        <img src="/res/img/animal/default.png" alt="..." width="80" height="80" class="img-thumbnail"
-                                        style="border-radius:100%">
-                                    
+                                        <img src="/res/img/default.png" alt="..." width="80" height="80" class="img-thumbnail"
+                                        style="border-radius:100%">                                    
                                         
                                     </div>
 
                                     <div class="col-xs-8">
-                                        <button style="margin-top: 20px;" class="btn btn-link">Alterar foto</button>
+                                        <a href="#" style="margin-top: 25px;" class="d-block ml-2"> Alterar foto</a>
                                     </div>
                                 </div>
                                                                 
@@ -126,7 +125,7 @@
                                     <!-- INPUT DE UF -->
                                     <div class="col-md-6 col-sm-12 mb-2">                    
                                         
-                                        <label for="inputUf">Nome</label>
+                                        <label for="inputUf">Estado</label>
                                         <select name="usu_uf" id="inputUf" class="custom-select" onchange="popularCidade()">
                                             <option selected value="">Selecione seu estado</option>
                                         </select>
@@ -136,7 +135,7 @@
                                     <!-- CONFIRMAÇÃO DE CIDADE -->
                                     <div class="col-md-6 col-sm-12">                    
                                         
-                                        <label for="inputCidade">Nome</label>
+                                        <label for="inputCidade">Cidade</label>
                                         <select name="usu_cidade" id="inputCidade" class="custom-select">
                                             <option selected>Selecione sua cidade</option>
                                         </select>
@@ -171,6 +170,15 @@
         <!-- div.container -->
 
         {include="pages/footer"}
+
+        <script src="/node_modules/croppie/croppie.min.js"></script>
+        <script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+        <script src="/res/js/model/Usuario.js"></script>
+        <script src="/res/js/controller/UsuarioConfiguracoesController.js"></script>
+
+        <script>
+            let usuarioConfiguracoesController = new UsuarioConfiguracoesController();
+        </script>
         <script type="module">
 
             import getEstadosCidades from '/res/js/services/estados_cidades.js';
@@ -267,5 +275,6 @@
             };
         
         </script>
+
     </body>
 </html>

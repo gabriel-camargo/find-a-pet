@@ -39,9 +39,8 @@ class Usuario extends Model
         else{
             if(!$this->checkInsert()) return false;
             $this->insert(); 
-        }        
-
-        Usuario::autenticar($this->get_usu_email(), $this->get_usu_senha());
+            Usuario::autenticar($this->get_usu_email(), $this->get_usu_senha());
+        }                
 
         return true;
     }
@@ -140,6 +139,27 @@ class Usuario extends Model
         ":CIDADE" => $this->get_usu_cidade()
         ));
     }    
+
+    private function update()
+    {
+        $sql = new Sql();
+
+        $results = $sql->query("UPDATE tbl_usuarios SET 
+            usu_nome=:NOME,
+            usu_email=:EMAIL,
+            usu_senha=:SENHA, 
+            usu_uf=:UF,
+            usu_cidade=:CIDADE,
+            WHERE usu_id=:ID ",
+        array(
+            ":NOME" => $this->get_usu_nome(),
+            ":EMAIL" => $this->get_usu_email(),
+            ":SENHA" => $this->get_usu_senha(),
+            ":UF" => $this->get_usu_uf(),
+            ":CIDADE" => $this->get_usu_cidade(),
+            ":ID" => $this->get_usu_id(),
+        ));
+    }
 
     private static function checkLogin()
     {
