@@ -28,7 +28,7 @@ $app->post('/usuario/configuracoes/confirmar-senha', function(){
 	Usuario::verifyLogin();
     $usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
-    if($usuario->get_usu_senha() != utf8_decode($_POST['senha'])){
+    if($usuario->get_usu_senha() != $_POST['senha']){
         throw new Exception("Senhas não correspondem!", 1);        
     } else {
         
@@ -50,13 +50,18 @@ $app->post('/usuario/configuracoes/save', function(){
 
     $return['validou'] = $novoUsuario->save();
 
-    $user['nome'] = $novoUsuario->get_usu_nome();
-    $user['email']  = $novoUsuario->get_usu_email();
-    $user['senha'] = $novoUsuario->get_usu_senha();
-    $user['uf'] = $novoUsuario->get_usu_uf();
-    $user['cidade'] = $novoUsuario->get_usu_cidade();
-    $user['id'] = $novoUsuario->get_usu_id();
+    echo json_encode($return);
+});
 
-    echo json_encode($user);
+$app->post('/usuario/configuracoes/alterar-senha', function(){
+
+	Usuario::verifyLogin();
+    $usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+    
+    $usuario->set_usu_senha($_POST['senha']);
+
+    $return['validou'] = $usuario->save();
+
+    echo json_encode($return);
 });
 

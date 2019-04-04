@@ -15,7 +15,7 @@ class Usuario extends Model
         $this->set_usu_nome( trim(utf8_decode( $this->get_usu_nome() )));
         $this->set_usu_email( trim(utf8_decode( $this->get_usu_email() )));
         $this->set_usu_senha( trim(utf8_decode( $this->get_usu_senha() )));  
-        $this->set_usu_senha_confirm( trim(utf8_decode( $this->get_usu_senha_confirm() )));    
+        if($this->get_usu_senha_confirm() != NULL )$this->set_usu_senha_confirm( trim(utf8_decode( $this->get_usu_senha_confirm() )));    
         $this->set_usu_uf( trim(utf8_decode( $this->get_usu_uf() )));       
         $this->set_usu_cidade( trim(utf8_decode( $this->get_usu_cidade() )));  
     }
@@ -31,18 +31,23 @@ class Usuario extends Model
 
     public function save()
     {
-        $this->usu_utf8_decode();   
-               
-        if($this->get_usu_id() > 0 && $this->get_usu_id() != NULL){
-            $this->update();
-        } 
-        else{
-            if(!$this->checkInsert()) return false;
-            $this->insert(); 
-            Usuario::autenticar($this->get_usu_email(), $this->get_usu_senha());
-        }                
+        try {
+            $this->usu_utf8_decode(); 
 
-        return true;
+            if($this->get_usu_id() > 0 && $this->get_usu_id() != NULL){
+                $this->update();
+            } 
+            else{                  
+                if(!$this->checkInsert()) return false;
+                $this->insert();                 
+            }   
+
+            Usuario::logout();
+            Usuario::autenticar($this->get_usu_email(), $this->get_usu_senha());             
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
     }
 
     public static function verifyLogin()
@@ -149,7 +154,7 @@ class Usuario extends Model
             usu_email=:EMAIL,
             usu_senha=:SENHA, 
             usu_uf=:UF,
-            usu_cidade=:CIDADE,
+            usu_cidade=:CIDADE
             WHERE usu_id=:ID ",
         array(
             ":NOME" => $this->get_usu_nome(),
