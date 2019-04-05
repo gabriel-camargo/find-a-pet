@@ -101,7 +101,8 @@ class AnimalController{
     updatePhoto(id){
         this._croppieImage.result({
             type: 'canvas',
-            size: 'viewport'
+            size: {width: 400, height:400},
+            quality: 0.1,
         })
         .then( (response) =>{
             if (this._inputFoto.value === "") response = null;

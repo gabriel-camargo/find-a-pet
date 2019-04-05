@@ -2,11 +2,19 @@
 
 use \FindAPet\Page;
 use \FindAPet\Model\Usuario;
+use \FindAPet\Helper\ImageHelper;
 
 $app->get('/usuario/configuracoes', function(){
 
 	Usuario::verifyLogin();
     $usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+
+    // VERIFICAR SE IMAGEM EXISTE
+	$fotoUsuario = (file_exists(
+        $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
+        "res" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .
+        "perfil" . DIRECTORY_SEPARATOR .  $usuario->get_usu_id() . ".png"
+    )) ?"perfil/". $usuario->get_usu_id() . '.png' : "default.png" ;
 
     $ufPadrao = ($usuario->get_usu_uf() != "") ? $usuario->get_usu_uf() : null;
 	$cidadePadrao = ($usuario->get_usu_cidade() != "") ? $usuario->get_usu_cidade() : null;
@@ -17,7 +25,8 @@ $app->get('/usuario/configuracoes', function(){
         "nome" => $usuario->get_usu_nome(),
         "usuario" => $usuario,
         "uf" => $ufPadrao,
-		"cidade" => $cidadePadrao
+        "cidade" => $cidadePadrao,
+        "fotoUsuario" => $fotoUsuario
     ));
 });
 
@@ -65,3 +74,11 @@ $app->post('/usuario/configuracoes/alterar-senha', function(){
     echo json_encode($return);
 });
 
+$app->post("/usuario/configuracoes/savePhoto", function(){
+
+	Usuario::verifyLogin();
+	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+
+	ImageHelper::savePhoto($_POST["image"], $_POST['id'], "perfil");
+
+});

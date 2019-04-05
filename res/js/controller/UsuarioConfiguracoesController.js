@@ -6,14 +6,76 @@ class UsuarioConfiguracoesController{
         this._inputEmail = document.querySelector("#inputEmail");
         this._inputUf = document.querySelector("#inputUf");
         this._inputCidade = document.querySelector("#inputCidade");
+        
+        this._inputFoto = document.querySelector("#inputFoto");
 
         this._inputOldSenha = document.querySelector("#inputSenhaOld");
         this._inputNewSenha = document.querySelector("#inputSenhaNew");
         this._inputNewSenhaConfirm = document.querySelector("#inputSenhaNewConfirm");
 
-        // this._croppieImage = this.cropImage();
+        this._croppieImage = this.cropImage();
         this._http = new HttpService();
     } 
+
+    cropImage(){
+
+        let el = document.getElementById('image_demo');
+        
+        return new Croppie( el, {
+            enableExif: true,
+            viewport: {
+                width:200,
+                height:200,
+                type:'square'
+            },
+            boundary:{
+                width:250,
+                height:250
+            },
+            
+        });
+        
+    }
+
+    loadImage(input){
+        let reader = new FileReader();
+
+        reader.onload = (event) => {
+            this._croppieImage.bind({
+                url: event.target.result
+            });
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+
+    updatePhoto(id){
+        this._croppieImage.result({
+            type: 'canvas',
+            size: {width: 400, height:400},
+            quality: 1,
+        })
+        .then( (response) =>{
+            if (this._inputFoto.value === "") response = null;
+            this.savePhoto(id, response);
+            document.location.reload(true)
+        });
+    }
+
+    async savePhoto(id, image){        
+
+        const r = await this._http
+            .post('/usuario/configuracoes/savePhoto', {
+                "id": id,
+                "image": image
+            })
+            .then(data => console.log(data))
+            .catch(err => {
+                console.log(err.message);
+            });
+        return r;
+        
+    }
 
     showDadosCadastrais() {
         document.querySelector("#card-dados-cadastrais").style.display = "block";
