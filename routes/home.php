@@ -26,6 +26,13 @@ $app->get('/home/', function(){
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
+	// VERIFICAR SE IMAGEM EXISTE
+	$fotoUsuario = (file_exists(
+        $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
+        "res" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .
+        "perfil" . DIRECTORY_SEPARATOR .  $usuario->get_usu_id() . ".png"
+    )) ?"perfil/". $usuario->get_usu_id() . '.png' : "default.png" ;
+
 	$especies = Especie::all();
 	$status = Status::find("cad");
 	$porte = Porte::all();
@@ -40,7 +47,8 @@ $app->get('/home/', function(){
 		"porte" => $porte,
 		"faixaEtaria" => $faixaEtaria,
 		"uf" => utf8_encode($usuario->get_usu_uf()),
-		"cidade" => utf8_encode($usuario->get_usu_cidade())
+		"cidade" => utf8_encode($usuario->get_usu_cidade()),
+		"fotoUsuario" => $fotoUsuario
 	));
 });
 

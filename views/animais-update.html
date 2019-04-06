@@ -44,16 +44,21 @@
                         <input value="{$animal->get_ani_id()}" id="inputIdAnimal" type="hidden" name="ani_id">
 
                         <!-- LINHA DO NOME E DA FOTO -->
-                        <div class="form-row">
+                        <div class="form-row mb-3">
 
-                            <!-- INPUT DA FOTO  -->
-                            <div class="col-lg-4 col-md-12 form-group text-center mt-2">                                
-                                <div id="imagem-animal"> </div>
-                                <a role="button" class="btn btn-success mt-1 text-white" style="width:200px"
-                                    data-toggle="modal" data-target="#croppie-modal">
-                                    Alterar foto
-                                </a>
-                            </div>
+                                <div class="col-xs-4">
+                                        
+                                        <img src="/res/img/animal/{$foto}.png" alt="..." width="120" height="120" class="img-thumbnail"
+                                        style="border-radius:100%">                                    
+                                        
+                                    </div>
+
+                                    <div class="col-xs-8 pt-4 pl-2">
+                                        <a href="#" style="margin-top: 25px;" class="d-block ml-2"
+                                            data-toggle="modal" data-target="#croppie-modal"> Alterar foto</a>
+                                    </div>
+
+                        </div>
                             <!-- ./ INPUT DA FOTO -->
 
                             <!-- Modal -->
@@ -91,20 +96,24 @@
                                 </div>
                             </div>
 
-                            <!-- LINHA DO NOME, ESPECIE E STATUS -->
-                            <div class="col-lg-8 col-md-12 form-group">
+                        <div class="form-row">
 
+                            <div class="col form-group">
                                 <!-- INPUT DO NOME  -->
-                                <div class="form-row mb-3 mt-1">
-                                    <label for="inputNomeAnimal">Nome
-                                        
-                                    </label>
-                                    <input name="ani_nome" type="text" class="form-control" id="inputNomeAnimal"
-                                        placeholder="Insira o nome do animal" value="{$animal->get_ani_nome()}" required>
-                                </div>
+                                <label for="inputNomeAnimal">Nome
+                                    
+                                </label>
+                                <input name="ani_nome" type="text" class="form-control" id="inputNomeAnimal"
+                                    placeholder="Insira o nome do animal" value="{$animal->get_ani_nome()}" required>
+    
+                            </div>
+                            
+                        </div>
+
+                        <div class="form-row">
 
                                 <!-- INPUT DA ESPECIE -->
-                                <div class="form-row mb-3">
+                                <div class="col-lg-6 col-md-12 form-group">
                                         <label for="inputEspecieAnimal">Especie  </label>
                                         <select name="esp_id" id="inputEspecieAnimal" class="custom-select">                                     
                                             {loop="$especies"}
@@ -118,7 +127,7 @@
                                 </div>
 
                                 <!-- INPUT DO STATUS -->
-                                <div class="form-row">
+                                <div class="col-lg-6 col-md-12 form-group">
                                         <label for="inputStatusAnimal">Status  </label>
                                         <select name="sta_id" id="inputStatusAnimal" class="custom-select">
                                             {loop="$status"}
@@ -130,8 +139,6 @@
                                             {/loop}
                                         </select>
                                 </div>
-                            </div>
-                            <!-- ./LINHA DO NOME, ESPECIE E STATUS -->
                         </div>
                         <!-- ./FORM-ROW -->
 

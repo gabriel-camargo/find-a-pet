@@ -12,6 +12,7 @@ class AnimalController{
         this._inputUf = document.querySelector("#inputUf");
         this._inputCidade = document.querySelector("#inputCidade");
 
+        this._lastId = 0;
         this._croppieImage = this.cropImage();
         this._http = new HttpService();
     }
@@ -48,40 +49,104 @@ class AnimalController{
         reader.readAsDataURL(input.files[0]);
     }
 
-    createAnimal(event){
+    // createAnimal(event){
+    //     event.preventDefault();
+
+    //     this._croppieImage.result({
+    //         type: 'canvas',
+    //         size: 'viewport'
+    //     }).then( (response) => {
+
+    //         let newAnimal = this.newAnimal();       
+
+    //         if (this._inputFoto.value === "") response = null; 
+            
+    //         this._http
+    //             .post('/animais/create/', newAnimal)
+    //             .then(data => {
+
+    //                 if(response) this.savePhoto(data.lastId, response);
+    //                 window.location = "/animais/"; 
+
+    //             } )
+    //             .catch(err => {
+    //                 console.log(err.message);
+
+    //                 window.scrollTo(0,0);                   
+    //                 document.getElementById("div-alert-erro").innerHTML = `
+
+    //                     <p class="alert alert-danger">
+    //                         <strong> Erro! </strong> 
+    //                         Você deve preencher todos os campos obrigatórios!
+    //                     </p>
+
+    //                 `; 
+    //             });
+    //     })
+    // }
+
+    _resetForm() {
+        this._inputCidade.value = '';
+        this._inputEspecie.value = '';
+        this._inputFaixaEtaria.value = '';
+        this._inputInformacoes.value = '';
+        this._inputNome.value = '';
+        this._inputPorte.value = '';
+        this._inputStatus.value = '';
+        this._inputUf.value = '';
+        document.getElementById('ani_sexo_m').checked = false;
+        document.getElementById('ani_sexo_f').checked = false;
+
+    }
+    async createAnimal(event) {
         event.preventDefault();
 
-        this._croppieImage.result({
-            type: 'canvas',
-            size: 'viewport'
-        }).then( (response) => {
+        let newAnimal = this.newAnimal();
 
-            let newAnimal = this.newAnimal();       
+        this._lastId = await this._requestInsertAnimal(newAnimal);
 
-            if (this._inputFoto.value === "") response = null; 
-            
-            this._http
-                .post('/animais/create/', newAnimal)
-                .then(data => {
+        if(this._lastId > 1){
 
-                    if(response) this.savePhoto(data.lastId, response);
-                    window.location = "/animais/"; 
+            Swal.fire({
+                title: 'Cadastro realizado!',
+                text: "Deseja adicionar uma foto para seu bichinho? :)",
+                type: 'success',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#aaa',
+                confirmButtonText: 'Sim, vamos!',
+                cancelButtonText: 'Talvez mais tarde'
+            }).then( (result) => {
+                if (result.value) {
+                    //resetar formulário
+                    this._resetForm();
 
-                } )
-                .catch(err => {
-                    console.log(err.message);
+                    //lançar modal
+                    //desculpa pelo JQuery ;------; 
+                    $('#croppie-modal').modal('show');
+                } else {
+                    //redirecionar
+                    document.location.href = "/animais";
+                }
+            });
+        } else {
+            Swal.fire(
+                'Ops! Não foi possível cadastrar seu amigo... :(',
+                'Verifique os campos obrigatórios!',
+                'error'
+            )
+        }
+    }
 
-                    window.scrollTo(0,0);                   
-                    document.getElementById("div-alert-erro").innerHTML = `
+    _requestInsertAnimal(animal) {
+        return this._http
+            .post('/animais/create/', animal)
+            .then(data => data.lastId)
+            .catch(err => {
+                console.log(err.message);
 
-                        <p class="alert alert-danger">
-                            <strong> Erro! </strong> 
-                            Você deve preencher todos os campos obrigatórios!
-                        </p>
-
-                    `; 
-                });
-        })
+                return -1;
+            });
     }
 
     savePhoto(ani_id, image){        
@@ -98,11 +163,14 @@ class AnimalController{
         
     }
 
-    updatePhoto(id){
+    updatePhoto(ani_id = -1){
+
+        const id = (ani_id > 0)? ani_id:this._lastId;
+        
         this._croppieImage.result({
             type: 'canvas',
             size: {width: 400, height:400},
-            quality: 0.1,
+            quality: 1,
         })
         .then( (response) =>{
             if (this._inputFoto.value === "") response = null;

@@ -16,6 +16,13 @@ $app->get('/animais/', function(){
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
+	// VERIFICAR SE IMAGEM EXISTE
+	$fotoUsuario = (file_exists(
+        $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
+        "res" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .
+        "perfil" . DIRECTORY_SEPARATOR .  $usuario->get_usu_id() . ".png"
+    )) ?"perfil/". $usuario->get_usu_id() . '.png' : "default.png" ;
+
 	$page = new Page();
 
 	$feedbackSuccess = MensagemHelper::getMensagem();
@@ -29,7 +36,8 @@ $app->get('/animais/', function(){
   	$page->setTpl("animais",array(
 		"nome" => $usuario->get_usu_nome(),
 		"feedback_success" => $feedbackSuccess,
-		"animais" =>$animais
+		"animais" =>$animais,
+		"fotoUsuario" => $fotoUsuario
 	));
 
 });
@@ -37,6 +45,13 @@ $app->get('/animais/', function(){
 $app->get("/animais/create/", function(){
     Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+
+	// VERIFICAR SE IMAGEM EXISTE
+	$fotoUsuario = (file_exists(
+        $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
+        "res" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .
+        "perfil" . DIRECTORY_SEPARATOR .  $usuario->get_usu_id() . ".png"
+    )) ?"perfil/". $usuario->get_usu_id() . '.png' : "default.png" ;
 
 	$ufPadrao = ($usuario->get_usu_uf() != "") ? $usuario->get_usu_uf() : null;
 	$cidadePadrao = ($usuario->get_usu_cidade() != "") ? $usuario->get_usu_cidade() : null;
@@ -55,7 +70,8 @@ $app->get("/animais/create/", function(){
 		"porte" => $porte,
 		"status" => $status,
 		"uf" => $ufPadrao,
-		"cidade" => $cidadePadrao
+		"cidade" => $cidadePadrao,
+		"fotoUsuario" => $fotoUsuario
 	));
 });
 
@@ -83,6 +99,13 @@ $app->get("/animais/:id", function($id){
 
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+
+	// VERIFICAR SE IMAGEM EXISTE
+	$fotoUsuario = (file_exists(
+        $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
+        "res" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .
+        "perfil" . DIRECTORY_SEPARATOR .  $usuario->get_usu_id() . ".png"
+    )) ?"perfil/". $usuario->get_usu_id() . '.png' : "default.png" ;
 
 	$animal = new Animal();
 	$animal->find($id);
@@ -112,7 +135,8 @@ $app->get("/animais/:id", function($id){
 		"faixa_etaria" => $faixaEtaria,
 		"porte" => $porte,
 		"status" => $status,
-		"error" => $error
+		"error" => $error,
+		"fotoUsuario" => $fotoUsuario
 	));
 });
 
