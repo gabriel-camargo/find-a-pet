@@ -1,179 +1,12 @@
 html, body{
-  font-family: 'Raleway', sans-serif;
-  font-weight: lighter;
+  font-family: 'Roboto', sans-serif;
   height: 100vh;
   background: url("/res/img/dust_scratches.png");
+  /* background-color: #fffdf7; */
+  font-size: 11pt;
 }
 
-.form-control, .custom-select, .custom-file-input{
-  border-radius: 20px;
-  min-height: 40px;
-  padding-left: 28px;
-  padding-right: 28px;
-}
-
-/*---------------------------*/
-/* ----------NAVBAR--------- */
-/*---------------------------*/
-
-/* .navbar{
-  background-color: #43A047;
-} */
-
-/* .navbar-img-usuario{
-  border-radius: 50%;
-}
-.navbar-link{
-  color: #ffffff;
-}
-
-.navbar-link:hover{
-  color: #eeeeee;
-}
-
-.navbar-dropdown{
-  text-align: center;
-  margin-left: -175px;
-  padding: 5px;
-  align-items: center;
-}
-
-#navbar-input{
-  width: 400px;
-}
-
-.navbar{
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 16px 0 rgba(0, 0, 0, 0.19);
-  padding: 1px;
-} */
-
-/* .navbar-titulo:hover, .nav-link:hover{
-  color: #43A047 !important;
-} */
-
-
-
-/*---------------------------*/
-/* -------- INDEX ---------- */
-/*---------------------------*/
-
-
-.publicacao-td-foto{
-  width: 25%;
-  height: 150px;
-}
-
-.publicacao-foto{
-  width: 140px;
-  height: 140px;
-  margin: 10px 20px 10px 20px;
-  border-radius: 15px;
-  background-color: #dedede;
-}
-
-.publicacao-table{
-  border-top: 1px solid #dddddd;
-  /* border-bottom: 1px solid #dddddd; */
-  width: 100%;
-}
-
- .publicacao-botao{
-   background-color: rgba(0,0,0,0);
-   border: none;
-   color: #43A047;
-   font-size: 20px;
-   font-weight: 600;
- }
- .publicacao-td{
-   padding-left: 10px;
-   font-weight: 500;
- }
-
- .publicacao-form{
-   border-top: 1px solid #dddddd;
- }
-
- .publicacao-botao:hover{
-   text-decoration: underline;
- }
-
-/*------------------------------*/
-/* ---- EXPANSÃO DO ANIMAL ----*/
-/*-----------------------------*/
-
-.expansao-table, .expansao-table-td{
-  border-top: 1px solid #cccccc;
-}
-
-.expansao-table{
-  width: 90%;
-  margin-left: 5%;
-  margin-top: 76px;
-  font-size: 15pt;
-  /* margin-right: 50px; */
-}
-
-.td-foto{
-  width: 50%;
-  height: 420px;
-}
-
-.expansao-foto{
-  width: 350px;
-  height: 350px;
-  margin: 0px 20px 10px 20px;
-  border-radius: 15px;
-  background-color: #dedede;
-}
-.expansao-table-td{
-  padding-left: 15px;
-}
-
-.expansao-link-acao{
-  background-color: #43A047;
-  color: white;
-  border-radius: 5px;
-  padding: 6px 110px 6px 110px;
-  margin-top: 50px;
-  margin-left: 35px;
-}
-.expansao-link-acao:hover{
-  background-color: #54B158;
-  color: white;
-  text-decoration: none;
-}
-
-.expansao-td-nome{
-  color: #43A047;
-  font-weight: 600;
-}
-
-.expansao-info-dono{
-  border-top: 1px solid #cccccc;
-  margin-bottom: 20px;
-}
-
-.expansao-info-titulo{
-  font-weight: bold;
-  margin-bottom: 50px;
-}
-
-.expansao-btn{
-    background-color:#43A047;
-    border: 0;
-    font-weight: bold;
-}
-
-.expansao-btn:hover{
-    background-color:#54B158;
-    border: 0;
-    font-weight: bold;
-}
-/*----------------------------------------------*/
-/* ------------ CADASTRO DO ANIMAL ----------- */
-/*---------------------------------------------*/
-
-.cadastro-animal-div-foto{
+.body--login{
   display: -ms-flexbox;
   display: -webkit-box;
   display: flex;
@@ -183,63 +16,82 @@ html, body{
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-}
-
-.cadastro-animal-btn{
-  background-color: #43A047;
-  border: 0;
-  font-weight: bold;
-}
-
-.cadastro-animal-titulo{
-  text-align: center;
-  margin-top: 15px;
-  margin-bottom: 10px;
-}
-/*-------------------------------*/
-/* ---------- ANIMAL ----------- */
-/*-------------------------------*/
-.animal-publicacao{
-  /* border: 2px solid blue; */
-  border-radius: 15px;
-  padding: 20px;
   background-color: #eaeaea;
+  font-weight: bolder;
+  text-align: center;
+  margin-top: 0px;
 }
 
-.animal-link-acao{
-  background-color: #43A047;
-  color: white;
-  border-radius: 5px;
-  padding: 10px 10px 10px 10px;
+.link{
+  color: #f57c00;
 }
-.animal-link-acao:hover{
-  background-color: #54B158;
-  color: white;
+
+  .link:hover{
+    font-weight: bold;
+    color: #f57c00;
+    text-decoration: none;
+  }
+
+/* .form{
+
+} */
+
+  .form--theme-login{
+    width: 100%;
+    margin: auto;
+    background-color: rgba(250, 250, 250, 0.9);
+
+    border-radius: 10px;
+    border: 1px solid #dddddd;
+  }
+
+  .form--size-sm{
+    max-width: 450px;
+  }
+  .form--size-md{
+    max-width: 750px;
+  }
+
+.form-control, .custom-select, .custom-file-input{
+  border-radius: 20px;
+  min-height: 40px;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.btn{
+  border-radius: 20px;
+}
+
+.sidebar__link{
+  color: #222;
+  /* width: 80%; */
+  text-align: left;
+}
+
+.sidebar__link:hover{
+  color: #f57c00;
   text-decoration: none;
 }
 
-.animal-foto{
-  background-color: #aaa;
-  width: 150px;
-  height: 150px;
-  border-radius: 15px;
+  .sidebar__link--status-selected{
+    color: #f57c00;
+    font-weight: bold;
+  }
+
+.sidebar__title{
+  font-size: 13pt;
+  font-weight: bold;
+  color: #666;
+  text-align: center;
 }
 
-.animal-info{
-  /* border: 2px solid white; */
-  padding-left: 20px;
+.card-body{
+  padding-top: 7px;
 }
-
-/*-------------------------------*/
-/* ---------- CONFIG ----------- */
-/*-------------------------------*/
-.config-img{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.card-header{
+  background-color: #fcfcfc !important; 
 }
-
-select.form-control{
-  padding-top:5px;
-  padding-bottom:5px;
+.fa-angle-right{
+  margin-right: 10px;
 }

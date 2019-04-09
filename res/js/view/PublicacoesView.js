@@ -8,6 +8,8 @@ class PublicacoesView extends View {
 
         let html = '';
 
+        console.log(model)
+
         model.forEach(el => {
             html += `
             <div class="col-xl-4 col-sm-6 col-xs-12 mb-3">
@@ -25,15 +27,20 @@ class PublicacoesView extends View {
                     <!-- div.container-img -->
                     
                     <div class="card-body">
+
+                        <span class="card-text mt-0 font-weight-bold text-muted">
+                            ${el.cidade} - ${el.uf}
+                        </span> 
     
-                        <h5 class="card-title">
-                            <span class="font-weight-bold text-capitalize">${el.nome}</span>,
-                            ${el.status}
+                        <h5 class="card-title mt-2">
+                            <span class="font-weight-bold text-capitalize">${el.nome}</span>
                         </h5>
-                        
-                        <p class="card-text mb-2 font-weight-bold">
-                            
-                        </p> 
+
+                        <p class="card-text mb-2">
+                            <span class="font-weight-bold">Status:</span>
+                            ${el.status}
+                        </p>
+                       
     
                         <p class="card-text mb-2 font-weight-bold">
 

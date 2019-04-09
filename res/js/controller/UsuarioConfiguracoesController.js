@@ -77,14 +77,28 @@ class UsuarioConfiguracoesController{
         
     }
 
-    showDadosCadastrais() {
+    showDadosCadastrais(el) {
         document.querySelector("#card-dados-cadastrais").style.display = "block";
         document.querySelector("#card-atualizar-senha").style.display = "none";
+
+        let elements = document.querySelectorAll('.sidebar__link');
+        elements.forEach(e => {
+            e.classList.remove('sidebar__link--status-selected');
+        });
+
+        el.classList.add('sidebar__link--status-selected');
     }
 
-    showUpdateSenha() {
+    showUpdateSenha(el) {
         document.querySelector("#card-dados-cadastrais").style.display = "none";
         document.querySelector("#card-atualizar-senha").style.display = "block";
+
+        let elements = document.querySelectorAll('.sidebar__link');
+        elements.forEach(e => {
+            e.classList.remove('sidebar__link--status-selected');
+        });
+
+        el.classList.add('sidebar__link--status-selected');
     }
 
     async submitPassword(event) {
