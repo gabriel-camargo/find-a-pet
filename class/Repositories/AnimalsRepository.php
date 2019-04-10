@@ -50,7 +50,7 @@ class AnimalsRepository implements AnimalsRepositoryInterface
         $results = $sql->select(
             "SELECT t1.ani_id AS id, t1.ani_nome AS nome, t1.ani_sexo AS sexo,
             t1.ani_informacoes AS informacoes, t2.sta_nome AS status,
-            t3.fai_nome AS faixa_etaria, t4.por_nome AS porte, t5.usu_nome AS usuario,
+            t3.fai_nome AS faixa_etaria, t4.por_nome AS porte, t5.usu_nome AS usuario, t5.usu_email as dono_email,
             t1.ani_uf as uf, t1.ani_cidade as cidade
             FROM tbl_animais t1 
             INNER JOIN tbl_status t2 ON (t1.sta_id = t2.sta_id)

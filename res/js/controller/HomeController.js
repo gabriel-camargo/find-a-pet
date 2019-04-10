@@ -20,6 +20,11 @@ class HomeController{
         this._init();
     }
 
+    
+    openModal(id){
+        $(`#animal-details-${id}`).modal('show');
+    }
+
     changePagination() {
         setTimeout(() => {
             this._page = parseInt(document.querySelector('.active').textContent);
