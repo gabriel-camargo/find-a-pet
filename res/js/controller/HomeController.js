@@ -20,6 +20,36 @@ class HomeController{
         this._init();
     }
 
+    async encontrar(id) {
+        //para funcionar no modal do bootstrap
+        $(document).off('focusin.modal');
+
+        const {value: text} = await Swal.fire({
+            input: 'textarea',
+            inputPlaceholder: 'Informe mais detalhes para o dono',
+            showCancelButton: true
+        });
+        
+        if (text) {
+            Swal.fire(`Encontrar: ${text}`);
+        }
+    }
+
+    async adotar(id) {
+        //para funcionar no modal do bootstrap
+        $(document).off('focusin.modal');
+
+        const {value: text} = await Swal.fire({
+            input: 'textarea',
+            inputPlaceholder: 'Informe mais detalhes para o dono',
+            showCancelButton: true
+        });
+          
+        if (text) {
+            Swal.fire(`Adotar: ${text}`);
+        }
+    }
+
     
     openModal(id){
         $(`#animal-details-${id}`).modal('show');

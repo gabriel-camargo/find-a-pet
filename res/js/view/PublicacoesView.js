@@ -7,8 +7,14 @@ class PublicacoesView extends View {
     template(model) {
 
         let html = '';
+        
 
         model.forEach(el => {
+            const button = (el.status_animal == 'Perdido') ? 
+                `<button type="button" class="btn btn-success" onclick="homeController.encontrar(${el.id})">Encontrei</button>` :
+                `<button type="button" class="btn btn-success" onclick="homeController.adotar(${el.id})">Quero adotar</button>`;
+            
+
             html += `
             <div class="col-xl-4 col-sm-6 col-xs-12 mb-3">
     
@@ -36,7 +42,7 @@ class PublicacoesView extends View {
 
                         <p class="card-text mb-2">
                             <span class="font-weight-bold">Status:</span>
-                            ${el.status}
+                            ${el.status_animal}
                         </p>
                        
     
@@ -66,7 +72,6 @@ class PublicacoesView extends View {
 
                         <div class="modal-header">
 
-                            <h5 class="modal-title"> Detalhes </h5>
 
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -92,7 +97,7 @@ class PublicacoesView extends View {
                                         </div>
                                     </div>
 
-                                    <div class="row mb-2">
+                                    <div class="row">
                                         <div class="col">
                                             
                                             <strong> Email:</strong> ${el.dono_email}
@@ -115,7 +120,7 @@ class PublicacoesView extends View {
                                     <div class="row mb-2">
                                         <div class="col-md-5">
                                             
-                                            <strong> Status:</strong> ${el.status}
+                                            <strong> Status:</strong> ${el.status_animal}
                                         </div>
 
                                         <div class="col-md-7">
@@ -154,8 +159,8 @@ class PublicacoesView extends View {
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-success">Save changes</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"> Fechar </button>
+                            ${button}
                         </div>
 
                     </div>
