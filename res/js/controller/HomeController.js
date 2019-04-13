@@ -35,7 +35,7 @@ class HomeController{
         }
     }
 
-    async adotar(id) {
+    async adotar(ani_id) {
         //para funcionar no modal do bootstrap
         $(document).off('focusin.modal');
 
@@ -46,7 +46,15 @@ class HomeController{
         });
           
         if (text) {
-            Swal.fire(`Adotar: ${text}`);
+            this._http
+                .post('/home/pedir-adocao', {
+                    "ani_id": ani_id,
+                    "text": text
+                })
+                .then(data => console.log(data))
+                .catch(err => {
+                    console.log(err.message);
+                });
         }
     }
 

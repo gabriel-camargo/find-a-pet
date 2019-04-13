@@ -3,6 +3,7 @@
 use \FindAPet\Page;
 use \FindAPet\Model\Usuario;
 use \FindAPet\Model\Animal;
+use \FindAPet\Model\Adocao;
 use \FindAPet\Model\Especie;
 use \FindAPet\Model\Status;
 use \FindAPet\Model\Porte;
@@ -75,4 +76,22 @@ $app->post('/home/check-total', function(){
 	$count = (array) $animalsRepository->checkTotal($usuario->get_usu_id(), utf8_decode($_POST['filter']) );	
 
 	echo json_encode($count[0]);
+});
+
+$app->post('/home/pedir-adocao', function(){
+	Usuario::verifyLogin();
+	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+
+	$adocao = new Adocao();
+
+	$adocao->set_ado_status('0');
+	$adocao->set_ado_texto($_POST['text']);
+	$adocao->set_usu_id($usuario->get_usu_id());
+	$adocao->set_ani_id($_POST['ani_id']);
+
+	$adocao->save();
+
+	echo json_encode(array(
+		"msg" => "cadastrou",
+	));
 });
