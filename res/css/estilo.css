@@ -22,6 +22,14 @@ html, body{
   margin-top: 0px;
 }
 
+.body--page-logged{
+  padding-top: 43.47px;
+}
+
+/* .navbar__dropdown{
+  border: 1px solid pink ;
+  padding: 0px;
+} */
 .link{
   color: #f57c00;
 }

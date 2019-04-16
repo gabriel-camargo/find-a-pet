@@ -4,18 +4,17 @@ namespace FindAPet\Model;
 
 use \FindAPet\DB\Sql;
 use \FindAPet\Model;
-use \FindAPet\Helper\MensagemHelper;
 
 class Adocao extends Model
 {
     const SESSION = "Adocao";
 
     public function save()
-    {
-      $this->set_ado_texto(utf8_decode($this->get_ado_texto()));
-      if($this->get_ado_id() > 0 && $this->get_ado_id() != NULL) $this->update();
+    {    
+        $this->set_ado_texto(utf8_decode($this->get_ado_texto()));
+        if($this->get_ado_id() > 0 && $this->get_ado_id() != NULL) $this->update();
 
-      else $this->insert();
+        else $this->insert();
     }
 
     private function insert()

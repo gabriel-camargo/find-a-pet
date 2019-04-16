@@ -51,10 +51,22 @@ class HomeController{
                     "ani_id": ani_id,
                     "text": text
                 })
-                .then(data => console.log(data))
+                .then(data => {
+                    //console.log(data);
+
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Pronto!',
+                        text: 'Pedido de adoção enviado com sucesso!'
+                    }).then(()=>
+                        document.location.reload(true)                        
+                    )
+                })
                 .catch(err => {
                     console.log(err.message);
                 });
+            
+            
         }
     }
 
@@ -88,7 +100,7 @@ class HomeController{
             .post("/home/check-total", {
                 "filter": this._filter
             })
-            .then(data => data.count)
+            .then(data => (data.count)-1)
             .catch(err => console.log(err.message));
     }
 
@@ -170,10 +182,10 @@ class HomeController{
     }
 
     _load() {
-        console.log(`Filter: ${this._filter}`);
-        console.log(`Page: ${this._page}`);
-        console.log(`Per Page: ${this._animalsPerPage}`);
-        console.log(`Page Skip: ${parseInt((this._page * this._animalsPerPage) - this._animalsPerPage)}`);
+        // console.log(`Filter: ${this._filter}`);
+        // console.log(`Page: ${this._page}`);
+        // console.log(`Per Page: ${this._animalsPerPage}`);
+        // console.log(`Page Skip: ${parseInt((this._page * this._animalsPerPage) - this._animalsPerPage)}`);
 
         this._http
             .post("/home/search", {
@@ -181,7 +193,10 @@ class HomeController{
                 "page": parseInt((this._page * this._animalsPerPage) - this._animalsPerPage),
                 "per_page": parseInt(this._animalsPerPage)
             })
-            .then(data => this._view.update(data))
+            .then(data => {
+                this._view.update(data)
+                console.log(data);
+            })
             .catch(err => console.log(err.message));
     }
 

@@ -58,11 +58,16 @@ $app->post('/home/search', function(){
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
 	$animalsRepository = new AnimalsRepository();
+
+	$animaisPendentes = $animalsRepository->pendentAnimals($usuario->get_usu_id());
+	$animaisPendentesString = (count($animaisPendentes) > 0)? implode(",", $animaisPendentes):'';
+
 	$animais = $animalsRepository->list(
 		$usuario->get_usu_id(),
 		utf8_decode($_POST['filter']),
 		$_POST['page'],
-		$_POST['per_page']
+		$_POST['per_page'],
+		$animaisPendentesString 
 	);	
 
 	echo json_encode($animais);
@@ -73,7 +78,10 @@ $app->post('/home/check-total', function(){
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
 	$animalsRepository = new AnimalsRepository();
-	$count = (array) $animalsRepository->checkTotal($usuario->get_usu_id(), utf8_decode($_POST['filter']) );	
+	$animaisPendentes = $animalsRepository->pendentAnimals($usuario->get_usu_id());
+	$animaisPendentesString = (count($animaisPendentes) > 0)? implode(",", $animaisPendentes):'';
+
+	$count = (array) $animalsRepository->checkTotal($usuario->get_usu_id(), utf8_decode($_POST['filter']), $animaisPendentesString );	
 
 	echo json_encode($count[0]);
 });
@@ -84,7 +92,7 @@ $app->post('/home/pedir-adocao', function(){
 
 	$adocao = new Adocao();
 
-	$adocao->set_ado_status('0');
+	$adocao->set_ado_status(6);
 	$adocao->set_ado_texto($_POST['text']);
 	$adocao->set_usu_id($usuario->get_usu_id());
 	$adocao->set_ani_id($_POST['ani_id']);

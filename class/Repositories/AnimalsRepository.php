@@ -38,9 +38,11 @@ class AnimalsRepository implements AnimalsRepositoryInterface
         return $return;
     }
 
-    public function list($user, $filtro, $page, $perPage)
+    public function list($user, $filtro, $page, $perPage, $animaisPendentes)
     {
         $return = array();
+
+        $animaisPendentesString = ($animaisPendentes != '')? "and t1.ani_id not in ($animaisPendentes)": '';
 
         $sql = new Sql();
 
@@ -57,7 +59,7 @@ class AnimalsRepository implements AnimalsRepositoryInterface
             INNER JOIN tbl_faixa_etaria t3 ON (t1.fai_id = t3.fai_id)
             INNER JOIN tbl_portes t4 ON ( t1.por_id = t4.por_id )
             INNER JOIN tbl_usuarios t5 ON (t1.usu_id = t5.usu_id)
-            WHERE t1.usu_id <> :USUARIO AND t2.sta_tipo = :TIPO $filtro
+            WHERE t1.usu_id <> :USUARIO AND t2.sta_tipo = :TIPO $animaisPendentesString $filtro
             ORDER BY t1.ani_id desc
             LIMIT $page, $perPage
             ", array(
@@ -81,10 +83,12 @@ class AnimalsRepository implements AnimalsRepositoryInterface
         return $return;
     }
 
-    public function checkTotal($user, $filter)
+    public function checkTotal($user, $filter, $animaisPendentes)
     {
 
         $sql = new Sql();
+
+        $animaisPendentesString = ($animaisPendentes != '')? "and t1.ani_id not in ($animaisPendentes)": '';
 
         $count = $sql->select(
             "SELECT count(1) as count
@@ -93,7 +97,7 @@ class AnimalsRepository implements AnimalsRepositoryInterface
             INNER JOIN tbl_faixa_etaria t3 ON (t1.fai_id = t3.fai_id)
             INNER JOIN tbl_portes t4 ON ( t1.por_id = t4.por_id )
             INNER JOIN tbl_usuarios t5 ON (t1.usu_id = t5.usu_id)
-            WHERE t1.usu_id <> :USUARIO AND t2.sta_tipo = :TIPO $filter", array(
+            WHERE t1.usu_id <> :USUARIO AND t2.sta_tipo = :TIPO $animaisPendentesString $filter", array(
                 "USUARIO" => $user,
                 ":TIPO" => "cad"
             )
@@ -101,6 +105,29 @@ class AnimalsRepository implements AnimalsRepositoryInterface
 
 
         return $count;
+
+    }
+
+    public function pendentAnimals($userId) 
+    {
+
+        $return = array();
+        $sql = new Sql();
+
+        $results = $sql->select(
+            "SELECT ad.ani_id
+            FROM tbl_adocoes ad
+            WHERE ad.usu_id = :USUARIO AND ad.ado_status = :STATUS_ADOCAO", array(
+                "USUARIO" => $userId,
+                ":STATUS_ADOCAO" => 6
+            )
+        );
+
+        foreach ($results as $r) {
+            array_push($return, $r['ani_id']);
+        }
+
+        return $return;
 
     }
 }
