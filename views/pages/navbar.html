@@ -27,11 +27,37 @@
 
         <!-- Lista alinhada para a direita -->
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+          <li class="nav-link dropdown mr-2">              
+            <a class="nav-link dropdown-toggle p-0" href="#" id="navbarDropdownAlerts"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-bell"></i>
+             </a>
+             <div class="dropdown-menu dropdown-menu-right dropdown--style-adocoes">
+               
+                <div class="row">
+
+                  <div class="col-3 pl-4"> 
+                      <img src="/res/img/{$fotoUsuario}" alt="..." width="40" height="40" class=""
+                        style="border-radius:100%;border:1px solid #ccc"> 
+                  </div>
+
+                  <div class="col-9 pr-4"> 
+                    <span>
+                      <strong>Gabriel</strong> se interessou por <strong>Auau 7</strong>
+                    </span>
+                  </div>
+                </div>
+                <div class="dropdown-divider"></div>
+
+            </div>
+          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle p-0" href="#" id="navbarDropdown"
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <img src="/res/img/{$fotoUsuario}" alt="..." width="32" height="32" class=""
-             style="border-radius:100%;border:2px solid #ccc"> 
+             style="border-radius:100%;border:1px solid #ccc"> 
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/usuario/configuracoes"> Configurações </a>

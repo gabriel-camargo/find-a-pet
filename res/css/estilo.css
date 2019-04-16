@@ -94,6 +94,10 @@ html, body{
   text-align: center;
 }
 
+.dropdown--style-adocoes{
+  min-width: 280px;
+}
+
 .card-body{
   padding-top: 7px;
 }
@@ -103,3 +107,4 @@ html, body{
 .fa-angle-right{
   margin-right: 10px;
 }
+
