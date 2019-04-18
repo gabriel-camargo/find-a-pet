@@ -9,6 +9,7 @@ use \FindAPet\Model\Status;
 use \FindAPet\Model\Porte;
 use \FindAPet\Model\FaixaEtaria;
 use \FindAPet\Repositories\AnimalsRepository;
+use \FindAPet\Repositories\AdocoesRepository;
 
 $app->get("/", function() use($app){
 	$app->redirect("/home/");
@@ -27,7 +28,10 @@ $app->get('/home/', function(){
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
-	// VERIFICAR SE IMAGEM EXISTE
+	$adocoesRepository = new AdocoesRepository();
+	$adocoesRecentes = $adocoesRepository->recentRequests($usuario->get_usu_id());
+
+	//VERIFICAR SE IMAGEM EXISTE
 	$fotoUsuario = (file_exists(
         $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
         "res" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .
@@ -49,7 +53,8 @@ $app->get('/home/', function(){
 		"faixaEtaria" => $faixaEtaria,
 		"uf" => utf8_encode($usuario->get_usu_uf()),
 		"cidade" => utf8_encode($usuario->get_usu_cidade()),
-		"fotoUsuario" => $fotoUsuario
+		"fotoUsuario" => $fotoUsuario,
+		"adocoesRecentes" => $adocoesRecentes
 	));
 });
 

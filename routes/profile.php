@@ -3,11 +3,15 @@
 use \FindAPet\Page;
 use \FindAPet\Model\Usuario;
 use \FindAPet\Helper\ImageHelper;
+use \FindAPet\Repositories\AdocoesRepository;
 
 $app->get('/usuario/configuracoes', function(){
 
 	Usuario::verifyLogin();
     $usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+
+    $adocoesRepository = new AdocoesRepository();
+	$adocoesRecentes = $adocoesRepository->recentRequests($usuario->get_usu_id());
 
     // VERIFICAR SE IMAGEM EXISTE
 	$fotoUsuario = (file_exists(
@@ -22,6 +26,7 @@ $app->get('/usuario/configuracoes', function(){
 	$page = new Page();
 
 	$page->setTpl("usuario-update", array(
+        "adocoesRecentes" => $adocoesRecentes,
         "nome" => $usuario->get_usu_nome(),
         "usuario" => $usuario,
         "uf" => $ufPadrao,

@@ -33,23 +33,29 @@
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-bell"></i>
              </a>
-             <div class="dropdown-menu dropdown-menu-right dropdown--style-adocoes">
+             <div class="dropdown-menu dropdown-menu-right dropdown--style-adocoes"
+              style="cursor: pointer">
                
+                {loop="$adocoesRecentes"}
                 <div class="row">
 
                   <div class="col-3 pl-4"> 
-                      <img src="/res/img/{$fotoUsuario}" alt="..." width="40" height="40" class=""
+                      <img src="/res/img/{$value.foto}" alt="..." width="40" height="40" class=""
                         style="border-radius:100%;border:1px solid #ccc"> 
                   </div>
 
                   <div class="col-9 pr-4"> 
                     <span>
-                      <strong>Gabriel</strong> se interessou por <strong>Auau 7</strong>
+                      <strong>{$value.interessado}</strong> se interessou por 
+                      <strong>{$value.animal}</strong>
                     </span>
                   </div>
+
                 </div>
                 <div class="dropdown-divider"></div>
+                {/loop}
 
+                <p class="text-center mb-0"> Ver mais </p>
             </div>
           </li>
 
