@@ -18,47 +18,35 @@
             <div class="row mt-3">
 
                 <!-- SIDEBAR -->
-                <div class="col-md-3 col-sm-12">    
+                <div class="col-md-3 col-sm-12">  
+                    
+                    <ul class="list-group">
+                        <li class="list-group-item sidebar__title">
+                            Configurações
+                        </li>
 
-                    <div class="accordion" id="menu-filtro">
+                        <li class="list-group-item">
+                            <button class="btn btn-link btn-block sidebar__link sidebar__link--status-selected" 
+                                type="button" onclick="usuarioConfiguracoesController.showDadosCadastrais(this)">
+
+                                <div class="row">
+                                    <div class="col">Dados cadastrais </div>
+                                    <div class="col-xs-1"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                                
+                            </button>
+                        </li>
+                        <li class="list-group-item">
                             
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="mb-0 p-1 sidebar__title">
-                                    Configurações
-                                </h3>
-                            </div>
-                        </div>
-                            
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link btn-block sidebar__link sidebar__link--status-selected" 
-                                    type="button" onclick="usuarioConfiguracoesController.showDadosCadastrais(this)">
-                                    <div class="row">
-                                        <div class="col">Dados cadastrais </div>
-                                        <div class="col-xs-1"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                        
-                                    </button>
-                                </h2>
-                            </div>
-                        </div>
+                            <button class="btn btn-link btn-block sidebar__link" type="button" onclick="usuarioConfiguracoesController.showUpdateSenha(this)">
+                                <div class="row">
+                                    <div class="col">Alterar senha </div>
+                                    <div class="col-xs-1"><i class="fas fa-angle-right"></i></div>
+                                </div>
+                            </button>
 
-                        <div class="card">
-                            <div class="card-header">
-                                <h2 class="mb-0">
-                                    <button class="btn btn-link btn-block sidebar__link" type="button" onclick="usuarioConfiguracoesController.showUpdateSenha(this)">
-                                        <div class="row">
-                                            <div class="col">Alterar senha </div>
-                                            <div class="col-xs-1"><i class="fas fa-angle-right"></i></div>
-                                        </div>
-                                    </button>
-                                </h2>
-                            </div>
-                        </div>
-
-                    </div>                           
+                        </li>
+                    </ul>
                     
                 </div>
                 <!-- FIM - SIDEBAR -->
@@ -222,17 +210,6 @@
                 <!-- div.col -->
             </div>
             <!-- div.row -->
-
-            <!-- <div class="jumbotron mt-5">
-                <ul>
-                    <li>ID: {$usuario->get_usu_id()}</li>
-                    <li>Nome: {$usuario->get_usu_nome()}</li>
-                    <li>Email: {$usuario->get_usu_email()}</li>
-                    <li>Senha: {$usuario->get_usu_senha()}</li>
-                    <li>UF: {$usuario->get_usu_uf()}</li>
-                    <li>Cidade: {$usuario->get_usu_cidade()}</li>
-                </ul>
-            </div> -->
 
         </div>
         <!-- div.container -->

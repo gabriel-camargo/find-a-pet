@@ -4,10 +4,10 @@ namespace FindAPet\DB;
 
 class Sql
 {
-    const HOSTNAME = "localhost";
-    const USERNAME = "root";
-    const PASSWORD = "";
-    const DBNAME = "bd_findapet";
+    private const HOSTNAME = "localhost";
+    private const USERNAME = "root";
+    private const PASSWORD = "";
+    private const DBNAME = "bd_findapet";
 
     private $conn;
 
