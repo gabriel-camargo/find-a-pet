@@ -12,6 +12,23 @@
 
         <div class="container">
 
+            {loop="$pedidosAnimais"}
+                {$value.ani_id} <br>
+                {$value.foto} <br>
+                {$value.ani_nome} <br>
+                {$value.sta_nome} <br>
+                {$value.ado_dt_hr} <br>
+                {$value.hora_atual} <br>
+                {$value.diferenca_ano} <br>
+                {$value.diferenca_mes} <br>
+                {$value.diferenca_dias} <br>
+                {$value.diferenca_horas} <br>
+                {$value.diferenca_minutos} <br>
+                {$value.diferenca_segundos} <br>
+                {$value.diferenca_string} <br>
+                --- <br>
+            {/loop}
+
             <div class="row">
 
                 <div class="col-md-4 my-3">

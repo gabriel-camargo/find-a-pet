@@ -12,6 +12,8 @@ $app->get('/adocoes-perdidos/', function(){
 	$adocoesRepository = new AdocoesRepository();
 	$adocoesRecentes = $adocoesRepository->recentRequests($usuario->get_usu_id());
 
+	$pedidosAnimais = $adocoesRepository->list($usuario->get_usu_id());
+
 	// VERIFICAR SE IMAGEM EXISTE
 	$fotoUsuario = (file_exists(
         $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
@@ -24,6 +26,7 @@ $app->get('/adocoes-perdidos/', function(){
   	$page->setTpl("adocoes-perdidos", array(
 		"adocoesRecentes" => $adocoesRecentes,
 		"nome" => $usuario->get_usu_nome(),
-		"fotoUsuario" => $fotoUsuario
+		"fotoUsuario" => $fotoUsuario,
+		"pedidosAnimais" => $pedidosAnimais
 	));
 });
