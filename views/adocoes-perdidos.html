@@ -12,145 +12,71 @@
 
         <div class="container">
 
-            {loop="$pedidosAnimais"}
-                {$value.ani_id} <br>
-                {$value.foto} <br>
-                {$value.ani_nome} <br>
-                {$value.sta_nome} <br>
-                {$value.ado_dt_hr} <br>
-                {$value.hora_atual} <br>
-                {$value.diferenca_ano} <br>
-                {$value.diferenca_mes} <br>
-                {$value.diferenca_dias} <br>
-                {$value.diferenca_horas} <br>
-                {$value.diferenca_minutos} <br>
-                {$value.diferenca_segundos} <br>
-                {$value.diferenca_string} <br>
-                --- <br>
-            {/loop}
-
             <div class="row">
 
-                <div class="col-md-4 my-3">
+                <div class="col-lg-4 col-md-5 my-3">
                     <div class="list-group">
-                        <!-- <a href="#" class="list-group-item list-group-item-action active">
-                            <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small>3 days ago</small>
-                            </div>
-                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                            <small>Donec id elit non mi porta.</small>
-                        </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                            </div>
-                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                            <small class="text-muted">Donec id elit non mi porta.</small>
-                        </a> -->
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="row">
-                                <div class="col-3"> 
-                                    <img src="/res/img/{$fotoUsuario}" alt="..." width="55" height="55" class=""
-                                        style="border-radius:100%;border:1px solid #ccc"> 
-                                </div>
-                
-                                <div class="col-9"> 
-                                    <h5 class="ml-2 mt-2">Nome do Animal</h5>
-                                    <span class="ml-2 text-muted">Status: (Status)</span>
-                                    <br>
-                                    
-                                    
-                                </div>
-                            </div>        
-                            <div class="float-right"><small class="text-muted">3 days ago</small></div>                          
-                            
-                        </a>
+                        <li class="list-group-item sidebar__title">
+                            Notificações recentes
+                        </li>
 
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="row">
-                                <div class="col-3"> 
-                                    <img src="/res/img/{$fotoUsuario}" alt="..." width="55" height="55" class=""
-                                        style="border-radius:100%;border:1px solid #ccc"> 
-                                </div>
-                
-                                <div class="col-9"> 
-                                    <h5 class="ml-2 mt-2">Nome do Animal</h5>
-                                    <span class="ml-2 text-muted">Status: (Status)</span>
-                                    <br>
-                                    
-                                    
-                                </div>
-                            </div>        
-                            <div class="float-right"><small class="text-muted">3 days ago</small></div>                          
-                            
-                        </a>
+                        {loop="$pedidosAnimais"}
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="row align-items-center">
+                                    <div class="col-3"> 
+                                        <img src="/res/img/{$value.foto}" alt="..." width="55" height="55"
+                                        class="rounded-circle"> 
+                                    </div>
+                    
+                                    <div class="col-9"> 
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="">{$value.ani_nome}</h5>
+                                            <small class="text-muted">{$value.diferenca_string}</small>
+                                        </div>
+                                        
+                                        <span class="text-muted">Status: {$value.sta_nome}</span>
+                                    </div>
+                                </div>    
+                            </a>
+                        {/loop}
 
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="row">
-                                <div class="col-3"> 
-                                    <img src="/res/img/{$fotoUsuario}" alt="..." width="55" height="55" class=""
-                                        style="border-radius:100%;border:1px solid #ccc"> 
-                                </div>
-                
-                                <div class="col-9"> 
-                                    <h5 class="ml-2 mt-2">Nome do Animal</h5>
-                                    <span class="ml-2 text-muted">Status: (Status)</span>
-                                    <br>
-                                    
-                                    
-                                </div>
-                            </div>        
-                            <div class="float-right"><small class="text-muted">3 days ago</small></div>                          
-                            
-                        </a>
                     </div>
                 </div>
                 <!-- div.col -->
 
-                <div class="col-md-8 my-3">
+                <div class="col-lg-8 col-md-7 my-3">
                     <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action active">
-                            <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small>3 days ago</small>
-                            </div>
-                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                            <small>Donec id elit non mi porta.</small>
-                        </a>
+
+                        <li class="list-group-item sidebar__title">
+                            Notificações de (nome do animal)
+                        </li>
+
                         <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
+                            
+                            <div class="row align-items-center">
+                                <div class="col-lg-2 col-3 pl-4 "> 
+                                    <img src="/res/img/{$fotoUsuario}" alt="..." width="55" height="55" 
+                                        class="rounded-circle"> 
+                                </div>
+                
+                                <div class="col-lg-10 col-9 pr-4"> 
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1">Nome do usuário</h5>
+                                        <small class="text-muted"> horário </small>
+                                    </div>
+                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                                    
+                                </div>
                             </div>
-                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                            <small class="text-muted">Donec id elit non mi porta.</small>
+                            
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">List group item heading</h5>
-                            <small class="text-muted">3 days ago</small>
-                            </div>
-                            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                            <small class="text-muted">Donec id elit non mi porta.</small>
-                        </a>
+
                     </div>
                 </div>
                 <!-- div.col -->
 
             </div>
             <!-- div.row -->
-
-            <!-- <ul>
-                <li>
-                    Trazer todos os animais do usuário com requisições, ordenado por data do pedido.
-                    (mesma sentença que busca os 3 mais recentes, porém sem o LIMIT e sem o JOIN com o usuário [só precisa do ID])
-                </li>
-                <li>
-                    Criar classe controller para carregar os pedidos do animal clicado.
-                </li>
-            </ul> -->
             
         </div>
         <!-- container -->

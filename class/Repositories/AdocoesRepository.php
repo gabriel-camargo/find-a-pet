@@ -22,8 +22,8 @@ class AdocoesRepository implements AdocoesRepositoryInterface
             INNER JOIN tbl_status st ON st.sta_id = an.sta_id
             WHERE an.usu_id = :PET_OWNER
             GROUP BY ani_id
-            ORDER BY ado_dt_hr", array(
-                "PET_OWNER" => $owner
+            ORDER BY ado_dt_hr desc", array(
+                ":PET_OWNER" => $owner
         ));
 
         $horaAtual = strtotime("now"); 
@@ -75,6 +75,23 @@ class AdocoesRepository implements AdocoesRepositoryInterface
         }
 
         return $return;
+    }
+
+    public function listUsers($animal)
+    {
+        $sql = new Sql();
+
+        $results = $sql->select(
+            "SELECT ad.ado_id, ad.ado_dt_hr, us.usu_nome, ad.ado_texto
+            FROM tbl_adocoes ad
+            INNER JOIN tbl_usuarios us ON (ad.usu_id = us.usu_id)
+            WHERE ad.ani_id = :ANIMAL AND ad.ado_status = :ADO_STATUS", array(
+                ":ANIMAL" => $animal,
+                ":ADO_STATUS" => '6'
+        ));
+
+        return $results;
+
     }
 
     public function recentRequests($owner)
