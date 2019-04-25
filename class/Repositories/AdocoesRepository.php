@@ -79,19 +79,67 @@ class AdocoesRepository implements AdocoesRepositoryInterface
 
     public function listUsers($animal)
     {
+        $return = array();
+
         $sql = new Sql();
 
         $results = $sql->select(
-            "SELECT ad.ado_id, ad.ado_dt_hr, us.usu_nome, ad.ado_texto
+            "SELECT ad.usu_id, ad.ado_id, ad.ado_dt_hr, us.usu_nome, ad.ado_texto, an.ani_nome
             FROM tbl_adocoes ad
             INNER JOIN tbl_usuarios us ON (ad.usu_id = us.usu_id)
-            WHERE ad.ani_id = :ANIMAL AND ad.ado_status = :ADO_STATUS", array(
+            INNER JOIN tbl_animais an ON (ad.ani_id = an.ani_id)
+            WHERE ad.ani_id = :ANIMAL AND ad.ado_status = :ADO_STATUS
+            ORDER BY ad.ado_dt_hr desc", array(
                 ":ANIMAL" => $animal,
                 ":ADO_STATUS" => '6'
         ));
 
-        return $results;
+        $horaAtual = strtotime("now"); 
 
+        foreach($results as $r){
+
+            $horaAdocao = strtotime($r['ado_dt_hr']);  
+            $diff = abs($horaAtual - $horaAdocao);  
+
+            $r = array_map("utf8_encode", $r);           
+
+            $r['foto'] = (file_exists(
+                $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
+                "res" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .
+                "perfil" . DIRECTORY_SEPARATOR .  $r['usu_id'] . ".png"
+            )) ?"perfil/". $r['usu_id'] . '.png' : "default.png" ;
+
+            $r['diferenca_ano'] = floor($diff / (365*60*60*24));  
+
+            $r['diferenca_mes'] = floor(($diff - $r['diferenca_ano'] * 365*60*60*24) 
+            / (30*60*60*24));
+
+            $r['diferenca_dias'] = 
+                $days = floor(($diff - $r['diferenca_ano'] * 365*60*60*24 -  
+                $r['diferenca_mes']*30*60*60*24)/ (60*60*24)); 
+
+            $r['diferenca_horas'] = floor(($diff - $r['diferenca_ano'] * 365*60*60*24  
+                - $r['diferenca_mes']*30*60*60*24 - $r['diferenca_dias']*60*60*24) / (60*60));
+            
+            $r['diferenca_minutos'] = floor(($diff - $r['diferenca_ano'] * 365*60*60*24  
+                - $r['diferenca_mes']*30*60*60*24 - $r['diferenca_dias']*60*60*24  
+                - $r['diferenca_horas']*60*60)/ 60);
+            
+            $r['diferenca_segundos'] = floor(($diff - $r['diferenca_ano'] * 365*60*60*24  
+                - $r['diferenca_mes']*30*60*60*24 - $r['diferenca_dias']*60*60*24 
+                - $r['diferenca_horas']*60*60 - $r['diferenca_minutos']*60));
+                
+            $r['diferenca_string'] = $r['diferenca_segundos'] . ' seg';
+            $r['diferenca_string'] = ($r['diferenca_minutos'] != '0')? ($r['diferenca_minutos'] . ' min'): $r['diferenca_string'];
+            $r['diferenca_string'] = ($r['diferenca_horas'] != '0')? ($r['diferenca_horas'] . ' hrs'): $r['diferenca_string'];
+            $r['diferenca_string'] = ($r['diferenca_dias'] != '0')? ($r['diferenca_dias'] . ' d'): $r['diferenca_string'];
+            $r['diferenca_string'] = ($r['diferenca_mes'] != '0')? ($r['diferenca_mes'] . ' m'): $r['diferenca_string'];
+            $r['diferenca_string'] = ($r['diferenca_ano'] != '0')? ($r['diferenca_ano'] . ' a'): $r['diferenca_string'];
+            
+            array_push($return, $r);
+        }
+
+        return $return;
     }
 
     public function recentRequests($owner)

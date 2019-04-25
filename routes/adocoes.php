@@ -30,3 +30,14 @@ $app->get('/adocoes-perdidos/', function(){
 		"pedidosAnimais" => $pedidosAnimais
 	));
 });
+
+$app->post("/adocoes-perdidos/search-requests", function() {
+
+	Usuario::verifyLogin();
+	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+	
+	$adocoesRepository = new AdocoesRepository();
+	$requests = $adocoesRepository->listUsers($_POST['ani_id']);
+
+	echo json_encode($requests);
+});

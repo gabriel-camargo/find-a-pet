@@ -21,7 +21,7 @@
                         </li>
 
                         {loop="$pedidosAnimais"}
-                            <a href="#" class="list-group-item list-group-item-action">
+                            <a href="#view-requisicoes" class="list-group-item list-group-item-action" onclick="adocoesPerdidosController.loadRequests('{$value.ani_id}')">
                                 <div class="row align-items-center">
                                     <div class="col-3"> 
                                         <img src="/res/img/{$value.foto}" alt="..." width="55" height="55"
@@ -45,33 +45,7 @@
                 <!-- div.col -->
 
                 <div class="col-lg-8 col-md-7 my-3">
-                    <div class="list-group">
-
-                        <li class="list-group-item sidebar__title">
-                            Notificações de (nome do animal)
-                        </li>
-
-                        <a href="#" class="list-group-item list-group-item-action">
-                            
-                            <div class="row align-items-center">
-                                <div class="col-lg-2 col-3 pl-4 "> 
-                                    <img src="/res/img/{$fotoUsuario}" alt="..." width="55" height="55" 
-                                        class="rounded-circle"> 
-                                </div>
-                
-                                <div class="col-lg-10 col-9 pr-4"> 
-                                    <div class="d-flex w-100 justify-content-between">
-                                        <h5 class="mb-1">Nome do usuário</h5>
-                                        <small class="text-muted"> horário </small>
-                                    </div>
-                                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                                    
-                                </div>
-                            </div>
-                            
-                        </a>
-
-                    </div>
+                    <div class="list-group" id="view-requisicoes"></div>
                 </div>
                 <!-- div.col -->
 
@@ -81,5 +55,11 @@
         </div>
         <!-- container -->
         {include="pages/footer"}
+        <script src="/res/js/view/RequisicoesView.js"></script>
+        <script src="/res/js/controller/AdocoesPerdidosController.js"></script>
+
+        <script>
+            const adocoesPerdidosController = new AdocoesPerdidosController();
+        </script>
     </body>
 </html>
