@@ -23,4 +23,5 @@ class AdocoesPerdidosController {
 
         this._view.update(data);
     }
+
 }

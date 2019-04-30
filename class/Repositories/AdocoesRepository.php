@@ -84,7 +84,7 @@ class AdocoesRepository implements AdocoesRepositoryInterface
         $sql = new Sql();
 
         $results = $sql->select(
-            "SELECT ad.usu_id, ad.ado_id, ad.ado_dt_hr, us.usu_nome, ad.ado_texto, an.ani_nome
+            "SELECT ad.usu_id, ad.ado_id, ad.ado_dt_hr, us.usu_nome, us.usu_email, ad.ado_texto, an.ani_nome
             FROM tbl_adocoes ad
             INNER JOIN tbl_usuarios us ON (ad.usu_id = us.usu_id)
             INNER JOIN tbl_animais an ON (ad.ani_id = an.ani_id)
