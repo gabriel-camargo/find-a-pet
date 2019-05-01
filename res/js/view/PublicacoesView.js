@@ -22,7 +22,7 @@ class PublicacoesView extends View {
     
                     <div class="container-img" onclick="homeController.openModal(${el.id})">
                         <img class="card-img-top" src="/res/img/animal/${el.foto}.png" alt="Foto de ${el.nome}">
-                        <div class="overlay">
+                        <div class="overlay-card">
                             <div class="text">
                                 Ver detalhes
                             </div>

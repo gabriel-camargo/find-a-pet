@@ -110,4 +110,8 @@ html, body{
 .fa-angle-right{
   margin-right: 10px;
 }
-
+.publicacao__p--informacoes{
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 20px;
+}

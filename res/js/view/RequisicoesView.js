@@ -61,11 +61,33 @@ class RequisicoesView extends View {
                         </div>
 
                         <div class="modal-body">
-                            ...
+                            <div class="row">
+                                <div class="col-sm-6 text-center">
+
+                                    <div class="px-5">
+                                        <img src="/res/img/${el.foto}" alt="foto-perfil-${el.usu_nome}" class="img-thumbnail rounded-circle mb-3">
+                                    </div>                                    
+
+                                    <h5 class="modal-title text-left"> Contato </h5>
+                                    <hr class="mt-1">
+                                    <p class="text-left"> 
+                                        <i class="fas fa-envelope text-muted"></i>
+                                        <span class="ml-2">${el.usu_email}</span>
+                                    </p>
+                                </div>
+                                <div class="col-sm-6">
+
+                                    <h5 class="modal-title text-left"> Pedido </h5>
+                                    <hr class="mt-1">
+
+                                    <div class="mt-3 text-center">
+                                        <p class="align-middle publicacao__p--informacoes text-justify" style="white-space: pre-line">${el.ado_texto}</p>
+                                    </div>                                    
+                                </div>
+                            </div>
                         </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                             <button type="button" class="btn btn-danger">Rejeitar adoção</button>
                             <button type="button" class="btn btn-outline-success">Confirmar adoção</button>
                         </div>
