@@ -41,7 +41,39 @@ class Adocao extends Model
         ));
     }
 
-    private function update(){
-      
+    public function loadById($ado_id) 
+    {
+        $sql = new Sql();
+
+        $results = $sql->select("SELECT * from tbl_adocoes where ado_id = :ID", array(
+            ":ID"=>$ado_id
+        ));
+        
+        if (count($results) > 0) {
+            $results[0] = array_map("utf8_encode", $results[0]);
+
+            $this->setData($results[0]);
+        } else{
+            throw new \Exception('Erro ao carregar informações!');  
+        } 
+    }
+
+    public static function confirmarAdocao($ado_id) 
+    {
+        try {
+            $sql = new Sql();
+
+            $sql->query("UPDATE tbl_adocoes SET 
+                ado_status=7
+                WHERE ado_id=:ID ",
+            array(
+                ":ID" => $ado_id,
+            ));
+
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+        
     }
 }

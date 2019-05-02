@@ -2,10 +2,11 @@
 
 use \FindAPet\Page;
 use \FindAPet\Model\Usuario;
+use \FindAPet\Model\Adocao;
+use \FindAPet\Model\Animal;
 use \FindAPet\Repositories\AdocoesRepository;
 
 $app->get('/adocoes-perdidos/', function(){	
-
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
@@ -32,7 +33,6 @@ $app->get('/adocoes-perdidos/', function(){
 });
 
 $app->post("/adocoes-perdidos/search-requests", function() {
-
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 	
@@ -40,4 +40,22 @@ $app->post("/adocoes-perdidos/search-requests", function() {
 	$requests = $adocoesRepository->listUsers($_POST['ani_id']);
 
 	echo json_encode($requests);
+});
+
+$app->post("/adocoes-perdidos/confirmar-adocao", function() {
+	Usuario::verifyLogin();
+	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+	
+	$adocao = new Adocao();
+	$adocao->loadById($_POST['ado_id']);
+
+	$animal = new Animal();
+	$animal->find($adocao->get_ani_id());
+	$animal->set_sta_id(3);
+	$animal->save();
+
+	$return=array();
+	$return['status_adocao']=Adocao::confirmarAdocao($_POST['ado_id']);
+	
+	echo json_encode($return);
 });

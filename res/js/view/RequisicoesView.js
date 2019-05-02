@@ -53,44 +53,51 @@ class RequisicoesView extends View {
                 <div class="modal fade" id="adocoes-modal-${el.ado_id}" tabindex="-1" role="dialog" aria-labelledby="adocoes-modal-title-${el.ado_id}" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable" role="document">
                         <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="adocoes-modal-title-${el.ado_id}">${el.usu_nome}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="adocoes-modal-title-${el.ado_id}">${el.usu_nome}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
 
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-sm-6 text-center">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-6 text-center">
 
-                                    <div class="px-5">
-                                        <img src="/res/img/${el.foto}" alt="foto-perfil-${el.usu_nome}" class="img-thumbnail rounded-circle mb-3">
-                                    </div>                                    
+                                        <div class="px-5">
+                                            <img src="/res/img/${el.foto}" alt="foto-perfil-${el.usu_nome}" class="img-thumbnail rounded-circle mb-3">
+                                        </div>                                    
 
-                                    <h5 class="modal-title text-left"> Contato </h5>
-                                    <hr class="mt-1">
-                                    <p class="text-left"> 
-                                        <i class="fas fa-envelope text-muted"></i>
-                                        <span class="ml-2">${el.usu_email}</span>
-                                    </p>
-                                </div>
-                                <div class="col-sm-6">
+                                        <h5 class="modal-title text-left"> Contato </h5>
+                                        <hr class="mt-1">
+                                        <p class="text-left"> 
+                                            <i class="fas fa-envelope text-muted"></i>
+                                            <span class="ml-2">${el.usu_email}</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6">
 
-                                    <h5 class="modal-title text-left"> Pedido </h5>
-                                    <hr class="mt-1">
+                                        <h5 class="modal-title text-left"> Pedido </h5>
+                                        <hr class="mt-1">
 
-                                    <div class="mt-3 text-center">
-                                        <p class="align-middle publicacao__p--informacoes text-justify" style="white-space: pre-line">${el.ado_texto}</p>
-                                    </div>                                    
+                                        <div class="mt-3 text-center">
+                                            <p class="align-middle publicacao__p--informacoes text-justify" style="white-space: pre-line">${el.ado_texto}</p>
+                                        </div>                                    
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger">Rejeitar adoção</button>
-                            <button type="button" class="btn btn-outline-success">Confirmar adoção</button>
-                        </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" 
+                                    onclick="adocoesPerdidosController.rejectRequest(${el.ado_id})">
+                                    Rejeitar adoção
+                                </button>
+
+                                <button type="button" class="btn btn-outline-success" 
+                                    onclick="adocoesPerdidosController.confirmRequest(${el.ado_id}, '${el.ani_nome}', '${el.usu_nome}')">
+                                    Confirmar adoção
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
