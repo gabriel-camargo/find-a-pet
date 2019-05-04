@@ -16,13 +16,13 @@ class AdocoesRepository implements AdocoesRepositoryInterface
         $sql = new Sql();
 
         $results = $sql->select(
-            "SELECT an.ani_id, an.ani_nome, st.sta_nome, MAX( ad.ado_dt_hr ) AS ado_dt_hr
+            "SELECT an.ani_id, an.ani_nome, st.sta_nome, MAX( ad.ado_dt_hr_insert ) AS ado_dt_hr_insert
             FROM tbl_adocoes ad
             INNER JOIN tbl_animais an ON ad.ani_id = an.ani_id
             INNER JOIN tbl_status st ON st.sta_id = an.sta_id
-            WHERE an.usu_id = :PET_OWNER
+            WHERE an.usu_id = :PET_OWNER and ad.sta_id = 6
             GROUP BY ani_id
-            ORDER BY ado_dt_hr desc", array(
+            ORDER BY ado_dt_hr_insert desc", array(
                 ":PET_OWNER" => $owner
         ));
 
@@ -30,7 +30,7 @@ class AdocoesRepository implements AdocoesRepositoryInterface
 
         foreach($results as $r) {
 
-            $horaAdocao = strtotime($r['ado_dt_hr']);  
+            $horaAdocao = strtotime($r['ado_dt_hr_insert']);  
 
             $diff = abs($horaAtual - $horaAdocao);  
 
@@ -84,21 +84,21 @@ class AdocoesRepository implements AdocoesRepositoryInterface
         $sql = new Sql();
 
         $results = $sql->select(
-            "SELECT ad.usu_id, ad.ado_id, ad.ado_dt_hr, us.usu_nome, us.usu_email, ad.ado_texto, an.ani_nome
+            "SELECT ad.usu_id, ad.ado_id, ad.ado_dt_hr_insert, us.usu_nome, us.usu_email, ad.ado_texto, an.ani_nome
             FROM tbl_adocoes ad
             INNER JOIN tbl_usuarios us ON (ad.usu_id = us.usu_id)
             INNER JOIN tbl_animais an ON (ad.ani_id = an.ani_id)
-            WHERE ad.ani_id = :ANIMAL AND ad.ado_status = :ADO_STATUS
-            ORDER BY ad.ado_dt_hr desc", array(
+            WHERE ad.ani_id = :ANIMAL AND ad.sta_id = :STATUS_ADOCAO
+            ORDER BY ad.ado_dt_hr_insert desc", array(
                 ":ANIMAL" => $animal,
-                ":ADO_STATUS" => '6'
+                ":STATUS_ADOCAO" => '6'
         ));
 
         $horaAtual = strtotime("now"); 
 
         foreach($results as $r){
 
-            $horaAdocao = strtotime($r['ado_dt_hr']);  
+            $horaAdocao = strtotime($r['ado_dt_hr_insert']);  
             $diff = abs($horaAtual - $horaAdocao);  
 
             $r = array_map("utf8_encode", $r);           
@@ -155,7 +155,7 @@ class AdocoesRepository implements AdocoesRepositoryInterface
             INNER JOIN tbl_animais an ON ad.ani_id = an.ani_id
             INNER JOIN tbl_usuarios us ON ad.usu_id = us.usu_id
             WHERE an.usu_id = :PET_OWNER
-            ORDER BY ado_dt_hr DESC
+            ORDER BY ado_dt_hr_insert DESC
             LIMIT 0, 3", array(
                 "PET_OWNER" => $owner
         ));

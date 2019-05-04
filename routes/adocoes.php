@@ -55,7 +55,7 @@ $app->post("/adocoes-perdidos/confirmar-adocao", function() {
 	$animal->save();
 
 	$return=array();
-	$return['status_adocao']=Adocao::confirmarAdocao($_POST['ado_id']);
+	$return['status_adocao']=Adocao::confirmarAdocao($_POST['ado_id'], $adocao->get_ani_id());
 	
 	echo json_encode($return);
 });

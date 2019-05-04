@@ -117,7 +117,7 @@ class AnimalsRepository implements AnimalsRepositoryInterface
         $results = $sql->select(
             "SELECT ad.ani_id
             FROM tbl_adocoes ad
-            WHERE ad.usu_id = :USUARIO AND ad.ado_status = :STATUS_ADOCAO", array(
+            WHERE ad.usu_id = :USUARIO AND ad.sta_id = :STATUS_ADOCAO", array(
                 "USUARIO" => $userId,
                 ":STATUS_ADOCAO" => 6
             )

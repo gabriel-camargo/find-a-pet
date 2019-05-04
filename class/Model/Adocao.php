@@ -5,6 +5,8 @@ namespace FindAPet\Model;
 use \FindAPet\DB\Sql;
 use \FindAPet\Model;
 
+date_default_timezone_set("America/Sao_Paulo");
+
 class Adocao extends Model
 {
     const SESSION = "Adocao";
@@ -22,19 +24,20 @@ class Adocao extends Model
         $sql = new Sql();
 
         $sql->query("INSERT INTO tbl_adocoes(
-            ado_status,
+            sta_id,
             ado_texto,
             usu_id,
             ani_id
         )
         VALUES(
-            :ADO_STATUS,
+            :DATA_HORA,
+            :STATUS_ADOCAO,
             :TEXTO,
             :USUARIO,
             :ANIMAL
         )",
         array(
-            ":ADO_STATUS" => $this->get_ado_status(),
+            ":STATUS_ADOCAO" => $this->get_sta_id(),
             ":TEXTO" => $this->get_ado_texto(),
             ":USUARIO" => $this->get_usu_id(),
             ":ANIMAL" => $this->get_ani_id()
@@ -58,18 +61,27 @@ class Adocao extends Model
         } 
     }
 
-    public static function confirmarAdocao($ado_id) 
+    public static function confirmarAdocao($ado_id, $ani_id) 
     {
         try {
             $sql = new Sql();
 
             $sql->query("UPDATE tbl_adocoes SET 
-                ado_status=7
+                sta_id=8
+                WHERE ani_id=:ID ",
+            array(
+                ":ID" => $ani_id
+            ));
+
+            $sql->query("UPDATE tbl_adocoes SET 
+                sta_id=7,
+                ado_dt_hr_confirmacao=:DATA_HORA
                 WHERE ado_id=:ID ",
             array(
                 ":ID" => $ado_id,
+                ":DATA_HORA" => date("Y-m-d H:i:s")
             ));
-
+            
             return true;
         } catch (Exception $e) {
             return false;

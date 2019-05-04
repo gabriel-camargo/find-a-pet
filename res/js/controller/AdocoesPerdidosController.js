@@ -47,10 +47,21 @@ class AdocoesPerdidosController {
                         'ado_id': ado_id
                     })
                     .then(data =>{ 
-                        console.log(data);
+                        Swal.fire({
+                            type: 'success',
+                            title: 'Pronto!',
+                            text: 'Pedido de adoção enviado com sucesso!'
+                        }).then(()=>
+                            document.location.reload(true)                        
+                        )
                     })
                     .catch(err => {
                         console.log(err);
+                        Swal.fire(
+                            'Erro!',
+                            'Falha ao confirmar adoção, tente novamente mais tarde.',
+                            'error'
+                        )
                     });
             }
         });
