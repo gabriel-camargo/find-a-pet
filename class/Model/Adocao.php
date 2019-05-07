@@ -30,7 +30,6 @@ class Adocao extends Model
             ani_id
         )
         VALUES(
-            :DATA_HORA,
             :STATUS_ADOCAO,
             :TEXTO,
             :USUARIO,
@@ -80,6 +79,24 @@ class Adocao extends Model
             array(
                 ":ID" => $ado_id,
                 ":DATA_HORA" => date("Y-m-d H:i:s")
+            ));
+            
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+        
+    }
+
+    public static function rejeitarAdocao($ado_id) 
+    {
+        try {
+            $sql = new Sql();
+
+            $sql->query("DELETE from tbl_adocoes
+                WHERE ado_id=:ID ",
+            array(
+                ":ID" => $ado_id,
             ));
             
             return true;

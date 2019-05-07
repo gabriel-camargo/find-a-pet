@@ -89,7 +89,7 @@ class RequisicoesView extends View {
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" 
-                                    onclick="adocoesPerdidosController.rejectRequest(${el.ado_id})">
+                                    onclick="adocoesPerdidosController.rejectRequest(${el.ado_id}, '${el.ani_nome}', '${el.usu_nome}')">
                                     Rejeitar adoção
                                 </button>
 

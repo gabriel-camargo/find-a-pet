@@ -59,3 +59,13 @@ $app->post("/adocoes-perdidos/confirmar-adocao", function() {
 	
 	echo json_encode($return);
 });
+
+$app->post("/adocoes-perdidos/rejeitar-adocao", function() {
+	Usuario::verifyLogin();
+	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
+	
+	$return=array();
+	$return['status_adocao']=Adocao::rejeitarAdocao($_POST['ado_id']);
+	
+	echo json_encode($return);
+});

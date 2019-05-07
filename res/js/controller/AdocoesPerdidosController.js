@@ -24,8 +24,42 @@ class AdocoesPerdidosController {
         this._view.update(data);
     }
 
-    rejectRequest(ado_id) {
-        Swal.fire(`Rejeitado: ${ado_id}`);
+    rejectRequest(ado_id, animal, interessado) {
+        Swal.fire({
+            title: 'Rejeitar adoção',
+            text: `Deseja rejeitar a adoção de ${animal} para ${interessado}?`,
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#f57c00',
+            cancelButtonColor: '#bbb',
+            confirmButtonText: 'Rejeitar',
+            cancelButtonText: 'Cancelar'
+        })
+        .then( result => {
+            if(result.value) {
+                this._http
+                    .post(`/adocoes-perdidos/rejeitar-adocao`, {
+                        'ado_id': ado_id
+                    })
+                    .then(data =>{ 
+                        Swal.fire({
+                            type: 'success',
+                            title: 'Pronto!',
+                            text: 'Pedido de adoção rejeitado!'
+                        }).then(()=>
+                            document.location.reload(true)                        
+                        )
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        Swal.fire(
+                            'Erro!',
+                            'Falha ao rejeitar adoção, tente novamente mais tarde.',
+                            'error'
+                        )
+                    });
+            }
+        });
     }
 
     confirmRequest(ado_id, animal, interessado) {
