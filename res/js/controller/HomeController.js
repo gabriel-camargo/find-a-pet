@@ -20,18 +20,42 @@ class HomeController{
         this._init();
     }
 
-    async encontrar(id) {
+    async encontrar(ani_id) {
         //para funcionar no modal do bootstrap
         $(document).off('focusin.modal');
 
         const {value: text} = await Swal.fire({
+            title: 'Encontrou este animal?',
             input: 'textarea',
             inputPlaceholder: 'Informe mais detalhes para o dono',
-            showCancelButton: true
+            showCancelButton: true,
+            confirmButtonColor: '#43a047',
+            cancelButtonColor: '#bbb',
+            confirmButtonText: 'Enviar',
+            cancelButtonText: 'Cancelar'
         });
         
         if (text) {
-            Swal.fire(`Encontrar: ${text}`);
+            this._http
+                .post('/home/pedir-adocao', {
+                    "ani_id": ani_id,
+                    "text": text,
+                    'sta_id': 9
+                })
+                .then(data => {
+                    //console.log(data);
+
+                    Swal.fire({
+                        type: 'success',
+                        title: 'Pronto!',
+                        text: 'Informações sobre o animal enviadas com sucesso!'
+                    }).then(()=>
+                        document.location.reload(true)                        
+                    )
+                })
+                .catch(err => {
+                    console.log(err.message);
+                });    
         }
     }
 
@@ -40,16 +64,22 @@ class HomeController{
         $(document).off('focusin.modal');
 
         const {value: text} = await Swal.fire({
+            title: 'Pedir em adoção',
             input: 'textarea',
             inputPlaceholder: 'Informe mais detalhes para o dono',
-            showCancelButton: true
+            showCancelButton: true,
+            confirmButtonColor: '#43a047',
+            cancelButtonColor: '#bbb',
+            confirmButtonText: 'Enviar',
+            cancelButtonText: 'Cancelar'
         });
           
         if (text) {
             this._http
                 .post('/home/pedir-adocao', {
                     "ani_id": ani_id,
-                    "text": text
+                    "text": text,
+                    'sta_id': 6
                 })
                 .then(data => {
                     //console.log(data);
@@ -64,9 +94,7 @@ class HomeController{
                 })
                 .catch(err => {
                     console.log(err.message);
-                });
-            
-            
+                });    
         }
     }
 

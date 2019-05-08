@@ -60,24 +60,27 @@ class Adocao extends Model
         } 
     }
 
-    public static function confirmarAdocao($ado_id, $ani_id) 
+    public static function confirmarAdocao($ado_id, $sta_id, $ani_id) 
     {
+        $idRejeitado = ($sta_id == '6')? 8: 11;
         try {
             $sql = new Sql();
 
             $sql->query("UPDATE tbl_adocoes SET 
-                sta_id=8
+                sta_id=:STA_ID
                 WHERE ani_id=:ID ",
             array(
-                ":ID" => $ani_id
+                ":ID" => $ani_id,
+                ":STA_ID" => $idRejeitado
             ));
 
             $sql->query("UPDATE tbl_adocoes SET 
-                sta_id=7,
+                sta_id=:STA_ID,
                 ado_dt_hr_confirmacao=:DATA_HORA
                 WHERE ado_id=:ID ",
             array(
                 ":ID" => $ado_id,
+                ':STA_ID' => $sta_id,
                 ":DATA_HORA" => date("Y-m-d H:i:s")
             ));
             
@@ -88,15 +91,19 @@ class Adocao extends Model
         
     }
 
-    public static function rejeitarAdocao($ado_id) 
+    public static function rejeitarAdocao($ado_id, $sta_id) 
     {
         try {
             $sql = new Sql();
 
-            $sql->query("DELETE from tbl_adocoes
+            $sql->query("UPDATE tbl_adocoes SET 
+                sta_id=:STA_ID,
+                ado_dt_hr_confirmacao=:DATA_HORA
                 WHERE ado_id=:ID ",
             array(
                 ":ID" => $ado_id,
+                ":STA_ID" => $sta_id,
+                ":DATA_HORA" => date("Y-m-d H:i:s")
             ));
             
             return true;

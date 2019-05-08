@@ -20,7 +20,7 @@ class AdocoesRepository implements AdocoesRepositoryInterface
             FROM tbl_adocoes ad
             INNER JOIN tbl_animais an ON ad.ani_id = an.ani_id
             INNER JOIN tbl_status st ON st.sta_id = an.sta_id
-            WHERE an.usu_id = :PET_OWNER and ad.sta_id = 6
+            WHERE an.usu_id = :PET_OWNER and ad.sta_id in (6,9)
             GROUP BY ani_id
             ORDER BY ado_dt_hr_insert desc", array(
                 ":PET_OWNER" => $owner
@@ -84,14 +84,13 @@ class AdocoesRepository implements AdocoesRepositoryInterface
         $sql = new Sql();
 
         $results = $sql->select(
-            "SELECT ad.usu_id, ad.ado_id, ad.ado_dt_hr_insert, us.usu_nome, us.usu_email, ad.ado_texto, an.ani_nome
+            "SELECT ad.usu_id, ad.ado_id, ad.ado_dt_hr_insert, us.usu_nome, us.usu_email, ad.ado_texto, an.ani_nome, ad.sta_id
             FROM tbl_adocoes ad
             INNER JOIN tbl_usuarios us ON (ad.usu_id = us.usu_id)
             INNER JOIN tbl_animais an ON (ad.ani_id = an.ani_id)
-            WHERE ad.ani_id = :ANIMAL AND ad.sta_id = :STATUS_ADOCAO
+            WHERE ad.ani_id = :ANIMAL AND ad.sta_id in (6,9)
             ORDER BY ad.ado_dt_hr_insert desc", array(
-                ":ANIMAL" => $animal,
-                ":STATUS_ADOCAO" => '6'
+                ":ANIMAL" => $animal
         ));
 
         $horaAtual = strtotime("now"); 

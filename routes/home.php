@@ -97,7 +97,7 @@ $app->post('/home/pedir-adocao', function(){
 
 	$adocao = new Adocao();
 
-	$adocao->set_sta_id(6);
+	$adocao->set_sta_id($_POST['sta_id']);
 	$adocao->set_ado_texto($_POST['text']);
 	$adocao->set_usu_id($usuario->get_usu_id());
 	$adocao->set_ani_id($_POST['ani_id']);

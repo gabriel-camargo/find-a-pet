@@ -24,6 +24,9 @@ class RequisicoesView extends View {
                     </li>
                 `;
 
+            let botaoConfirmar = (el.sta_id == '6')? 'Confirmar adoção': 'É meu animal';
+            let botaoRejeitar = (el.sta_id == '6')? 'Rejeitar adoção': 'Não é meu animal';
+
             html += `
                 <a href="#" class="list-group-item list-group-item-action">
                     
@@ -89,13 +92,13 @@ class RequisicoesView extends View {
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" 
-                                    onclick="adocoesPerdidosController.rejectRequest(${el.ado_id}, '${el.ani_nome}', '${el.usu_nome}')">
-                                    Rejeitar adoção
+                                    onclick="adocoesPerdidosController.rejectRequest(${el.ado_id}, ${el.sta_id}, '${el.ani_nome}', '${el.usu_nome}')">
+                                    ${botaoRejeitar}
                                 </button>
 
                                 <button type="button" class="btn btn-outline-success" 
-                                    onclick="adocoesPerdidosController.confirmRequest(${el.ado_id}, '${el.ani_nome}', '${el.usu_nome}')">
-                                    Confirmar adoção
+                                    onclick="adocoesPerdidosController.confirmRequest(${el.ado_id}, ${el.sta_id}, '${el.ani_nome}', '${el.usu_nome}')">
+                                    ${botaoConfirmar}
                                 </button>
                             </div>
                         </div>
