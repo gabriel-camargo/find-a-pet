@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="pt" dir="ltr">
+
+    <head>
+        {include="pages/header"}
+    </head>
+
+    <body class="body--page-logged">
+        {include="pages/navbar"}
+        <nav class="nav justify-content-center p-1 bg-light">            
+            <a class="nav-link text-secondary" href="/adocoes-perdidos">Meus animais</a>
+            <a class="nav-link font-weight-bold text-success text-secondary" href="/adocoes-perdidos/meus-pedidos">Meus pedidos</a>                   
+        </nav>
+
+        <div class="container">
+
+            <div class="row mt-3">
+                <div class="col-xl-3 col-md-4 col-sm-6 col-xs-12 mb-3">
+                    <div class="card" id="card-1" onclick="routeToUpdate(this)">
+                        
+                        <div class="container-img">
+                                <img class="card-img-top" src="..." alt="Card image cap">
+                                <div class="overlay-card">
+                                    <div class="text">
+                                        Ver detalhes
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- div.container-img -->
+                        
+                        <div class="card-body">
+    
+                            <h5 class="card-title">
+                                <span class="font-weight-bold">{nome-do-animal}</span>
+                            </h5>
+    
+                            <p class="card-text mb-2 font-weight-bold">
+                                
+                                {sexo}
+                            </p>
+                            
+                            <p class="card-text">
+                                <span class="font-weight-bold">Status:</span>
+                                
+                            </p>
+                            
+                        </div>
+                        <!-- div.card-body -->
+                    </div>
+                    <!-- div.card -->
+                </div>
+                <!-- div.col-->
+            </div>
+            <!-- div.row -->           
+            
+            <!-- sentença -->
+            SELECT ad.ado_id, ad.ani_id, an.ani_nome, us.usu_nome, ad.ado_dt_hr_insert, ad.ado_dt_hr_confirmacao, ad.sta_id
+            FROM tbl_adocoes ad 
+            INNER JOIN tbl_animais an ON ad.ani_id = an.ani_id
+            INNER JOIN tbl_usuarios us ON an.usu_id = us.usu_id
+            WHERE ad.usu_id = 19
+        </div>
+
+        <!-- container -->
+        {include="pages/footer"}
+        <script src="/res/js/view/RequisicoesView.js"></script>
+        <script src="/res/js/controller/AdocoesPerdidosController.js"></script>
+
+        <script>
+            const adocoesPerdidosController = new AdocoesPerdidosController();
+        </script>
+    </body>
+</html>
