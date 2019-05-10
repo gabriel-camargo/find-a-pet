@@ -173,4 +173,37 @@ class AdocoesRepository implements AdocoesRepositoryInterface
 
         return $return;
     }
+
+    public function myRequests($usu_id)
+    {
+        $return = array();
+
+        $sql = new Sql();
+
+        $results = $sql->select(
+            "SELECT ad.ado_id, ad.ani_id, an.ani_nome, us.usu_nome, 
+            ad.ado_dt_hr_insert, ad.ado_dt_hr_confirmacao, ad.sta_id, st.sta_nome
+            FROM tbl_adocoes ad 
+            INNER JOIN tbl_animais an ON ad.ani_id = an.ani_id 
+            INNER JOIN tbl_usuarios us ON an.usu_id = us.usu_id 
+            INNER JOIN tbl_status st ON ad.sta_id = st.sta_id
+            WHERE ad.usu_id = :USU_ID AND st.sta_tipo = :TIPO_STATUS", array(
+                ":USU_ID"=>$usu_id,
+                ":TIPO_STATUS"=>'adocao'
+        ));
+
+        foreach($results as $r){
+            $r = array_map("utf8_encode", $r);           
+
+            $r['foto'] = (file_exists(
+                $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
+                "res" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .
+                "animal" . DIRECTORY_SEPARATOR .  $r['ani_id'] . ".png"
+            )) ?"animal/". $r['ani_id'] . '.png' : "default.png" ;
+            
+            array_push($return, $r);
+        }
+
+        return $return;
+    }
 }

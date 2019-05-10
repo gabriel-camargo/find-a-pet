@@ -44,7 +44,9 @@ $app->get('/adocoes-perdidos/meus-pedidos', function(){
         $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
         "res" . DIRECTORY_SEPARATOR . "img" . DIRECTORY_SEPARATOR .
         "perfil" . DIRECTORY_SEPARATOR .  $usuario->get_usu_id() . ".png"
-    )) ?"perfil/". $usuario->get_usu_id() . '.png' : "default.png" ;
+	)) ?"perfil/". $usuario->get_usu_id() . '.png' : "default.png" ;
+	
+	$meusPedidos = $adocoesRepository->myRequests($usuario->get_usu_id());
 
 	$page = new Page();
 
@@ -52,6 +54,7 @@ $app->get('/adocoes-perdidos/meus-pedidos', function(){
 		"adocoesRecentes" => $adocoesRecentes,
 		"nome" => $usuario->get_usu_nome(),
 		"fotoUsuario" => $fotoUsuario,
+		"meusPedidos" => $meusPedidos
 	));
 });
 
