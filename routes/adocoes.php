@@ -11,8 +11,6 @@ $app->get('/adocoes-perdidos/', function(){
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
 	$adocoesRepository = new AdocoesRepository();
-	$adocoesRecentes = $adocoesRepository->recentRequests($usuario->get_usu_id());
-
 	$pedidosAnimais = $adocoesRepository->list($usuario->get_usu_id());
 
 	// VERIFICAR SE IMAGEM EXISTE
@@ -25,7 +23,6 @@ $app->get('/adocoes-perdidos/', function(){
 	$page = new Page();
 
   	$page->setTpl("adocoes-perdidos", array(
-		"adocoesRecentes" => $adocoesRecentes,
 		"nome" => $usuario->get_usu_nome(),
 		"fotoUsuario" => $fotoUsuario,
 		"pedidosAnimais" => $pedidosAnimais
@@ -37,7 +34,6 @@ $app->get('/adocoes-perdidos/meus-pedidos', function(){
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
 	$adocoesRepository = new AdocoesRepository();
-	$adocoesRecentes = $adocoesRepository->recentRequests($usuario->get_usu_id());
 
 	// VERIFICAR SE IMAGEM EXISTE
 	$fotoUsuario = (file_exists(
@@ -51,7 +47,6 @@ $app->get('/adocoes-perdidos/meus-pedidos', function(){
 	$page = new Page();
 
   	$page->setTpl("adocoes-perdidos-meus-pedidos", array(
-		"adocoesRecentes" => $adocoesRecentes,
 		"nome" => $usuario->get_usu_nome(),
 		"fotoUsuario" => $fotoUsuario,
 		"meusPedidos" => $meusPedidos

@@ -31,36 +31,7 @@
         <!-- Lista alinhada para a direita -->
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 
-          <li class="nav-link dropdown mr-2">              
-            <a class="nav-link dropdown-toggle p-0" href="#" id="navbarDropdownAlerts"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-bell"></i>
-             </a>
-             <div class="dropdown-menu dropdown-menu-right dropdown--style-adocoes"
-              style="cursor: pointer">
-               
-                {loop="$adocoesRecentes"}
-                <div class="row">
-
-                  <div class="col-3 pl-4"> 
-                      <img src="/res/img/{$value.foto}" alt="..." width="40" height="40" class=""
-                        style="border-radius:100%;border:1px solid #ccc"> 
-                  </div>
-
-                  <div class="col-9 pr-4"> 
-                    <span>
-                      <strong>{$value.interessado}</strong> se interessou por 
-                      <strong>{$value.animal}</strong>
-                    </span>
-                  </div>
-
-                </div>
-                <div class="dropdown-divider"></div>
-                {/loop}
-
-                <a href="/adocoes-perdidos" class="d-block text-center mb-0 link"> Ver mais </a>
-            </div>
-          </li>
+          
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle p-0" href="#" id="navbarDropdown"

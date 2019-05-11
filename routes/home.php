@@ -28,9 +28,6 @@ $app->get('/home/', function(){
 	Usuario::verifyLogin();
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
-	$adocoesRepository = new AdocoesRepository();
-	$adocoesRecentes = $adocoesRepository->recentRequests($usuario->get_usu_id());
-
 	//VERIFICAR SE IMAGEM EXISTE
 	$fotoUsuario = (file_exists(
         $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
@@ -54,7 +51,6 @@ $app->get('/home/', function(){
 		"uf" => utf8_encode($usuario->get_usu_uf()),
 		"cidade" => utf8_encode($usuario->get_usu_cidade()),
 		"fotoUsuario" => $fotoUsuario,
-		"adocoesRecentes" => $adocoesRecentes
 	));
 });
 

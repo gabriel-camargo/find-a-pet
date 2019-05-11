@@ -10,9 +10,6 @@ $app->get('/usuario/configuracoes', function(){
 	Usuario::verifyLogin();
     $usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 
-    $adocoesRepository = new AdocoesRepository();
-	$adocoesRecentes = $adocoesRepository->recentRequests($usuario->get_usu_id());
-
     // VERIFICAR SE IMAGEM EXISTE
 	$fotoUsuario = (file_exists(
         $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 
@@ -26,7 +23,6 @@ $app->get('/usuario/configuracoes', function(){
 	$page = new Page();
 
 	$page->setTpl("usuario-update", array(
-        "adocoesRecentes" => $adocoesRecentes,
         "nome" => $usuario->get_usu_nome(),
         "usuario" => $usuario,
         "uf" => $ufPadrao,
