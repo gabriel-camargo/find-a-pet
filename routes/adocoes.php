@@ -43,13 +43,15 @@ $app->get('/adocoes-perdidos/meus-pedidos', function(){
 	)) ?"perfil/". $usuario->get_usu_id() . '.png' : "default.png" ;
 	
 	$meusPedidos = $adocoesRepository->myRequests($usuario->get_usu_id());
-
+	
 	$page = new Page();
 
   	$page->setTpl("adocoes-perdidos-meus-pedidos", array(
 		"nome" => $usuario->get_usu_nome(),
 		"fotoUsuario" => $fotoUsuario,
-		"meusPedidos" => $meusPedidos
+		"meusPedidosAceitos" => $meusPedidos[0],
+		"meusPedidosRejeitados" => $meusPedidos[1],
+		"meusPedidosConcluidos" => $meusPedidos[2]
 	));
 });
 

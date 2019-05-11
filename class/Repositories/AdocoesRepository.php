@@ -154,10 +154,17 @@ class AdocoesRepository implements AdocoesRepositoryInterface
             INNER JOIN tbl_animais an ON ad.ani_id = an.ani_id 
             INNER JOIN tbl_usuarios us ON an.usu_id = us.usu_id 
             INNER JOIN tbl_status st ON ad.sta_id = st.sta_id
-            WHERE ad.usu_id = :USU_ID AND st.sta_tipo = :TIPO_STATUS", array(
+            WHERE ad.usu_id = :USU_ID AND st.sta_tipo = :TIPO_STATUS
+            ORDER BY st.sta_id", array(
                 ":USU_ID"=>$usu_id,
                 ":TIPO_STATUS"=>'adocao'
         ));
+
+        $arrayEmAberto = array();
+
+        $arrayRejeitado = array();
+
+        $arrayConcluido = array();
 
         foreach($results as $r){
             $r = array_map("utf8_encode", $r);           
@@ -168,8 +175,24 @@ class AdocoesRepository implements AdocoesRepositoryInterface
                 "animal" . DIRECTORY_SEPARATOR .  $r['ani_id'] . ".png"
             )) ?"animal/". $r['ani_id'] . '.png' : "default.png" ;
             
-            array_push($return, $r);
+            switch ($r['sta_id']) {
+                case 6:
+                    array_push($arrayEmAberto, $r);
+                    break;
+
+                case 7:
+                    array_push($arrayRejeitado, $r);
+                    break;
+
+                case 8:
+                    array_push($arrayConcluido, $r);
+                    break;  
+            }            
         }
+
+        array_push($return, $arrayEmAberto);
+        array_push($return, $arrayRejeitado);
+        array_push($return, $arrayConcluido);        
 
         return $return;
     }
