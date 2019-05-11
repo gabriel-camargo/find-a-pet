@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `tbl_faixa_etaria` (
   UNIQUE KEY `fai_id_UNIQUE` (`fai_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela bd_findapet.tbl_faixa_etaria: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela bd_findapet.tbl_faixa_etaria: ~2 rows (aproximadamente)
 DELETE FROM `tbl_faixa_etaria`;
 /*!40000 ALTER TABLE `tbl_faixa_etaria` DISABLE KEYS */;
 INSERT INTO `tbl_faixa_etaria` (`fai_id`, `fai_nome`) VALUES
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `tbl_portes` (
   UNIQUE KEY `por_id_UNIQUE` (`por_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela bd_findapet.tbl_portes: ~3 rows (aproximadamente)
+-- Copiando dados para a tabela bd_findapet.tbl_portes: ~2 rows (aproximadamente)
 DELETE FROM `tbl_portes`;
 /*!40000 ALTER TABLE `tbl_portes` DISABLE KEYS */;
 INSERT INTO `tbl_portes` (`por_id`, `por_nome`) VALUES
@@ -73,9 +73,9 @@ CREATE TABLE IF NOT EXISTS `tbl_status` (
   `sta_tipo` varchar(20) NOT NULL,
   PRIMARY KEY (`sta_id`),
   UNIQUE KEY `sta_id_UNIQUE` (`sta_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela bd_findapet.tbl_status: ~5 rows (aproximadamente)
+-- Copiando dados para a tabela bd_findapet.tbl_status: ~10 rows (aproximadamente)
 DELETE FROM `tbl_status`;
 /*!40000 ALTER TABLE `tbl_status` DISABLE KEYS */;
 INSERT INTO `tbl_status` (`sta_id`, `sta_nome`, `sta_tipo`) VALUES
@@ -83,7 +83,13 @@ INSERT INTO `tbl_status` (`sta_id`, `sta_nome`, `sta_tipo`) VALUES
 	(2, 'Perdido', 'cad'),
 	(3, 'Adotado', 'save'),
 	(4, 'Encontrado', 'save'),
-	(5, 'Arquivado', 'del');
+	(5, 'Arquivado', 'del'),
+	(6, 'Em aberto', 'adocao'),
+	(7, 'Aceito', 'adocao'),
+	(8, 'Rejeitado', 'adocao'),
+	(9, 'Em aberto', 'perdido'),
+	(10, 'Encontrado', 'perdido'),
+	(11, 'Rejeitado', 'perdido');
 /*!40000 ALTER TABLE `tbl_status` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

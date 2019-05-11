@@ -13,27 +13,35 @@
 
 
 -- Copiando estrutura do banco de dados para bd_findapet
+DROP DATABASE IF EXISTS `bd_findapet`;
 CREATE DATABASE IF NOT EXISTS `bd_findapet` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bd_findapet`;
 
 -- Copiando estrutura para tabela bd_findapet.tbl_adocoes
+DROP TABLE IF EXISTS `tbl_adocoes`;
 CREATE TABLE IF NOT EXISTS `tbl_adocoes` (
   `ado_id` int(11) NOT NULL AUTO_INCREMENT,
-  `ado_dt_hr` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `usu_doador_id` int(11) NOT NULL,
-  `usu_adotador_id` int(11) NOT NULL,
+  `ado_dt_hr_insert` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ado_dt_hr_confirmacao` timestamp NULL DEFAULT NULL,
+  `ado_texto` text,
+  `ado_lido` char(1) NOT NULL DEFAULT 'n',
+  `sta_id` int(11) NOT NULL,
+  `usu_id` int(11) NOT NULL,
   `ani_id` int(11) NOT NULL,
   PRIMARY KEY (`ado_id`),
-  KEY `fk_adocoes_cad_usuarios1_idx` (`usu_doador_id`),
-  KEY `fk_adocoes_cad_usuarios2_idx` (`usu_adotador_id`),
+  UNIQUE KEY `ado_id` (`ado_id`),
+  UNIQUE KEY `unique_key` (`usu_id`,`ani_id`,`sta_id`),
+  KEY `fk_adocoes_cad_usuarios2_idx` (`usu_id`),
   KEY `fk_adocoes_cad_animais1_idx` (`ani_id`),
+  KEY `fk_adocoes_status` (`sta_id`),
   CONSTRAINT `fk_adocoes_cad_animais1` FOREIGN KEY (`ani_id`) REFERENCES `tbl_animais` (`ani_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_adocoes_cad_usuarios1` FOREIGN KEY (`usu_doador_id`) REFERENCES `tbl_usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_adocoes_cad_usuarios2` FOREIGN KEY (`usu_adotador_id`) REFERENCES `tbl_usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_adocoes_cad_usuarios2` FOREIGN KEY (`usu_id`) REFERENCES `tbl_usuarios` (`usu_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_adocoes_status` FOREIGN KEY (`sta_id`) REFERENCES `tbl_status` (`sta_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bd_findapet.tbl_animais
+DROP TABLE IF EXISTS `tbl_animais`;
 CREATE TABLE IF NOT EXISTS `tbl_animais` (
   `ani_id` int(11) NOT NULL AUTO_INCREMENT,
   `ani_nome` varchar(45) NOT NULL,
@@ -59,10 +67,11 @@ CREATE TABLE IF NOT EXISTS `tbl_animais` (
   CONSTRAINT `fk_fai_id` FOREIGN KEY (`fai_id`) REFERENCES `tbl_faixa_etaria` (`fai_id`),
   CONSTRAINT `fk_por_id` FOREIGN KEY (`por_id`) REFERENCES `tbl_portes` (`por_id`),
   CONSTRAINT `fk_sta_id` FOREIGN KEY (`sta_id`) REFERENCES `tbl_status` (`sta_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bd_findapet.tbl_especies
+DROP TABLE IF EXISTS `tbl_especies`;
 CREATE TABLE IF NOT EXISTS `tbl_especies` (
   `esp_id` int(11) NOT NULL AUTO_INCREMENT,
   `esp_nome` varchar(45) NOT NULL,
@@ -72,6 +81,7 @@ CREATE TABLE IF NOT EXISTS `tbl_especies` (
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bd_findapet.tbl_faixa_etaria
+DROP TABLE IF EXISTS `tbl_faixa_etaria`;
 CREATE TABLE IF NOT EXISTS `tbl_faixa_etaria` (
   `fai_id` int(11) NOT NULL AUTO_INCREMENT,
   `fai_nome` varchar(45) NOT NULL,
@@ -81,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `tbl_faixa_etaria` (
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bd_findapet.tbl_portes
+DROP TABLE IF EXISTS `tbl_portes`;
 CREATE TABLE IF NOT EXISTS `tbl_portes` (
   `por_id` int(11) NOT NULL AUTO_INCREMENT,
   `por_nome` varchar(45) NOT NULL,
@@ -90,16 +101,18 @@ CREATE TABLE IF NOT EXISTS `tbl_portes` (
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bd_findapet.tbl_status
+DROP TABLE IF EXISTS `tbl_status`;
 CREATE TABLE IF NOT EXISTS `tbl_status` (
   `sta_id` int(11) NOT NULL AUTO_INCREMENT,
   `sta_nome` varchar(45) NOT NULL,
   `sta_tipo` varchar(20) NOT NULL,
   PRIMARY KEY (`sta_id`),
   UNIQUE KEY `sta_id_UNIQUE` (`sta_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 -- Copiando estrutura para tabela bd_findapet.tbl_usuarios
+DROP TABLE IF EXISTS `tbl_usuarios`;
 CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
   `usu_id` int(11) NOT NULL AUTO_INCREMENT,
   `usu_nome` varchar(45) NOT NULL,
@@ -108,8 +121,9 @@ CREATE TABLE IF NOT EXISTS `tbl_usuarios` (
   `usu_uf` varchar(2) DEFAULT NULL,
   `usu_cidade` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`usu_id`),
-  UNIQUE KEY `usu_id_UNIQUE` (`usu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `usu_id_UNIQUE` (`usu_id`),
+  UNIQUE KEY `usu_email` (`usu_email`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 -- Exportação de dados foi desmarcado.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
