@@ -3,7 +3,6 @@ class HomeController{
     constructor(){
         this._inputListEspecie = Array.from(document.querySelectorAll(".check-especie"));
         this._inputListSexo = Array.from(document.querySelectorAll(".check-sexo"));
-        this._inputListStatus = Array.from(document.querySelectorAll(".check-status"));
         this._inputListPorte = Array.from(document.querySelectorAll(".check-porte"));
         this._inputListFaixa = Array.from(document.querySelectorAll(".check-faixa"));
         this._inputListCidade = Array.from(document.querySelectorAll(".check-cidade"));
@@ -121,11 +120,6 @@ class HomeController{
         const inputListSexoChecked = this._inputListSexo.filter(el => el.checked);
         if(inputListSexoChecked.length >= 1) filterSexo += this._addFilter(inputListSexoChecked, "t1.ani_sexo", filterSexo);
 
-        //status
-        let filterStatus = "";
-        const inputListStatusChecked = this._inputListStatus.filter(el => el.checked);
-        if(inputListStatusChecked.length >= 1) filterStatus += this._addFilter(inputListStatusChecked, "t1.sta_id", filterStatus);
-
         //porte
         let filterPorte = "";
         const inputListPorteChecked = this._inputListPorte.filter(el => el.checked);
@@ -147,7 +141,7 @@ class HomeController{
         if(inputListUfChecked.length >= 1) filterUf += this._addFilter(inputListUfChecked, "t1.ani_uf", filterUf);
 
         //soma todos os filtros e retorna o mesmo na função
-        const filter = filterEspecie + filterSexo + filterStatus + filterPorte + filterFaixa + filterCidade + filterUf;
+        const filter = filterEspecie + filterSexo + filterPorte + filterFaixa + filterCidade + filterUf;
         return filter;
     }
 
