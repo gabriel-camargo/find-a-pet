@@ -32,8 +32,6 @@ $app->get('/animais/', function(){
 
 	$animais = $animalsRepository->listByUser($usuario->get_usu_id());
 
-	// var_dump($animais);
-
   	$page->setTpl("animais",array(
 		"nome" => $usuario->get_usu_nome(),
 		"feedback_success" => $feedbackSuccess,
@@ -60,7 +58,6 @@ $app->get("/animais/create/", function(){
 	$especies = Especie::all();
 	$faixaEtaria = FaixaEtaria::all();
 	$porte = Porte::all();
-	$status = Status::find("cad");
 
 	$page = new Page();
 
@@ -69,7 +66,6 @@ $app->get("/animais/create/", function(){
 		"especies" => $especies,
 		"faixa_etaria" => $faixaEtaria,
 		"porte" => $porte,
-		"status" => $status,
 		"uf" => $ufPadrao,
 		"cidade" => $cidadePadrao,
 		"fotoUsuario" => $fotoUsuario
@@ -116,7 +112,6 @@ $app->get("/animais/:id", function($id){
 	$especies = Especie::all();
 	$faixaEtaria = FaixaEtaria::all();
 	$porte = Porte::all();
-	$status = Status::find("cad");
 
 	// VERIFICAR SE IMAGEM EXISTE
 	$foto = (file_exists(
@@ -135,7 +130,6 @@ $app->get("/animais/:id", function($id){
 		"especies" => $especies,
 		"faixa_etaria" => $faixaEtaria,
 		"porte" => $porte,
-		"status" => $status,
 		"error" => $error,
 		"fotoUsuario" => $fotoUsuario
 	));

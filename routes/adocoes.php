@@ -74,13 +74,11 @@ $app->post("/adocoes-perdidos/confirmar-adocao", function() {
 
 	$animal = new Animal();
 	$animal->find($adocao->get_ani_id());
-
-	$novoStatusAnimal = ($animal->get_sta_id() == 1)? 3: 4;
-	$animal->set_sta_id($novoStatusAnimal);
+	$animal->set_sta_id(2);
 	$animal->save();
 
 	$return=array();
-	$return['status_adocao']=Adocao::confirmarAdocao($_POST['ado_id'], $_POST['sta_id'], $adocao->get_ani_id());
+	$return['status_adocao']=Adocao::confirmarAdocao($_POST['ado_id'], $adocao->get_ani_id());
 	
 	echo json_encode($return);
 });
@@ -90,7 +88,7 @@ $app->post("/adocoes-perdidos/rejeitar-adocao", function() {
 	$usuario = Usuario::loadBySession($_SESSION[Usuario::SESSION]);
 	
 	$return=array();
-	$return['status_adocao']=Adocao::rejeitarAdocao($_POST['ado_id'], $_POST['sta_id']);
+	$return['status_adocao']=Adocao::rejeitarAdocao($_POST['ado_id']);
 	
 	echo json_encode($return);
 });

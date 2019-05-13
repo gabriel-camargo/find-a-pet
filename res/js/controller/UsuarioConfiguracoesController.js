@@ -17,8 +17,7 @@ class UsuarioConfiguracoesController{
         this._http = new HttpService();
     } 
 
-    cropImage(){
-
+    cropImage() {
         let el = document.getElementById('image_demo');
         
         return new Croppie( el, {
@@ -31,10 +30,8 @@ class UsuarioConfiguracoesController{
             boundary:{
                 width:250,
                 height:250
-            },
-            
-        });
-        
+            },            
+        });        
     }
 
     loadImage(input){
@@ -203,9 +200,8 @@ class UsuarioConfiguracoesController{
                             'error'
                         )
                         console.log(err)
-                    })                
+                    });                
             }
         });
     }
-
 }

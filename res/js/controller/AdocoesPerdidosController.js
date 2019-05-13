@@ -24,16 +24,10 @@ class AdocoesPerdidosController {
         this._view.update(data);
     }
 
-    rejectRequest(ado_id, sta_id, animal, interessado) {
-        const idRejeicao = (sta_id == '6')? 8: 11;
-
-        const textoPergunta = (sta_id == '6')?
-            `Deseja rejeitar a adoção de ${animal} para ${interessado}?`:
-            `Deseja rejeitar as informações de ${interessado} sobre ${animal}?`;
-
+    rejectRequest(ado_id, animal, interessado) {
         Swal.fire({
             title: 'Rejeitar adoção',
-            text: textoPergunta,
+            text: `Deseja rejeitar a adoção de ${animal} para ${interessado}?`,
             type: 'question',
             showCancelButton: true,
             confirmButtonColor: '#f57c00',
@@ -45,19 +39,14 @@ class AdocoesPerdidosController {
             if(result.value) {
                 this._http
                     .post(`/adocoes-perdidos/rejeitar-adocao`, {
-                        'ado_id': ado_id,
-                        'sta_id': idRejeicao
+                        'ado_id': ado_id
                     })
                     .then(data =>{ 
-
-                        const textoResposta = (sta_id == '6')?
-                            'Pedido de adoção rejeitado!':
-                            'Informações foram rejeitadas!';
 
                         Swal.fire({
                             type: 'success',
                             title: 'Pronto!',
-                            text: textoResposta
+                            text: 'Pedido de adoção rejeitado!'
                         }).then(()=>
                             document.location.reload(true)                        
                         )
@@ -74,16 +63,11 @@ class AdocoesPerdidosController {
         });
     }
 
-    confirmRequest(ado_id, sta_id, animal, interessado) {
-        const id_confirmacao = (sta_id == '6')? 7: 10;
-
-        const textoPergunta = (sta_id == '6')?
-            `Deseja confirmar a adoção de ${animal} para ${interessado}?`:
-            `Deseja confirmar que ${animal} foi encontrado por ${interessado}?`
+    confirmRequest(ado_id, animal, interessado) {
 
         Swal.fire({
             title: 'Confirmar',
-            text: textoPergunta,
+            text: `Deseja confirmar a adoção de ${animal} para ${interessado}?`,
             type: 'question',
             showCancelButton: true,
             confirmButtonColor: '#43a047',
@@ -91,24 +75,17 @@ class AdocoesPerdidosController {
             confirmButtonText: 'Confirmar',
             cancelButtonText: 'Cancelar'
         })
-        .then((result) => {
-
+        .then(result => {
             if (result.value) {
                 this._http
                     .post(`/adocoes-perdidos/confirmar-adocao`, {
-                        'ado_id': ado_id,
-                        'sta_id': id_confirmacao
+                        'ado_id': ado_id
                     })
                     .then(data =>{ 
-
-                        const textoResposta = (sta_id == '6')?
-                            'Pedido de adoção enviado com sucesso!':
-                            'Registro atualizado com sucesso!';
-
                         Swal.fire({
                             type: 'success',
                             title: 'Pronto!',
-                            text: textoResposta
+                            text: 'Pedido de adoção enviado com sucesso!'
                         }).then(()=>
                             document.location.reload(true)                        
                         )

@@ -9,11 +9,7 @@ class PublicacoesView extends View {
         let html = '';
         
 
-        model.forEach(el => {
-            const button = (el.status_animal == 'Perdido') ? 
-                `<button type="button" class="btn btn-success" onclick="homeController.encontrar(${el.id})">Encontrei</button>` :
-                `<button type="button" class="btn btn-success" onclick="homeController.adotar(${el.id})">Quero adotar</button>`;
-            
+        model.forEach(el => {            
 
             html += `
             <div class="col-xl-4 col-sm-6 col-xs-12 mb-3">
@@ -39,15 +35,8 @@ class PublicacoesView extends View {
                         <h5 class="card-title mt-2">
                             <span class="font-weight-bold text-capitalize">${el.nome}</span>
                         </h5>
-
-                        <p class="card-text mb-2">
-                            <span class="font-weight-bold">Status:</span>
-                            ${el.status_animal}
-                        </p>
-                       
     
                         <p class="card-text mb-2 font-weight-bold">
-
                             ${el.sexo=='F' ? '<span style="color:#f06292">Fêmea</span>' : '<span style="color:blue">Macho</span>'}
                         </p>
                         
@@ -118,13 +107,7 @@ class PublicacoesView extends View {
                                     </div>
 
                                     <div class="row mb-2">
-                                        <div class="col-md-5">
-                                            
-                                            <strong> Status:</strong> ${el.status_animal}
-                                        </div>
-
-                                        <div class="col-md-7">
-                                            
+                                        <div class="col">
                                             <strong> Localização:</strong> ${el.cidade} - ${el.uf}
                                         </div>
                                     </div>
@@ -160,7 +143,7 @@ class PublicacoesView extends View {
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal"> Fechar </button>
-                            ${button}
+                            <button type="button" class="btn btn-success" onclick="homeController.adotar(${el.id})">Quero adotar</button>
                         </div>
 
                     </div>

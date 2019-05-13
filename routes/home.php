@@ -36,7 +36,6 @@ $app->get('/home/', function(){
     )) ?"perfil/". $usuario->get_usu_id() . '.png' : "default.png" ;
 
 	$especies = Especie::all();
-	$status = Status::find("cad");
 	$porte = Porte::all();
 	$faixaEtaria = FaixaEtaria::all();
 
@@ -45,7 +44,6 @@ $app->get('/home/', function(){
 	$page->setTpl("home",array(
 		"nome" => $usuario->get_usu_nome(),
 		"especies" => $especies,
-		"status" => $status,
 		"porte" => $porte,
 		"faixaEtaria" => $faixaEtaria,
 		"uf" => utf8_encode($usuario->get_usu_uf()),
@@ -93,7 +91,7 @@ $app->post('/home/pedir-adocao', function(){
 
 	$adocao = new Adocao();
 
-	$adocao->set_sta_id($_POST['sta_id']);
+	$adocao->set_sta_id(4);
 	$adocao->set_ado_texto($_POST['text']);
 	$adocao->set_usu_id($usuario->get_usu_id());
 	$adocao->set_ani_id($_POST['ani_id']);

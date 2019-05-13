@@ -3,7 +3,6 @@ class AnimalController{
     constructor(){
         this._inputId = document.querySelector("#inputIdAnimal");
         this._inputNome = document.querySelector("#inputNomeAnimal");
-        this._inputStatus = document.querySelector("#inputStatusAnimal");
         this._inputFaixaEtaria = document.querySelector("#inputFaixaEtaria");
         this._inputPorte = document.querySelector("#inputPorteAnimal");
         this._inputInformacoes = document.querySelector("#inputInformacoesAnimal");
@@ -17,8 +16,7 @@ class AnimalController{
         this._http = new HttpService();
     }
 
-    cropImage(){
-
+    cropImage() {
         let el = document.getElementById('image_demo');
         
         return new Croppie( el, {
@@ -31,10 +29,8 @@ class AnimalController{
             boundary:{
                 width:250,
                 height:250
-            },
-            
-        });
-        
+            },            
+        });        
     }
 
     loadImage(input){
@@ -49,42 +45,6 @@ class AnimalController{
         reader.readAsDataURL(input.files[0]);
     }
 
-    // createAnimal(event){
-    //     event.preventDefault();
-
-    //     this._croppieImage.result({
-    //         type: 'canvas',
-    //         size: 'viewport'
-    //     }).then( (response) => {
-
-    //         let newAnimal = this.newAnimal();       
-
-    //         if (this._inputFoto.value === "") response = null; 
-            
-    //         this._http
-    //             .post('/animais/create/', newAnimal)
-    //             .then(data => {
-
-    //                 if(response) this.savePhoto(data.lastId, response);
-    //                 window.location = "/animais/"; 
-
-    //             } )
-    //             .catch(err => {
-    //                 console.log(err.message);
-
-    //                 window.scrollTo(0,0);                   
-    //                 document.getElementById("div-alert-erro").innerHTML = `
-
-    //                     <p class="alert alert-danger">
-    //                         <strong> Erro! </strong> 
-    //                         Você deve preencher todos os campos obrigatórios!
-    //                     </p>
-
-    //                 `; 
-    //             });
-    //     })
-    // }
-
     _resetForm() {
         this._inputCidade.value = '';
         this._inputEspecie.value = '';
@@ -92,12 +52,11 @@ class AnimalController{
         this._inputInformacoes.value = '';
         this._inputNome.value = '';
         this._inputPorte.value = '';
-        this._inputStatus.value = '';
         this._inputUf.value = '';
         document.getElementById('ani_sexo_m').checked = false;
         document.getElementById('ani_sexo_f').checked = false;
-
     }
+
     async createAnimal(event) {
         event.preventDefault();
 
@@ -106,7 +65,6 @@ class AnimalController{
         this._lastId = await this._requestInsertAnimal(newAnimal);
 
         if(this._lastId > 1){
-
             Swal.fire({
                 title: 'Cadastro realizado!',
                 text: "Deseja adicionar uma foto para seu bichinho? :)",
@@ -150,7 +108,6 @@ class AnimalController{
     }
 
     savePhoto(ani_id, image){        
-
         this._http
             .post('/animais/savePhoto/', {
                 "id": ani_id,
@@ -159,12 +116,10 @@ class AnimalController{
             .then(data => console.log(data))
             .catch(err => {
                 console.log(err.message);
-            });
-        
+            });        
     }
 
     updatePhoto(ani_id = -1){
-
         const id = (ani_id > 0)? ani_id:this._lastId;
         
         this._croppieImage.result({
@@ -183,7 +138,7 @@ class AnimalController{
         return new Animal(
             this._inputNome.value,
             document.querySelector('input[name="ani_sexo"]:checked').value,
-            this._inputStatus.value,
+            1,
             this._inputFaixaEtaria.value,
             this._inputPorte.value,
             this._inputInformacoes.value,
@@ -211,7 +166,6 @@ class AnimalController{
                 this._http
                     .get(`/animais/delete/${id}`)
                     .then(data =>{ 
-
                         Swal.fire(
                             'Pronto!',
                             data,
@@ -219,10 +173,8 @@ class AnimalController{
                         ).then(()=>
                             document.location.href = "/animais"
                         );
-
                     })
                     .catch(err => {
-
                         console.log(err.message);
                         
                         Swal.fire(
@@ -230,7 +182,6 @@ class AnimalController{
                             'Não foi possível excluir este animal!',
                             'error'
                         );
-
                     });
             }
         });

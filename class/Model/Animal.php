@@ -56,7 +56,7 @@ class Animal extends Model
 
         $sql->query(
             "UPDATE tbl_animais
-            SET `sta_id` = 5
+            SET `sta_id` = 3
             WHERE `ani_id` = :ID",
             array(
                 ":ID" => $id
@@ -118,6 +118,8 @@ class Animal extends Model
     private function update(){
         $sql = new Sql();
 
+        if($this->get_sta_id() == null) $this->set_sta_id(1);
+
         $results = $sql->query("UPDATE tbl_animais SET 
             ani_nome=:NOME,
             ani_sexo=:SEXO,
@@ -146,9 +148,7 @@ class Animal extends Model
     private function check()
     {
         if(
-            trim($this->get_ani_nome()) == ""
-            ||
-            $this->get_sta_id() == ""            
+            trim($this->get_ani_nome()) == ""     
             ||
             $this->get_fai_id() == ""
             ||

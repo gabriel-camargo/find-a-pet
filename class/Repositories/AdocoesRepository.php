@@ -20,7 +20,7 @@ class AdocoesRepository implements AdocoesRepositoryInterface
             FROM tbl_adocoes ad
             INNER JOIN tbl_animais an ON ad.ani_id = an.ani_id
             INNER JOIN tbl_status st ON st.sta_id = an.sta_id
-            WHERE an.usu_id = :PET_OWNER and ad.sta_id in (6,9)
+            WHERE an.usu_id = :PET_OWNER and ad.sta_id = 4
             GROUP BY ani_id
             ORDER BY ado_dt_hr_insert desc", array(
                 ":PET_OWNER" => $owner
@@ -88,7 +88,7 @@ class AdocoesRepository implements AdocoesRepositoryInterface
             FROM tbl_adocoes ad
             INNER JOIN tbl_usuarios us ON (ad.usu_id = us.usu_id)
             INNER JOIN tbl_animais an ON (ad.ani_id = an.ani_id)
-            WHERE ad.ani_id = :ANIMAL AND ad.sta_id in (6,9)
+            WHERE ad.ani_id = :ANIMAL AND ad.sta_id = 4
             ORDER BY ad.ado_dt_hr_insert desc", array(
                 ":ANIMAL" => $animal
         ));
@@ -161,9 +161,7 @@ class AdocoesRepository implements AdocoesRepositoryInterface
         ));
 
         $arrayEmAberto = array();
-
         $arrayRejeitado = array();
-
         $arrayConcluido = array();
 
         foreach($results as $r){
@@ -176,16 +174,16 @@ class AdocoesRepository implements AdocoesRepositoryInterface
             )) ?"animal/". $r['ani_id'] . '.png' : "default.png" ;
             
             switch ($r['sta_id']) {
-                case 6:
+                case 4:
                     array_push($arrayEmAberto, $r);
                     break;
 
-                case 7:
-                    array_push($arrayRejeitado, $r);
+                case 5:
+                    array_push($arrayConcluido, $r);
                     break;
 
-                case 8:
-                    array_push($arrayConcluido, $r);
+                case 6:
+                    array_push($arrayRejeitado, $r);
                     break;  
             }            
         }

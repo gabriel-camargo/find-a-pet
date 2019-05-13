@@ -8,7 +8,7 @@
         <style>
             .required{
                 color: #ff1744;
-                font-size: 20pt;
+                font-size: 12pt;
                 vertical-align: middle;
             }
         </style>
@@ -18,30 +18,25 @@
         {include="pages/navbar"}
 
         <div class="container my-3">
-            <div class="card border-success">
-                <h5 class="card-header bg-success text-white">Adicionar animal</h5>
+            <div class="card">
+                <h5 class="card-header">Adicionar animal</h5>
 
                 <div class="card-body px-4">
                     <form method="POST" onsubmit="animalController.createAnimal(event)" id="form-create-animal">
 
                         <p id="div-alert-erro"></p>
 
-                        <!-- LINHA DO NOME E DA FOTO -->
-                        <div class="form-row">
-                            <div class="col form-group">
-                                <!-- INPUT DO NOME  -->
-                                <label for="inputNomeAnimal">Nome
-                                    <span class="required">*</span>
-                                </label>
-                                <input name="ani_nome" type="text" class="form-control" id="inputNomeAnimal"
-                                    placeholder="Insira o nome do animal" required>
-                            </div>
-                            
-                        </div>
-
                         <!-- INPUT DA ESPECIE E DO STATUS -->
                         <div class="form-row mt-2">                                               
-
+                                <!-- INPUT DO STATUS -->
+                                <div class="col-lg-6 col-md-12 form-group">
+                                    <label for="inputNomeAnimal">Nome
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input name="ani_nome" type="text" class="form-control" id="inputNomeAnimal"
+                                        placeholder="Insira o nome do animal" required>
+                                </div>
+                                                                
                                 <!-- INPUT DA ESPECIE -->
                                 <div class="col-lg-6 col-md-12 form-group">
                                         <label for="inputEspecieAnimal">Especie  <span class="required">*</span></label>
@@ -53,16 +48,7 @@
                                         </select>
                                 </div>
 
-                                <!-- INPUT DO STATUS -->
-                                <div class="col-lg-6 col-md-12 form-group">
-                                        <label for="inputStatusAnimal">Status  <span class="required">*</span></label>
-                                        <select name="sta_id" id="inputStatusAnimal" class="custom-select">
-                                            <option selected value=""> --- Selecione o status --- </option>
-                                            {loop="$status"}
-                                                <option value="{$value.sta_id}">{$value.sta_nome}</option>
-                                            {/loop}
-                                        </select>
-                                </div>
+                                
                             <!-- ./LINHA DO NOME, ESPECIE E STATUS -->
                         </div>
                         <!-- ./FORM-ROW -->

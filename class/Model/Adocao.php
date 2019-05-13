@@ -60,9 +60,8 @@ class Adocao extends Model
         } 
     }
 
-    public static function confirmarAdocao($ado_id, $sta_id, $ani_id) 
+    public static function confirmarAdocao($ado_id, $ani_id) 
     {
-        $idRejeitado = ($sta_id == '6')? 8: 11;
         try {
             $sql = new Sql();
 
@@ -71,7 +70,7 @@ class Adocao extends Model
                 WHERE ani_id=:ID ",
             array(
                 ":ID" => $ani_id,
-                ":STA_ID" => $idRejeitado
+                ":STA_ID" => 6
             ));
 
             $sql->query("UPDATE tbl_adocoes SET 
@@ -80,18 +79,17 @@ class Adocao extends Model
                 WHERE ado_id=:ID ",
             array(
                 ":ID" => $ado_id,
-                ':STA_ID' => $sta_id,
+                ':STA_ID' => 5,
                 ":DATA_HORA" => date("Y-m-d H:i:s")
             ));
             
             return true;
         } catch (Exception $e) {
             return false;
-        }
-        
+        }        
     }
 
-    public static function rejeitarAdocao($ado_id, $sta_id) 
+    public static function rejeitarAdocao($ado_id) 
     {
         try {
             $sql = new Sql();
@@ -102,14 +100,13 @@ class Adocao extends Model
                 WHERE ado_id=:ID ",
             array(
                 ":ID" => $ado_id,
-                ":STA_ID" => $sta_id,
+                ":STA_ID" => 6,
                 ":DATA_HORA" => date("Y-m-d H:i:s")
             ));
             
             return true;
         } catch (Exception $e) {
             return false;
-        }
-        
+        }        
     }
 }

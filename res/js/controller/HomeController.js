@@ -20,45 +20,6 @@ class HomeController{
         this._init();
     }
 
-    async encontrar(ani_id) {
-        //para funcionar no modal do bootstrap
-        $(document).off('focusin.modal');
-
-        const {value: text} = await Swal.fire({
-            title: 'Encontrou este animal?',
-            input: 'textarea',
-            inputPlaceholder: 'Informe mais detalhes para o dono',
-            showCancelButton: true,
-            confirmButtonColor: '#43a047',
-            cancelButtonColor: '#bbb',
-            confirmButtonText: 'Enviar',
-            cancelButtonText: 'Cancelar'
-        });
-        
-        if (text) {
-            this._http
-                .post('/home/pedir-adocao', {
-                    "ani_id": ani_id,
-                    "text": text,
-                    'sta_id': 9
-                })
-                .then(data => {
-                    //console.log(data);
-
-                    Swal.fire({
-                        type: 'success',
-                        title: 'Pronto!',
-                        text: 'Informações sobre o animal enviadas com sucesso!'
-                    }).then(()=>
-                        document.location.reload(true)                        
-                    )
-                })
-                .catch(err => {
-                    console.log(err.message);
-                });    
-        }
-    }
-
     async adotar(ani_id) {
         //para funcionar no modal do bootstrap
         $(document).off('focusin.modal');
@@ -98,7 +59,6 @@ class HomeController{
         }
     }
 
-    
     openModal(id){
         $(`#animal-details-${id}`).modal('show');
     }
@@ -122,8 +82,7 @@ class HomeController{
         this._load();
     }
 
-    _checkTotal() {
-        
+    _checkTotal() {        
         return this._http
             .post("/home/check-total", {
                 "filter": this._filter
@@ -133,7 +92,6 @@ class HomeController{
     }
 
     _pagination(size , page=1) {
-
         document.getElementById('pagination').innerHTML = '';
 
         Pagination.Init(
@@ -147,7 +105,6 @@ class HomeController{
     };    
 
     _checkFilter() {
-
         let filterEspecie = "";
 
         //Novo array formado apenas com os checkbox marcados
@@ -210,11 +167,6 @@ class HomeController{
     }
 
     _load() {
-        // console.log(`Filter: ${this._filter}`);
-        // console.log(`Page: ${this._page}`);
-        // console.log(`Per Page: ${this._animalsPerPage}`);
-        // console.log(`Page Skip: ${parseInt((this._page * this._animalsPerPage) - this._animalsPerPage)}`);
-
         this._http
             .post("/home/search", {
                 "filter": this._filter,
@@ -229,13 +181,11 @@ class HomeController{
     }
 
     async _init() {
-
         this._load(); 
         
         const count =  await this._checkTotal();
         let qtdPaginacao = parseInt(parseInt(count)/this._animalsPerPage)+1;
 
-        this._pagination(qtdPaginacao);    
-               
+        this._pagination(qtdPaginacao);                   
     }    
 }

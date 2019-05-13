@@ -17,9 +17,9 @@ class AnimalsRepository implements AnimalsRepositoryInterface
              FROM tbl_animais t1 
              INNER JOIN tbl_especies t2 on (t1.esp_id = t2.esp_id)
              INNER JOIN tbl_status t3 on (t1.sta_id = t3.sta_id)
-             WHERE t1.usu_id = :USER AND t3.sta_tipo <> :TIPO", array(
+             WHERE t1.usu_id = :USER AND t1.sta_id in (1, 2)", array(
             ":USER" => $user,
-            ":TIPO" => "del"
+            
         ));
 
         foreach($results as $r){
@@ -59,12 +59,11 @@ class AnimalsRepository implements AnimalsRepositoryInterface
             INNER JOIN tbl_faixa_etaria t3 ON (t1.fai_id = t3.fai_id)
             INNER JOIN tbl_portes t4 ON ( t1.por_id = t4.por_id )
             INNER JOIN tbl_usuarios t5 ON (t1.usu_id = t5.usu_id)
-            WHERE t1.usu_id <> :USUARIO AND t2.sta_tipo = :TIPO $animaisPendentesString $filtro
+            WHERE t1.usu_id <> :USUARIO AND t1.sta_id = 1  $animaisPendentesString $filtro
             ORDER BY t1.ani_id desc
             LIMIT $page, $perPage
             ", array(
-                ":USUARIO" => $user,
-                ":TIPO" => "cad",
+                ":USUARIO" => $user
             )
         );
 
@@ -85,7 +84,6 @@ class AnimalsRepository implements AnimalsRepositoryInterface
 
     public function checkTotal($user, $filter, $animaisPendentes)
     {
-
         $sql = new Sql();
 
         $animaisPendentesString = ($animaisPendentes != '')? "and t1.ani_id not in ($animaisPendentes)": '';
@@ -97,28 +95,24 @@ class AnimalsRepository implements AnimalsRepositoryInterface
             INNER JOIN tbl_faixa_etaria t3 ON (t1.fai_id = t3.fai_id)
             INNER JOIN tbl_portes t4 ON ( t1.por_id = t4.por_id )
             INNER JOIN tbl_usuarios t5 ON (t1.usu_id = t5.usu_id)
-            WHERE t1.usu_id <> :USUARIO AND t2.sta_tipo = :TIPO $animaisPendentesString $filter", array(
-                "USUARIO" => $user,
-                ":TIPO" => "cad"
+            WHERE t1.usu_id <> :USUARIO AND t1.sta_id = 1 $animaisPendentesString $filter", array(
+                "USUARIO" => $user
             )
         );
 
-
         return $count;
-
     }
 
     public function pendentAnimals($userId) 
     {
-
         $return = array();
         $sql = new Sql();
 
         $results = $sql->select(
             "SELECT ad.ani_id
             FROM tbl_adocoes ad
-            WHERE ad.usu_id = :USUARIO AND ad.sta_id in(6,9)", array(
-                "USUARIO" => $userId
+            WHERE ad.usu_id = :USUARIO AND ad.sta_id =4", array(
+                ":USUARIO" => $userId
             )
         );
 

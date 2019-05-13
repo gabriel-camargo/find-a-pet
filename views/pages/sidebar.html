@@ -1,40 +1,40 @@
 <div class="accordion" id="menu-filtro">
 
         <div class="card">
-                <div class="card-header">
-                    <h3 class="mb-0 p-1 sidebar__title">
-                         Filtros
-                    </h3>
-                </div>
+            <div class="card-header py-1">
+                <h3 class="mb-0 p-1 sidebar__title">
+                        Filtros
+                </h3>
             </div>
+        </div>
 
         <div class="card">
-                <div class="card-header" id="headingOn">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link collapsed sidebar__link" type="button" data-toggle="collapse" 
-                        data-target="#collapseOn" aria-expanded="false" aria-controls="collapseOn">
-                        <i class="fas fa-paw"></i> Espécie
-                        </button>
-                    </h2>
-                </div>
-        
-                <div id="collapseOn" class="collapse" aria-labelledby="headingOn" data-parent="#menu-filtro">
-                    <div class="card-body">
-                            {loop="$especies"}
-      
-                            <div class="custom-control custom-checkbox">
-                              <input value="{$value.esp_id}" type="checkbox" onchange="homeController.changeFilter()"
-                               class="custom-control-input check-especie" id="especie-{$value.esp_id}">
-                              <label class="custom-control-label" for="especie-{$value.esp_id}"> {$value.esp_nome} </label>
-                            </div>
-                    
-                          {/loop}  
-                    </div>
+            <div class="card-header py-2" id="headingOn">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed sidebar__link" type="button" data-toggle="collapse" 
+                    data-target="#collapseOn" aria-expanded="false" aria-controls="collapseOn">
+                    <i class="fas fa-paw"></i> Espécie
+                    </button>
+                </h2>
+            </div>
+    
+            <div id="collapseOn" class="collapse" aria-labelledby="headingOn" data-parent="#menu-filtro">
+                <div class="card-body">
+                        {loop="$especies"}
+    
+                        <div class="custom-control custom-checkbox">
+                            <input value="{$value.esp_id}" type="checkbox" onchange="homeController.changeFilter()"
+                            class="custom-control-input check-especie" id="especie-{$value.esp_id}">
+                            <label class="custom-control-label" for="especie-{$value.esp_id}"> {$value.esp_nome} </label>
+                        </div>
+                
+                        {/loop}  
                 </div>
             </div>
+        </div>
 
     <div class="card">
-        <div class="card-header" id="headingTwo">
+        <div class="card-header py-2" id="headingTwo">
             <h2 class="mb-0">
                 <button class="btn btn-link collapsed sidebar__link" type="button" data-toggle="collapse" 
                 data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -65,37 +65,7 @@
     </div>
 
     <div class="card">
-
-        <div class="card-header" id="headingThree">
-            <h2 class="mb-0">
-                <button class="btn btn-link collapsed sidebar__link" type="button" data-toggle="collapse" 
-                data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <i class="fas fa-cog"></i> Status
-                </button>
-            </h2>
-        </div>
-
-        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#menu-filtro">
-            <div class="card-body">
-                
-                    {loop="$status"}
-      
-                    <div class="custom-control custom-checkbox">
-                        <input value="{$value.sta_id}" type="checkbox" onchange="homeController.changeFilter()" 
-                            class="custom-control-input check-status" id="status-{$value.sta_id}">
-
-                        <label class="custom-control-label" for="status-{$value.sta_id}"> {$value.sta_nome} </label>
-                    </div>
-            
-                  {/loop}  
-
-            </div>
-        </div>
-        
-    </div>
-
-    <div class="card">
-        <div class="card-header" id="headingfour">
+        <div class="card-header py-2" id="headingfour">
             <h2 class="mb-0">
                 <button class="btn btn-link collapsed sidebar__link" type="button" data-toggle="collapse" 
                 data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
@@ -122,7 +92,7 @@
     </div>
 
     <div class="card">
-            <div class="card-header" id="headingfive">
+            <div class="card-header py-2" id="headingfive">
                 <h2 class="mb-0">
                     <button class="btn btn-link collapsed sidebar__link" type="button" data-toggle="collapse" 
                     data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
@@ -149,7 +119,7 @@
         </div>
 
         <div class="card">
-                <div class="card-header" id="headingsix">
+                <div class="card-header py-2" id="headingsix">
                     <h2 class="mb-0">
                         <button class="btn btn-link collapsed sidebar__link" type="button" data-toggle="collapse" 
                         data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
