@@ -1,151 +1,207 @@
 <div class="accordion" id="menu-filtro">
 
-        <div class="card">
-            <div class="card-header py-1">
-                <h3 class="mb-0 p-1 sidebar__title">
-                        Filtros
-                </h3>
-            </div>
-        </div>
+  <div class="card">
+    <div class="card-header py-1">
+      <h3 class="mb-0 p-1 sidebar__title">
+        Filtros
+      </h3>
+    </div>
+  </div>
 
-        <div class="card">
-            <div class="card-header py-2" id="headingOn">
-                <h2 class="mb-0">
-                    <button class="btn btn-link collapsed sidebar__link" type="button" data-toggle="collapse" 
-                    data-target="#collapseOn" aria-expanded="false" aria-controls="collapseOn">
-                    <i class="fas fa-paw"></i> Espécie
-                    </button>
-                </h2>
-            </div>
+  <div class="card">
+
+    <div class="card-header py-2" id="headingOn">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed sidebar__link btn-block" type="button" data-toggle="collapse" 
+          data-target="#collapseOn" aria-expanded="false" aria-controls="collapseOn">
+
+          <div class="row ">
+            <div class="col"> Espécie </div>
+            <div class="col-xs-1"><i class="fas fa-angle-right"></i></div>
+          </div>
+
+        </button>
+      </h2>
+    </div>
     
-            <div id="collapseOn" class="collapse" aria-labelledby="headingOn" data-parent="#menu-filtro">
-                <div class="card-body">
-                        {loop="$especies"}
-    
-                        <div class="custom-control custom-checkbox">
-                            <input value="{$value.esp_id}" type="checkbox" onchange="homeController.changeFilter()"
-                            class="custom-control-input check-especie" id="especie-{$value.esp_id}">
-                            <label class="custom-control-label" for="especie-{$value.esp_id}"> {$value.esp_nome} </label>
-                        </div>
-                
-                        {/loop}  
-                </div>
-            </div>
-        </div>
+    <div id="collapseOn" class="collapse" aria-labelledby="headingOn" data-parent="#menu-filtro">
+      <div class="card-body p-0 ">
 
-    <div class="card">
-        <div class="card-header py-2" id="headingTwo">
-            <h2 class="mb-0">
-                <button class="btn btn-link collapsed sidebar__link" type="button" data-toggle="collapse" 
-                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                <i class="fas fa-venus-mars"></i> Sexo
-                </button>
-            </h2>
-        </div>
-
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#menu-filtro">
-            <div class="card-body">
-                
-                <!-- CHECKBOX FÊMEA -->
+        <ul class="list-group ">
+          {loop="$especies"}
+            <li class="list-group-item border-right-0 border-left-0 border-bottom-0">
               <div class="custom-control custom-checkbox">
-                    <input value="'F'" type="checkbox"  onchange="homeController.changeFilter()" 
-                    class="custom-control-input check-sexo" id="sexo-f">
-                    <label class="custom-control-label" for="sexo-f"> Fêmea </label>
-                  </div>
+                <input value="{$value.esp_id}" type="checkbox" onchange="homeController.changeFilter()"
+                  class="custom-control-input check-especie" id="especie-{$value.esp_id}">
+
+                <label class="custom-control-label" for="especie-{$value.esp_id}"> 
+                  {$value.esp_nome} 
+                </label> 
+              </div>
+            </li>     
+          {/loop}  
+        </ul>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+
+    <div class="card-header py-2" id="headingTwo">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed btn-block sidebar__link" type="button" data-toggle="collapse" 
+          data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+
+          <div class="row ">
+              <div class="col"> Sexo </div>
+              <div class="col-xs-1"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#menu-filtro">
+      <div class="card-body p-0">
+
+        <ul class="list-group">
+          <li class="list-group-item border-right-0 border-left-0 border-bottom-0">
+
+            <!-- CHECKBOX FÊMEA -->
+            <div class="custom-control custom-checkbox">
+                <input value="'F'" type="checkbox"  onchange="homeController.changeFilter()" 
+                  class="custom-control-input check-sexo" id="sexo-f">
+                  
+                <label class="custom-control-label" for="sexo-f"> Fêmea </label>
+              </div>
+          </li>
+
+          <li class="list-group-item border-right-0 border-left-0 border-bottom-0">
+                  
+            <!-- CHECKBOX MACHO -->
+            <div class="custom-control custom-checkbox">
+              <input value="'M'" type="checkbox" onchange="homeController.changeFilter()" 
+                class="custom-control-input check-sexo" id="sexo-m">
+
+              <label class="custom-control-label" for="sexo-m"> Macho </label>
+            </div>
+          </li>
+        </ul>        
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+
+    <div class="card-header py-2" id="headingfour">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed btn-block sidebar__link" type="button" data-toggle="collapse" 
+          data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+
+          <div class="row ">
+              <div class="col"> Porte </div>
+              <div class="col-xs-1"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </button>
+      </h2>
+    </div>
+
+    <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#menu-filtro">
+      <div class="card-body p-0">
+        <ul class="list-group">
+         
+          {loop="$porte"}
+              <li class="list-group-item border-right-0 border-left-0 border-bottom-0">
+              <div class="custom-control custom-checkbox">
+                <input value="{$value.por_id}" type="checkbox" onchange="homeController.changeFilter()" 
+                  class="custom-control-input check-porte" id="porte-{$value.por_id}">
+    
+                <label class="custom-control-label" for="porte-{$value.por_id}"> {$value.por_nome} </label>
+              </div>
+            </li>
+          {/loop} 
           
-                  <!-- CHECKBOX MACHO -->
-                  <div class="custom-control custom-checkbox">
-                    <input value="'M'" type="checkbox" onchange="homeController.changeFilter()" 
-                    class="custom-control-input check-sexo" id="sexo-m">
-                    <label class="custom-control-label" for="sexo-m"> Macho </label>
-                  </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <div class="card-header py-2" id="headingfour">
-            <h2 class="mb-0">
-                <button class="btn btn-link collapsed sidebar__link" type="button" data-toggle="collapse" 
-                data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
-                <i class="fas fa-cog"></i> Porte
-                </button>
-            </h2>
-        </div>
-
-        <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#menu-filtro">
-            <div class="card-body">
-                
-                    {loop="$porte"}
-    
-                    <div class="custom-control custom-checkbox">
-                        <input value="{$value.por_id}" type="checkbox" onchange="homeController.changeFilter()" 
-                            class="custom-control-input check-porte" id="porte-{$value.por_id}">
-                        <label class="custom-control-label" for="porte-{$value.por_id}"> {$value.por_nome} </label>
-                    </div>
-            
-                    {/loop} 
-
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-            <div class="card-header py-2" id="headingfive">
-                <h2 class="mb-0">
-                    <button class="btn btn-link collapsed sidebar__link" type="button" data-toggle="collapse" 
-                    data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
-                    <i class="far fa-envelope"></i> Faixa Etária
-                    </button>
-                </h2>
-            </div>
-    
-            <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#menu-filtro">
-                <div class="card-body">
-                    
-                        {loop="$faixaEtaria"}
-      
-                            <div class="custom-control custom-checkbox">
-                                <input value="{$value.fai_id}" type="checkbox" onchange="homeController.changeFilter()"
-                                    class="custom-control-input check-faixa" id="faixa-{$value.fai_id}">
-                                <label class="custom-control-label" for="faixa-{$value.fai_id}"> {$value.fai_nome} </label>
-                            </div>
-                
-                        {/loop}  
-    
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-                <div class="card-header py-2" id="headingsix">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link collapsed sidebar__link" type="button" data-toggle="collapse" 
-                        data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
-                        <i class="far fa-envelope"></i> Localização
-                        </button>
-                    </h2>
-                </div>
+        </ul>
         
-                <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#menu-filtro">
-                    <div class="card-body">
-                        
-                          
+
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+
+    <div class="card-header py-2" id="headingfive">
+      <h2 class="mb-0">
+        <button class="btn btn-link collapsed btn-block sidebar__link" type="button" data-toggle="collapse" 
+          data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+
+          <div class="row ">
+            <div class="col"> Faixa Etária </div>
+            <div class="col-xs-1"><i class="fas fa-angle-right"></i></div>
+          </div>
+        </button>
+      </h2>
+    </div>
+    
+    <div id="collapsefive" class="collapse" aria-labelledby="headingfive" data-parent="#menu-filtro">
+      <div class="card-body p-0">
+        
+          <ul class="list-group">
+            {loop="$faixaEtaria"}
+            <li class="list-group-item border-right-0 border-left-0 border-bottom-0">
+              <div class="custom-control custom-checkbox">
+                <input value="{$value.fai_id}" type="checkbox" onchange="homeController.changeFilter()"
+                  class="custom-control-input check-faixa" id="faixa-{$value.fai_id}">
+                <label class="custom-control-label" for="faixa-{$value.fai_id}"> {$value.fai_nome} </label>
+              </div>
+            </li>
+            {/loop}  
+          </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+
+    <div class="card-header py-2" id="headingsix">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block collapsed sidebar__link" type="button" data-toggle="collapse" 
+          data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+
+            <div class="row ">
+              <div class="col"> Localização </div>
+              <div class="col-xs-1"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </button>
+      </h2>
+    </div>
+        
+    <div id="collapsesix" class="collapse" aria-labelledby="headingsix" data-parent="#menu-filtro">
+      <div class="card-body p-0">            
+           
+        <ul class="list-group">
+            <li class="list-group-item border-right-0 border-left-0 border-bottom-0">
                 <div class="custom-control custom-checkbox">
-                        <input value="'{$uf}'" type="checkbox" onchange="homeController.changeFilter()"
-                            class="custom-control-input check-uf" id="uf">
-                        <label class="custom-control-label" for="uf"> Mesmo Estado </label>
-                      </div>
-            
-                      <div class="custom-control custom-checkbox">
-                        <input value="'{$cidade}'" type="checkbox" onchange="homeController.changeFilter()"
-                            class="custom-control-input check-cidade" id="cidade">
-                        <label class="custom-control-label" for="cidade"> Mesma Cidade </label>
-                      </div>
-        
-                    </div>
-                </div>
-            </div>
+                    <input value="'{$uf}'" type="checkbox" onchange="homeController.changeFilter()"
+                      class="custom-control-input check-uf" id="uf">
+                    <label class="custom-control-label" for="uf"> Mesmo Estado </label>
+                  </div>
+            </li>
 
+            <li class="list-group-item border-right-0 border-left-0 border-bottom-0">
+                <div class="custom-control custom-checkbox">
+                    <input value="'{$cidade}'" type="checkbox" onchange="homeController.changeFilter()"
+                        class="custom-control-input check-cidade" id="cidade">
+                    <label class="custom-control-label" for="cidade"> Mesma Cidade </label>
+                  </div>
+            </li>
+        </ul>
+
+        
+
+        
+      </div>
+    </div>
+  </div>
+  
 </div>

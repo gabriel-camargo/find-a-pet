@@ -169,7 +169,7 @@ class HomeController{
             })
             .then(data => {
                 this._view.update(data)
-                console.log(data);
+                //console.log(data);
             })
             .catch(err => console.log(err.message));
     }

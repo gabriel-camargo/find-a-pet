@@ -1,42 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt" dir="ltr">
 
-    <head>
+  <head>
+    {include="pages/header"}
+  </head>
 
-        {include="pages/header"}
+  <body class="body body--login">
+    {include="pages/navbar-deslogado"}
 
-    </head>
+    <form class="form form--theme-login form--size-sm p-5" method="POST">
+      <h1 class="h4 mb-3 font-weight-bold" >Bem vindo ao Find a Pet!</h1>
+      <h2 class="h5 mb-3 text-muted">Doe ou adote um novo amigo!</h2>
 
-    <body class="body body--login">
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input name="email" type="email" id="inputEmail" 
+        class="form-control mt-4 mb-2" placeholder="Email" required autofocus>
 
-        {include="pages/navbar-deslogado"}
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input name ="senha" type="password" id="inputPassword" 
+        class="login form-control mb-4" placeholder="Senha" required>
 
-        <form class="form form--theme-login form--size-sm p-5" method="POST">
+      <button class="btn btn-success btn-block" type="submit">
+        Entrar <i class="fa fa-sign-in-alt"></i>
+      </button>
+          
+      {if="$erro != NULL"}
+        <div class="alert alert-danger mt-3" role="alert">
+          {$erro}
+        </div>
+      {/if}     
+    </form>
 
-            <h1 class="h4 mb-3 font-weight-bold" >Bem vindo ao Find a Pet!</h1>
-            <h2 class="h5 mb-3 text-muted">Doe ou adote um novo amigo!</h2>
+    {include="pages/footer"}
 
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input name="email" type="email" id="inputEmail" class="form-control mt-4 mb-2" placeholder="Email" required autofocus>
-
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input name ="senha" type="password" id="inputPassword" class="login form-control mb-4" placeholder="Senha" required>
-
-            <button class="btn  btn-success btn-block" type="submit">
-                Entrar <i class="fa fa-sign-in-alt"></i>
-            </button>
-            
-            {if="$erro != NULL"}
-                <div class="alert alert-danger mt-3" role="alert">
-                    {$erro}
-                </div>
-            {/if}
-
-            
-            
-        </form>
-
-        {include="pages/footer"}
-
-    </body>
+  </body>
 </html>
