@@ -73,23 +73,18 @@ CREATE TABLE IF NOT EXISTS `tbl_status` (
   `sta_tipo` varchar(20) NOT NULL,
   PRIMARY KEY (`sta_id`),
   UNIQUE KEY `sta_id_UNIQUE` (`sta_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela bd_findapet.tbl_status: ~10 rows (aproximadamente)
+-- Copiando dados para a tabela bd_findapet.tbl_status: ~6 rows (aproximadamente)
 DELETE FROM `tbl_status`;
 /*!40000 ALTER TABLE `tbl_status` DISABLE KEYS */;
 INSERT INTO `tbl_status` (`sta_id`, `sta_nome`, `sta_tipo`) VALUES
-	(1, 'Em adoção', 'cad'),
-	(2, 'Perdido', 'cad'),
-	(3, 'Adotado', 'save'),
-	(4, 'Encontrado', 'save'),
-	(5, 'Arquivado', 'del'),
-	(6, 'Em aberto', 'adocao'),
-	(7, 'Aceito', 'adocao'),
-	(8, 'Rejeitado', 'adocao'),
-	(9, 'Em aberto', 'perdido'),
-	(10, 'Encontrado', 'perdido'),
-	(11, 'Rejeitado', 'perdido');
+	(1, 'Em adoção', 'animal'),
+	(2, 'Adotado', 'amimal'),
+	(3, 'Arquivado', 'animal'),
+	(4, 'Em aberto', 'adocao'),
+	(5, 'Aceito', 'adocao'),
+	(6, 'Rejeitado', 'adocao');
 /*!40000 ALTER TABLE `tbl_status` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

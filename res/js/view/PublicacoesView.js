@@ -86,12 +86,12 @@ class PublicacoesView extends View {
                                         </div>
                                     </div>
 
-                                    <div class="row">
+                                   <!-- <div class="row">
                                         <div class="col">
                                             
                                             <strong> Email:</strong> ${el.dono_email}
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
                                 <div class="col-md"> 
