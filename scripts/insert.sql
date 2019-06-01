@@ -80,7 +80,7 @@ DELETE FROM `tbl_status`;
 /*!40000 ALTER TABLE `tbl_status` DISABLE KEYS */;
 INSERT INTO `tbl_status` (`sta_id`, `sta_nome`, `sta_tipo`) VALUES
 	(1, 'Em adoção', 'animal'),
-	(2, 'Adotado', 'amimal'),
+	(2, 'Adotado', 'animal'),
 	(3, 'Arquivado', 'animal'),
 	(4, 'Em aberto', 'adocao'),
 	(5, 'Aceito', 'adocao'),
